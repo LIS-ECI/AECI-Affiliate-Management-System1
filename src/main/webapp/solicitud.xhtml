@@ -2,11 +2,12 @@
   xmlns:h="http://java.sun.com/jsf/html"
   xmlns:p="http://primefaces.org/ui"
   xmlns:f="http://xmlns.jcp.org/jsf/core">
-    <h:head></h:head>
-
-    <h:body>
-        <h:form id="RegistroForo">
-            <h:panelGrid columns="1" style="position: absolute; top: 0px; left: 0px">
+<h:head>
+</h:head>
+<h:body>
+<h:form prependId="false">
+ 
+    <h:panelGrid columns="1" style="position: absolute; top: 0px; left: 0px">
         <p:panel style=" font-size:  medium; height: 182px;color: #ffffff" >
                     <f:facet name="header" >
                         <img  src="http://tycho.escuelaing.edu.co/contenido/notiweb/notiweb-movil/img/logos/logo-escuela.png" width="350" height="150" align="left"/>
@@ -17,24 +18,32 @@
                     
                 </p:panel>
                 
-            </h:panelGrid>
+    </h:panelGrid>
+    <br></br>
+    <br></br>
+    <br></br>
+
+    <p:dataTable var="car"  >
+    <p:column headerText="Id">
+        <h:outputText  />
+    </p:column>
+ 
+    <p:column headerText="Year">
+        <h:outputText value="" />
+    </p:column>
+ 
+    <p:column headerText="Brand">
+        <h:outputText value="" />
+    </p:column>
+ 
+    <p:column headerText="Color">
+        <h:outputText value="" />
+    </p:column>
+    </p:dataTable>
             
-            <h:panelGrid columns="1" style="position: absolute; top: 0px; left: 1000px">
-                <p:panel style=" font-size:  medium; height: 90px;color: #ffffff" >
-            <p:splitButton value="Solicitud de registro">
-                <p:menuitem value="Estudiante"/>
-                <p:separator />
-                <p:menuitem value="Egresado"  />
-                            </p:splitButton>
-                    <p:commandButton value="Ingresar" id="ajax" styleClass="ui-priority-primary" />
-
-                </p:panel>
-                </h:panelGrid>
-
-
-
-        </h:form>
-    </h:body>
-
-
+</h:form>
+</h:body>
 </html>
+
+
+

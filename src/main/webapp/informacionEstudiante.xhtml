@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3c.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui" 
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head></h:head>
+
+    <h:body>
+    <h:form id="infoEstudiante">
+        Informacion Personal
+        <p:panelGrid columns="2">
+            
+            Nombre y Apellidos
+            <p:inputText value="#{estudianteBean.codigo}"></p:inputText>
+            Código de estudiante
+            <p:inputText value="#{estudianteBean.codigo}"></p:inputText>
+            
+            Carrera
+            <p:selectOneMenu id="console" value="#{estudianteBean.carreras}" style="width:250px">
+            <f:selectItem itemLabel="Ingeniería Civil" itemValue="Ingeniería Civil" />
+            <f:selectItem itemLabel="Ingeniería Electrónica" itemValue="Ingeniería Electrónica" />
+            <f:selectItem itemLabel="Ingeniería Eléctrica" itemValue="Ingeniería Eléctrica" />
+            <f:selectItem itemLabel="Ingeniería De Sistemas" itemValue="Ingeniería De Sistemas" />
+            <f:selectItem itemLabel="Ingeniería Industrial" itemValue="Ingeniería Industrial" />
+            <f:selectItem itemLabel="Matemáticas" itemValue="Matemáticas" />
+            <f:selectItem itemLabel="Economía" itemValue="Economía" />
+            <f:selectItem itemLabel="Administración De Empresas" itemValue="Administración De Empresas" />
+            <f:selectItem itemLabel="Ingeniería Mecánica" itemValue="Ingeniería Mecánica" />
+            <f:selectItem itemLabel="Ingeniería Ambiental" itemValue="Ingeniería Ambiental" />
+            <f:selectItem itemLabel="Ingeniería Biomédica" itemValue="Ingeniería Biomédica" />
+            </p:selectOneMenu>
+            <p:outputLabel value="Tipo de Documento" />
+            <p:outputLabel value="Número de Documento" />
+            <p:selectOneMenu id="tipoId" value="#{estudianteBean.carreras}" style="width:250px">
+            <f:selectItem itemLabel="CC" itemValue="CC" />
+            <f:selectItem itemLabel="CE" itemValue="CE" />
+            </p:selectOneMenu>
+            <p:inputText value="#{estudianteBean.codigo}"></p:inputText>
+            
+        </p:panelGrid>
+    
+    </h:form>
+ </h:body>
+
+
+</html>

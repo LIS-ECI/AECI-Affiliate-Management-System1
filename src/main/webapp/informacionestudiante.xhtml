@@ -6,41 +6,130 @@
     <h:head></h:head>
 
     <h:body>
-    <h:form id="infoEstudiante">
-        Informacion Personal
-        <p:panelGrid columns="2">
-            
-            Nombre y Apellidos
-            <p:inputText value="#{estudianteBean.codigo}"></p:inputText>
-            Código de estudiante
-            <p:inputText value="#{estudianteBean.codigo}"></p:inputText>
-            
-            Carrera
-            <p:selectOneMenu id="console" value="#{estudianteBean.carreras}" style="width:250px">
-            <f:selectItem itemLabel="Ingeniería Civil" itemValue="Ingeniería Civil" />
-            <f:selectItem itemLabel="Ingeniería Electrónica" itemValue="Ingeniería Electrónica" />
-            <f:selectItem itemLabel="Ingeniería Eléctrica" itemValue="Ingeniería Eléctrica" />
-            <f:selectItem itemLabel="Ingeniería De Sistemas" itemValue="Ingeniería De Sistemas" />
-            <f:selectItem itemLabel="Ingeniería Industrial" itemValue="Ingeniería Industrial" />
-            <f:selectItem itemLabel="Matemáticas" itemValue="Matemáticas" />
-            <f:selectItem itemLabel="Economía" itemValue="Economía" />
-            <f:selectItem itemLabel="Administración De Empresas" itemValue="Administración De Empresas" />
-            <f:selectItem itemLabel="Ingeniería Mecánica" itemValue="Ingeniería Mecánica" />
-            <f:selectItem itemLabel="Ingeniería Ambiental" itemValue="Ingeniería Ambiental" />
-            <f:selectItem itemLabel="Ingeniería Biomédica" itemValue="Ingeniería Biomédica" />
-            </p:selectOneMenu>
-            <p:outputLabel value="Tipo de Documento" />
-            <p:outputLabel value="Número de Documento" />
-            <p:selectOneMenu id="tipoId" value="#{estudianteBean.carreras}" style="width:250px">
-            <f:selectItem itemLabel="CC" itemValue="CC" />
-            <f:selectItem itemLabel="CE" itemValue="CE" />
-            </p:selectOneMenu>
-            <p:inputText value="#{estudianteBean.codigo}"></p:inputText>
-            
-        </p:panelGrid>
-    
-    </h:form>
- </h:body>
+        <h:form id="infoEstudiante">
+            <p:outputLabel value="Informacion Personal" />
+
+            <p:panelGrid columns="2">
+
+                <h:form>
+
+                    <p:growl id="growl" sticky="true" showDetail="true"/>
+
+                    <p:wizard >
+                        <p:tab id="personal" title="Informacion Basica">
+                            <p:panel header="Informacion Personal">
+                                <p:messages />
+                                <h:panelGrid columns="2" columnClasses="label, value">
+                                    <h:outputText value="Nombre y Apellido: *" />
+                                    <p:inputText label="Nombre y Apellido"/>
+
+                                    <h:outputText value="Direccion: *" />
+                                    <p:inputText   label="Direccion"/>
+
+                                    <h:outputText value="Telefono fijo: " />
+                                    <p:inputText  label="Telefono"/>
+
+                                    <h:outputText value="Documento: *" />
+                                    <p:inputText label="Documento"/>
+
+                                    <h:outputText value="Tipo de documento" />
+                                    <p:selectOneMenu id="tipoId" style="width:90px">
+                                        <f:selectItem itemLabel="CC" itemValue="CC" />
+                                        <f:selectItem itemLabel="CE" itemValue="CE" />
+                                    </p:selectOneMenu>
+
+                                    <h:outputText value="Correo: *" />
+                                    <p:inputText label="Correo"/>
+
+                                </h:panelGrid>
+                            </p:panel>
+                        </p:tab>
+
+
+
+                        <p:tab id="contact" title="Informacion Academica">
+                            <p:panel header="Datos Academicos">
+                                <p:messages />
+                                <h:panelGrid columns="2" columnClasses="label, value">
+                                    <h:outputText value="Semestre Ponderado: *" />
+                                    <p:spinner id="Semestre" min="7" max="10" label="Semestre" />
+
+                                    <h:outputText value="Programa: " />
+                                    <p:selectOneMenu id="console" style="width:250px">
+                                        <f:selectItem itemLabel="Ingeniería Civil" itemValue="Ingeniería Civil" />
+                                        <f:selectItem itemLabel="Ingeniería Electrónica" itemValue="Ingeniería Electrónica" />
+                                        <f:selectItem itemLabel="Ingeniería Eléctrica" itemValue="Ingeniería Eléctrica" />
+                                        <f:selectItem itemLabel="Ingeniería De Sistemas" itemValue="Ingeniería De Sistemas" />
+                                        <f:selectItem itemLabel="Ingeniería Industrial" itemValue="Ingeniería Industrial" />
+                                        <f:selectItem itemLabel="Matemáticas" itemValue="Matemáticas" />
+                                        <f:selectItem itemLabel="Economía" itemValue="Economía" />
+                                        <f:selectItem itemLabel="Administración De Empresas" itemValue="Administración De Empresas" />
+                                        <f:selectItem itemLabel="Ingeniería Mecánica" itemValue="Ingeniería Mecánica" />
+                                        <f:selectItem itemLabel="Ingeniería Ambiental" itemValue="Ingeniería Ambiental" />
+                                        <f:selectItem itemLabel="Ingeniería Biomédica" itemValue="Ingeniería Biomédica" />
+                                    </p:selectOneMenu>
+
+                                    <h:outputText value="Codigo Estudiante: " />
+                                    <p:inputText id="Codigo"  label="Codigo"/>
+                                </h:panelGrid>
+                            </p:panel>
+                        </p:tab>
+
+
+
+                        <p:tab id="confirm" title="Confirmation">
+                            <p:panel header="Confirmation">
+                                <h:panelGrid id="confirmation" columns="3" columnClasses="grid,grid,grid">
+                                    <h:panelGrid columns="2" columnClasses="label, value">
+                                        <h:outputText value="Firstname: " />
+                                        <h:outputText value="#{userWizard.user.firstname}" styleClass="outputLabel"/>
+
+                                        <h:outputText value="Lastname: " />
+                                        <h:outputText value="#{userWizard.user.lastname}" styleClass="outputLabel"/>
+
+                                        <h:outputText value="Age: " />
+                                        <h:outputText value="#{userWizard.user.age}" styleClass="outputLabel"/>
+                                    </h:panelGrid>
+
+                                    <h:panelGrid columns="2" columnClasses="label, value">
+                                        <h:outputText value="Street: " />
+                                        <h:outputText value="#{userWizard.user.street}" styleClass="outputLabel"/>
+
+                                        <h:outputText value="Postal: " />
+                                        <h:outputText value="#{userWizard.user.postalCode}" styleClass="outputLabel"/>
+
+                                        <h:outputText value="City: " />
+                                        <h:outputText value="#{userWizard.user.city}" styleClass="outputLabel"/>
+                                    </h:panelGrid>
+
+                                    <h:panelGrid columns="2" columnClasses="label, value">
+                                        <h:outputText value="Email: " />
+                                        <h:outputText value="#{userWizard.user.email}" styleClass="outputLabel"/>
+
+                                        <h:outputText value="Phone " />
+                                        <h:outputText value="#{userWizard.user.phone}" styleClass="outputLabel"/>
+
+                                        <h:outputText value="Info: " />
+                                        <h:outputText value="#{userWizard.user.info}" styleClass="outputLabel"/>
+
+                                        <h:outputText />
+                                        <h:outputText />
+                                    </h:panelGrid>
+                                </h:panelGrid>
+
+                                <p:commandButton value="Submit" actionListener="#{userWizard.save}" update="growl" process="@this"/>
+                            </p:panel>
+                        </p:tab>
+                    </p:wizard>
+
+                </h:form>
+
+
+            </p:panelGrid>
+            <p:commandButton value="Regresar" action="index" styleClass="ui-priority-primary" />
+
+        </h:form>
+    </h:body>
 
 
 </html>

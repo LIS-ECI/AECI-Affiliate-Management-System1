@@ -7,7 +7,7 @@
 
     <h:body>
         <h:form id="infoEgresado">
-                        <p:outputLabel value="Informacion Personal" />
+            <p:outputLabel value="Informacion Personal" />
 
             <p:panelGrid columns="2">
 
@@ -15,63 +15,84 @@
 
                     <p:growl id="growl" sticky="true" showDetail="true"/>
 
-                    <p:wizard flowListener="#{userWizard.onFlowProcess}">
+                    <p:wizard >
                         <p:tab id="personal" title="Informacion Basica">
-                            <p:panel header="Personal Details">
+                            <p:panel header="Informacion Personal">
                                 <p:messages />
                                 <h:panelGrid columns="2" columnClasses="label, value">
                                     <h:outputText value="Nombre y Apellido: *" />
-                                    <p:inputText required="true" label="Nombre y Apellido"/>
+                                    <p:inputText  label="Nombre y Apellido"/>
 
                                     <h:outputText value="Direccion: *" />
-                                    <p:inputText  required="true" label="Direccion"/>
+                                    <p:inputText   label="Direccion"/>
 
-                                    <h:outputText value="Telefono: *" />
-                                    <p:inputText  required="true" label="Telefono"/>
+                                    <h:outputText value="Telefono fijo: " />
+                                    <p:inputText   label="Telefono"/>
 
-                                    <h:outputText value="Cedula: *" />
-                                    <p:inputText required="true" label="Cedula"/>
-                                    
-                                    <p:selectOneMenu id="tipoId" style="width:100px">
+                                    <h:outputText value="Documento: *" />
+                                    <p:inputText label="Documento"/>
+
+                                    <h:outputText value="Tipo de documento" />
+                                    <p:selectOneMenu id="tipoId" style="width:90px">
                                         <f:selectItem itemLabel="CC" itemValue="CC" />
                                         <f:selectItem itemLabel="CE" itemValue="CE" />
                                     </p:selectOneMenu>
-                                    
+
+                                    <h:outputText value="Correo: *" />
+                                    <p:inputText label="Correo"/>
+
                                 </h:panelGrid>
                             </p:panel>
                         </p:tab>
 
-                        <p:tab id="address" title="Address">
-                            <p:panel header="Address Details">
+
+
+                        <p:tab id="contact" title="Informacion Grado">
+                            <p:panel header="Datos de la graduacion">
                                 <p:messages />
                                 <h:panelGrid columns="2" columnClasses="label, value">
-                                    <h:outputText value="Street: " />
-                                    <p:inputText value="#{userWizard.user.street}" />
+                                    <h:outputText value="Año de Graduacion : *" />
+                                    <p:inputText label="Email"/>
 
-                                    <h:outputText value="Postal Code: " />
-                                    <p:inputText value="#{userWizard.user.postalCode}" />
+                                    <h:outputText value="Periodo: " />
+                                    <p:inputText />
 
-                                    <h:outputText value="City: " />
-                                    <p:inputText value="#{userWizard.user.city}" />
+                                    <h:outputText value="Programa: " />
+                                    <p:selectOneMenu id="console" style="width:250px">
+                                        <f:selectItem itemLabel="Ingeniería Civil" itemValue="Ingeniería Civil" />
+                                        <f:selectItem itemLabel="Ingeniería Electrónica" itemValue="Ingeniería Electrónica" />
+                                        <f:selectItem itemLabel="Ingeniería Eléctrica" itemValue="Ingeniería Eléctrica" />
+                                        <f:selectItem itemLabel="Ingeniería De Sistemas" itemValue="Ingeniería De Sistemas" />
+                                        <f:selectItem itemLabel="Ingeniería Industrial" itemValue="Ingeniería Industrial" />
+                                        <f:selectItem itemLabel="Matemáticas" itemValue="Matemáticas" />
+                                        <f:selectItem itemLabel="Economía" itemValue="Economía" />
+                                        <f:selectItem itemLabel="Administración De Empresas" itemValue="Administración De Empresas" />
+                                        <f:selectItem itemLabel="Ingeniería Mecánica" itemValue="Ingeniería Mecánica" />
+                                        <f:selectItem itemLabel="Ingeniería Ambiental" itemValue="Ingeniería Ambiental" />
+                                        <f:selectItem itemLabel="Ingeniería Biomédica" itemValue="Ingeniería Biomédica" />
+                                    </p:selectOneMenu>
 
-                                    <h:outputText value="Skip to last: " />
-                                    <h:selectBooleanCheckbox value="#{userWizard.skip}" />
+                                    <h:outputText value="Telefono celular: " />
+                                    <p:inputText />
                                 </h:panelGrid>
                             </p:panel>
                         </p:tab>
 
-                        <p:tab id="contact" title="Contact">
-                            <p:panel header="Contact Information">
+                        <p:tab id="address" title="Informacion Laboral">
+                            <p:panel header="Datos de la empresa">
                                 <p:messages />
                                 <h:panelGrid columns="2" columnClasses="label, value">
-                                    <h:outputText value="Email: *" />
-                                    <p:inputText value="#{userWizard.user.email}" required="true" label="Email"/>
+                                    <h:outputText value="Nombre: " />
+                                    <p:inputText  />
 
-                                    <h:outputText value="Phone: " />
-                                    <p:inputText value="#{userWizard.user.phone}"/>
+                                    <h:outputText value="Direccion: " />
+                                    <p:inputText  />
 
-                                    <h:outputText value="Additional Info: " />
-                                    <p:inputText value="#{userWizard.user.info}"/>
+                                    <h:outputText value="Telefono oficina: " />
+                                    <p:inputText  />
+
+                                    <h:outputText value="Cargo: " />
+                                    <p:inputText  />
                                 </h:panelGrid>
                             </p:panel>
                         </p:tab>
@@ -120,11 +141,16 @@
                             </p:panel>
                         </p:tab>
                     </p:wizard>
+                    
+                    
 
                 </h:form>
 
+                
+                
             </p:panelGrid>
-
+            <p:commandButton value="Regresar" action="index" styleClass="ui-priority-primary" />
+            
         </h:form>
     </h:body>
 

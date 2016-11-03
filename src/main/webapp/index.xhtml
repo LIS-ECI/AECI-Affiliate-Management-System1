@@ -20,32 +20,36 @@
             </h:panelGrid>
 
             <h:panelGrid columns="1" style="position: absolute; top: 0px; left: 1000px">
-                
-           
-                
-                
+
+
+
+
                 <p:panel style=" font-size:  medium; height: 160px;color: #ffffff" >
-                    
+
                     <p:growl id="msgs" showDetail="true" />
 
-                        <h:panelGrid columns="2" cellpadding="5">
-                            <p:outputLabel value="Usuario:"  />
-                            <p:inputText />
-                            
-                                <h:outputText value="Contraseña: " />
-                                <p:password id="nonFeedback" />
-                                <p:commandButton value="Ingresar" id="ajax" styleClass="ui-priority-primary" />
-                                
-                                <p:splitButton value="Solicitud de registro">
-                        <p:menuitem value="Estudiante" action="informacionestudiante"/>
-                        <p:separator />
-                        <p:menuitem value="Egresado" action="informacionegresado" />
-                    </p:splitButton>
-                                
-                                           </h:panelGrid>
+                    <h:panelGrid columns="2" cellpadding="5">
+                        <p:outputLabel value="Usuario:"  />
+                        <p:inputText />
+
+                        <h:outputText value="Contraseña: " />
+                        <p:password id="nonFeedback" />
+                        <p:growl id="growl" life="2000" />
+                        <p:commandLink id="ajax2" update="growl">
+                            <h:outputText value="Olvide mi contraseña" />
+                        </p:commandLink>
+                        <p:commandButton value="Ingresar" id="ajax" styleClass="ui-priority-primary" />
+
+                        <p:splitButton value="Solicitud de registro">
+                            <p:menuitem value="Estudiante" action="informacionestudiante"/>
+                            <p:separator />
+                            <p:menuitem value="Egresado" action="informacionegresado" />
+                        </p:splitButton>
+
+                    </h:panelGrid>
 
 
-                     
+
 
                 </p:panel>
             </h:panelGrid>

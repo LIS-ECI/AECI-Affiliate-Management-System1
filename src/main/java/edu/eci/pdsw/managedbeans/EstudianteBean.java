@@ -5,20 +5,62 @@
  */
 package edu.eci.pdsw.managedbeans;
 
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+
 /**
  *
- * @author estudiante
+ * @author 
  */
+@ManagedBean(name="beanEstudiante")
+
+@SessionScoped
 public class EstudianteBean {
     private int codigo;
     private int numero_identificacion;
     private String nombre;
     private int semestre;
     private String tipo_identificacion;
-    private int carrera;
+     private String carrera;
     private int telefono_fijo;
     private int celular;
+    private String direccion;
     private String correo;
+
+
+    public int getDocumento() {
+        return documento;
+    }
+
+    public void setDocumento(int documento) {
+        this.documento = documento;
+    }
+    private int documento;
+
+    public int getTelefono_fijo() {
+        return telefono_fijo;
+    }
+
+    public int getCelular() {
+        return celular;
+    }    
+
+    public String getCorreo() {
+        return correo;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+    
     //bases de datos
 
 
@@ -62,11 +104,11 @@ public class EstudianteBean {
         this.tipo_identificacion = tipo_identificacion;
     }
 
-    public int getCarrera() {
+    public String getCarrera() {
         return carrera;
     }
 
-    public void setCarrera(int carrera) {
+    public void setCarrera(String carrera) {
         this.carrera = carrera;
     }
         

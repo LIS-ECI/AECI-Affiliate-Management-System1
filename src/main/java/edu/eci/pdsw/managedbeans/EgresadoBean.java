@@ -11,6 +11,14 @@ import java.util.Date;
  *
  * @author 2106088
  */
+
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+
+
+@ManagedBean(name="beanEgresado")
+
+@SessionScoped
 public class EgresadoBean {
     private int cedula;
     private String tipo_identificacion;

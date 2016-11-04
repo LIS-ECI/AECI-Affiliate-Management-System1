@@ -17,21 +17,22 @@
 package edu.eci.pdsw.persistence.jdbcimpl;
 
 import edu.eci.pdsw.entities.Estudiante;
+import edu.eci.pdsw.entities.Solicitud;
 import edu.eci.pdsw.persistence.PersistenceException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import edu.eci.pdsw.persistence.DaoUsuario;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import edu.eci.pdsw.persistence.DaoEstudiante;
 
 /**
  *
  * @author hcadavid
  */
-public class JDBCDaoUsuario implements DaoUsuario {
+public class JDBCDaoUsuario implements DaoEstudiante {
 
     Connection con;
 
@@ -54,14 +55,6 @@ public class JDBCDaoUsuario implements DaoUsuario {
     }
 
     @Override
-    public void save(Estudiante u) throws PersistenceException {
-        PreparedStatement ps;
-        
-        //throw new RuntimeException("No se ha implementado el metodo 'save' del DAOPUsuarioJDBC");
-
-    }
-
-    @Override
     public void update(Estudiante u) throws PersistenceException {
         PreparedStatement ps;
         /*try {
@@ -70,6 +63,11 @@ public class JDBCDaoUsuario implements DaoUsuario {
             throw new PersistenceException("An error ocurred while updating Estudiante.",ex);
         } */
         throw new RuntimeException("No se ha implementado el metodo 'update' del DAOPAcienteJDBC");
+    }
+
+    @Override
+    public void enviarSolicitudEstudiante(Estudiante est, Solicitud sol) throws PersistenceException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

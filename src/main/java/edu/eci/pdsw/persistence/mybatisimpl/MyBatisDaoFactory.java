@@ -19,7 +19,6 @@ package edu.eci.pdsw.persistence.mybatisimpl;
 
 import edu.eci.pdsw.persistence.DaoEntradaForo;
 import edu.eci.pdsw.persistence.DaoFactory;
-import edu.eci.pdsw.persistence.DaoUsuario;
 import edu.eci.pdsw.persistence.PersistenceException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -28,6 +27,7 @@ import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import edu.eci.pdsw.persistence.DaoEstudiante;
 
 /**
  *
@@ -95,6 +95,11 @@ public class MyBatisDaoFactory extends DaoFactory {
     @Override
     public void endSession() throws PersistenceException {
         currentSession.close();
+    }
+
+    @Override
+    public DaoEstudiante getDaoEstudiante() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 

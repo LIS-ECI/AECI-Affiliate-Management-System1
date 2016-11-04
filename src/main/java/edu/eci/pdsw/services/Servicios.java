@@ -5,6 +5,7 @@
  */
 package edu.eci.pdsw.services;
 
+import edu.eci.pdsw.entities.Estudiante;
 import edu.eci.pdsw.entities.Solicitud;
 import java.util.List;
 import java.util.Set;
@@ -33,7 +34,7 @@ public abstract class Servicios {
     public abstract List<Solicitud> consultarSolicitud();
     
     
-    public abstract void enviarSolicitudEstudiante();
+    public abstract void enviarSolicitudEstudiante(Estudiante est,Solicitud sol);
     
 
 }

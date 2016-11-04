@@ -19,12 +19,12 @@ package edu.eci.pdsw.persistence.jdbcimpl;
 
 import edu.eci.pdsw.persistence.DaoEntradaForo;
 import edu.eci.pdsw.persistence.DaoFactory;
-import edu.eci.pdsw.persistence.DaoUsuario;
 import edu.eci.pdsw.persistence.PersistenceException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
+import edu.eci.pdsw.persistence.DaoEstudiante;
 
 /**
  *
@@ -103,6 +103,11 @@ public class JDBCDaoFactory extends DaoFactory {
         } catch (SQLException ex) {
             throw new PersistenceException("Error on connection closing.", ex);
         }
+    }
+
+    @Override
+    public DaoEstudiante getDaoEstudiante() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 

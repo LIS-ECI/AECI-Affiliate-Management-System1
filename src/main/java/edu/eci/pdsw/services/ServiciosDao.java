@@ -5,37 +5,68 @@
  */
 package edu.eci.pdsw.services;
 
-
+import edu.eci.pdsw.entities.Estudiante;
 import edu.eci.pdsw.entities.Solicitud;
 import edu.eci.pdsw.persistence.DaoFactory;
+import edu.eci.pdsw.persistence.PersistenceException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 import java.util.Properties;
-
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author 2106088
  */
-public class ServiciosDao extends Servicios{
+public class ServiciosDao extends Servicios {
 
     //private SqlSession currentSession=null;
     Properties properties;
     DaoFactory daof;
 
-    public ServiciosDao(){
-        
+    public ServiciosDao() {
+        try {
+            properties=new PropertiesLoader().readProperties("applicationconfig.properties");
+        } catch (IOException ex) {
+            Logger.getLogger(ServiciosDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        daof=DaoFactory.getInstance(properties);
+        try{
+            daof.beginSession();
+        }
+        catch(PersistenceException ex){
+            Logger.getLogger(ServiciosDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
     public List<Solicitud> consultarSolicitud() {
-        List<Solicitud> Solicitudes=null;
-        //Solicitudes = daof.getDaoSolicitud().loadAll();
-        return Solicitudes;
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void enviarSolicitudEstudiante() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void enviarSolicitudEstudiante(Estudiante est, Solicitud sol) {
+
+        try {
+            daof.getDaoEstudiante().enviarSolicitudEstudiante(est, sol);
+        } catch (PersistenceException ex) {
+            Logger.getLogger(ServiciosDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+}
+
+class PropertiesLoader {
+
+    public Properties readProperties(String fileName) throws IOException {
+        InputStream input = null;
+        Properties properties = new Properties();
+        input = this.getClass().getClassLoader().getResourceAsStream(fileName);
+        properties.load(input);
+        return properties;
     }
 }
 

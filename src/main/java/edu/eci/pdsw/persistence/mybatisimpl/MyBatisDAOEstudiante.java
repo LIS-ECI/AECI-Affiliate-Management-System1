@@ -18,22 +18,23 @@
 package edu.eci.pdsw.persistence.mybatisimpl;
 
 import edu.eci.pdsw.entities.Estudiante;
-import edu.eci.pdsw.persistence.DaoUsuario;
+import edu.eci.pdsw.entities.Solicitud;
 import edu.eci.pdsw.persistence.PersistenceException;
 import edu.eci.pdsw.persistence.mybatisimpl.mappers.UsuarioMapper;
 import org.apache.ibatis.session.SqlSession;
+import edu.eci.pdsw.persistence.DaoEstudiante;
 
 /**
  *
  * @author hcadavid
  */
 
-public class MyBatisDAOUsuario implements DaoUsuario{
+public class MyBatisDAOEstudiante implements DaoEstudiante{
 
     
     private SqlSession currentSession=null;
 
-    public MyBatisDAOUsuario(SqlSession session) {
+    public MyBatisDAOEstudiante(SqlSession session) {
         this.currentSession=session;
     }
 
@@ -42,13 +43,15 @@ public class MyBatisDAOUsuario implements DaoUsuario{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+
+
     @Override
-    public void save(Estudiante p) throws PersistenceException {
+    public void update(Estudiante p) throws PersistenceException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void update(Estudiante p) throws PersistenceException {
+    public void enviarSolicitudEstudiante(Estudiante est, Solicitud sol) throws PersistenceException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

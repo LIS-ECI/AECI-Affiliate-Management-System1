@@ -102,10 +102,7 @@ public class Estudiante {
     public void setCorreo(String correo) {
         this.correo = correo;
     }
-    
-    
-    public Estudiante() {
-    }
+ 
 
     public Estudiante(int codigo, int numero_identificacion,  String nombre, int semestre, String tipo_identificacion, String carrera, int telefono_fijo, int celular, String correo, String direccion ) {
         this.codigo = codigo;

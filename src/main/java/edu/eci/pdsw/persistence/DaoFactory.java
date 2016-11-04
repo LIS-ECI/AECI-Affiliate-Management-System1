@@ -47,6 +47,8 @@ public abstract class DaoFactory {
         }
         return instance;
     }
+    public abstract DaoEstudiante getDaoEstudiante();
+
 
     public abstract void beginSession() throws PersistenceException;
 

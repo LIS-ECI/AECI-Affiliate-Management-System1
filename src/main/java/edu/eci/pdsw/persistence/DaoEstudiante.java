@@ -17,6 +17,7 @@
 package edu.eci.pdsw.persistence;
 
 import edu.eci.pdsw.entities.Estudiante;
+import edu.eci.pdsw.entities.Solicitud;
 
 
 
@@ -24,12 +25,12 @@ import edu.eci.pdsw.entities.Estudiante;
  *
  * @author hcadavid
  */
-public interface DaoUsuario {
+public interface DaoEstudiante {
 
     
     public Estudiante load(String email) throws PersistenceException;
     
-    public void save(Estudiante p) throws PersistenceException;
+    public void enviarSolicitudEstudiante(Estudiante est, Solicitud sol) throws PersistenceException;
     
     public void update(Estudiante p) throws PersistenceException;
     

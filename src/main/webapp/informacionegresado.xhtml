@@ -48,16 +48,16 @@
                                 <p:messages />
                                 <h:panelGrid columns="2" columnClasses="label, value">
                                     <h:outputText value="Nombre y Apellido: *" />
-                                    <p:inputText  label="Nombre y Apellido" value="#{beanEgresado.nombre}"/>
+                                    <p:inputText  label="Nombre y Apellido" required="true" value="#{beanEgresado.nombre}"/>
 
                                     <h:outputText value="Direccion: *" />
-                                    <p:inputText   label="Direccion" value="#{beanEgresado.direccion_vivienda}"/>
+                                    <p:inputText   label="Direccion" required="true" value="#{beanEgresado.direccion_vivienda}"/>
 
                                     <h:outputText value="Telefono fijo: " />
                                     <p:inputText   label="Telefono" value="#{beanEgresado.telefono_fijo}"/>
 
                                     <h:outputText value="Documento: *" />
-                                    <p:inputText label="Documento" value="#{beanEgresado.cedula}"/>
+                                    <p:inputText label="Documento" required="true" value="#{beanEgresado.cedula}"/>
 
                                     <h:outputText value="Tipo de documento " />
                                     <p:selectOneMenu id="tipoId" style="width:90px" value="#{beanEgresado.tipo_identificacion}">
@@ -66,7 +66,7 @@
                                     </p:selectOneMenu>
 
                                     <h:outputText value="Correo: *" />
-                                    <p:inputText label="Correo" value="#{beanEgresado.email}"/>
+                                    <p:inputText label="Correo" required="true" value="#{beanEgresado.email}"/>
 
                                 </h:panelGrid>
                             </p:panel>
@@ -79,7 +79,7 @@
                                 <p:messages />
                                 <h:panelGrid columns="2" columnClasses="label, value">
                                     <h:outputText value="Año de Graduacion : *" />
-                                    <p:spinner id="minMaxanio" value="#{beanEgresado.fecha_grado}" min="1950" max="2016" />
+                                    <p:spinner id="minMaxanio" required="true" value="#{beanEgresado.fecha_grado}" min="1950" max="2016" />
 
                                     <h:outputText value="Periodo: " />
 
@@ -183,7 +183,7 @@
                                     </h:panelGrid>
                                 </h:panelGrid>
 
-                                <p:commandButton value="Enviar Solicitud" actionListener="#{beanEgresado.enviarSolicitud}" />
+                                <p:commandButton value="Enviar Solicitud" update=":infoEgresado" immediate="true" actionListener="#{beanEgresado.enviarSolicitud}" />
                             </p:panel>
                         </p:tab>
                     </p:wizard>
@@ -195,7 +195,7 @@
 
 
             </p:panelGrid>
-            <p:commandButton value="Regresar" action="index" styleClass="ui-priority-primary" />
+            <p:commandButton value="Regresar" action="index" immediate="true" styleClass="ui-priority-primary" />
 
         </h:form>
     </h:body>

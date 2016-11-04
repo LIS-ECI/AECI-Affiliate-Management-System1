@@ -47,16 +47,16 @@
                                 <p:messages />
                                 <h:panelGrid columns="2" columnClasses="label, value">
                                     <h:outputText value="Nombre y Apellido: *" />
-                                    <p:inputText label="Nombre y Apellido" value="#{beanEstudiante.nombre}"/>
+                                    <p:inputText label="Nombre y Apellido" required="true" value="#{beanEstudiante.nombre}"/>
 
                                     <h:outputText value="Direccion: *" />
-                                    <p:inputText   label="Direccion" value="#{beanEstudiante.direccion}"/>
+                                    <p:inputText   label="Direccion" required="true" value="#{beanEstudiante.direccion}"/>
 
                                     <h:outputText value="Telefono fijo: " />
                                     <p:inputText  label="Telefono" value="#{beanEstudiante.telefono_fijo}"/>
 
                                     <h:outputText value="Documento: *" />
-                                    <p:inputText label="Documento" value="#{beanEstudiante.numero_identificacion}"/>
+                                    <p:inputText label="Documento" required="true" value="#{beanEstudiante.numero_identificacion}"/>
 
                                     <h:outputText value="Tipo de documento" />
                                     <p:selectOneMenu id="tipoId"  value="#{beanEstudiante.tipo_identificacion}" style="width:90px">
@@ -65,7 +65,7 @@
                                     </p:selectOneMenu>
 
                                     <h:outputText value="Correo: *" />
-                                    <p:inputText label="Correo " value="#{beanEstudiante.correo}"/>
+                                    <p:inputText label="Correo " required="true" value="#{beanEstudiante.correo}"/>
 
                                 </h:panelGrid>
                             </p:panel>
@@ -94,8 +94,8 @@
                                         <f:selectItem itemLabel="Ingeniería Biomédica" itemValue="Ingeniería Biomédica" />
                                     </p:selectOneMenu>
 
-                                    <h:outputText value="Codigo Estudiante: " />
-                                    <p:inputText id="Codigo" value="#{beanEstudiante.codigo}" label="Codigo"/>
+                                    <h:outputText value="Codigo Estudiante: *" />
+                                    <p:inputText id="Codigo" value="#{beanEstudiante.codigo}"  required="true" label="Codigo"/>
                                 </h:panelGrid>
                             </p:panel>
                         </p:tab>
@@ -139,7 +139,7 @@
 
 
 
-                                <p:commandButton value="Enviar Solicitud" actionListener="#{beanEstudiante.enviarSolicitud}" />
+                                <p:commandButton value="Enviar Solicitud" immediate="true" actionListener="#{beanEstudiante.enviarSolicitud}" />
                             </p:panel>
                         </p:tab>
                     </p:wizard>
@@ -148,7 +148,7 @@
 
 
             </p:panelGrid>
-            <p:commandButton value="Regresar" action="index" styleClass="ui-priority-primary" />
+            <p:commandButton value="Regresar" action="index" immediate="true" ajax="false" styleClass="ui-priority-primary" />
 
         </h:form>
     </h:body>

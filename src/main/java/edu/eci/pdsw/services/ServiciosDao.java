@@ -32,5 +32,10 @@ public class ServiciosDao extends Servicios{
         //Solicitudes = daof.getDaoSolicitud().loadAll();
         return Solicitudes;
     }
+
+    @Override
+    public void enviarSolicitudEstudiante() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
 

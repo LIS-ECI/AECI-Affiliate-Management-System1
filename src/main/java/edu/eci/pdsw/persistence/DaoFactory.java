@@ -16,8 +16,8 @@
  */
 package edu.eci.pdsw.persistence;
 
-//import edu.eci.pdsw.persistence.mybatisimpl.MyBatisDaoFactory;
-import edu.eci.pdsw.persistence.mybatis.MyBatisDaoFactory;
+import edu.eci.pdsw.persistence.jdbcimpl.JDBCDaoFactory;
+import edu.eci.pdsw.persistence.mybatisimpl.MyBatisDaoFactory;
 import java.util.Properties;
 
 /**
@@ -35,8 +35,10 @@ public abstract class DaoFactory {
         if (instance == null) {
             synchronized (DaoFactory.class) {
                 if (instance == null) {
-                    if (appProperties.get("dao").equals("mybatis")) {
-                        //instance = new MyBatisDaoFactory(appProperties);
+                    if (appProperties.get("dao").equals("jdbc")) {
+                        instance = new JDBCDaoFactory(appProperties);
+                    } else if (appProperties.get("dao").equals("mybatis")) {
+                       // instance = new MyBatisDaoFactory(appProperties);
                     } else {
                         throw new RuntimeException("Wrong configuration: Unsupported DAO:" + appProperties.get("dao"));
                     }
@@ -46,13 +48,12 @@ public abstract class DaoFactory {
         return instance;
     }
 
-    public abstract void beginSession();
+    public abstract void beginSession() throws PersistenceException;
 
-    public abstract DaoSolicitud getDaoSolicitud();
-    
-    public abstract void commitTransaction();
 
-    public abstract void rollbackTransaction();
+    public abstract void commitTransaction() throws PersistenceException;
 
-    public abstract void endSession();
+    public abstract void rollbackTransaction() throws PersistenceException;
+
+    public abstract void endSession() throws PersistenceException;
 }

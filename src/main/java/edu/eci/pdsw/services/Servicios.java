@@ -29,11 +29,11 @@ public abstract class Servicios {
     }
 
 
-    /**
-     * Consulta todas las Solicitudes registradas
-     * @return el conjunto de las entradas al foro disponibles
-     */
+   
     public abstract List<Solicitud> consultarSolicitud();
-
+    
+    
+    public abstract void enviarSolicitudEstudiante();
+    
 
 }

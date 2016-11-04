@@ -10,14 +10,14 @@ package edu.eci.pdsw.entities;
  * @author 2107641
  */
 
-public class Usuario {
+public class Estudiante {
     
     private int codigo;
     private int numero_identificacion;
     private String nombre;
     private int semestre;
     private String tipo_identificacion;
-    private int carrera;
+    private String carrera;
     private int telefono_fijo;
     private int celular;
     private String correo;
@@ -71,11 +71,11 @@ public class Usuario {
         this.tipo_identificacion = tipo_identificacion;
     }
 
-    public int getCarrera() {
+    public String getCarrera() {
         return carrera;
     }
 
-    public void setCarrera(int carrera) {
+    public void setCarrera(String carrera) {
         this.carrera = carrera;
     }
 
@@ -104,10 +104,10 @@ public class Usuario {
     }
     
     
-    public Usuario() {
+    public Estudiante() {
     }
 
-    public Usuario(int codigo, int numero_identificacion,  String nombre, int semestre, String tipo_identificacion, int carrera, int telefono_fijo, int celular, String correo, String direccion ) {
+    public Estudiante(int codigo, int numero_identificacion,  String nombre, int semestre, String tipo_identificacion, String carrera, int telefono_fijo, int celular, String correo, String direccion ) {
         this.codigo = codigo;
         this.numero_identificacion = numero_identificacion;
         this.carrera=carrera;
@@ -117,6 +117,7 @@ public class Usuario {
         this.telefono_fijo=telefono_fijo;
         this.tipo_identificacion=tipo_identificacion;
         this.direccion=direccion;
+        this.nombre=nombre;
     }
     
     

@@ -5,6 +5,7 @@
  */
 package edu.eci.pdsw.managedbeans;
 
+import edu.eci.pdsw.entities.Estudiante;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
@@ -21,7 +22,7 @@ public class EstudianteBean {
     private String nombre;
     private int semestre;
     private String tipo_identificacion;
-     private String carrera;
+    private String carrera;
     private int telefono_fijo;
     private int celular;
     private String direccion;
@@ -61,8 +62,7 @@ public class EstudianteBean {
         this.direccion = direccion;
     }
     
-    //bases de datos
-
+   
 
     public int getCodigo() {
         return codigo;
@@ -121,6 +121,7 @@ public class EstudianteBean {
     }
     
      public void enviarSolicitud (){
+         Estudiante est = new Estudiante(codigo, numero_identificacion,  nombre, semestre, tipo_identificacion, carrera, telefono_fijo, celular,  correo, direccion );
     
     }
 

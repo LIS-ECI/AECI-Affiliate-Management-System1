@@ -10,7 +10,7 @@ import javax.faces.bean.SessionScoped;
 
 /**
  *
- * @author 
+ * @author 21
  */
 @ManagedBean(name="beanEstudiante")
 

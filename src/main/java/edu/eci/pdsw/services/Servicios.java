@@ -32,7 +32,6 @@ public abstract class Servicios {
     /**
      * Consulta todas las Solicitudes registradas
      * @return el conjunto de las entradas al foro disponibles
-     * @throws ExcepcionServiciosForos si se presento un error de persistencia
      */
     public abstract List<Solicitud> consultarSolicitud();
 

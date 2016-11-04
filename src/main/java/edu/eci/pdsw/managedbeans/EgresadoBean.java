@@ -23,10 +23,10 @@ public class EgresadoBean {
     private int cedula;
     private String tipo_identificacion;
     private String nombre;
-    private Date fecha_grado;
+    private int fecha_grado;
     private int periodo_grado;
     private String cargo;
-    private String carrera;
+    private String carrera; 
     private String direccion_vivienda;
     private Date fecha_solicitud;
     private String nombreEmpresa;
@@ -34,7 +34,17 @@ public class EgresadoBean {
     private int telefono_oficina;
     private int telefono_fijo;
     private int celular;
+    private String email;
     //base de datos
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    
 
     public int getCedula() {
         return cedula;
@@ -60,11 +70,11 @@ public class EgresadoBean {
         this.nombre = nombre;
     }
 
-    public Date getFecha_grado() {
+    public int  getFecha_grado() {
         return fecha_grado;
     }
 
-    public void setFecha_grado(Date fecha_grado) {
+    public void setFecha_grado(int fecha_grado) {
         this.fecha_grado = fecha_grado;
     }
 
@@ -146,5 +156,9 @@ public class EgresadoBean {
 
     public void setCelular(int celular) {
         this.celular = celular;
+    }
+    
+    public void enviarSolicitud (){
+    
     }
 }

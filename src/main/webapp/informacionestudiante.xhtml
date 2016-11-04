@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3c.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui" 
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head></h:head>
 
     <h:body>
         <h:form id="infoEstudiante">
-                <h:panelGrid columns="1" style="position: absolute; top: 0px; left: 0px">
+            <h:panelGrid columns="1" style="position: absolute; top: 0px; left: 0px">
                 <p:panel style=" font-size:  medium; height: 182px;color: #000000" >
                     <f:facet name="header" >
                         <img  src="http://tycho.escuelaing.edu.co/contenido/notiweb/notiweb-movil/img/logos/logo-escuela.png" width="350" height="150" align="left"/>
@@ -15,11 +15,25 @@
                         <h3 style="text-align: center; color: darkblue;">Asociación de Egresados Escuela Colombiana de Ingenieria Julio Garavito</h3>
                     </f:facet>
                     <p:growl id="msj" showDetail="true" autoUpdate="true"/>
-                    
+
                 </p:panel>
-                
+
             </h:panelGrid>
-            <p:outputLabel value="Informacion Personal" />
+
+            <br>
+            </br>
+            <br>
+            </br>
+            <br>
+            </br>
+            <br>
+            </br>
+            <br>
+            </br>
+            <br>
+            </br>
+            <p:outputLabel value="Solicitud de registro Estudiante " />
+            <p:outputLabel value="Informacion Personal " />
 
             <p:panelGrid columns="2">
 
@@ -92,43 +106,40 @@
                             <p:panel header="Confirmation">
                                 <h:panelGrid id="confirmation" columns="3" columnClasses="grid,grid,grid">
                                     <h:panelGrid columns="2" columnClasses="label, value">
-                                        <h:outputText value="Firstname: " />
-                                        <h:outputText value="#{userWizard.user.firstname}" styleClass="outputLabel"/>
+                                        <h:outputText value="Nombre y Apellido: " />
+                                        <h:outputText value="#{beanEstudiante.nombre}"  styleClass="outputLabel"/>
 
-                                        <h:outputText value="Lastname: " />
-                                        <h:outputText value="#{userWizard.user.lastname}" styleClass="outputLabel"/>
+                                        <h:outputText value="Direccion : " />
+                                        <h:outputText value="#{beanEstudiante.direccion}"  styleClass="outputLabel"/>
 
-                                        <h:outputText value="Age: " />
-                                        <h:outputText value="#{userWizard.user.age}" styleClass="outputLabel"/>
+                                        <h:outputText value="Telefono fijo: " />
+                                        <h:outputText value="#{beanEstudiante.telefono_fijo}"  styleClass="outputLabel"/>
+
+                                        <h:outputText value="Documento: " />
+                                        <h:outputText value="#{beanEstudiante.documento}"  styleClass="outputLabel"/>
+
+                                        <h:outputText value="Tipo de documento : " />
+                                        <h:outputText value="#{beanEstudiante.tipo_identificacion}"  styleClass="outputLabel"/>
+
+                                        <h:outputText value="Correo : " />
+                                        <h:outputText value="#{beanEstudiante.correo}"  styleClass="outputLabel"/>
                                     </h:panelGrid>
 
                                     <h:panelGrid columns="2" columnClasses="label, value">
-                                        <h:outputText value="Street: " />
-                                        <h:outputText value="#{userWizard.user.street}" styleClass="outputLabel"/>
+                                        <h:outputText value="Semestre ponderado: " />
+                                        <h:outputText value="#{beanEstudiante.semestre}" styleClass="outputLabel"/>
 
-                                        <h:outputText value="Postal: " />
-                                        <h:outputText value="#{userWizard.user.postalCode}" styleClass="outputLabel"/>
+                                        <h:outputText value="Programa: " />
+                                        <h:outputText value="#{beanEstudiante.carrera}" styleClass="outputLabel"/>
 
-                                        <h:outputText value="City: " />
-                                        <h:outputText value="#{userWizard.user.city}" styleClass="outputLabel"/>
-                                    </h:panelGrid>
-
-                                    <h:panelGrid columns="2" columnClasses="label, value">
-                                        <h:outputText value="Email: " />
-                                        <h:outputText value="#{userWizard.user.email}" styleClass="outputLabel"/>
-
-                                        <h:outputText value="Phone " />
-                                        <h:outputText value="#{userWizard.user.phone}" styleClass="outputLabel"/>
-
-                                        <h:outputText value="Info: " />
-                                        <h:outputText value="#{userWizard.user.info}" styleClass="outputLabel"/>
-
-                                        <h:outputText />
-                                        <h:outputText />
+                                        <h:outputText value="Codigo Estudiante: " />
+                                        <h:outputText value="#{beanEstudiante.codigo}" styleClass="outputLabel"/>
                                     </h:panelGrid>
                                 </h:panelGrid>
 
-                                <p:commandButton value="Submit" actionListener="#{userWizard.save}" update="growl" process="@this"/>
+
+
+                                <p:commandButton value="Enviar Solicitud" actionListener="#{beanEstudiante.enviarSolicitud}" />
                             </p:panel>
                         </p:tab>
                     </p:wizard>

@@ -119,5 +119,9 @@ public class EstudianteBean {
     public void setCelular(int celular) {
         this.celular = celular;
     }
+    
+     public void enviarSolicitud (){
+    
+    }
 
 }

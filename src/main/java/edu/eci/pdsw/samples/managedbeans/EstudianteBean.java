@@ -8,7 +8,7 @@ package edu.eci.pdsw.samples.managedbeans;
 import edu.eci.pdsw.samples.entities.Estudiante;
 import edu.eci.pdsw.samples.entities.Solicitud;
 import edu.eci.pdsw.samples.services.Servicios;
-import java.util.Date;
+import java.sql.Date;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
@@ -30,15 +30,15 @@ public class EstudianteBean {
     private int celular;
     private String direccion;
     private String correo;
-    static Servicios servicios=Servicios.getInstance();
+    //static Servicios servicios=Servicios.getInstance();
 
-    public Servicios getServicios() {
-        return servicios;
-    }
+    //public Servicios getServicios() {
+     //   return servicios;
+    //}
 
-    public void setServicios(Servicios servicios) {
-        this.servicios = servicios;
-    }
+    //public void setServicios(Servicios servicios) {
+      //  this.servicios = servicios;
+    //}
 
 
     public int getDocumento() {
@@ -133,10 +133,10 @@ public class EstudianteBean {
     }
     
      public void enviarSolicitud (){
-         Estudiante est = new Estudiante(codigo, numero_identificacion,  nombre, semestre, tipo_identificacion, carrera, telefono_fijo, celular,  correo, direccion );
-         java.sql.Date fecha = new java.sql.Date(java.util.Calendar.getInstance().getTime().getTime());
-         Solicitud sol = new Solicitud(fecha,est.getNumero_identificacion(), est.getTipo_identificacion(),"estudiante");
-         servicios.enviarSolicitudEstudiante(est,sol);
+        Estudiante est = new Estudiante(codigo, numero_identificacion,  nombre, semestre, tipo_identificacion, carrera, telefono_fijo, celular,  correo, direccion );
+        Date fecha = new java.sql.Date(java.util.Calendar.getInstance().getTime().getTime());
+        Solicitud sol = new Solicitud(fecha,est.getNumero_identificacion(), est.getTipo_identificacion(),"estudiante");
+        //servicios.enviarSolicitudEstudiante(est,sol);
     }
 
 }

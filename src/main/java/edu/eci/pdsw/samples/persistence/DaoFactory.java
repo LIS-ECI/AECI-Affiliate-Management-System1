@@ -32,12 +32,15 @@ public abstract class DaoFactory {
     private static volatile DaoFactory instance = null;
 
     public static DaoFactory getInstance(Properties appProperties) {
+        
         if (instance == null) {
             synchronized (DaoFactory.class) {
                 if (instance == null) {
-                   
-                     if (appProperties.get("dao").equals("mybatis")) {
-                       // instance = new MyBatisDaoFactory(appProperties);
+                    if (appProperties.get("dao").equals("jdbc")) {
+                         //instance = new JDBCDaoFactory(appProperties); 
+                    }
+                    else if (appProperties.get("dao").equals("mybatis")) {
+                       instance = new MyBatisDaoFactory(appProperties);
                     } else {
                         throw new RuntimeException("Wrong configuration: Unsupported DAO:" + appProperties.get("dao"));
                     }

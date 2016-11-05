@@ -31,17 +31,34 @@
                     <p:growl id="msgs" showDetail="true" />
 
                     <h:panelGrid columns="2" cellpadding="5">
-                        <p:outputLabel value="Usuario:"  />
+                        
+                        <p:commandButton value="Ingresar " oncomplete="PF('campoEntradaDatos').show()" />
+                        
+                        <p:dialog header="Ingresa tus datos" widgetVar="campoEntradaDatos" modal="true" showEffect="fade" hideEffect="fade" resizable="false" width="400">
+                        <p:outputPanel id="inputQuantity" style="text-align:center;">
+                            <h:panelGrid columns="2" cellpadding="1" styleClass="ui-grid">
+                        
+                        <p:outputLabel value="Usuario:   "  />
                         <p:inputText />
-
-                        <h:outputText value="Contraseña: " />
+                        
+                        <h:outputText value="Contraseña:  " />
                         <p:password id="nonFeedback" />
                         <p:growl id="growl" life="2000" />
+                       
+                        
                         <p:commandLink id="ajax2" update="growl">
                             <h:outputText value="Olvide mi contraseña" />
                         </p:commandLink>
+                        
+                        
+                        </h:panelGrid>
                         <p:commandButton value="Ingresar" id="ajax" styleClass="ui-priority-primary" />
+                        
 
+                            
+                        </p:outputPanel>
+            </p:dialog>
+                        
                         <p:splitButton value="Solicitud de registro">
                             <p:menuitem value="Estudiante" immediate="true" action="informacionestudiante"/>
                             <p:separator />

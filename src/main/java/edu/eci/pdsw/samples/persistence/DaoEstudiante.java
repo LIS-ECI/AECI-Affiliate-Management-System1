@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2016 hcadavid
+ * Copyright (C) 2015 hcadavid
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -14,31 +14,25 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package edu.eci.pdsw.persistence.mybatisimpl;
+package edu.eci.pdsw.samples.persistence;
+
+import edu.eci.pdsw.samples.entities.Estudiante;
+import edu.eci.pdsw.samples.entities.Solicitud;
 
 
-import edu.eci.pdsw.entities.Estudiante;
-import edu.eci.pdsw.persistence.DaoEntradaForo;
-import edu.eci.pdsw.persistence.PersistenceException;
-import edu.eci.pdsw.persistence.mybatisimpl.mappers.EntradaForoMapper;
-import java.util.List;
-import org.apache.ibatis.session.SqlSession;
 
 /**
  *
  * @author hcadavid
  */
+public interface DaoEstudiante {
 
-public class MyBatisDAOEntradaForo implements DaoEntradaForo{
-
-    private SqlSession currentSession=null;
-
-    public MyBatisDAOEntradaForo(SqlSession session) {
-        this.currentSession=session;
-    }
-        
-   
+    
+    public Estudiante load(String email) throws PersistenceException;
+    
+    public void enviarSolicitudEstudiante(Estudiante est, Solicitud sol) throws PersistenceException;
+    
+    public void update(Estudiante p) throws PersistenceException;
+    
     
 }
-
-

@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.eci.pdsw.persistence;
+package edu.eci.pdsw.samples.tests;
 
 /**
  *
- * @author 2106088
+ * @author 2107641
  */
-public class DaoSolicitud {
+public class Test1 {
     
 }

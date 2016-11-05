@@ -14,28 +14,16 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package edu.eci.pdsw.persistence;
+package edu.eci.pdsw.samples.persistence.mybatisimpl.mappers;
+
+
 
 /**
  *
  * @author hcadavid
  */
-public class PersistenceException extends Exception {
-
-    public PersistenceException(String message) {
-        super(message);
-    }
-
-    public PersistenceException(String message, Throwable cause) {
-        super(message, cause);
-    }
-
-    public PersistenceException(Throwable cause) {
-        super(cause);
-    }
-
-    public PersistenceException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
-        super(message, cause, enableSuppression, writableStackTrace);
-    }
+public interface EstudianteMapper {
     
+
+
 }

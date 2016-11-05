@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.eci.pdsw.services;
+package edu.eci.pdsw.samples.services;
 
-import edu.eci.pdsw.entities.Estudiante;
-import edu.eci.pdsw.entities.Solicitud;
-import edu.eci.pdsw.persistence.DaoFactory;
-import edu.eci.pdsw.persistence.PersistenceException;
+import edu.eci.pdsw.samples.entities.Estudiante;
+import edu.eci.pdsw.samples.entities.Solicitud;
+import edu.eci.pdsw.samples.persistence.DaoFactory;
+import edu.eci.pdsw.samples.persistence.PersistenceException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;

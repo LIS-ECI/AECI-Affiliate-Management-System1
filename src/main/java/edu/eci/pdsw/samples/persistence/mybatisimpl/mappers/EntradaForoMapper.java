@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package edu.eci.pdsw.persistence.mybatisimpl.mappers;
+package edu.eci.pdsw.samples.persistence.mybatisimpl.mappers;
 
 import java.util.List;
 

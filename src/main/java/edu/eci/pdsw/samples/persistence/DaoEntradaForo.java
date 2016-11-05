@@ -14,21 +14,17 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package edu.eci.pdsw.persistence.jdbcimpl;
+package edu.eci.pdsw.samples.persistence;
 
 
-import edu.eci.pdsw.persistence.DaoEntradaForo;
-import edu.eci.pdsw.persistence.PersistenceException;
-import java.sql.Connection;
 import java.util.List;
 
 /**
  *
  * @author hcadavid
  */
-public class JDBCDaoEntradaForo implements DaoEntradaForo {
-
-
-
+public interface DaoEntradaForo {
+ 
+    
     
 }

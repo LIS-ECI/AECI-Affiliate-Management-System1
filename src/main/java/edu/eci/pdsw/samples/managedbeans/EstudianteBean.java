@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.eci.pdsw.managedbeans;
+package edu.eci.pdsw.samples.managedbeans;
 
-import edu.eci.pdsw.entities.Estudiante;
-import edu.eci.pdsw.entities.Solicitud;
-import edu.eci.pdsw.services.Servicios;
+import edu.eci.pdsw.samples.entities.Estudiante;
+import edu.eci.pdsw.samples.entities.Solicitud;
+import edu.eci.pdsw.samples.services.Servicios;
 import java.util.Date;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2016 hcadavid
+ * Copyright (C) 2015 hcadavid
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -14,17 +14,28 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package edu.eci.pdsw.persistence;
-
-
-import java.util.List;
+package edu.eci.pdsw.samples.persistence;
 
 /**
  *
  * @author hcadavid
  */
-public interface DaoEntradaForo {
- 
-    
+public class PersistenceException extends Exception {
+
+    public PersistenceException(String message) {
+        super(message);
+    }
+
+    public PersistenceException(String message, Throwable cause) {
+        super(message, cause);
+    }
+
+    public PersistenceException(Throwable cause) {
+        super(cause);
+    }
+
+    public PersistenceException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
+        super(message, cause, enableSuppression, writableStackTrace);
+    }
     
 }

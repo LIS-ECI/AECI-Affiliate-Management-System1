@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.eci.pdsw.services;
+package edu.eci.pdsw.samples.services;
 
-import edu.eci.pdsw.entities.Estudiante;
-import edu.eci.pdsw.entities.Solicitud;
+import edu.eci.pdsw.samples.entities.Estudiante;
+import edu.eci.pdsw.samples.entities.Solicitud;
 import java.util.List;
 import java.util.Set;
 

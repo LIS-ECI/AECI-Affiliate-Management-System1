@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2015 hcadavid
+ * Copyright (C) 2016 hcadavid
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -14,16 +14,31 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package edu.eci.pdsw.persistence.mybatisimpl.mappers;
+package edu.eci.pdsw.samples.persistence.mybatisimpl;
 
 
+import edu.eci.pdsw.samples.entities.Estudiante;
+import edu.eci.pdsw.samples.persistence.DaoEntradaForo;
+import edu.eci.pdsw.samples.persistence.PersistenceException;
+import edu.eci.pdsw.samples.persistence.mybatisimpl.mappers.EntradaForoMapper;
+import java.util.List;
+import org.apache.ibatis.session.SqlSession;
 
 /**
  *
  * @author hcadavid
  */
-public interface UsuarioMapper {
+
+public class MyBatisDAOEntradaForo implements DaoEntradaForo{
+
+    private SqlSession currentSession=null;
+
+    public MyBatisDAOEntradaForo(SqlSession session) {
+        this.currentSession=session;
+    }
+        
+   
     
-
-
 }
+
+

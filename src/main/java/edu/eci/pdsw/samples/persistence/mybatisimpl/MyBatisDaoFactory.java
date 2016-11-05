@@ -14,13 +14,11 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package edu.eci.pdsw.persistence.mybatis;
+package edu.eci.pdsw.samples.persistence.mybatisimpl;
 
-/*
 
 import edu.eci.pdsw.samples.persistence.DaoEntradaForo;
 import edu.eci.pdsw.samples.persistence.DaoFactory;
-import edu.eci.pdsw.samples.persistence.DaoUsuario;
 import edu.eci.pdsw.samples.persistence.PersistenceException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -29,13 +27,14 @@ import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-*/
+import edu.eci.pdsw.samples.persistence.DaoEstudiante;
+
 /**
  *
  * @author hcadavid
  */
-public class MyBatisDaoFactory{
-/*
+public class MyBatisDaoFactory extends DaoFactory {
+
     private static volatile SqlSessionFactory sessionFactory;
     
     private Properties appProperties=null;
@@ -54,13 +53,13 @@ public class MyBatisDaoFactory{
         }
     }
     
+    
    /**
      * Construye un SQLSessionFactory usando el archivo de configuración de
      * MyBatis cuyo nombre está en el archivo de configuración de la aplicación.
      * @param appProperties
      * @return una nueva SQLSessionFactory
      */
-    /*
     private SqlSessionFactory getSqlSessionFactory(Properties appProperties) {
         SqlSessionFactory sqlSessionFactory = null;
         if (sqlSessionFactory == null) {
@@ -68,7 +67,7 @@ public class MyBatisDaoFactory{
             try {
                 inputStream = Resources.getResourceAsStream(appProperties.getProperty("mybatis-config-file"));
                 sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
-            } catch (IOException e) {
+            } catch (Exception e) {
                 throw new RuntimeException(e);
             }
         }
@@ -98,15 +97,13 @@ public class MyBatisDaoFactory{
         currentSession.close();
     }
 
-
     @Override
-    public DaoEntradaForo getDaoEntradaForo() {
-        return new MyBatisDAOEntradaForo(currentSession);
+    public DaoEstudiante getDaoEstudiante() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
-    public DaoUsuario getDaoUsuario() {
-        return new MyBatisDAOUsuario(currentSession);
-    }
-*/
+
+   
+
 }
+

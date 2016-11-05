@@ -15,14 +15,14 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package edu.eci.pdsw.persistence.mybatisimpl;
+package edu.eci.pdsw.samples.persistence.mybatisimpl;
 
-import edu.eci.pdsw.entities.Estudiante;
-import edu.eci.pdsw.entities.Solicitud;
-import edu.eci.pdsw.persistence.PersistenceException;
-import edu.eci.pdsw.persistence.mybatisimpl.mappers.UsuarioMapper;
+import edu.eci.pdsw.samples.entities.Estudiante;
+import edu.eci.pdsw.samples.entities.Solicitud;
+import edu.eci.pdsw.samples.persistence.PersistenceException;
+import edu.eci.pdsw.samples.persistence.mybatisimpl.mappers.EstudianteMapper;
 import org.apache.ibatis.session.SqlSession;
-import edu.eci.pdsw.persistence.DaoEstudiante;
+import edu.eci.pdsw.samples.persistence.DaoEstudiante;
 
 /**
  *
@@ -52,9 +52,8 @@ public class MyBatisDAOEstudiante implements DaoEstudiante{
 
     @Override
     public void enviarSolicitudEstudiante(Estudiante est, Solicitud sol) throws PersistenceException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        EstudianteMapper esmap = currentSession.getMapper(EstudianteMapper.class);
+        //esmap.enviarSolicitudEstudiante();
     }
-    
-  
-    
+
 }

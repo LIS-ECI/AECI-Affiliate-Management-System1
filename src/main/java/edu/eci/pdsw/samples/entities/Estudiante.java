@@ -5,6 +5,9 @@
  */
 package edu.eci.pdsw.samples.entities;
 
+import java.util.LinkedList;
+import java.util.List;
+
 /**
  *
  * @author 2107641
@@ -20,7 +23,7 @@ public class Estudiante {
     private String carrera;
     private int telefono_fijo;
     private int celular;
-    private String correo;
+    private List <String> correo;
     private String direccion;
 
     public String getDireccion() {
@@ -95,12 +98,12 @@ public class Estudiante {
         this.celular = celular;
     }
 
-    public String getCorreo() {
+    public List <String> getCorreo() {
         return correo;
     }
 
     public void setCorreo(String correo) {
-        this.correo = correo;
+        this.correo.add(correo);
     }
  
 
@@ -109,7 +112,8 @@ public class Estudiante {
         this.numero_identificacion = numero_identificacion;
         this.carrera=carrera;
         this.celular=celular;
-        this.correo=correo;
+        this.correo= new LinkedList<>(); 
+        this.correo.add(correo);
         this.semestre=semestre;
         this.telefono_fijo=telefono_fijo;
         this.tipo_identificacion=tipo_identificacion;

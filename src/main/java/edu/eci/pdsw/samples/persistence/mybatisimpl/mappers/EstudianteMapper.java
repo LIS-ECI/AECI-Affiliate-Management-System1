@@ -16,6 +16,10 @@
  */
 package edu.eci.pdsw.samples.persistence.mybatisimpl.mappers;
 
+import edu.eci.pdsw.samples.entities.Estudiante;
+import edu.eci.pdsw.samples.entities.Solicitud;
+import org.apache.ibatis.annotations.Param;
+
 
 
 /**
@@ -24,6 +28,6 @@ package edu.eci.pdsw.samples.persistence.mybatisimpl.mappers;
  */
 public interface EstudianteMapper {
     
-
+    public void enviarSolicitudEstudiante(@Param("est") Estudiante est, @Param("sol") Solicitud sol);
 
 }

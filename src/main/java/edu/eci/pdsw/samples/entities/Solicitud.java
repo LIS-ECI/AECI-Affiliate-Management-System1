@@ -25,40 +25,61 @@ public class Solicitud {
         this.tipo = tipo;
     }
 
-   
-
+    /**
+     * @return the fecha
+     */
     public Date getFecha() {
         return fecha;
     }
 
+    /**
+     * @param fecha the fecha to set
+     */
     public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
 
+    /**
+     * @return the cedula
+     */
     public int getCedula() {
         return cedula;
     }
 
+    /**
+     * @param cedula the cedula to set
+     */
     public void setCedula(int cedula) {
         this.cedula = cedula;
     }
 
+    /**
+     * @return the tipo_cedula
+     */
     public String getTipo_cedula() {
         return tipo_cedula;
     }
 
+    /**
+     * @param tipo_cedula the tipo_cedula to set
+     */
     public void setTipo_cedula(String tipo_cedula) {
         this.tipo_cedula = tipo_cedula;
     }
 
+    /**
+     * @return the tipo
+     */
     public String getTipo() {
         return tipo;
     }
 
+    /**
+     * @param tipo the tipo to set
+     */
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
-
     
     
 }

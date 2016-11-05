@@ -52,7 +52,9 @@ public class ServiciosDao extends Servicios {
         try {
             daof.getDaoEstudiante().enviarSolicitudEstudiante(est, sol);
         } catch (PersistenceException ex) {
+            
             Logger.getLogger(ServiciosDao.class.getName()).log(Level.SEVERE, null, ex);
+            
         }
 
     }

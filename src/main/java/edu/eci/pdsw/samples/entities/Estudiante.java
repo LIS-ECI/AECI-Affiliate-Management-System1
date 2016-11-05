@@ -98,15 +98,12 @@ public class Estudiante {
         this.celular = celular;
     }
 
-    public List<String> getCorreo() {
+    public List <String> getCorreo() {
         return correo;
     }
 
     public void setCorreo(String correo) {
         this.correo.add(correo);
-                
-                
-                
     }
  
 

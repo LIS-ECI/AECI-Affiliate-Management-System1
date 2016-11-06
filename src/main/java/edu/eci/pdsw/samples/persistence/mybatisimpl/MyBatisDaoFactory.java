@@ -17,10 +17,9 @@
 package edu.eci.pdsw.samples.persistence.mybatisimpl;
 
 
-import edu.eci.pdsw.samples.persistence.DaoEntradaForo;
+
 import edu.eci.pdsw.samples.persistence.DaoFactory;
 import edu.eci.pdsw.samples.persistence.PersistenceException;
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 import org.apache.ibatis.io.Resources;
@@ -99,7 +98,7 @@ public class MyBatisDaoFactory extends DaoFactory {
 
     @Override
     public DaoEstudiante getDaoEstudiante() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return new MyBatisDAOEstudiante(currentSession);
     }
 
 

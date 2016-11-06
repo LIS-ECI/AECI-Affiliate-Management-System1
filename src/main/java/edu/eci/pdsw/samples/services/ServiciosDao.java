@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.apache.ibatis.session.SqlSession;
 
 /**
  *
@@ -22,7 +23,7 @@ import java.util.logging.Logger;
  */
 public class ServiciosDao extends Servicios {
 
-    //private SqlSession currentSession=null;
+    private SqlSession currentSession=null;
     Properties properties;
     DaoFactory daof;
 
@@ -43,11 +44,12 @@ public class ServiciosDao extends Servicios {
 
     @Override
     public List<Solicitud> consultarSolicitud() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //Hay que implementear
+        return null;
     }
 
     @Override
-    public void enviarSolicitudEstudiante(Estudiante est, Solicitud sol) {
+    public void enviarSolicitudEstudiante(Estudiante est, Solicitud sol) throws ExcepcionServicios{
 
         try {
             daof.getDaoEstudiante().enviarSolicitudEstudiante(est, sol);

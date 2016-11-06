@@ -18,14 +18,14 @@ import java.util.Set;
  */
 public abstract class Servicios {
     
-    private static Servicios instance=new ServiciosDao();
+    private static final Servicios instance=new ServiciosDao();
     
     
     protected Servicios(){        
 
     }
     
-    public static Servicios getInstance() throws RuntimeException{        
+    public static Servicios getInstance() throws RuntimeException{    
         return instance;
     }
 
@@ -34,7 +34,7 @@ public abstract class Servicios {
     public abstract List<Solicitud> consultarSolicitud();
     
     
-    public abstract void enviarSolicitudEstudiante(Estudiante est,Solicitud sol);
+    public abstract void enviarSolicitudEstudiante(Estudiante est,Solicitud sol) throws ExcepcionServicios;
     
 
 }

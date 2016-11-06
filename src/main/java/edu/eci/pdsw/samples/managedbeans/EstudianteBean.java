@@ -7,8 +7,11 @@ package edu.eci.pdsw.samples.managedbeans;
 
 import edu.eci.pdsw.samples.entities.Estudiante;
 import edu.eci.pdsw.samples.entities.Solicitud;
+import edu.eci.pdsw.samples.services.ExcepcionServicios;
 import edu.eci.pdsw.samples.services.Servicios;
 import java.sql.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
@@ -30,10 +33,10 @@ public class EstudianteBean {
     private int celular;
     private String direccion;
     private String correo;
-    //static Servicios servicios=Servicios.getInstance();
+    //private static Servicios servicios=Servicios.getInstance();
 
     //public Servicios getServicios() {
-     //   return servicios;
+      //  return servicios;
     //}
 
     //public void setServicios(Servicios servicios) {
@@ -136,7 +139,11 @@ public class EstudianteBean {
         Estudiante est = new Estudiante(codigo, numero_identificacion,  nombre, semestre, tipo_identificacion, carrera, telefono_fijo, celular,  correo, direccion );
         Date fecha = new java.sql.Date(java.util.Calendar.getInstance().getTime().getTime());
         Solicitud sol = new Solicitud(fecha,est.getNumero_identificacion(), est.getTipo_identificacion(),"estudiante");
-        //servicios.enviarSolicitudEstudiante(est,sol);
+        //try {
+        //    servicios.enviarSolicitudEstudiante(est,sol);
+        //} catch (ExcepcionServicios ex) {
+        //    Logger.getLogger(EstudianteBean.class.getName()).log(Level.SEVERE, null, ex);
+        //}
     }
 
 }

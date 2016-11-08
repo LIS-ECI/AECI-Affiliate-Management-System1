@@ -13,9 +13,7 @@ import edu.eci.pdsw.samples.entities.Solicitud;
  */
 public interface DaoSolicitud {
     
-    
-    
-    
+
     
 }
     

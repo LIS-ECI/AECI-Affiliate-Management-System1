@@ -5,6 +5,10 @@
  */
 package edu.eci.pdsw.samples.managedbeans;
 
+import edu.eci.pdsw.samples.entities.Solicitud;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
@@ -23,6 +27,9 @@ public class SolicitudesBean {
 
 private String usuario;
 private String clave;
+private Date Fecha;
+private Date fecha;
+private List<Solicitud> listaDeSolicitudes = new ArrayList<Solicitud>();
     
     public String getUsuario() {
         return usuario;
@@ -39,4 +46,12 @@ private String clave;
     public void setClave(String clave) {
         this.clave = clave;
     }
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }
+    
+    public Date getFecha(){
+        return fecha;
+    }
+    
 }

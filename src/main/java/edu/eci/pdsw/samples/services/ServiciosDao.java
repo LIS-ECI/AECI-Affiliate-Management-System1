@@ -28,6 +28,7 @@ public class ServiciosDao extends Servicios {
     DaoFactory daof;
 
     public ServiciosDao() {
+        
         try {
             properties=new PropertiesLoader().readProperties("applicationconfig.properties");
         } catch (IOException ex) {

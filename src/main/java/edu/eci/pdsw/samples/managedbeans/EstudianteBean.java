@@ -39,8 +39,8 @@ public class EstudianteBean {
       //  return servicios;
     //}
 
-    //public void setServicios(Servicios servicios) {
-      //  this.servicios = servicios;
+//    public void setServicios(Servicios servicios) {
+  //      this.servicios = servicios;
     //}
 
 

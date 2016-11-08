@@ -13,6 +13,8 @@ import javax.faces.bean.SessionScoped;
  *
  * @author 2103216
  */
+
+/* Intento Commit con correccion de autor */
 @SessionScoped
 @ManagedBean(name="BeanSolicitudes")
 

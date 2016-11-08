@@ -33,17 +33,7 @@ public class EstudianteBean {
     private long celular;
     private String direccion;
     private String correo;
-    //private static Servicios servicios=Servicios.getInstance();
-
-    //public Servicios getServicios() {
-      //  return servicios;
-    //}
-
-//    public void setServicios(Servicios servicios) {
-  //      this.servicios = servicios;
-    //}
-
-
+    
     public int getDocumento() {
         return documento;
     }
@@ -89,7 +79,8 @@ public class EstudianteBean {
 
     public long getNumero_identificacion() {
         return numero_identificacion;
-    }
+    }            
+          
 
     public void setNumero_identificacion(long numero_identificacion) {
         this.numero_identificacion = numero_identificacion;
@@ -139,11 +130,11 @@ public class EstudianteBean {
         Estudiante est = new Estudiante(codigo, numero_identificacion,  nombre, semestre, tipo_identificacion, carrera, telefono_fijo, celular,  correo, direccion );
         Date fecha = new java.sql.Date(java.util.Calendar.getInstance().getTime().getTime());
         Solicitud sol = new Solicitud(fecha,est.getNumero_identificacion(), est.getTipo_identificacion(),"estudiante");
-        //try {
-        //    servicios.enviarSolicitudEstudiante(est,sol);
-        //} catch (ExcepcionServicios ex) {
-        //    Logger.getLogger(EstudianteBean.class.getName()).log(Level.SEVERE, null, ex);
-        //}
+        try {
+            Servicios.getInstance().enviarSolicitudEstudiante(est,sol);
+        } catch (ExcepcionServicios ex) {
+            Logger.getLogger(EstudianteBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 }

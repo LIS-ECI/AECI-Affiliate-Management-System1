@@ -18,14 +18,14 @@ import java.util.Set;
  */
 public abstract class Servicios {
     
-    private static final Servicios instance=new ServiciosDao();
+    private static Servicios instance=new ServiciosDao();
     
     
     protected Servicios(){        
-
+        // instance=new ServiciosDao();
     }
     
-    public static Servicios getInstance() throws RuntimeException{    
+    public static Servicios getInstance() throws RuntimeException{            
         return instance;
     }
 

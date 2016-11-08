@@ -16,13 +16,13 @@ import java.util.List;
 public class Estudiante {
     
     private int codigo;
-    private int numero_identificacion;
+    private long numero_identificacion;
     private String nombre;
     private int semestre;
     private String tipo_identificacion;
     private String carrera;
     private int telefono_fijo;
-    private int celular;
+    private long celular;
     private List<String> correo;
     private String direccion;
 
@@ -42,11 +42,11 @@ public class Estudiante {
         this.codigo = codigo;
     }
 
-    public int getNumero_identificacion() {
+    public long getNumero_identificacion() {
         return numero_identificacion;
     }
 
-    public void setNumero_identificacion(int numero_identificacion) {
+    public void setNumero_identificacion(long numero_identificacion) {
         this.numero_identificacion = numero_identificacion;
     }
 
@@ -90,11 +90,11 @@ public class Estudiante {
         this.telefono_fijo = telefono_fijo;
     }
 
-    public int getCelular() {
+    public long getCelular() {
         return celular;
     }
 
-    public void setCelular(int celular) {
+    public void setCelular(long celular) {
         this.celular = celular;
     }
 
@@ -107,7 +107,7 @@ public class Estudiante {
     }
  
 
-    public Estudiante(int codigo, int numero_identificacion,  String nombre, int semestre, String tipo_identificacion, String carrera, int telefono_fijo, int celular, String correo, String direccion ) {
+    public Estudiante(int codigo, long numero_identificacion,  String nombre, int semestre, String tipo_identificacion, String carrera, int telefono_fijo, long celular, String correo, String direccion ) {
         this.codigo = codigo;
         this.numero_identificacion = numero_identificacion;
         this.carrera=carrera;

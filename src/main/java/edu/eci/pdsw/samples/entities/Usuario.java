@@ -17,13 +17,25 @@ public class Usuario {
     private int clave;
     private String tipo;//tipo de usuario
     private String estado;
-    private int cedula_numero;
+    private long cedula_numero;
     private String cedula_tipo;
     private List<Observacion> observaciones;
     private List<Servicio> servicios_usados;
     private List<Pago> pagos;
 
-    public Usuario(String nombre, int clave, String tipo, String estado, int cedula_numero, String cedula_tipo, Observacion observacion, Servicio servicio, Pago pago ) {
+    /**
+     *
+     * @param nombre
+     * @param clave
+     * @param tipo
+     * @param estado
+     * @param cedula_numero
+     * @param cedula_tipo
+     * @param observacion
+     * @param servicio
+     * @param pago
+     */
+    public Usuario(String nombre, int clave, String tipo, String estado, long cedula_numero, String cedula_tipo, Observacion observacion, Servicio servicio, Pago pago ) {
         this.nombre = nombre;
         this.clave = clave;
         this.tipo = tipo;
@@ -97,14 +109,14 @@ public class Usuario {
     /**
      * @return the cedula_numero
      */
-    public int getCedula_numero() {
+    public long getCedula_numero() {
         return cedula_numero;
     }
 
     /**
      * @param cedula_numero the cedula_numero to set
      */
-    public void setCedula_numero(int cedula_numero) {
+    public void setCedula_numero(long cedula_numero) {
         this.cedula_numero = cedula_numero;
     }
 

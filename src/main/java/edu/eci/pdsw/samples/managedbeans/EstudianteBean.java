@@ -24,13 +24,13 @@ import javax.faces.bean.SessionScoped;
 @SessionScoped
 public class EstudianteBean {
     private int codigo;
-    private int numero_identificacion;
+    private long numero_identificacion;
     private String nombre;
-    private int semestre;
+    private int semestre=8;
     private String tipo_identificacion;
     private String carrera;
     private int telefono_fijo;
-    private int celular;
+    private long celular;
     private String direccion;
     private String correo;
     //private static Servicios servicios=Servicios.getInstance();
@@ -57,7 +57,7 @@ public class EstudianteBean {
         return telefono_fijo;
     }
 
-    public int getCelular() {
+    public long getCelular() {
         return celular;
     }    
 
@@ -87,11 +87,11 @@ public class EstudianteBean {
         this.codigo = codigo;
     }
 
-    public int getNumero_identificacion() {
+    public long getNumero_identificacion() {
         return numero_identificacion;
     }
 
-    public void setNumero_identificacion(int numero_identificacion) {
+    public void setNumero_identificacion(long numero_identificacion) {
         this.numero_identificacion = numero_identificacion;
     }
 
@@ -131,7 +131,7 @@ public class EstudianteBean {
         this.telefono_fijo = telefono_fijo;
     }
 
-    public void setCelular(int celular) {
+    public void setCelular(long celular) {
         this.celular = celular;
     }
     

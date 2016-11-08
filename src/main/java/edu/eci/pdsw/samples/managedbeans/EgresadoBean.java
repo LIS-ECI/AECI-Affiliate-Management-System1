@@ -20,11 +20,11 @@ import javax.faces.bean.SessionScoped;
 
 @SessionScoped
 public class EgresadoBean {
-    private int cedula;
+    private long cedula;
     private String tipo_identificacion;
     private String nombre;
-    private int fecha_grado;
-    private int periodo_grado;
+    private int fecha_grado=2015;
+    private int periodo_grado=1;
     private String cargo;
     private String carrera; 
     private String direccion_vivienda;
@@ -33,7 +33,7 @@ public class EgresadoBean {
     private String direccion_empresa;
     private int telefono_oficina;
     private int telefono_fijo;
-    private int celular;
+    private long celular;
     private String email;
     //base de datos
 
@@ -44,15 +44,17 @@ public class EgresadoBean {
     public void setEmail(String email) {
         this.email = email;
     }
-    
 
-    public int getCedula() {
+    public long getCedula() {
         return cedula;
     }
 
-    public void setCedula(int cedula) {
+    public void setCedula(long cedula) {
         this.cedula = cedula;
     }
+    
+
+   
 
     public String getTipo_identificacion() {
         return tipo_identificacion;
@@ -150,11 +152,11 @@ public class EgresadoBean {
         this.telefono_fijo = telefono_fijo;
     }
 
-    public int getCelular() {
+    public long getCelular() {
         return celular;
     }
 
-    public void setCelular(int celular) {
+    public void setCelular(long celular) {
         this.celular = celular;
     }
     

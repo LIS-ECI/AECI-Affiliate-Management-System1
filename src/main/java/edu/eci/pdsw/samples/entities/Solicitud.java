@@ -14,11 +14,11 @@ import java.util.Date;
 public class Solicitud {
 
     private Date fecha;
-    private int cedula;
+    private long cedula;
     private String tipo_cedula;
     private String tipo;
 
-    public Solicitud(Date fecha, int cedula, String tipo_cedula, String tipo) {
+    public Solicitud(Date fecha, long cedula, String tipo_cedula, String tipo) {
         this.fecha = fecha;
         this.cedula = cedula;
         this.tipo_cedula = tipo_cedula;
@@ -42,14 +42,14 @@ public class Solicitud {
     /**
      * @return the cedula
      */
-    public int getCedula() {
+    public long getCedula() {
         return cedula;
     }
 
     /**
      * @param cedula the cedula to set
      */
-    public void setCedula(int cedula) {
+    public void setCedula(long cedula) {
         this.cedula = cedula;
     }
 

@@ -181,9 +181,15 @@
                                         <h:outputText />
                                         <h:outputText />
                                     </h:panelGrid>
-                                </h:panelGrid>
-
-                                <p:commandButton value="Enviar Solicitud" update=":infoEgresado" immediate="true" actionListener="#{beanEgresado.enviarSolicitud}" />
+                                </h:panelGrid>  
+                                
+                                 <h:outputText value="¿ Autoriza el envio de informacion de la AECI ?" />
+                                 <h:selectBooleanCheckbox />
+                                
+                                <br>
+                                <p:commandButton value="Enviar Solicitud" immediate="true" actionListener="#{beanEstudiante.enviarSolicitud}" />
+                                </br>
+                                 
                             </p:panel>
                         </p:tab>
                     </p:wizard>

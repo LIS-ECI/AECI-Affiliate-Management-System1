@@ -5,6 +5,7 @@
  */
 package edu.eci.pdsw.samples.services;
 
+import edu.eci.pdsw.samples.entities.Egresado;
 import edu.eci.pdsw.samples.entities.Estudiante;
 import edu.eci.pdsw.samples.entities.Solicitud;
 import java.util.List;
@@ -35,6 +36,8 @@ public abstract class Servicios {
     
     
     public abstract void enviarSolicitudEstudiante(Estudiante est,Solicitud sol) throws ExcepcionServicios;
+    
+    public abstract void enviarSolicitudEgresado(Egresado egr,Solicitud sol) throws ExcepcionServicios;
     
 
 }

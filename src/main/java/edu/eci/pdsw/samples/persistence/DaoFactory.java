@@ -51,6 +51,7 @@ public abstract class DaoFactory {
     }
     public abstract DaoEstudiante getDaoEstudiante();
 
+    public abstract DaoEgresado getDaoEgresado();
 
     public abstract void beginSession() throws PersistenceException;
 

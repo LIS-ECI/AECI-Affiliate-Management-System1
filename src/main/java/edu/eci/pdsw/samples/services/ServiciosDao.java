@@ -5,6 +5,7 @@
  */
 package edu.eci.pdsw.samples.services;
 
+import edu.eci.pdsw.samples.entities.Egresado;
 import edu.eci.pdsw.samples.entities.Estudiante;
 import edu.eci.pdsw.samples.entities.Solicitud;
 import edu.eci.pdsw.samples.persistence.DaoFactory;
@@ -60,6 +61,19 @@ public class ServiciosDao extends Servicios {
             
         }
 
+    }
+
+    @Override
+    public void enviarSolicitudEgresado(Egresado egr, Solicitud sol) throws ExcepcionServicios {
+
+        try {
+            daof.getDaoEgresado().enviarSolicitudEgresado(egr, sol);
+        } catch (PersistenceException ex) {
+            
+            Logger.getLogger(ServiciosDao.class.getName()).log(Level.SEVERE, null, ex);
+            
+        }
+    
     }
 
 }

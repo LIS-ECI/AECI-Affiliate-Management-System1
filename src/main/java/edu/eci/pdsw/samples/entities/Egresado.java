@@ -5,7 +5,6 @@
  */
 package edu.eci.pdsw.samples.entities;
 
-import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -15,23 +14,22 @@ import java.util.List;
  */
 public class Egresado {
     
-    private int cedula;
+    private long cedula;
     private String cedula_tipo;
     private String nombre;
-    private Date fecha_grado;
+    private int fecha_grado;
     private int periodo_grado;
     private String cargo;
     private String programa;
     private String direccion_vivienda;
-    private Date fecha_solicitud;
     private String nombreEmpresa;
     private String direccionEmpresa;
     private int telefono_oficina;
     private int telefono_fijo;
-    private int celular;
+    private long celular;
     private List<String> correo;
 
-    public Egresado(int cedula, String cedula_tipo, String nombre, Date fecha_grado, int periodo_grado, String cargo, String programa, String direccion_vivienda, Date fecha_solicitud, String nombreEmpresa, String direccionEmpresa, int telefono_oficina, int telefono_fijo, int celular, String correo) {
+    public Egresado(long cedula, String cedula_tipo, String nombre, int fecha_grado, int periodo_grado, String cargo, String programa, String direccion_vivienda, String nombreEmpresa, String direccionEmpresa, int telefono_oficina, int telefono_fijo, long celular, String correo) {
         this.cedula = cedula;
         this.cedula_tipo = cedula_tipo;
         this.nombre = nombre;
@@ -40,7 +38,6 @@ public class Egresado {
         this.cargo = cargo;
         this.programa = programa;
         this.direccion_vivienda = direccion_vivienda;
-        this.fecha_solicitud = fecha_solicitud;
         this.nombreEmpresa = nombreEmpresa;
         this.direccionEmpresa = direccionEmpresa;
         this.telefono_oficina = telefono_oficina;
@@ -53,14 +50,14 @@ public class Egresado {
     /**
      * @return the cedula
      */
-    public int getCedula() {
+    public long getCedula() {
         return cedula;
     }
 
     /**
      * @param cedula the cedula to set
      */
-    public void setCedula(int cedula) {
+    public void setCedula(long cedula) {
         this.cedula = cedula;
     }
 
@@ -95,14 +92,14 @@ public class Egresado {
     /**
      * @return the fecha_grado
      */
-    public Date getFecha_grado() {
+    public int getFecha_grado() {
         return fecha_grado;
     }
 
     /**
      * @param fecha_grado the fecha_grado to set
      */
-    public void setFecha_grado(Date fecha_grado) {
+    public void setFecha_grado(int fecha_grado) {
         this.fecha_grado = fecha_grado;
     }
 
@@ -162,19 +159,7 @@ public class Egresado {
         this.direccion_vivienda = direccion_vivienda;
     }
 
-    /**
-     * @return the fecha_solicitud
-     */
-    public Date getFecha_solicitud() {
-        return fecha_solicitud;
-    }
-
-    /**
-     * @param fecha_solicitud the fecha_solicitud to set
-     */
-    public void setFecha_solicitud(Date fecha_solicitud) {
-        this.fecha_solicitud = fecha_solicitud;
-    }
+   
 
     /**
      * @return the nombreEmpresa
@@ -235,14 +220,14 @@ public class Egresado {
     /**
      * @return the celular
      */
-    public int getCelular() {
+    public long getCelular() {
         return celular;
     }
 
     /**
      * @param celular the celular to set
      */
-    public void setCelular(int celular) {
+    public void setCelular(long celular) {
         this.celular = celular;
     }
 

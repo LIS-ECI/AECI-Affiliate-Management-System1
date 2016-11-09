@@ -5,7 +5,13 @@
  */
 package edu.eci.pdsw.samples.managedbeans;
 
+import edu.eci.pdsw.samples.entities.Egresado;
+import edu.eci.pdsw.samples.entities.Solicitud;
+import edu.eci.pdsw.samples.services.ExcepcionServicios;
+import edu.eci.pdsw.samples.services.Servicios;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -28,7 +34,6 @@ public class EgresadoBean {
     private String cargo;
     private String carrera; 
     private String direccion_vivienda;
-    private Date fecha_solicitud;
     private String nombreEmpresa;
     private String direccion_empresa;
     private int telefono_oficina;
@@ -112,13 +117,6 @@ public class EgresadoBean {
         this.direccion_vivienda = direccion_vivienda;
     }
 
-    public Date getFecha_solicitud() {
-        return fecha_solicitud;
-    }
-
-    public void setFecha_solicitud(Date fecha_solicitud) {
-        this.fecha_solicitud = fecha_solicitud;
-    }
 
     public String getNombreEmpresa() {
         return nombreEmpresa;
@@ -161,6 +159,13 @@ public class EgresadoBean {
     }
     
     public void enviarSolicitud (){
-    
+        Egresado egr = new Egresado(cedula, tipo_identificacion, nombre, fecha_grado, periodo_grado, cargo, carrera, direccion_vivienda, nombreEmpresa, direccion_empresa, telefono_oficina, telefono_fijo, celular, email);
+        java.sql.Date fecha = new java.sql.Date(java.util.Calendar.getInstance().getTime().getTime());
+        Solicitud sol = new Solicitud(fecha,egr.getCedula(), egr.getCedula_tipo(),"estudiante");
+        try {
+            Servicios.getInstance().enviarSolicitudEgresado(egr,sol);
+        } catch (ExcepcionServicios ex) {
+            Logger.getLogger(EstudianteBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="edu.eci.pdsw.samples.persistence.mybatisimpl.mappers.EgresadoMapper">
+    
+    
+    
+    
+    <insert parameterType="map" id="enviarSolicitudEgresado" >    
+                
+                insert into Identificacion values (#{egr.cedula}, #{egr.cedula_tipo});
+                insert into Datos_Estudiante values(#{est.numero_identificacion}, #{est.tipo_identificacion}, #{est.codigo}, #{est.nombre}, #{est.semestre}, #{est.carrera}, #{est.telefono_fijo}, #{est.celular}, #{est.direccion});
+                insert into Solicitud values(#{sol.fecha}, #{sol.cedula}, #{sol.tipo_cedula}, #{sol.tipo})
+    </insert>
+
+
+	                   	
+</mapper>

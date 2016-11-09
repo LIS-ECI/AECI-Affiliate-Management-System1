@@ -18,6 +18,7 @@ package edu.eci.pdsw.samples.persistence.mybatisimpl;
 
 
 
+import edu.eci.pdsw.samples.persistence.DaoEgresado;
 import edu.eci.pdsw.samples.persistence.DaoFactory;
 import edu.eci.pdsw.samples.persistence.PersistenceException;
 import java.io.InputStream;
@@ -99,6 +100,11 @@ public class MyBatisDaoFactory extends DaoFactory {
     @Override
     public DaoEstudiante getDaoEstudiante() {
         return new MyBatisDAOEstudiante(currentSession);
+    }
+
+    @Override
+    public DaoEgresado getDaoEgresado() {
+        return new MyBatisDAOEgresado(currentSession);
     }
 
 

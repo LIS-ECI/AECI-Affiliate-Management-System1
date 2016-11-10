@@ -3,46 +3,62 @@
   xmlns:p="http://primefaces.org/ui"
   xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
+    <title>Solicitud</title>
 </h:head>
-<h:body>
-<h:form prependId="false">
- 
-    <h:panelGrid columns="1" style="position: absolute; top: 0px; left: 0px">
-        <p:panel style=" font-size:  medium; height: 182px;color: #000000" >
-                    <f:facet name="header" >
-                        <img  src="http://tycho.escuelaing.edu.co/contenido/notiweb/notiweb-movil/img/logos/logo-escuela.png" width="350" height="150" align="left"/>
-                        <h2 style="text-align: center; color:blue;">BIENVENIDO</h2>
-                        <h3 style="text-align: center; color: darkblue;">Asociación de Egresados Escuela Colombiana de Ingenieria Julio Garavito</h3>
-                    </f:facet>
-                    <p:growl id="msj" showDetail="true" autoUpdate="true"/>
+    <h:body>
+        <p:growl id="growl" showDetail="true" sticky="true" autoUpdate="true"/>
+        <h:form id="soli_form">
+            <p:focus context="panelSolicitudes"/>
+                <p:layout>
+                    <p:layoutUnit position="north">
+                        <p:panel style=" font-size:  medium; height: 182px;color: #000000" >
+                            <f:facet name="header" >
+                                <img  src="http://tycho.escuelaing.edu.co/contenido/notiweb/notiweb-movil/img/logos/logo-escuela.png" width="350" height="150" align="left"/>
+                                <h2 style="text-align: center; color:blue;">BIENVENIDO</h2>
+                                <h3 style="text-align: center; color: darkblue;">Asociación de Egresados Escuela Colombiana de Ingenieria Julio Garavito</h3>
+                            </f:facet>
+                            <p:growl id="msj" showDetail="true" autoUpdate="true"/>
+                        </p:panel>
+                    </p:layoutUnit>
                     
-                </p:panel>
-                
-    </h:panelGrid>
-    <br></br>
-    <br></br>
-    <br></br>
+                    <p:layoutUnit position="west">
+                        <p:panel style="width:220px">
+                            <p:commandButton value="Index" rendered="#{BeanSolicitudes.botonIndex}" action="index" immediate="true"/>
+                            <br/>
+                            <br/>
+                            <p:commandButton value="Solicitud" rendered="#{BeanSolicitudes.botonSolicitud}" ajax="false" immediate="true" update="form0"/>
+                            <br/>
+                            <br/>
+                            <p:commandButton value="Informacion Egresados" rendered="#{BeanSolicitudes.botonInformacionEgresados}" action="informacionegresado" immediate="true"/>
+                            <br/>
+                            <br/>                           
+                            <p:commandButton value="Informacion Estudiantes" rendered="#{BeanSolicitudes.botonInformacionEstudiantes}" action="informacionestudiante" immediate="true"/>  
+                        </p:panel>
+                    </p:layoutUnit>
+                    
+                    <p:layoutUnit position="center">
+                        <p:panel  header = "Solicitudes" id="panelSolicitudes">
+             
 
-    <p:dataTable var="car"  >
-    <p:column headerText="Id">
-        <h:outputText  />
-    </p:column>
- 
-    <p:column headerText="Year">
-        <h:outputText value="" />
-    </p:column>
- 
-    <p:column headerText="Brand">
-        <h:outputText value="" />
-    </p:column>
- 
-    <p:column headerText="Color">
-        <h:outputText value="" />
-    </p:column>
-    </p:dataTable>
-            
-</h:form>
-</h:body>
+                            <p:dataTable var="Solicitudes" value="#{BeanSolicitudes.solicitudes}"  >
+                                <p:column>
+                                    <p:commandButton value="Ver Solicitud" action="solicitudencurso.xhtml">
+                                        <f:setPropertyActionListener value="#{Solicitudes.fecha}" target="#{Solicitudes.tipo}" />
+                                    </p:commandButton>
+                                </p:column>
+                                <p:column headerText="identificador">
+                                    <h:outputText value="#{Solicitudes.fecha}" />
+                                </p:column>
+                                <p:column headerText="Autor">
+                                    <h:outputText value="#{Solicitudes.tipo}" />
+                                </p:column>
+                            </p:dataTable>
+                        </p:panel>
+                    </p:layoutUnit>
+                </p:layout>
+
+            </h:form>
+    </h:body>
 </html>
 
 

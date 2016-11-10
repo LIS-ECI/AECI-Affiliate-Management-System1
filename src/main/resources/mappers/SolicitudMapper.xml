@@ -18,8 +18,8 @@
     <select id="getSolicitudes" resultMap="SolicitudResult">
     select sl.fecha , sl.Cedula_Numero , sl.Cedula_Tipo , sl.tipo , sl.aprobado
     from Solicitud as sl
-    order by sl.fecha
     where aprobado='Pend'
+    order by sl.fecha
     </select>
     
     

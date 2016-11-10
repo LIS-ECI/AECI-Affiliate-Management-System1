@@ -6,7 +6,10 @@
     <h:head></h:head>
 
     <h:body>
-        <h:form id="infoEstudiante">
+        <h:form id="infoEstudiante" >
+            
+           
+            
             <h:panelGrid columns="1" style="position: absolute; top: 0px; left: 0px">
                 <p:panel style=" font-size:  medium; height: 182px;color: #000000" >
                     <f:facet name="header" >
@@ -37,7 +40,9 @@
 
             <p:panelGrid columns="2">
 
-                <h:form>
+                
+                    
+                 
 
                     <p:growl id="growl" sticky="true" showDetail="true"/>
 
@@ -81,17 +86,17 @@
 
                                     <h:outputText value="Programa: " />
                                     <p:selectOneMenu id="console" value="#{beanEstudiante.carrera}" style="width:250px">
-                                        <f:selectItem itemLabel="Ingeniería Civil" itemValue="Ingeniería Civil" />
-                                        <f:selectItem itemLabel="Ingeniería Electrónica" itemValue="Ingeniería Electrónica" />
-                                        <f:selectItem itemLabel="Ingeniería Eléctrica" itemValue="Ingeniería Eléctrica" />
-                                        <f:selectItem itemLabel="Ingeniería De Sistemas" itemValue="Ingeniería De Sistemas" />
-                                        <f:selectItem itemLabel="Ingeniería Industrial" itemValue="Ingeniería Industrial" />
-                                        <f:selectItem itemLabel="Matemáticas" itemValue="Matemáticas" />
-                                        <f:selectItem itemLabel="Economía" itemValue="Economía" />
-                                        <f:selectItem itemLabel="Administración De Empresas" itemValue="Administración De Empresas" />
-                                        <f:selectItem itemLabel="Ingeniería Mecánica" itemValue="Ingeniería Mecánica" />
-                                        <f:selectItem itemLabel="Ingeniería Ambiental" itemValue="Ingeniería Ambiental" />
-                                        <f:selectItem itemLabel="Ingeniería Biomédica" itemValue="Ingeniería Biomédica" />
+                                        <f:selectItem itemLabel="Ingeniería Civil" itemValue="Ingenieria Civil" />
+                                        <f:selectItem itemLabel="Ingeniería Electrónica" itemValue="Ingenieria Electronica" />
+                                        <f:selectItem itemLabel="Ingeniería Eléctrica" itemValue="Ingenieria Electrica" />
+                                        <f:selectItem itemLabel="Ingeniería De Sistemas" itemValue="Ingenieria De Sistemas" />
+                                        <f:selectItem itemLabel="Ingeniería Industrial" itemValue="Ingenieria Industrial" />
+                                        <f:selectItem itemLabel="Matemáticas" itemValue="Matematicas" />
+                                        <f:selectItem itemLabel="Economía" itemValue="Economia" />
+                                        <f:selectItem itemLabel="Administración De Empresas" itemValue="Administracion De Empresas" />
+                                        <f:selectItem itemLabel="Ingeniería Mecánica" itemValue="Ingenieria Mecanica" />
+                                        <f:selectItem itemLabel="Ingeniería Ambiental" itemValue="Ingenieria Ambiental" />
+                                        <f:selectItem itemLabel="Ingeniería Biomédica" itemValue="Ingenieria Biomedica" />
                                     </p:selectOneMenu>
 
                                     <h:outputText value="Codigo Estudiante: *" />
@@ -140,18 +145,15 @@
                                 <h:outputText value="¿ Autoriza el envio de informacion de la AECI ?" />
                                 <h:selectBooleanCheckbox />
                                 <br>
-                                <p:commandButton value="Enviar Solicitud" immediate="true" actionListener="#{beanEstudiante.enviarSolicitud}" />
+                                <p:commandButton id="enviar" value="Enviar Solicitud" immediate="true" actionListener="#{beanEstudiante.enviarSolicitud}" />
                                 </br>
                             </p:panel>
                         </p:tab>
                     </p:wizard>
 
-                </h:form>
-
-
             </p:panelGrid>
             <p:commandButton value="Regresar" action="index" immediate="true" ajax="false" styleClass="ui-priority-primary" />
-
+            <p:defaultCommand target="enviar"></p:defaultCommand>
         </h:form>
     </h:body>
 

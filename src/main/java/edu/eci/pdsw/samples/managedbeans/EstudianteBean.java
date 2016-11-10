@@ -23,16 +23,29 @@ import javax.faces.bean.SessionScoped;
 
 @SessionScoped
 public class EstudianteBean {
-    private int codigo;
+    
     private long numero_identificacion;
+    private String tipo_identificacion;
+    private int codigo;
     private String nombre;
     private int semestre=8;
-    private String tipo_identificacion;
-    private String carrera;
     private int telefono_fijo;
-    private long celular;
+    private long celular=0;
     private String direccion;
+    private String carrera;
+    
+    
+    
     private String correo;
+    private String enter;
+
+    public String getEnter() {
+        return enter;
+    }
+
+    public void setEnter(String enter) {
+        this.enter = enter;
+    }
     
     public int getDocumento() {
         return documento;

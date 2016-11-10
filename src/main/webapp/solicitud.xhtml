@@ -23,16 +23,16 @@
                     
                     <p:layoutUnit position="west">
                         <p:panel style="width:220px">
-                            <p:commandButton value="Index" rendered="#{BeanSolicitudes.botonIndex}" action="index" immediate="true"/>
+                            <p:commandButton value="Inicio" action="index" immediate="true"/>
                             <br/>
                             <br/>
-                            <p:commandButton value="Solicitud" rendered="#{BeanSolicitudes.botonSolicitud}" ajax="false" immediate="true" update="form0"/>
+                            <p:commandButton value="Solicitud" ajax="false" immediate="true" update="form0"/>
                             <br/>
                             <br/>
-                            <p:commandButton value="Informacion Egresados" rendered="#{BeanSolicitudes.botonInformacionEgresados}" action="informacionegresado" immediate="true"/>
+                            <p:commandButton value="Información Egresados"  action="informacionegresado" immediate="true"/>
                             <br/>
                             <br/>                           
-                            <p:commandButton value="Informacion Estudiantes" rendered="#{BeanSolicitudes.botonInformacionEstudiantes}" action="informacionestudiante" immediate="true"/>  
+                            <p:commandButton value="Información Estudiantes"  action="informacionestudiante" immediate="true"/>  
                         </p:panel>
                     </p:layoutUnit>
                     
@@ -46,10 +46,10 @@
                                         <f:setPropertyActionListener value="#{Solicitudes.fecha}" target="#{Solicitudes.tipo}" />
                                     </p:commandButton>
                                 </p:column>
-                                <p:column headerText="identificador">
+                                <p:column headerText="Fecha">
                                     <h:outputText value="#{Solicitudes.fecha}" />
                                 </p:column>
-                                <p:column headerText="Autor">
+                                <p:column headerText="Tipo">
                                     <h:outputText value="#{Solicitudes.tipo}" />
                                 </p:column>
                             </p:dataTable>

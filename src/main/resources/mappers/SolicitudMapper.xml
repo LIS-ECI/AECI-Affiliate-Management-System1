@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="edu.eci.pdsw.samples.persistence.mybatisimpl.mappers.SolicitudMapper">
+    
+    <resultMap Type='Solicitud' id='SolicitudResult'>
+        <id property='fecha' column='fecha'/>
+        <!-- datos normales --> 
+        <id property='Cedula' column = 'Cedula_numero'/>
+        <!-- datos normales -->
+        <id property = 'TipoIdentificacion' column = 'Cedula_Tipo' />
+        <result property='TipoAfiliacion' column = 'tipo'/>
+        <result property='Estado' column = 'aprobado'/>
+    </resultMap>
+    
+    <select id="getSolicitudes" resultMap="SolicitudResult">
+    select sl.fecha , sl.Cedula_Numero , sl.Cedula_Tipo , sl.tipo , sl.aprobado
+    from Solicitud as sl
+    where aprobado='Pend'
+    </select>
+    
+    
+   
+</mapper>

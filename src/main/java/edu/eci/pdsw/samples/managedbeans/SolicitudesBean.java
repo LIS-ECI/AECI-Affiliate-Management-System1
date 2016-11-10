@@ -30,7 +30,6 @@ public class SolicitudesBean implements Serializable{
 
 private String usuario;
 private String clave;
-private Date Fecha;
 private Date fecha;
 private List<Solicitud> listaDeSolicitudes = new ArrayList<Solicitud>();
 

@@ -55,7 +55,7 @@
     <!--theme--> 
     <context-param>  
     <param-name>primefaces.THEME</param-name>  
-        <param-value>afterwork</param-value>  
+        <param-value>sam</param-value>  
     </context-param> 
     <servlet>
         <servlet-name>Faces Servlet</servlet-name>

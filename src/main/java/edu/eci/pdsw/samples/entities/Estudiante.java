@@ -12,9 +12,10 @@ import java.util.List;
  *
  * @author 2107641
  */
-
 public class Estudiante {
-    
+
+    private List<String> correo;
+    private String direccion;
     private int codigo;
     private long numero_identificacion;
     private String nombre;
@@ -23,8 +24,6 @@ public class Estudiante {
     private String carrera;
     private int telefono_fijo;
     private long celular;
-    private List<String> correo;
-    private String direccion;
 
     public String getDireccion() {
         return direccion;
@@ -98,29 +97,26 @@ public class Estudiante {
         this.celular = celular;
     }
 
-    public List <String> getCorreo() {
+    public List<String> getCorreo() {
         return correo;
     }
 
     public void setCorreo(String correo) {
         this.correo.add(correo);
     }
- 
 
-    public Estudiante(int codigo, long numero_identificacion,  String nombre, int semestre, String tipo_identificacion, String carrera, int telefono_fijo, long celular, String correo, String direccion ) {
+    public Estudiante(int codigo, long numero_identificacion, String nombre, int semestre, String tipo_identificacion, String carrera, int telefono_fijo, long celular, String correo, String direccion) {
         this.codigo = codigo;
         this.numero_identificacion = numero_identificacion;
-        this.carrera=carrera;
-        this.celular=celular;
+        this.carrera = carrera;
+        this.celular = celular;
         this.correo = new LinkedList<>();
         this.correo.add(correo);
-        this.semestre=semestre;
-        this.telefono_fijo=telefono_fijo;
-        this.tipo_identificacion=tipo_identificacion;
-        this.direccion=direccion;
-        this.nombre=nombre;
+        this.semestre = semestre;
+        this.telefono_fijo = telefono_fijo;
+        this.tipo_identificacion = tipo_identificacion;
+        this.direccion = direccion;
+        this.nombre = nombre;
     }
-    
-    
-    
+
 }

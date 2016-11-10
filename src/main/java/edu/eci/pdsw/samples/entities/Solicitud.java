@@ -17,14 +17,24 @@ public class Solicitud {
     private long cedula;
     private String tipo_cedula;
     private String tipo;
+    private String estado; 
 
-    public Solicitud(Date fecha, long cedula, String tipo_cedula, String tipo) {
+    public Solicitud(Date fecha, long cedula, String tipo_cedula, String tipo,String estado) {
         this.fecha = fecha;
         this.cedula = cedula;
         this.tipo_cedula = tipo_cedula;
         this.tipo = tipo;
+        this.estado=estado;
     }
 
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+    
     /**
      * @return the fecha
      */

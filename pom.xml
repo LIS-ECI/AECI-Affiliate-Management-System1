@@ -1,20 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
     <groupId>edu.eci.pdsw.samples</groupId>
     <artifactId>Proyecto</artifactId>
     <version>1.0</version>
     <packaging>war</packaging>
 
     <name>Aeci_web03</name>
-
     <properties>
         <endorsed.dir>${project.build.directory}/dependency</endorsed.dir>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
     
     <dependencies>
+        
+        <!--theme-->
+        <dependency>  
+            <groupId>org.primefaces.themes</groupId>  
+            <artifactId>all-themes</artifactId>  
+            <version>1.0.10</version>
+        </dependency>
         
         <dependency>
             <groupId>com.sun.faces</groupId>
@@ -73,7 +80,7 @@
             <artifactId>h2</artifactId>
             <version>1.4.184</version>
         </dependency>
-        
+                        
     </dependencies>
     
     
@@ -165,6 +172,7 @@
                     <failOnMissingWebXml>false</failOnMissingWebXml>
                 </configuration>
             </plugin>
+            
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
@@ -192,7 +200,7 @@
             </plugin>
             
             <!-- Plugin configuration for Heroku compatibility. -->
-         <plugin>
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
                 <version>2.1</version>
@@ -211,10 +219,8 @@
                                     <destFileName>webapp-runner.jar</destFileName>
                                 </artifactItem>
                             </artifactItems>
-
                         </configuration>
                     </execution>
-
                 </executions>
             </plugin>
         </plugins>
@@ -250,5 +256,13 @@
             </plugin>            
         </plugins>
     </reporting>
+    <repositories>
+        <repository>
+            <url>http://repository.primefaces.org/</url>
+            <id>PrimeFaces-maven-lib</id>
+            <layout>default</layout>
+            <name>Repository for library PrimeFaces-maven-lib</name>
+        </repository>
+    </repositories>
 
 </project>

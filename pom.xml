@@ -9,8 +9,6 @@
     <name>Aeci_web03</name>
     <properties>
         <endorsed.dir>${project.build.directory}/dependency</endorsed.dir>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
     

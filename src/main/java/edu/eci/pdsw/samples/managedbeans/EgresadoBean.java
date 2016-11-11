@@ -9,6 +9,7 @@ import edu.eci.pdsw.samples.entities.Egresado;
 import edu.eci.pdsw.samples.entities.Solicitud;
 import edu.eci.pdsw.samples.services.ExcepcionServicios;
 import edu.eci.pdsw.samples.services.Servicios;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -25,7 +26,7 @@ import javax.faces.bean.SessionScoped;
 @ManagedBean(name="beanEgresado")
 
 @SessionScoped
-public class EgresadoBean {
+public class EgresadoBean  implements Serializable{
     private long cedula;
     private String tipo_identificacion;
     private String nombre;

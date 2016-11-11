@@ -5,21 +5,19 @@
 
 <mapper namespace="edu.eci.pdsw.samples.persistence.mybatisimpl.mappers.SolicitudMapper">
     
-    <resultMap Type='Solicitud' id='SolicitudResult'>
+    <resultMap type='Solicitud' id='SolicitudResult'>
         <id property='fecha' column='fecha'/>
-        <!-- datos normales --> 
-        <id property='Cedula' column = 'Cedula_numero'/>
-        <!-- datos normales -->
-        <id property = 'TipoIdentificacion' column = 'Cedula_Tipo' />
-        <result property='TipoAfiliacion' column = 'tipo'/>
-        <result property='Estado' column = 'aprobado'/>
+        <id property='cedula' column = 'Cedula_Numero'/>
+        <id property = 'tipo_cedula' column = 'Cedula_Tipo' />
+        <result property='tipo' column = 'tipo'/>
+        <result property='estado' column = 'aprobado'/>
     </resultMap>
     
-    <select id="getSolicitudes" resultMap="SolicitudResult">
-    select sl.fecha , sl.Cedula_Numero , sl.Cedula_Tipo , sl.tipo , sl.aprobado
-    from Solicitud as sl
-    where aprobado='Pend'
-    order by sl.fecha
+    <select id="consultarSolicitud" resultMap="SolicitudResult">
+        select fecha , Cedula_Numero , Cedula_Tipo , tipo , aprobado
+        from Solicitud 
+        where aprobado='Pend'
+        order by fecha
     </select>
     
     

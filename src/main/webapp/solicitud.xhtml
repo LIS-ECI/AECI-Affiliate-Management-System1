@@ -41,17 +41,13 @@
                     <p:panel  header = "Solicitudes" id="panelSolicitudes">
 
 
-                        <p:dataTable var="Solicitudes" value="#{BeanSolicitudes.solicitudes}" selectionMode="single" selection="#{beanRegistroForosBean.seleccionado}" >
-                            <p:column>
-                                <p:commandButton value="Ver Solicitud" action="solicitudencurso.xhtml">
-                                    <f:setPropertyActionListener value="#{Solicitudes.fecha}" target="#{Solicitudes.tipo}" />
-                                </p:commandButton>
-                            </p:column>
+                        <p:dataTable var="solicitudes" value="#{BeanSolicitudes.solicitudes}" selectionMode="single" selection="#{beanRegistroForosBean.seleccionado}" rowKey="#{solicitudes.cedula}">
+                            
                             <p:column headerText="Fecha">
-                                <h:outputText value="#{Solicitudes.fecha}" />
+                                <h:outputText value="#{solicitudes.fecha}" />
                             </p:column>
                             <p:column headerText="Tipo">
-                                <h:outputText value="#{Solicitudes.tipo}" />
+                                <h:outputText value="#{solicitudes.tipo}" />
                             </p:column>
                         </p:dataTable>
                     </p:panel>

@@ -15,15 +15,15 @@ import java.util.List;
 public class Estudiante {
 
     private List<String> correo;
-    private String direccion;
-    private int codigo;
-    private long numero_identificacion;
-    private String nombre;
-    private int semestre;
-    private String tipo_identificacion;
-    private String carrera;
-    private int telefono_fijo;
-    private long celular;
+    public String direccion;
+    public int codigo;
+    public long numero_identificacion;
+    public String nombre;
+    public int semestre;
+    public String tipo_identificacion;
+    public String carrera;
+    public int telefono_fijo;
+    public long celular=12345;
 
     public String getDireccion() {
         return direccion;

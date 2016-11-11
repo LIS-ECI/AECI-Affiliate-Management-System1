@@ -46,8 +46,8 @@ public class ServiciosDao extends Servicios {
 
     @Override
     public List<Solicitud> consultarSolicitud() {
-        //Hay que implementear
-        return null;
+        
+        return daof.getDaoSolicitud().consultarSolicitud();
     }
 
     @Override

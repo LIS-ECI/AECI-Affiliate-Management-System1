@@ -53,6 +53,7 @@ public class MyBatisDAOEstudiante implements DaoEstudiante{
     @Override
     public void enviarSolicitudEstudiante(Estudiante est, Solicitud sol) throws PersistenceException {
         EstudianteMapper esmap = currentSession.getMapper(EstudianteMapper.class);
+        System.out.println(est.numero_identificacion+est.tipo_identificacion+est.codigo+est.nombre+est.semestre+est.telefono_fijo+est.celular+est.direccion+est.carrera); 
         esmap.enviarSolicitudEstudiante(est,sol);
        
     }

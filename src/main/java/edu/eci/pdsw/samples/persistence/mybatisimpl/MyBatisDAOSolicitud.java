@@ -1,21 +1,45 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Copyright (C) 2016 hcadavid
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 package edu.eci.pdsw.samples.persistence.mybatisimpl;
 
+import edu.eci.pdsw.samples.entities.Solicitud;
+import edu.eci.pdsw.samples.persistence.mybatisimpl.mappers.EstudianteMapper;
 import org.apache.ibatis.session.SqlSession;
+import edu.eci.pdsw.samples.persistence.DaoSolicitud;
+import edu.eci.pdsw.samples.persistence.mybatisimpl.mappers.EgresadoMapper;
+import edu.eci.pdsw.samples.persistence.mybatisimpl.mappers.SolicitudMapper;
+import java.util.List;
 
 /**
  *
- * @author 2103216
+ * @author hcadavid
  */
-public class MyBatisDAOSolicitud {
-    private SqlSession currentSession=null;
+public class MyBatisDAOSolicitud implements DaoSolicitud {
+
+    private SqlSession currentSession = null;
 
     public MyBatisDAOSolicitud(SqlSession session) {
-        this.currentSession=session;
+        this.currentSession = session;
     }
-    
+
+    @Override
+    public List<Solicitud> consultarSolicitud() {
+        SolicitudMapper somap = currentSession.getMapper(SolicitudMapper.class);
+        return somap.consultarSolicitud();
+    }
+
 }

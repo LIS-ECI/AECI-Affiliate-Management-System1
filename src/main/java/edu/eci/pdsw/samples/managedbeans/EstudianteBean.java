@@ -142,7 +142,7 @@ public class EstudianteBean {
      public void enviarSolicitud (){
         Estudiante est = new Estudiante(codigo, numero_identificacion,  nombre, semestre, tipo_identificacion, carrera, telefono_fijo, celular,  correo, direccion );
         Date fecha = new java.sql.Date(java.util.Calendar.getInstance().getTime().getTime());
-        Solicitud sol = new Solicitud(fecha,est.getNumero_identificacion(), est.getTipo_identificacion(),"Estudiante","Pend");
+        Solicitud sol = new Solicitud(fecha,(int)est.getNumero_identificacion(), est.getTipo_identificacion(),"Estudiante","Pend");
         try {
             Servicios.getInstance().enviarSolicitudEstudiante(est,sol);
         } catch (ExcepcionServicios ex) {

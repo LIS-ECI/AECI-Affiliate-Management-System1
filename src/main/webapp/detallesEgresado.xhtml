@@ -58,13 +58,14 @@
                         <h:outputText value="#{BeanSolicitudes.egr.nombreEmpresa}"  styleClass="outputLabel"/>
 
                         <h:outputText value="Direccion Empresa" style="font-weight:bold"/>
-                        <h:outputText value="#{BeanSolicitudes.egr.direccion_empresa}"  styleClass="outputLabel"/>
+                        <h:outputText value="#{BeanSolicitudes.egr.direccionEmpresa}"  styleClass="outputLabel"/>
 
                         <h:outputText value="Telefono Oficina : " style="font-weight:bold"/>
                         <h:outputText value="#{BeanSolicitudes.egr.telefono_oficina}"  styleClass="outputLabel"/>
 
                         <h:outputText value="Cargo : " style="font-weight:bold"/>
                         <h:outputText value="#{BeanSolicitudes.egr.cargo}"  styleClass="outputLabel"/>
+                    </h:panelGrid>
                     </h:panelGrid>
 
                         
@@ -75,6 +76,7 @@
                 <br>
                     <p:commandButton id="Aceptar" value="Aceptar Solicitud" immediate="true" actionListener="#{BeanSolicitudes.aprobar}" />
                     <p:commandButton id="Rechazar" value="Rechazar Solicitud" immediate="true" actionListener="#{BeanSolicitudes.rechazar}" />
+                    <p:commandButton id="Regresar a Solicitudes" value="Regresar a Solicitudes" immediate="true" action="solicitud" />
 
                 </br>
             </p:panel>

@@ -13,13 +13,13 @@ import java.util.Date;
  */
 public class Solicitud {
 
-    private Date fecha;
+    private java.sql.Date fecha;
     private long cedula;
     private String tipo_cedula;
     private String tipo;
     private String estado; 
 
-    public Solicitud(Date fecha, long cedula, String tipo_cedula, String tipo,String estado) {
+    public Solicitud(java.sql.Date  fecha, long cedula, String tipo_cedula, String tipo,String estado) {
         this.fecha = fecha;
         this.cedula = cedula;
         this.tipo_cedula = tipo_cedula;
@@ -27,6 +27,9 @@ public class Solicitud {
         this.estado=estado;
     }
 
+    public Solicitud() {
+    }
+    
     public String getEstado() {
         return estado;
     }
@@ -38,14 +41,14 @@ public class Solicitud {
     /**
      * @return the fecha
      */
-    public Date getFecha() {
+    public java.sql.Date  getFecha() {
         return fecha;
     }
 
     /**
      * @param fecha the fecha to set
      */
-    public void setFecha(Date fecha) {
+    public void setFecha(java.sql.Date  fecha) {
         this.fecha = fecha;
     }
 

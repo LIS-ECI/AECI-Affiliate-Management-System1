@@ -23,7 +23,7 @@ public abstract class Servicios {
     
     
     protected Servicios(){        
-        // instance=new ServiciosDao();
+
     }
     
     public static Servicios getInstance() throws RuntimeException{            

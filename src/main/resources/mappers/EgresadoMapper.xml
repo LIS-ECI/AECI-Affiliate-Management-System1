@@ -8,8 +8,8 @@
 
     <insert parameterType="map" id="enviarSolicitudEgresado" >                    
                 insert into Identificacion values (#{egr.cedula}, #{egr.cedula_tipo});
-                insert into Datos_Estudiante values(#{est.numero_identificacion}, #{est.tipo_identificacion}, #{est.codigo}, #{est.nombre}, #{est.semestre}, #{est.carrera}, #{est.telefono_fijo}, #{est.celular}, #{est.direccion});
-                insert into Solicitud values(#{sol.fecha}, #{sol.cedula}, #{sol.tipo_cedula}, #{sol.tipo})
+                insert into Datos_Estudiante values(#{est.numero_identificacion}, #{est.tipo_identificacion}, #{est.codigo}, #{est.nombre}, #{est.semestre}, #{est.telefono_fijo}, #{est.celular}, #{est.direccion},#{est.carrera} );
+                insert into Solicitud values(#{sol.fecha}, #{sol.cedula}, #{sol.tipo_cedula}, #{sol.tipo},#{sol.estado})
     </insert>
 
 

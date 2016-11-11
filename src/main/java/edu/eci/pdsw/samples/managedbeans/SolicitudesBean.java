@@ -10,6 +10,7 @@ import edu.eci.pdsw.samples.entities.Estudiante;
 import edu.eci.pdsw.samples.entities.Solicitud;
 import edu.eci.pdsw.samples.services.Servicios;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
@@ -34,8 +35,8 @@ private String clave;
 private Date fecha;
 private Estudiante est;
 private Egresado egr;
-private Solicitud seleccionado;
-
+private Solicitud seleccionado;  
+static private List<Solicitud> solicitudes;
 
 
 
@@ -47,11 +48,22 @@ private Solicitud seleccionado;
         this.seleccionado = seleccionado;
         if (seleccionado.getTipo().equals("Estudiante")){
             est=Servicios.getInstance().consultarEstudiante(seleccionado.getCedula(),seleccionado.getTipo_cedula());
+            
         }
         else if (seleccionado.getTipo().equals("Egresado")){
             egr=Servicios.getInstance().consultarEgresado(seleccionado.getCedula(),seleccionado.getTipo_cedula());
         }
         
+    }
+    
+    public List<Solicitud> getSolicitudes() {
+        
+        return Servicios.getInstance().consultarSolicitud();
+
+    }
+
+    public void setSolicitudes(List<Solicitud> solicitudes) {
+        this.solicitudes = solicitudes;
     }
 
     public String getUsuario() {
@@ -96,9 +108,6 @@ private Solicitud seleccionado;
     }
 
     
-    public List<Solicitud> getSolicitudes(){
-        return Servicios.getInstance().consultarSolicitud();
-    }
     
     public void aprobar(){}
     

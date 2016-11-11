@@ -7,12 +7,14 @@ package edu.eci.pdsw.samples.persistence;
 
 
 import edu.eci.pdsw.samples.entities.Solicitud;
+import java.util.List;
 /**
  *
  * @author 2103216
  */
 public interface DaoSolicitud {
     
+    public List<Solicitud> consultarSolicitud() ;
 
     
 }

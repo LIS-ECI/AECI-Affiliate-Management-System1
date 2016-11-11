@@ -28,6 +28,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import edu.eci.pdsw.samples.persistence.DaoEstudiante;
+import edu.eci.pdsw.samples.persistence.DaoSolicitud;
 
 /**
  *
@@ -105,6 +106,11 @@ public class MyBatisDaoFactory extends DaoFactory {
     @Override
     public DaoEgresado getDaoEgresado() {
         return new MyBatisDAOEgresado(currentSession);
+    }
+
+    @Override
+    public DaoSolicitud getDaoSolicitud() {
+        return new MyBatisDAOSolicitud(currentSession);
     }
 
 

@@ -30,7 +30,9 @@ public abstract class Servicios {
         return instance;
     }
 
-
+    public abstract Estudiante consultarEstudiante(long identificacion,String tipo_identificacion);
+    
+    public abstract Egresado consultarEgresado(long identificacion,String tipo_identificacion);
    
     public abstract List<Solicitud> consultarSolicitud();
     

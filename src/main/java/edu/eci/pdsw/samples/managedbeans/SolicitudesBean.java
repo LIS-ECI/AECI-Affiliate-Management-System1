@@ -5,10 +5,11 @@
  */
 package edu.eci.pdsw.samples.managedbeans;
 
+import edu.eci.pdsw.samples.entities.Egresado;
+import edu.eci.pdsw.samples.entities.Estudiante;
 import edu.eci.pdsw.samples.entities.Solicitud;
 import edu.eci.pdsw.samples.services.Servicios;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
@@ -31,14 +32,28 @@ public class SolicitudesBean implements Serializable{
 private String usuario;
 private String clave;
 private Date fecha;
-private List<Solicitud> listaDeSolicitudes = new ArrayList<Solicitud>();
+private Estudiante est;
+private Egresado egr;
+private Solicitud seleccionado;
 
-//Botones disponibles
-private boolean botonIndex=false;
-private boolean botonSolicitud=false;
-private boolean botonInformacionEgresados=false;
-private boolean botonInformacionEstudiantes=false;
-    
+
+
+
+    public Solicitud getSeleccionado() {
+        return seleccionado;
+    }
+
+    public void setSeleccionado(Solicitud seleccionado) {
+        this.seleccionado = seleccionado;
+        if (seleccionado.getTipo().equals("Estudiante")){
+            est=Servicios.getInstance().consultarEstudiante(seleccionado.getCedula(),seleccionado.getTipo_cedula());
+        }
+        else if (seleccionado.getTipo().equals("Egresado")){
+            egr=Servicios.getInstance().consultarEgresado(seleccionado.getCedula(),seleccionado.getTipo_cedula());
+        }
+        
+    }
+
     public String getUsuario() {
         return usuario;
     }
@@ -62,64 +77,30 @@ private boolean botonInformacionEstudiantes=false;
         return fecha;
     }
     
-    /**
-     * @return the botonIndex
-     */
-    public boolean isBotonIndex() {
-        return botonIndex;
-    }
 
-    /**
-     * @param botonIndex the botonIndex to set
-     */
-    public void setBotonRegistrarUnPrestamo(boolean botonIndex) {
-        this.botonIndex = botonIndex;
-    }
     
-    /**
-     * @return the botonSolicitud
-     */
-    public boolean isBotonSolicitud() {
-        return botonSolicitud;
+    public Estudiante getEst() {
+        return est;
     }
 
-    /**
-     * @param botonSolicitud the botonSolicitud to set
-     */
-    public void setBotonSolicitud(boolean botonSolicitud) {
-        this.botonSolicitud = botonSolicitud;
-    }
-    
-    /**
-     * @return the botonInformacionEgresados
-     */
-    public boolean isBotonInformacionEgresados() {
-        return botonInformacionEgresados;
+    public void setEst(Estudiante est) {
+        this.est = est;
     }
 
-    /**
-     * @param botonInformacionEgresados the botonInformacionEgresados to set
-     */
-    public void setBotonInformacionEgresados(boolean botonInformacionEgresados) {
-        this.botonInformacionEgresados = botonInformacionEgresados;
-    }
-    
-    /**
-     * @return the botonInformacionEstudiantes
-     */
-    public boolean isBotonInformacionEstudiantes() {
-        return botonInformacionEstudiantes;
+    public Egresado getEgr() {
+        return egr;
     }
 
-    /**
-     * @param botonInformacionEstudiantes the botonInformacionEstudiantes to set
-     */
-    public void setBotonInformacionEstudiantes(boolean botonInformacionEstudiantes) {
-        this.botonInformacionEstudiantes = botonInformacionEstudiantes;
+    public void setEgr(Egresado egr) {
+        this.egr = egr;
     }
+
     
     public List<Solicitud> getSolicitudes(){
         return Servicios.getInstance().consultarSolicitud();
     }
     
+    public void aprobar(){}
+    
+    public void rechazar(){}
 }

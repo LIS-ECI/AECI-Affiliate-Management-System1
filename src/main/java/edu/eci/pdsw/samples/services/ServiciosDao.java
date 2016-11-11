@@ -76,6 +76,16 @@ public class ServiciosDao extends Servicios {
     
     }
 
+    @Override
+    public Estudiante consultarEstudiante(long identificacion,String tipo_identificacion) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Egresado consultarEgresado(long identificacion,String tipo_identificacion) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }
 
 class PropertiesLoader {

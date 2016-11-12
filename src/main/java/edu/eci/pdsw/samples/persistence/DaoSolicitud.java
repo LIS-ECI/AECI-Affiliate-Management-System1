@@ -6,6 +6,7 @@
 package edu.eci.pdsw.samples.persistence;
 
 
+import edu.eci.pdsw.samples.entities.Egresado;
 import edu.eci.pdsw.samples.entities.Estudiante;
 import edu.eci.pdsw.samples.entities.Solicitud;
 import edu.eci.pdsw.samples.entities.Usuario;
@@ -23,6 +24,11 @@ public interface DaoSolicitud {
     public void InsertarUsuario(Usuario u) ;
     
     public void ModificarSolicitud(String u, long ced, String tic);
+        
+    public void enviarSolicitudEstudiante(Estudiante est, Solicitud sol);
+    
+    public void enviarSolicitudEgresado(Egresado egr, Solicitud sol);
+
 }
     
     

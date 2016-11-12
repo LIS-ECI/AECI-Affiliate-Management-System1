@@ -26,6 +26,7 @@ import edu.eci.pdsw.samples.persistence.mybatisimpl.mappers.EstudianteMapper;
 import org.apache.ibatis.session.SqlSession;
 import edu.eci.pdsw.samples.persistence.DaoEstudiante;
 import edu.eci.pdsw.samples.persistence.mybatisimpl.mappers.EgresadoMapper;
+import edu.eci.pdsw.samples.persistence.mybatisimpl.mappers.SolicitudMapper;
 
 /**
  *
@@ -41,11 +42,6 @@ public class MyBatisDAOEgresado implements DaoEgresado{
         this.currentSession=session;
     }
 
-
-    @Override
-    public void enviarSolicitudEgresado(Egresado egr, Solicitud sol) throws PersistenceException {
-        EgresadoMapper egmap = currentSession.getMapper(EgresadoMapper.class);
-        egmap.enviarSolicitudEgresado(egr,sol);
-    }
+    
 
 }

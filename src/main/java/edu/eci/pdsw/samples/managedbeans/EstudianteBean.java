@@ -7,13 +7,14 @@ package edu.eci.pdsw.samples.managedbeans;
 
 import edu.eci.pdsw.samples.entities.Estudiante;
 import edu.eci.pdsw.samples.entities.Solicitud;
-import edu.eci.pdsw.samples.services.ExcepcionServicios;
 import edu.eci.pdsw.samples.services.Servicios;
 import java.sql.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import java.io.Serializable;
+
 
 /**
  *
@@ -22,7 +23,7 @@ import javax.faces.bean.SessionScoped;
 @ManagedBean(name="beanEstudiante")
 
 @SessionScoped
-public class EstudianteBean {
+public class EstudianteBean  implements Serializable{
     
     private long numero_identificacion;
     private String tipo_identificacion;
@@ -143,11 +144,8 @@ public class EstudianteBean {
         Estudiante est = new Estudiante(codigo, numero_identificacion,  nombre, semestre, tipo_identificacion, carrera, telefono_fijo, celular,  correo, direccion );
         Date fecha = new java.sql.Date(java.util.Calendar.getInstance().getTime().getTime());
         Solicitud sol = new Solicitud(fecha,(int)est.getNumero_identificacion(), est.getTipo_identificacion(),"Estudiante","Pend");
-        try {
-            Servicios.getInstance().enviarSolicitudEstudiante(est,sol);
-        } catch (ExcepcionServicios ex) {
-            Logger.getLogger(EstudianteBean.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        Servicios.getInstance().enviarSolicitudEstudiante(est,sol);
+
     }
 
 }

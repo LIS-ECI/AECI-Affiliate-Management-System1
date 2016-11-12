@@ -25,6 +25,8 @@ public class Pago {
         this.validacion = validacion;
     }
 
+    public Pago(){}
+    
     /**
      * @return the id_pago
      */

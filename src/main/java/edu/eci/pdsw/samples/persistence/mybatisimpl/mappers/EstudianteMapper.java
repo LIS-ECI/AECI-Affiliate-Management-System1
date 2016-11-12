@@ -28,6 +28,6 @@ import org.apache.ibatis.annotations.Param;
  */
 public interface EstudianteMapper {
     
-    public void enviarSolicitudEstudiante(@Param("est") Estudiante est, @Param("sol") Solicitud sol);
+    
 
 }

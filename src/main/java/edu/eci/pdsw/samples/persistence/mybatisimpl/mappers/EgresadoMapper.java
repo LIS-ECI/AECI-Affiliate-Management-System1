@@ -28,6 +28,5 @@ import org.apache.ibatis.annotations.Param;
  */
 public interface EgresadoMapper {
     
-    public void enviarSolicitudEgresado(@Param("egr") Egresado egr, @Param("sol") Solicitud sol);
 
 }

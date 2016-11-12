@@ -21,6 +21,8 @@ public class Servicio {
         this.fecha = fecha;
     }
 
+    public Servicio(){}
+    
     /**
      * @return the tDeServicio
      */

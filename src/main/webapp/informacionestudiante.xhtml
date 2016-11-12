@@ -7,20 +7,20 @@
 
     <h:body>
         <h:form id="infoEstudiante" >
-            
-           
-            
+
+
+
             <h:panelGrid columns="1" style="position: absolute; top: 0px; left: 0px">
-                    <p:panel style=" font-size:  medium; height: 185px;color: #cccccc" >
+                <p:panel style=" font-size:  medium; height: 185px;color: #cccccc" >
                     <f:facet name="header" >
                         <img  src="https://media.licdn.com/mpr/mpr/shrink_200_200/AAEAAQAAAAAAAAgDAAAAJDk3ZGM0MDU2LWRhNWEtNDMwNi1iOTNjLTllMDY1OWNkMjk3ZQ.png" width="280" height="170" align="left"/>
                         <h2 style="text-align: center; color: darkblue;">BIENVENIDO</h2>
                         <h3 style="text-align: center; color: darkblue;">Asociación de Egresados Escuela Colombiana de Ingenieria Julio Garavito</h3>
                     </f:facet>
                     <p:growl id="msj" showDetail="true" autoUpdate="true"/>
-                    
+
                 </p:panel>
-                
+
             </h:panelGrid>
 
             <br>
@@ -40,116 +40,135 @@
 
             <p:panelGrid columns="2">
 
-                
-                    
-                 
 
-                    <p:growl id="growl" sticky="true" showDetail="true"/>
 
-                    <p:wizard >
-                        <p:tab id="personal" title="Informacion Basica">
-                            <p:panel header="Informacion Personal">
-                                <p:messages />
+
+
+                <p:growl id="growl" sticky="true" showDetail="true"/>
+
+                <p:wizard >
+                    <p:tab id="personal" title="Informacion Basica">
+                        <p:panel header="Informacion Personal">
+                            <p:messages />
+                            <h:panelGrid columns="2" columnClasses="label, value">
+                                <h:outputText value="Nombre y Apellido: *" />
+                                <p:inputText label="Nombre y Apellido" required="true" value="#{beanEstudiante.nombre}"/>
+
+                                <h:outputText value="Direccion: *" />
+                                <p:inputText   label="Direccion" required="true" value="#{beanEstudiante.direccion}"/>
+
+                                <h:outputText value="Telefono fijo: " />
+                                <p:inputText  label="Telefono" value="#{beanEstudiante.telefono_fijo}"/>
+
+                                <h:outputText value="Documento: *" />
+                                <p:inputText label="Documento" required="true" value="#{beanEstudiante.numero_identificacion}"/>
+
+                                <h:outputText value="Tipo de documento" />
+                                <p:selectOneMenu id="tipoId"  value="#{beanEstudiante.tipo_identificacion}" style="width:90px">
+                                    <f:selectItem itemLabel="CC" itemValue="CC" />
+                                    <f:selectItem itemLabel="CE" itemValue="CE" />
+                                </p:selectOneMenu>
+
+                                <h:outputText value="Correo: *" />
+                                <p:inputText label="Correo " required="true" value="#{beanEstudiante.correo}"/>
+
+                                <h:outputText value="Celular: " />
+                                <p:inputText label="Celular " required="true" value="#{beanEstudiante.celular}"/>
+
+                            </h:panelGrid>
+                        </p:panel>
+                    </p:tab>
+
+
+
+                    <p:tab id="contact" title="Informacion Academica">
+                        <p:panel header="Datos Academicos">
+                            <h:panelGrid columns="2" columnClasses="label, value">
+                                <h:outputText value="Semestre Ponderado: *" />
+                                <p:spinner id="Semestre" min="7" max="10" value="#{beanEstudiante.semestre}" label="Semestre" />
+
+                                <h:outputText value="Programa: " />
+                                <p:selectOneMenu id="console" value="#{beanEstudiante.carrera}" style="width:250px">
+                                    <f:selectItem itemLabel="Ingeniería Civil" itemValue="Ingenieria Civil" />
+                                    <f:selectItem itemLabel="Ingeniería Electrónica" itemValue="Ingenieria Electronica" />
+                                    <f:selectItem itemLabel="Ingeniería Eléctrica" itemValue="Ingenieria Electrica" />
+                                    <f:selectItem itemLabel="Ingeniería De Sistemas" itemValue="Ingenieria De Sistemas" />
+                                    <f:selectItem itemLabel="Ingeniería Industrial" itemValue="Ingenieria Industrial" />
+                                    <f:selectItem itemLabel="Matemáticas" itemValue="Matematicas" />
+                                    <f:selectItem itemLabel="Economía" itemValue="Economia" />
+                                    <f:selectItem itemLabel="Administración De Empresas" itemValue="Administracion De Empresas" />
+                                    <f:selectItem itemLabel="Ingeniería Mecánica" itemValue="Ingenieria Mecanica" />
+                                    <f:selectItem itemLabel="Ingeniería Ambiental" itemValue="Ingenieria Ambiental" />
+                                    <f:selectItem itemLabel="Ingeniería Biomédica" itemValue="Ingenieria Biomedica" />
+                                </p:selectOneMenu>
+
+                                <h:outputText value="Codigo Estudiante: *" />
+                                <p:inputText id="Codigo" value="#{beanEstudiante.codigo}"  required="true" label="Codigo"/>
+                            </h:panelGrid>
+                        </p:panel>
+                    </p:tab>
+
+
+
+                    <p:tab id="confirm" title="Confirmation">
+                        <p:panel header="Confirmation">
+                            <h:panelGrid id="confirmation" columns="3" columnClasses="grid,grid,grid">
                                 <h:panelGrid columns="2" columnClasses="label, value">
-                                    <h:outputText value="Nombre y Apellido: *" />
-                                    <p:inputText label="Nombre y Apellido" required="true" value="#{beanEstudiante.nombre}"/>
+                                    <h:outputText value="Nombre y Apellido: " style="font-weight:bold" />
+                                    <h:outputText value="#{beanEstudiante.nombre}"  styleClass="outputLabel"/>
 
-                                    <h:outputText value="Direccion: *" />
-                                    <p:inputText   label="Direccion" required="true" value="#{beanEstudiante.direccion}"/>
+                                    <h:outputText value="Direccion : " style="font-weight:bold"/>
+                                    <h:outputText value="#{beanEstudiante.direccion}"  styleClass="outputLabel"/>
 
-                                    <h:outputText value="Telefono fijo: " />
-                                    <p:inputText  label="Telefono" value="#{beanEstudiante.telefono_fijo}"/>
+                                    <h:outputText value="Telefono fijo: " style="font-weight:bold"/>
+                                    <h:outputText value="#{beanEstudiante.telefono_fijo}"  styleClass="outputLabel"/>
 
-                                    <h:outputText value="Documento: *" />
-                                    <p:inputText label="Documento" required="true" value="#{beanEstudiante.numero_identificacion}"/>
+                                    <h:outputText value="Documento: " style="font-weight:bold" />
+                                    <h:outputText value="#{beanEstudiante.numero_identificacion}"  styleClass="outputLabel"/>
 
-                                    <h:outputText value="Tipo de documento" />
-                                    <p:selectOneMenu id="tipoId"  value="#{beanEstudiante.tipo_identificacion}" style="width:90px">
-                                        <f:selectItem itemLabel="CC" itemValue="CC" />
-                                        <f:selectItem itemLabel="CE" itemValue="CE" />
-                                    </p:selectOneMenu>
+                                    <h:outputText value="Tipo de documento : " style="font-weight:bold"/>
+                                    <h:outputText value="#{beanEstudiante.tipo_identificacion}"  styleClass="outputLabel"/>
 
-                                    <h:outputText value="Correo: *" />
-                                    <p:inputText label="Correo " required="true" value="#{beanEstudiante.correo}"/>
+                                    <h:outputText value="Correo : " style="font-weight:bold" />
+                                    <h:outputText value="#{beanEstudiante.correo}"  styleClass="outputLabel"/>
+
+                                    <h:outputText value="Celular : " style="font-weight:bold" />
+                                    <h:outputText value="#{beanEstudiante.celular}"  styleClass="outputLabel"/>
 
                                 </h:panelGrid>
-                            </p:panel>
-                        </p:tab>
 
-
-
-                        <p:tab id="contact" title="Informacion Academica">
-                            <p:panel header="Datos Academicos">
                                 <h:panelGrid columns="2" columnClasses="label, value">
-                                    <h:outputText value="Semestre Ponderado: *" />
-                                    <p:spinner id="Semestre" min="7" max="10" value="#{beanEstudiante.semestre}" label="Semestre" />
+                                    <h:outputText value="Semestre ponderado: " style="font-weight:bold"/>
+                                    <h:outputText value="#{beanEstudiante.semestre}" styleClass="outputLabel"/>
 
-                                    <h:outputText value="Programa: " />
-                                    <p:selectOneMenu id="console" value="#{beanEstudiante.carrera}" style="width:250px">
-                                        <f:selectItem itemLabel="Ingeniería Civil" itemValue="Ingenieria Civil" />
-                                        <f:selectItem itemLabel="Ingeniería Electrónica" itemValue="Ingenieria Electronica" />
-                                        <f:selectItem itemLabel="Ingeniería Eléctrica" itemValue="Ingenieria Electrica" />
-                                        <f:selectItem itemLabel="Ingeniería De Sistemas" itemValue="Ingenieria De Sistemas" />
-                                        <f:selectItem itemLabel="Ingeniería Industrial" itemValue="Ingenieria Industrial" />
-                                        <f:selectItem itemLabel="Matemáticas" itemValue="Matematicas" />
-                                        <f:selectItem itemLabel="Economía" itemValue="Economia" />
-                                        <f:selectItem itemLabel="Administración De Empresas" itemValue="Administracion De Empresas" />
-                                        <f:selectItem itemLabel="Ingeniería Mecánica" itemValue="Ingenieria Mecanica" />
-                                        <f:selectItem itemLabel="Ingeniería Ambiental" itemValue="Ingenieria Ambiental" />
-                                        <f:selectItem itemLabel="Ingeniería Biomédica" itemValue="Ingenieria Biomedica" />
-                                    </p:selectOneMenu>
+                                    <h:outputText value="Programa: " style="font-weight:bold"/>
+                                    <h:outputText value="#{beanEstudiante.carrera}" styleClass="outputLabel"/>
 
-                                    <h:outputText value="Codigo Estudiante: *" />
-                                    <p:inputText id="Codigo" value="#{beanEstudiante.codigo}"  required="true" label="Codigo"/>
+                                    <h:outputText value="Codigo Estudiante: " style="font-weight:bold"/>
+                                    <h:outputText value="#{beanEstudiante.codigo}" styleClass="outputLabel"/>
                                 </h:panelGrid>
-                            </p:panel>
-                        </p:tab>
+                            </h:panelGrid>
+
+                            <h:outputText value="¿ Autoriza el envio de informacion de la AECI ?" />
+                            <h:selectBooleanCheckbox />
+                            <br>
+                                <p:commandButton id="enviar" value="Enviar Solicitud" immediate="true" actionListener="#{beanEstudiante.enviarSolicitud}" oncomplete="PF('campoEntradaDatos').show()"  />
+
+                                <p:dialog header="Solicitud Enviada!" widgetVar="campoEntradaDatos" modal="true" showEffect="fade" hideEffect="fade" resizable="false" width="400">
+                                    <p:outputPanel id="inputQuantity" style="text-align:center;">
+                                        <h:panelGrid columns="2" cellpadding="1" styleClass="ui-grid">
+
+                                            <p:outputLabel value="Tu solicitud ha sido enviada al adminsitrador, pronto llegará un mensaje a tu correo indicando los pasos a seguir  "  />
+                                        </h:panelGrid>
+                                    </p:outputPanel>
+                                </p:dialog>
 
 
+                            </br>
 
-                        <p:tab id="confirm" title="Confirmation">
-                            <p:panel header="Confirmation">
-                                <h:panelGrid id="confirmation" columns="3" columnClasses="grid,grid,grid">
-                                    <h:panelGrid columns="2" columnClasses="label, value">
-                                        <h:outputText value="Nombre y Apellido: " style="font-weight:bold" />
-                                        <h:outputText value="#{beanEstudiante.nombre}"  styleClass="outputLabel"/>
-
-                                        <h:outputText value="Direccion : " style="font-weight:bold"/>
-                                        <h:outputText value="#{beanEstudiante.direccion}"  styleClass="outputLabel"/>
-
-                                        <h:outputText value="Telefono fijo: " style="font-weight:bold"/>
-                                        <h:outputText value="#{beanEstudiante.telefono_fijo}"  styleClass="outputLabel"/>
-
-                                        <h:outputText value="Documento: " style="font-weight:bold" />
-                                        <h:outputText value="#{beanEstudiante.numero_identificacion}"  styleClass="outputLabel"/>
-
-                                        <h:outputText value="Tipo de documento : " style="font-weight:bold"/>
-                                        <h:outputText value="#{beanEstudiante.tipo_identificacion}"  styleClass="outputLabel"/>
-
-                                        <h:outputText value="Correo : " style="font-weight:bold" />
-                                        <h:outputText value="#{beanEstudiante.correo}"  styleClass="outputLabel"/>
-                                    </h:panelGrid>
-
-                                    <h:panelGrid columns="2" columnClasses="label, value">
-                                        <h:outputText value="Semestre ponderado: " style="font-weight:bold"/>
-                                        <h:outputText value="#{beanEstudiante.semestre}" styleClass="outputLabel"/>
-
-                                        <h:outputText value="Programa: " style="font-weight:bold"/>
-                                        <h:outputText value="#{beanEstudiante.carrera}" styleClass="outputLabel"/>
-
-                                        <h:outputText value="Codigo Estudiante: " style="font-weight:bold"/>
-                                        <h:outputText value="#{beanEstudiante.codigo}" styleClass="outputLabel"/>
-                                    </h:panelGrid>
-                                </h:panelGrid>
-
-                                <h:outputText value="¿ Autoriza el envio de informacion de la AECI ?" />
-                                <h:selectBooleanCheckbox />
-                                <br>
-                                <p:commandButton id="enviar" value="Enviar Solicitud" immediate="true" actionListener="#{beanEstudiante.enviarSolicitud}" />
-                                </br>
-                            </p:panel>
-                        </p:tab>
-                    </p:wizard>
+                        </p:panel>
+                    </p:tab>
+                </p:wizard>
 
             </p:panelGrid>
             <p:commandButton value="Regresar" action="index" immediate="true" ajax="false" styleClass="ui-priority-primary" />

@@ -30,9 +30,6 @@ public interface DaoEstudiante {
     
     public Estudiante load(String email) throws PersistenceException;
     
-    public void enviarSolicitudEstudiante(Estudiante est, Solicitud sol) throws PersistenceException;
-    
-    public void update(Estudiante p) throws PersistenceException;
-    
+
     
 }

@@ -27,7 +27,6 @@
         
     <mappers>
         <mapper resource="mappers/EgresadoMapper.xml"></mapper>
-        <mapper resource="mappers/EstudianteMapper.xml"></mapper>
         <mapper resource="mappers/SolicitudMapper.xml"></mapper>
     </mappers> 
 </configuration>

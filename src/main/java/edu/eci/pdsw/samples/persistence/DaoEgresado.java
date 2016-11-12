@@ -30,8 +30,6 @@ public interface DaoEgresado {
 
 
     
-    public void enviarSolicitudEgresado(Egresado egr, Solicitud sol) throws PersistenceException;
-    
     
     
     

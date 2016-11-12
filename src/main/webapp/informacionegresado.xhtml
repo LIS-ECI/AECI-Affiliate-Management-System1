@@ -8,18 +8,18 @@
     <h:body>
         <h:form id="infoEgresado">
             <h:panelGrid columns="1" style="position: absolute; top: 0px; left: 0px">
-                    <p:panel style=" font-size:  medium; height: 185px;color: #cccccc" >
+                <p:panel style=" font-size:  medium; height: 185px;color: #cccccc" >
                     <f:facet name="header" >
                         <img  src="https://media.licdn.com/mpr/mpr/shrink_200_200/AAEAAQAAAAAAAAgDAAAAJDk3ZGM0MDU2LWRhNWEtNDMwNi1iOTNjLTllMDY1OWNkMjk3ZQ.png" width="280" height="170" align="left"/>
                         <h2 style="text-align: center; color: darkblue;">BIENVENIDO</h2>
                         <h3 style="text-align: center; color: darkblue;">Asociación de Egresados Escuela Colombiana de Ingenieria Julio Garavito</h3>
                     </f:facet>
                     <p:growl id="msj" showDetail="true" autoUpdate="true"/>
-                    
+
                 </p:panel>
-                
+
             </h:panelGrid>
-            
+
             <br>
             </br>
             <br>
@@ -90,17 +90,17 @@
 
                                     <h:outputText value="Programa: " />
                                     <p:selectOneMenu id="console" style="width:250px" value="#{beanEgresado.carrera}">
-                                        <f:selectItem itemLabel="Ingeniería Civil" itemValue="Ingeniería Civil" />
-                                        <f:selectItem itemLabel="Ingeniería Electrónica" itemValue="Ingeniería Electrónica" />
-                                        <f:selectItem itemLabel="Ingeniería Eléctrica" itemValue="Ingeniería Eléctrica" />
-                                        <f:selectItem itemLabel="Ingeniería De Sistemas" itemValue="Ingeniería De Sistemas" />
-                                        <f:selectItem itemLabel="Ingeniería Industrial" itemValue="Ingeniería Industrial" />
-                                        <f:selectItem itemLabel="Matemáticas" itemValue="Matemáticas" />
-                                        <f:selectItem itemLabel="Economía" itemValue="Economía" />
-                                        <f:selectItem itemLabel="Administración De Empresas" itemValue="Administración De Empresas" />
-                                        <f:selectItem itemLabel="Ingeniería Mecánica" itemValue="Ingeniería Mecánica" />
-                                        <f:selectItem itemLabel="Ingeniería Ambiental" itemValue="Ingeniería Ambiental" />
-                                        <f:selectItem itemLabel="Ingeniería Biomédica" itemValue="Ingeniería Biomédica" />
+                                        <f:selectItem itemLabel="Ingeniería Civil" itemValue="Ingenieria Civil" />
+                                        <f:selectItem itemLabel="Ingeniería Electrónica" itemValue="Ingenieria Electronica" />
+                                        <f:selectItem itemLabel="Ingeniería Eléctrica" itemValue="Ingenieria Electrica" />
+                                        <f:selectItem itemLabel="Ingeniería De Sistemas" itemValue="Ingenieria De Sistemas" />
+                                        <f:selectItem itemLabel="Ingeniería Industrial" itemValue="Ingenieria Industrial" />
+                                        <f:selectItem itemLabel="Matemáticas" itemValue="Matematicas" />
+                                        <f:selectItem itemLabel="Economía" itemValue="Economia" />
+                                        <f:selectItem itemLabel="Administración De Empresas" itemValue="Administracion De Empresas" />
+                                        <f:selectItem itemLabel="Ingeniería Mecánica" itemValue="Ingenieria Mecanica" />
+                                        <f:selectItem itemLabel="Ingeniería Ambiental" itemValue="Ingenieria Ambiental" />
+                                        <f:selectItem itemLabel="Ingeniería Biomédica" itemValue="Ingenieria Biomedica" />
                                     </p:selectOneMenu>
 
                                     <h:outputText value="Telefono celular: " />
@@ -132,65 +132,74 @@
                             <p:panel header="Confirmation">
                                 <h:panelGrid id="confirmation" columns="3" columnClasses="grid,grid,grid">
                                     <h:panelGrid columns="2" columnClasses="label, value">
-                                        <h:outputText value="Nombre y Apellido: " />
+                                        <h:outputText value="Nombre y Apellido: " style="font-weight:bold" />
                                         <h:outputText value="#{beanEgresado.nombre}"  styleClass="outputLabel"/>
 
-                                        <h:outputText value="Direccion : " />
+                                        <h:outputText value="Direccion : " style="font-weight:bold" />
                                         <h:outputText value="#{beanEgresado.direccion_vivienda}"  styleClass="outputLabel"/>
 
-                                        <h:outputText value="Telefono fijo: " />
+                                        <h:outputText value="Telefono fijo: " style="font-weight:bold"/>
                                         <h:outputText value="#{beanEgresado.telefono_fijo}"  styleClass="outputLabel"/>
 
-                                        <h:outputText value="Documento: " />
+                                        <h:outputText value="Documento: " style="font-weight:bold"/>
                                         <h:outputText value="#{beanEgresado.cedula}"  styleClass="outputLabel"/>
 
-                                        <h:outputText value="Tipo de documento : " />
+                                        <h:outputText value="Tipo de documento : " style="font-weight:bold"/>
                                         <h:outputText value="#{beanEgresado.tipo_identificacion}"  styleClass="outputLabel"/>
 
-                                        <h:outputText value="Correo : " />
+                                        <h:outputText value="Correo : " style="font-weight:bold"/>
                                         <h:outputText value="#{beanEgresado.email}"  styleClass="outputLabel"/>
 
                                     </h:panelGrid>
 
                                     <h:panelGrid columns="2" columnClasses="label, value">
-                                        <h:outputText value="Año graduacion : " />
+                                        <h:outputText value="Año graduacion : " style="font-weight:bold"/>
                                         <h:outputText value="#{beanEgresado.fecha_grado}"  styleClass="outputLabel"/>
 
-                                        <h:outputText value="Periodo: " />
+                                        <h:outputText value="Periodo: " style="font-weight:bold"/>
                                         <h:outputText value="#{beanEgresado.periodo_grado}"  styleClass="outputLabel"/>
 
-                                        <h:outputText value="Programa: " />
+                                        <h:outputText value="Programa: " style="font-weight:bold"/>
                                         <h:outputText value="#{beanEgresado.carrera}"  styleClass="outputLabel"/>
 
-                                        <h:outputText value="Telefono Celular: " />
+                                        <h:outputText value="Telefono Celular: " style="font-weight:bold"/>
                                         <h:outputText value="#{beanEgresado.celular}"  styleClass="outputLabel"/>
                                     </h:panelGrid>
 
                                     <h:panelGrid columns="2" columnClasses="label, value">
-                                        <h:outputText value="Nombre Empresa: " />
+                                        <h:outputText value="Nombre Empresa: " style="font-weight:bold"/>
                                         <h:outputText value="#{beanEgresado.nombreEmpresa}"  styleClass="outputLabel"/>
 
-                                        <h:outputText value="Direccion Empresa" />
+                                        <h:outputText value="Direccion Empresa" style="font-weight:bold"/>
                                         <h:outputText value="#{beanEgresado.direccion_empresa}"  styleClass="outputLabel"/>
 
-                                        <h:outputText value="Telefono Oficina : " />
+                                        <h:outputText value="Telefono Oficina : " style="font-weight:bold"/>
                                         <h:outputText value="#{beanEgresado.telefono_oficina}"  styleClass="outputLabel"/>
 
-                                        <h:outputText value="Cargo : " />
+                                        <h:outputText value="Cargo : " style="font-weight:bold"/>
                                         <h:outputText value="#{beanEgresado.cargo}"  styleClass="outputLabel"/>
 
                                         <h:outputText />
                                         <h:outputText />
                                     </h:panelGrid>
                                 </h:panelGrid>  
-                                
-                                 <h:outputText value="¿ Autoriza el envio de informacion de la AECI ?" />
-                                 <h:selectBooleanCheckbox />
-                                
+
+                                <h:outputText value="¿ Autoriza el envio de informacion de la AECI ?" />
+                                <h:selectBooleanCheckbox />
+
                                 <br>
-                                <p:commandButton value="Enviar Solicitud" immediate="true" actionListener="#{beanEstudiante.enviarSolicitud}" />
+                                    <p:commandButton value="Enviar Solicitud" immediate="true" actionListener="#{beanEgresado.enviarSolicitud}" oncomplete="PF('campoEntradaDatos').show()" />
+
+                                    <p:dialog header="Solicitud Enviada!" widgetVar="campoEntradaDatos" modal="true" showEffect="fade" hideEffect="fade" resizable="false" width="400">
+                                        <p:outputPanel id="inputQuantity" style="text-align:center;">
+                                            <h:panelGrid columns="2" cellpadding="1" styleClass="ui-grid">
+
+                                                <p:outputLabel value="Tu solicitud ha sido enviada al adminsitrador, pronto llegará un mensaje a tu correo indicando los pasos a seguir  "  />
+                                            </h:panelGrid>
+                                        </p:outputPanel>
+                                    </p:dialog>
                                 </br>
-                                 
+
                             </p:panel>
                         </p:tab>
                     </p:wizard>

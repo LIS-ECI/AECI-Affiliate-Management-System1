@@ -5,6 +5,7 @@
 
 <mapper namespace="edu.eci.pdsw.samples.persistence.mybatisimpl.mappers.SolicitudMapper">
     
+    
     <resultMap type='Solicitud' id='SolicitudResult'>
         <id property='fecha' column='fecha'/>
         <id property='cedula' column = 'Cedula_Numero'/>
@@ -51,5 +52,21 @@
         SET aprobado = #{u}
         WHERE Cedula_Numero =10 and Cedula_Tipo="CE"  
     </update>
+   
+    <insert parameterType="map" id="insertarIdentificacion" >    
+        insert into Identificacion values (#{id}, #{tipoid})
+    </insert>
+   
+    <insert parameterType="map" id="insertarDatosEstudiante" >    
+        insert into Datos_Estudiante values (#{est.numero_identificacion}, #{est.tipo_identificacion}, #{est.codigo}, #{est.nombre}, #{est.semestre},#{est.telefono_fijo}, #{est.celular}, #{est.direccion}, #{est.carrera})
+    </insert>
+   
+    <insert parameterType="map" id="insertarSolicitud" >    
+        insert into Solicitud values(#{sol.fecha}, #{sol.cedula}, #{sol.tipo_cedula}, #{sol.tipo}, #{sol.estado})
+    </insert>
+   
+    <insert parameterType="map" id="insertarDatosEgresado" >                    
+        insert into Datos_Egresado values(#{egr.cedula}, #{egr.cedula_tipo}, #{egr.nombre}, #{egr.fecha_grado}, #{egr.periodo_grado}, #{egr.cargo}, #{egr.direccion_vivienda},#{egr.nombreEmpresa},#{egr.direccionEmpresa},#{egr.telefono_oficina},#{egr.telefono_fijo},#{egr.celular},#{egr.programa} );
+    </insert>
    
 </mapper>

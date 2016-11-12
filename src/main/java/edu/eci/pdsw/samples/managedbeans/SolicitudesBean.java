@@ -21,6 +21,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 
+
 /**
  *
  * @author 2103216
@@ -126,9 +127,9 @@ private String pagina="index";
     
     
     public void aprobar(){
-        Usuario s= new Usuario(String.valueOf(est.numero_identificacion),String.valueOf( est.numero_identificacion), "Estudiante", "Activo", est.numero_identificacion, est.tipo_identificacion, null, null, null );
+        Usuario s= new Usuario(String.valueOf(est.getNumero_identificacion()),String.valueOf( est.getNumero_identificacion()), "Estudiante", "Activo", est.getNumero_identificacion(), est.getTipo_identificacion(), null, null, null );
         Servicios.getInstance().InsertarUsuario(s);
-        Servicios.getInstance().ModificarSolicitud("OK",est.numero_identificacion,est.tipo_identificacion);
+        Servicios.getInstance().ModificarSolicitud("OK",est.getNumero_identificacion(),est.getTipo_identificacion());
         //Enviar Correo indicando usuario y contraseña
     }
     

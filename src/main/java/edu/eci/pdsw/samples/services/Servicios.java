@@ -31,19 +31,18 @@ public abstract class Servicios {
         return instance;
     }
 
-    public abstract Estudiante consultarEstudiante(long identificacion,String tipo_identificacion);
-    
-    public abstract Egresado consultarEgresado(long identificacion,String tipo_identificacion);
-   
+    public abstract Estudiante consultarEstudiante(long identificacion, String tipo_identificacion);
+
+    public abstract Egresado consultarEgresado(long identificacion, String tipo_identificacion);
+
     public abstract List<Solicitud> consultarSolicitud();
-    
-    
-    public abstract void enviarSolicitudEstudiante(Estudiante est,Solicitud sol) throws ExcepcionServicios;
-    
-    public abstract void enviarSolicitudEgresado(Egresado egr,Solicitud sol) throws ExcepcionServicios;
-    
-     public abstract void InsertarUsuario(Usuario   u) ;
-     
-      public abstract void ModificarSolicitud(String u ,long ced ,String tic) ;
+
+    public abstract void enviarSolicitudEstudiante(Estudiante est,Solicitud sol);
+
+    public abstract void enviarSolicitudEgresado(Egresado egr, Solicitud sol);
+
+    public abstract void InsertarUsuario(Usuario u);
+
+    public abstract void ModificarSolicitud(String u, long ced, String tic);
 
 }

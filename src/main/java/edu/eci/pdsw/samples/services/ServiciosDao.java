@@ -50,29 +50,13 @@ public class ServiciosDao extends Servicios {
         return daof.getDaoSolicitud().consultarSolicitud();
     }
 
-    @Override
-    public void enviarSolicitudEstudiante(Estudiante est, Solicitud sol) throws ExcepcionServicios {
-
-        try {
-            daof.getDaoEstudiante().enviarSolicitudEstudiante(est, sol);
-        } catch (PersistenceException ex) {
-
-            Logger.getLogger(ServiciosDao.class.getName()).log(Level.SEVERE, null, ex);
-
-        }
-
-    }
+   
 
     @Override
-    public void enviarSolicitudEgresado(Egresado egr, Solicitud sol) throws ExcepcionServicios {
+    public void enviarSolicitudEgresado(Egresado egr, Solicitud sol) {
 
-        try {
-            daof.getDaoEgresado().enviarSolicitudEgresado(egr, sol);
-        } catch (PersistenceException ex) {
-
-            Logger.getLogger(ServiciosDao.class.getName()).log(Level.SEVERE, null, ex);
-
-        }
+      daof.getDaoSolicitud().enviarSolicitudEgresado(egr, sol);
+        
 
     }
 
@@ -96,6 +80,14 @@ public class ServiciosDao extends Servicios {
     @Override
     public void ModificarSolicitud(String u, long ced, String tic) {
         daof.getDaoSolicitud().ModificarSolicitud(u,ced,tic);
+    }
+
+   
+
+    @Override
+    public void enviarSolicitudEstudiante(Estudiante est, Solicitud sol) {
+        daof.getDaoSolicitud().enviarSolicitudEstudiante(est, sol);
+    
     }
 
 }

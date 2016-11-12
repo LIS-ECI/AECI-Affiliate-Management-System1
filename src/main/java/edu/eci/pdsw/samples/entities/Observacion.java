@@ -13,12 +13,12 @@ package edu.eci.pdsw.samples.entities;
        private int numero_observacion;
        private String comentario;
 
-       
+    
     public Observacion(int numero_observacion, String comentario) {
         this.numero_observacion = numero_observacion;
         this.comentario = comentario;
     }
-
+    public Observacion(){}
     /**
      * @return the numero_observacion
      */

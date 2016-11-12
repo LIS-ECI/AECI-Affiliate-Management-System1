@@ -46,6 +46,8 @@ public class Egresado {
         this.correo=new LinkedList<>();
         this.correo.add(correo);
     }
+    
+    public Egresado(){}
 
     /**
      * @return the cedula

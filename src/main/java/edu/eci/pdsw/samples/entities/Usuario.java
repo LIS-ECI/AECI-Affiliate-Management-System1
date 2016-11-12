@@ -49,7 +49,7 @@ public class Usuario {
         this.pagos = new LinkedList<>();
         this.pagos.add(pago);
     }
-
+    public Usuario(){}
     /**
      * @return the nombre
      */

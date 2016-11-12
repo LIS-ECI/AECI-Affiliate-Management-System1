@@ -16,12 +16,14 @@
  */
 package edu.eci.pdsw.samples.persistence.mybatisimpl;
 
+import edu.eci.pdsw.samples.entities.Egresado;
 import edu.eci.pdsw.samples.entities.Estudiante;
 import edu.eci.pdsw.samples.entities.Solicitud;
 import edu.eci.pdsw.samples.entities.Usuario;
 import edu.eci.pdsw.samples.persistence.mybatisimpl.mappers.EstudianteMapper;
 import org.apache.ibatis.session.SqlSession;
 import edu.eci.pdsw.samples.persistence.DaoSolicitud;
+import edu.eci.pdsw.samples.persistence.PersistenceException;
 import edu.eci.pdsw.samples.persistence.mybatisimpl.mappers.EgresadoMapper;
 import edu.eci.pdsw.samples.persistence.mybatisimpl.mappers.SolicitudMapper;
 import java.util.List;
@@ -62,5 +64,26 @@ public class MyBatisDAOSolicitud implements DaoSolicitud {
         SolicitudMapper somap = currentSession.getMapper(SolicitudMapper.class);
         somap.ModificarSolicitud(u,ced,tic);
     }
+
+    @Override
+    public void enviarSolicitudEstudiante(Estudiante est, Solicitud sol) {
+        SolicitudMapper somap = currentSession.getMapper(SolicitudMapper.class);
+        somap.insertarIdentificacion(est.getNumero_identificacion(), est.getTipo_identificacion());
+        somap.insertarDatosEstudiante(est);
+        somap.insertarSolicitud(sol);
+    }
+
+    @Override
+    public void enviarSolicitudEgresado(Egresado egr, Solicitud sol) {
+        SolicitudMapper somap = currentSession.getMapper(SolicitudMapper.class);
+        System.out.println(egr.getCedula()+ egr.getCedula_tipo());
+        somap.insertarIdentificacion(egr.getCedula(), egr.getCedula_tipo());
+        somap.insertarDatosEgresado(egr);
+        somap.insertarSolicitud(sol);
+    }
+    
+    
+
+    
 
 }

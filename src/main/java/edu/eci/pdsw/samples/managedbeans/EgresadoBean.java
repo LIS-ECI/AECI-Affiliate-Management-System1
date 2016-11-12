@@ -21,6 +21,7 @@ import java.util.logging.Logger;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import java.io.Serializable;
 
 
 @ManagedBean(name="beanEgresado")
@@ -163,10 +164,7 @@ public class EgresadoBean  implements Serializable{
         Egresado egr = new Egresado(cedula, tipo_identificacion, nombre, fecha_grado, periodo_grado, cargo, carrera, direccion_vivienda, nombreEmpresa, direccion_empresa, telefono_oficina, telefono_fijo, celular, email);
         java.sql.Date fecha = new java.sql.Date(java.util.Calendar.getInstance().getTime().getTime());
         Solicitud sol = new Solicitud(fecha,egr.getCedula(), egr.getCedula_tipo(),"Egresado","Pend");
-        try {
-            Servicios.getInstance().enviarSolicitudEgresado(egr,sol);
-        } catch (ExcepcionServicios ex) {
-            Logger.getLogger(EstudianteBean.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        Servicios.getInstance().enviarSolicitudEgresado(egr,sol);
+        
     }
 }

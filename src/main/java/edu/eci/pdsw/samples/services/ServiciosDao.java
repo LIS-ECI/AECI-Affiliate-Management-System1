@@ -8,6 +8,7 @@ package edu.eci.pdsw.samples.services;
 import edu.eci.pdsw.samples.entities.Egresado;
 import edu.eci.pdsw.samples.entities.Estudiante;
 import edu.eci.pdsw.samples.entities.Solicitud;
+import edu.eci.pdsw.samples.entities.Usuario;
 import edu.eci.pdsw.samples.persistence.DaoFactory;
 import edu.eci.pdsw.samples.persistence.PersistenceException;
 import java.io.IOException;
@@ -24,41 +25,40 @@ import org.apache.ibatis.session.SqlSession;
  */
 public class ServiciosDao extends Servicios {
 
-    private SqlSession currentSession=null;
+    private SqlSession currentSession = null;
     Properties properties;
     DaoFactory daof;
 
     public ServiciosDao() {
-        
+
         try {
-            properties=new PropertiesLoader().readProperties("applicationconfig.properties");
+            properties = new PropertiesLoader().readProperties("applicationconfig.properties");
         } catch (IOException ex) {
             Logger.getLogger(ServiciosDao.class.getName()).log(Level.SEVERE, null, ex);
         }
-        daof=DaoFactory.getInstance(properties);
-        try{
+        daof = DaoFactory.getInstance(properties);
+        try {
             daof.beginSession();
-        }
-        catch(PersistenceException ex){
+        } catch (PersistenceException ex) {
             Logger.getLogger(ServiciosDao.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     @Override
     public List<Solicitud> consultarSolicitud() {
-        
+
         return daof.getDaoSolicitud().consultarSolicitud();
     }
 
     @Override
-    public void enviarSolicitudEstudiante(Estudiante est, Solicitud sol) throws ExcepcionServicios{
+    public void enviarSolicitudEstudiante(Estudiante est, Solicitud sol) throws ExcepcionServicios {
 
         try {
             daof.getDaoEstudiante().enviarSolicitudEstudiante(est, sol);
         } catch (PersistenceException ex) {
-            
+
             Logger.getLogger(ServiciosDao.class.getName()).log(Level.SEVERE, null, ex);
-            
+
         }
 
     }
@@ -69,21 +69,33 @@ public class ServiciosDao extends Servicios {
         try {
             daof.getDaoEgresado().enviarSolicitudEgresado(egr, sol);
         } catch (PersistenceException ex) {
-            
+
             Logger.getLogger(ServiciosDao.class.getName()).log(Level.SEVERE, null, ex);
-            
+
         }
-    
+
     }
 
     @Override
-    public Estudiante consultarEstudiante(long identificacion,String tipo_identificacion) {
+    public Estudiante consultarEstudiante(long identificacion, String tipo_identificacion) {
+        return daof.getDaoSolicitud().consultarEstudiante(identificacion, tipo_identificacion);
+
+    }
+
+    @Override
+    public Egresado consultarEgresado(long identificacion, String tipo_identificacion) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public Egresado consultarEgresado(long identificacion,String tipo_identificacion) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void InsertarUsuario(Usuario u) {
+        daof.getDaoSolicitud().InsertarUsuario(u);
+    }
+
+
+    @Override
+    public void ModificarSolicitud(String u, long ced, String tic) {
+        daof.getDaoSolicitud().ModificarSolicitud(u,ced,tic);
     }
 
 }
@@ -98,4 +110,3 @@ class PropertiesLoader {
         return properties;
     }
 }
-

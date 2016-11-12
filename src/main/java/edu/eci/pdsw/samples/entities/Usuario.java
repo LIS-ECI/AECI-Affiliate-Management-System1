@@ -14,7 +14,7 @@ import java.util.List;
  */
 public class Usuario {
     private String nombre;
-    private int clave;
+    private String clave;
     private String tipo;//tipo de usuario
     private String estado;
     private long cedula_numero;
@@ -35,7 +35,7 @@ public class Usuario {
      * @param servicio
      * @param pago
      */
-    public Usuario(String nombre, int clave, String tipo, String estado, long cedula_numero, String cedula_tipo, Observacion observacion, Servicio servicio, Pago pago ) {
+    public Usuario(String nombre, String clave, String tipo, String estado, long cedula_numero, String cedula_tipo, Observacion observacion, Servicio servicio, Pago pago ) {
         this.nombre = nombre;
         this.clave = clave;
         this.tipo = tipo;
@@ -67,14 +67,14 @@ public class Usuario {
     /**
      * @return the clave
      */
-    public int getClave() {
+    public String getClave() {
         return clave;
     }
 
     /**
      * @param clave the clave to set
      */
-    public void setClave(int clave) {
+    public void setClave(String clave) {
         this.clave = clave;
     }
 

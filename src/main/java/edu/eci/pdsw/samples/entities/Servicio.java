@@ -11,7 +11,7 @@ import java.util.Date;
  *
  * @author 2089340
  */
-class Servicio {
+public class Servicio {
 
     private String tDeServicio;
     private Date fecha;

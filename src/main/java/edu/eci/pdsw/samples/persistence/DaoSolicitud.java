@@ -6,7 +6,9 @@
 package edu.eci.pdsw.samples.persistence;
 
 
+import edu.eci.pdsw.samples.entities.Estudiante;
 import edu.eci.pdsw.samples.entities.Solicitud;
+import edu.eci.pdsw.samples.entities.Usuario;
 import java.util.List;
 /**
  *
@@ -16,7 +18,11 @@ public interface DaoSolicitud {
     
     public List<Solicitud> consultarSolicitud() ;
 
+    public Estudiante consultarEstudiante(long identificacion, String tipo_identificacion);
+
+    public void InsertarUsuario(Usuario u) ;
     
+    public void ModificarSolicitud(String u, long ced, String tic);
 }
     
     

@@ -13,6 +13,8 @@
         <result property='estado' column = 'aprobado'/>
     </resultMap>
     
+    
+    
     <select id="consultarSolicitud" resultMap="SolicitudResult">
         select fecha , Cedula_Numero , Cedula_Tipo , tipo , aprobado
         from Solicitud 
@@ -21,5 +23,33 @@
     </select>
     
     
+    <resultMap type='Estudiante' id='EstudianteResult'>
+        <id property='numero_identificacion' column='Cedula_Numero'/>
+        <id property='tipo_identificacion' column = 'Cedula_Tipo'/>
+        <result property = 'codigo' column = 'codigo_estudiante' />
+        <result property='nombre' column = 'nombre'/>
+        <result property='semestre' column = 'semestre_ponderado'/>
+        <result property='telefono_fijo' column = 'telefono_fijo'/>
+        <result property='celular' column = 'celular'/>
+        <result property='direccion' column = 'direccion_vivienda'/>
+        <result property='carrera' column = 'Programas_nombre'/>
+
+    </resultMap>
+    
+    
+    <select id="consultarEstudiante" resultMap="EstudianteResult">
+        select Cedula_Numero,Cedula_Tipo,codigo_estudiante,nombre,semestre_ponderado,telefono_fijo,celular,direccion_vivienda,Programas_nombre
+        from Datos_Estudiante 
+        where Cedula_Numero=#{id} and Cedula_Tipo=#{idtipo}
+    </select>
+    
+    <insert parameterType="map" id="InsertarUsuario" >    
+        insert into Usuario values(#{u.nombre},#{u.clave},#{u.tipo},#{u.estado},#{u.cedula_numero},#{u.cedula_tipo})
+    </insert>
+    <update  parameterType="map" id="ModificarSolicitud" >    
+        UPDATE Solicitud
+        SET aprobado = #{u}
+        WHERE Cedula_Numero =10 and Cedula_Tipo="CE"  
+    </update>
    
 </mapper>

@@ -8,6 +8,7 @@ package edu.eci.pdsw.samples.services;
 import edu.eci.pdsw.samples.entities.Egresado;
 import edu.eci.pdsw.samples.entities.Estudiante;
 import edu.eci.pdsw.samples.entities.Solicitud;
+import edu.eci.pdsw.samples.entities.Usuario;
 import java.util.List;
 import java.util.Set;
 
@@ -41,5 +42,8 @@ public abstract class Servicios {
     
     public abstract void enviarSolicitudEgresado(Egresado egr,Solicitud sol) throws ExcepcionServicios;
     
+     public abstract void InsertarUsuario(Usuario   u) ;
+     
+      public abstract void ModificarSolicitud(String u ,long ced ,String tic) ;
 
 }

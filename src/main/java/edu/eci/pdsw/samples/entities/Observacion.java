@@ -9,7 +9,7 @@ package edu.eci.pdsw.samples.entities;
  *
  * @author 2089340
  */
-class Observacion {
+    public class Observacion {
        private int numero_observacion;
        private String comentario;
 

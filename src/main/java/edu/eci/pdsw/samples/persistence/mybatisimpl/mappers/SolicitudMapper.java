@@ -16,8 +16,11 @@
  */
 package edu.eci.pdsw.samples.persistence.mybatisimpl.mappers;
 
+import edu.eci.pdsw.samples.entities.Estudiante;
 import edu.eci.pdsw.samples.entities.Solicitud;
+import edu.eci.pdsw.samples.entities.Usuario;
 import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
 
 
@@ -28,5 +31,9 @@ import java.util.List;
 public interface SolicitudMapper {
     
     public List<Solicitud> consultarSolicitud();
-
+    
+    public Estudiante consultarEstudiante(@Param("id") long identificacion,@Param("tipoid")  String tipo_identificacion);
+    
+     public void InsertarUsuario(@Param("u") Usuario u);
+      public void ModificarSolicitud(@Param("u") String u, @Param("ced")long ced, @Param("tic")String tic) ;
 }

@@ -16,7 +16,9 @@
  */
 package edu.eci.pdsw.samples.persistence.mybatisimpl;
 
+import edu.eci.pdsw.samples.entities.Estudiante;
 import edu.eci.pdsw.samples.entities.Solicitud;
+import edu.eci.pdsw.samples.entities.Usuario;
 import edu.eci.pdsw.samples.persistence.mybatisimpl.mappers.EstudianteMapper;
 import org.apache.ibatis.session.SqlSession;
 import edu.eci.pdsw.samples.persistence.DaoSolicitud;
@@ -40,6 +42,25 @@ public class MyBatisDAOSolicitud implements DaoSolicitud {
     public List<Solicitud> consultarSolicitud() {
         SolicitudMapper somap = currentSession.getMapper(SolicitudMapper.class);
         return somap.consultarSolicitud();
+    }
+
+   
+    @Override
+    public Estudiante consultarEstudiante(long identificacion, String tipo_identificacion) {
+        SolicitudMapper somap = currentSession.getMapper(SolicitudMapper.class);
+        return somap.consultarEstudiante(identificacion,tipo_identificacion);
+    }
+
+    @Override
+    public void InsertarUsuario(Usuario u) {
+        SolicitudMapper somap = currentSession.getMapper(SolicitudMapper.class);
+        somap.InsertarUsuario(u);
+    }
+
+    @Override
+    public void ModificarSolicitud(String u, long ced, String tic) {
+        SolicitudMapper somap = currentSession.getMapper(SolicitudMapper.class);
+        somap.ModificarSolicitud(u,ced,tic);
     }
 
 }

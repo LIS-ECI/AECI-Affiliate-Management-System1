@@ -7,7 +7,11 @@ package edu.eci.pdsw.samples.managedbeans;
 
 import edu.eci.pdsw.samples.entities.Egresado;
 import edu.eci.pdsw.samples.entities.Estudiante;
+import edu.eci.pdsw.samples.entities.Observacion;
+import edu.eci.pdsw.samples.entities.Pago;
+import edu.eci.pdsw.samples.entities.Servicio;
 import edu.eci.pdsw.samples.entities.Solicitud;
+import edu.eci.pdsw.samples.entities.Usuario;
 import edu.eci.pdsw.samples.services.Servicios;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -24,9 +28,8 @@ import javax.faces.bean.SessionScoped;
 
 /* Intento Commit con correccion de autor */
 @ManagedBean(name="BeanSolicitudes")
+
 @SessionScoped
-
-
 public class SolicitudesBean implements Serializable{
     
 
@@ -37,8 +40,10 @@ private Estudiante est;
 private Egresado egr;
 private Solicitud seleccionado;  
 static private List<Solicitud> solicitudes;
+private String pagina="index";
 
 
+    public SolicitudesBean(){}
 
     public Solicitud getSeleccionado() {
         return seleccionado;
@@ -89,6 +94,17 @@ static private List<Solicitud> solicitudes;
         return fecha;
     }
     
+    public String getPagina() {
+          this.pagina="detallesEstudiante";
+
+        return pagina;
+    }
+
+    public void setPagina(String pagina) {
+        this.pagina="detallesEstudiante";
+
+    }
+
 
     
     public Estudiante getEst() {
@@ -109,7 +125,12 @@ static private List<Solicitud> solicitudes;
 
     
     
-    public void aprobar(){}
+    public void aprobar(){
+        Usuario s= new Usuario(String.valueOf(est.numero_identificacion),String.valueOf( est.numero_identificacion), "Estudiante", "Activo", est.numero_identificacion, est.tipo_identificacion, null, null, null );
+        Servicios.getInstance().InsertarUsuario(s);
+        Servicios.getInstance().ModificarSolicitud("OK",est.numero_identificacion,est.tipo_identificacion);
+        //Enviar Correo indicando usuario y contraseña
+    }
     
     public void rechazar(){}
 }

@@ -7,79 +7,83 @@
 
     <h:body>
         <h:form id="Inicio">
-            <h:panelGrid columns="1" style="position: absolute; top: 0px; left: 0px">
+            <p:layout>
+                <p:layoutUnit position="north">
                     <p:panel style=" font-size:  medium; height: 185px;color: #cccccc" >
-                    <f:facet name="header" >
-                        <img  src="https://media.licdn.com/mpr/mpr/shrink_200_200/AAEAAQAAAAAAAAgDAAAAJDk3ZGM0MDU2LWRhNWEtNDMwNi1iOTNjLTllMDY1OWNkMjk3ZQ.png" width="280" height="170" align="left"/>
-                        <h2 style="text-align: center; color: darkblue;">BIENVENIDO</h2>
-                        <h3 style="text-align: center; color: darkblue;">Asociación de Egresados Escuela Colombiana de Ingenieria Julio Garavito</h3>
-                    </f:facet>
-                    <p:growl id="msj" showDetail="true" autoUpdate="true"/>
-                    
-                </p:panel>
+                        <f:facet name="header" >
+                            <img  src="https://media.licdn.com/mpr/mpr/shrink_200_200/AAEAAQAAAAAAAAgDAAAAJDk3ZGM0MDU2LWRhNWEtNDMwNi1iOTNjLTllMDY1OWNkMjk3ZQ.png" width="280" height="170" align="left"/>
+                            <h1 style="text-align: center; color: darkblue;">BIENVENIDO</h1>
+                            <h2 style="text-align: center; color: darkblue;">Asociación de Egresados Escuela Colombiana de Ingenieria Julio Garavito</h2>
+                        </f:facet>
+                        <p:growl id="msj" showDetail="true" autoUpdate="true"/>
+
+                    </p:panel>
+                </p:layoutUnit>
                 
-            </h:panelGrid>
+                <p:layoutUnit position ="center">
 
 
-            <p:panel header="Confirmation">
-                <h:panelGrid id="confirmation" columns="3" columnClasses="grid,grid,grid">
-                    <h:panelGrid columns="2" columnClasses="label, value">
-                        <h:outputText value="Nombre y Apellido: " style="font-weight:bold" />
-                        <h:outputText value="#{BeanSolicitudes.est.nombre}"  styleClass="outputLabel"/>
+                    <p:panel header="Confirmation">
+                        <h:panelGrid id="confirmation" columns="3" columnClasses="grid,grid,grid">
+                            <h:panelGrid columns="2" columnClasses="label, value">
+                                <h:outputText value="Nombre y Apellido: " style="font-weight:bold" />
+                                <h:outputText value="#{BeanSolicitudes.est.nombre}"  styleClass="outputLabel"/>
 
-                        <h:outputText value="Direccion : "  style="font-weight:bold"/>
-                        <h:outputText value="#{BeanSolicitudes.est.direccion}"  styleClass="outputLabel"/>
+                                <h:outputText value="Direccion : "  style="font-weight:bold"/>
+                                <h:outputText value="#{BeanSolicitudes.est.direccion}"  styleClass="outputLabel"/>
 
-                        <h:outputText value="Telefono fijo: " style="font-weight:bold" />
-                        <h:outputText value="#{BeanSolicitudes.est.telefono_fijo}"  styleClass="outputLabel"/>
+                                <h:outputText value="Telefono fijo: " style="font-weight:bold" />
+                                <h:outputText value="#{BeanSolicitudes.est.telefono_fijo}"  styleClass="outputLabel"/>
 
-                        <h:outputText value="Documento: " style="font-weight:bold"/>
-                        <h:outputText value="#{BeanSolicitudes.est.numero_identificacion}"  styleClass="outputLabel"/>
+                                <h:outputText value="Documento: " style="font-weight:bold"/>
+                                <h:outputText value="#{BeanSolicitudes.est.numero_identificacion}"  styleClass="outputLabel"/>
 
-                        <h:outputText value="Tipo de documento : " style="font-weight:bold"/>
-                        <h:outputText value="#{BeanSolicitudes.est.tipo_identificacion}"  styleClass="outputLabel"/>
+                                <h:outputText value="Tipo de documento : " style="font-weight:bold"/>
+                                <h:outputText value="#{BeanSolicitudes.est.tipo_identificacion}"  styleClass="outputLabel"/>
 
-                        <h:outputText value="Correo : " style="font-weight:bold"/>
-                        <h:outputText value="#{BeanSolicitudes.est.correo}"  styleClass="outputLabel"/>
-                    
-                        <h:outputText value="Semestre ponderado: " style="font-weight:bold"/>
-                        <h:outputText value="#{BeanSolicitudes.est.semestre}" styleClass="outputLabel"/>
+                                <h:outputText value="Correo : " style="font-weight:bold"/>
+                                <h:outputText value="#{BeanSolicitudes.est.correo}"  styleClass="outputLabel"/>
 
-                        <h:outputText value="Programa: " style="font-weight:bold"/>
-                        <h:outputText value="#{BeanSolicitudes.est.carrera}" styleClass="outputLabel" />
+                                <h:outputText value="Semestre ponderado: " style="font-weight:bold"/>
+                                <h:outputText value="#{BeanSolicitudes.est.semestre}" styleClass="outputLabel"/>
 
-                        <h:outputText value="Codigo Estudiante: " style="font-weight:bold"/>
-                        <h:outputText value="#{BeanSolicitudes.est.codigo}" styleClass="outputLabel"/>
-                    
-                </h:panelGrid>
-                    </h:panelGrid>
+                                <h:outputText value="Programa: " style="font-weight:bold"/>
+                                <h:outputText value="#{BeanSolicitudes.est.carrera}" styleClass="outputLabel" />
 
-          
-                <br>
-                    <p:commandButton id="Aceptar" value="Aceptar Solicitud" immediate="true" actionListener="#{BeanSolicitudes.aprobar}" />
-                    <p:commandButton id="Rechazar" value="Rechazar Solicitud" oncomplete="PF('campoEntradaDatos').show()" immediate="true" actionListener="#{BeanSolicitudes.rechazar}" />
-                    <br/>
-                    <p:dialog header="Ingresa la justificación" widgetVar="campoEntradaDatos" modal="true" showEffect="fade" hideEffect="fade" resizable="false" width="400">
-                        <p:outputPanel id="inputQuantity" style="text-align:center;">
-                            <h:panelGrid columns="2" cellpadding="1" styleClass="ui-grid">
-                        
-                        <p:outputLabel value="Motivo:   "  />
-                        <p:inputText />
-                        
-                        
-                        
+                                <h:outputText value="Codigo Estudiante: " style="font-weight:bold"/>
+                                <h:outputText value="#{BeanSolicitudes.est.codigo}" styleClass="outputLabel"/>
+
                         </h:panelGrid>
-                        <p:commandButton value="Enviar Justificacion" id="ajax" styleClass="ui-priority-primary" />
-                        
+                            </h:panelGrid>
 
-                            
-                        </p:outputPanel>
-            </p:dialog>
-                        <p:commandButton value="Ver Lista de Solicitudes" ajax="false" immediate="true" action="solicitud"/>
-                        <br/>
-                        
-                </br>
-            </p:panel>
+
+                        <br>
+                            <p:commandButton id="Aceptar" value="Aceptar Solicitud" immediate="true" actionListener="#{BeanSolicitudes.aprobar}" />
+                            <p:commandButton id="Rechazar" value="Rechazar Solicitud" oncomplete="PF('campoEntradaDatos').show()" immediate="true" actionListener="#{BeanSolicitudes.rechazar}" />
+                            <br/>
+                            <p:dialog header="Ingresa la justificación" widgetVar="campoEntradaDatos" modal="true" showEffect="fade" hideEffect="fade" resizable="false" width="400">
+                                <p:outputPanel id="inputQuantity" style="text-align:center;">
+                                    <h:panelGrid columns="2" cellpadding="1" styleClass="ui-grid">
+
+                                <p:outputLabel value="Motivo:   "  />
+                                <p:inputText />
+
+
+
+                                </h:panelGrid>
+                                <p:commandButton value="Enviar Justificacion" id="ajax" styleClass="ui-priority-primary" />
+
+
+
+                                </p:outputPanel>
+                    </p:dialog>
+                                <p:commandButton value="Ver Lista de Solicitudes" ajax="false" immediate="true" action="solicitud"/>
+                                <br/>
+
+                        </br>
+                    </p:panel>
+                </p:layoutUnit>
+            </p:layout>
 
         </h:form>
     </h:body>

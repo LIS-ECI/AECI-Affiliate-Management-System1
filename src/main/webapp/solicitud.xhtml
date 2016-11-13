@@ -28,7 +28,7 @@
                     <p:panel  header = "Solicitudes" id="panelSolicitudes">
 
 
-                        <p:dataTable var="solicitudes" value="#{BeanSolicitudes.solicitudes}" selectionMode="single" selection="#{BeanSolicitudes.seleccionado}" rowKey="#{solicitudes.cedula}">
+                        <p:dataTable var="solicitudes" value="#{BeanSolicitudes.solicitudes}" selectionMode="single" selection="#{BeanSolicitudes.s}" rowKey="#{solicitudes.cedula}">
                             
                             <p:column headerText="Fecha">
                                 <h:outputText value="#{solicitudes.fecha}" />
@@ -38,7 +38,7 @@
                             </p:column>
                         </p:dataTable>
                         <br/>
-                        <p:commandButton value="Ver Solicitud"  action="#{BeanSolicitudes.getPagina()}" immediate="true" style="background: lightgrey"/>
+                        <p:commandButton value="Ver Solicitud"  action="#{BeanSolicitudes.getPagina()}"  style="background: lightgrey"/>
                         <br/>
                     </p:panel>
                 </p:layoutUnit>

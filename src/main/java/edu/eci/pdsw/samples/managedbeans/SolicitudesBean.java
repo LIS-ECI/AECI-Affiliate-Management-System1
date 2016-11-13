@@ -41,28 +41,29 @@ private String clave;
 private Date fecha;
 private Estudiante est;
 private Egresado egr;
-private Solicitud seleccionado=new Solicitud();  
+private Solicitud s;  
+
 private String pagina="index";
 private String respuestaSolicitud;
 
 
     public SolicitudesBean(){}
 
-    public Solicitud getSeleccionado() {
-        return seleccionado;
-    }
+   
+    public List<Solicitud> getSolicitudes() {
+        List<Solicitud> a=Servicios.getInstance().consultarSolicitud();
+        return a;
 
-    public void setSeleccionado(Solicitud seleccionado) {
-        this.seleccionado = seleccionado;
-        System.out.println("---------------------------------------dsd---------");
-        
-        
     }
     
-    public List<Solicitud> getSolicitudes() {
-        
-        return Servicios.getInstance().consultarSolicitud();
+    
+    public Solicitud getS() {
+        return s;
+    }
 
+    public void setS(Solicitud s) {
+        System.out.println("HOOOLA");
+        this.s = s;
     }
 
 
@@ -90,7 +91,7 @@ private String respuestaSolicitud;
     }
     
     public String getPagina() {
-        System.out.println(this.seleccionado + "-------dpadas");
+        System.out.println(this.s + "-------dpadas");
         this.pagina = "detallesEstudiante";
 /***
         if (seleccionado.getTipo().equals("Estudiante")) {

@@ -71,6 +71,11 @@ public class MyBatisDAOSolicitud implements DaoSolicitud {
         somap.insertarIdentificacion(est.getNumero_identificacion(), est.getTipo_identificacion());
         somap.insertarDatosEstudiante(est);
         somap.insertarSolicitud(sol);
+        for (int i=0;i<est.getCorreo().size();i++){
+            System.out.println(est.getCorreo().get(i).getCorreo());
+            somap.insertarCorreo(est,est.getCorreo().get(i).getCorreo());
+        }
+        
     }
 
     @Override

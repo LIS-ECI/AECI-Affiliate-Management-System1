@@ -5,6 +5,7 @@
  */
 package edu.eci.pdsw.samples.managedbeans;
 
+import edu.eci.pdsw.samples.entities.CorreoPersonal;
 import edu.eci.pdsw.samples.entities.Estudiante;
 import edu.eci.pdsw.samples.entities.Solicitud;
 import edu.eci.pdsw.samples.services.Servicios;
@@ -141,7 +142,8 @@ public class EstudianteBean  implements Serializable{
     }
     
      public void enviarSolicitud (){
-        Estudiante est = new Estudiante(codigo, numero_identificacion,  nombre, semestre, tipo_identificacion, carrera, telefono_fijo, celular,  correo, direccion );
+        CorreoPersonal cp = new CorreoPersonal(correo,numero_identificacion,tipo_identificacion);
+        Estudiante est = new Estudiante(codigo, numero_identificacion,  nombre, semestre, tipo_identificacion, carrera, telefono_fijo, celular,  cp, direccion );
         Date fecha = new java.sql.Date(java.util.Calendar.getInstance().getTime().getTime());
         Solicitud sol = new Solicitud(fecha,(int)est.getNumero_identificacion(), est.getTipo_identificacion(),"Estudiante","Pend");
         Servicios.getInstance().enviarSolicitudEstudiante(est,sol);

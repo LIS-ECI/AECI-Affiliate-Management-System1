@@ -14,7 +14,7 @@ import java.util.List;
  */
 public class Estudiante {
 
-    private List<String> correo;
+    private List<CorreoPersonal> correo;
     private String direccion;
     private int codigo;
     private long numero_identificacion;
@@ -100,15 +100,15 @@ public class Estudiante {
         this.celular = celular;
     }
 
-    public List<String> getCorreo() {
+    public List<CorreoPersonal> getCorreo() {
         return correo;
     }
 
-    public void setCorreo(String correo) {
+    public void setCorreo(CorreoPersonal correo) {
         this.correo.add(correo);
     }
 
-    public Estudiante(int codigo, long numero_identificacion, String nombre, int semestre, String tipo_identificacion, String carrera, int telefono_fijo, long celular, String correo, String direccion) {
+    public Estudiante(int codigo, long numero_identificacion, String nombre, int semestre, String tipo_identificacion, String carrera, int telefono_fijo, long celular, CorreoPersonal correo, String direccion) {
         this.codigo = codigo;
         this.numero_identificacion = numero_identificacion;
         this.carrera = carrera;

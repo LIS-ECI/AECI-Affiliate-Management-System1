@@ -93,14 +93,16 @@ private String respuestaSolicitud;
     public String getPagina() {
         System.out.println(this.s + "-------dpadas");
         this.pagina = "detallesEstudiante";
-/***
-        if (seleccionado.getTipo().equals("Estudiante")) {
-            est = Servicios.getInstance().consultarEstudiante(seleccionado.getCedula(), seleccionado.getTipo_cedula());
+    switch (s.getTipo()) {
+        case "Estudiante":
+            est = Servicios.getInstance().consultarEstudiante(s.getCedula(), s.getTipo_cedula());
             this.pagina = "detallesEstudiante";
-        } else if (seleccionado.getTipo().equals("Egresado")) {
-            egr = Servicios.getInstance().consultarEgresado(seleccionado.getCedula(), seleccionado.getTipo_cedula());
+            break;
+        case "Egresado":
+            egr = Servicios.getInstance().consultarEgresado(s.getCedula(), s.getTipo_cedula());
             this.pagina = "detallesEgresado";
-        }**/
+            break;
+    }
         return pagina;
     }
 

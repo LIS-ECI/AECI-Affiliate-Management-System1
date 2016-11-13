@@ -141,10 +141,14 @@ private String respuestaSolicitud;
         this.respuestaSolicitud = respuesta;
     }
     
+    public String getRespuestaSolicitud(){
+        return this.respuestaSolicitud;
+    }
+    
     public void enviarCorreo(){
         Correo correo1 = new Correo();
         correo1.setMessage(this.respuestaSolicitud);
-        correo1.setTo(est.getCorreo().get(0));
+        //correo1.setTo(est.getCorreo().get(0));
         correo1.enviarCorreo();  
     }
 }

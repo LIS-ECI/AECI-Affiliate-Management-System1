@@ -64,17 +64,10 @@
                             <p:dialog header="Ingresa la justificación" widgetVar="campoEntradaDatos" showEffect="fade" hideEffect="fade" resizable="false" width="400">
                                 <p:outputPanel id="inputQuantity" style="text-align:center;">
                                     <h:panelGrid columns="2" cellpadding="1" styleClass="ui-grid">
-
-                                <p:outputLabel value="Motivo:   "   />
-                                <p:inputText value="#{BeanSolicitudes}" />
-
-
-
-                                </h:panelGrid>
-                                    <p:commandButton value="Enviar Justificacion" actionListener="#{BeanSolicitudes}" id="ajax" styleClass="ui-priority-primary" />
-
-
-
+                                        <p:outputLabel value="Motivo:   "   />
+                                        <p:inputText value="#{BeanSolicitudes.respuestaSolicitud}" />
+                                    </h:panelGrid>
+                                    <p:commandButton value="Enviar Justificacion"  id="ajax" styleClass="ui-priority-primary" actionListener="#{BeanSolicitudes.enviarCorreo()}" />
                                 </p:outputPanel>
                             </p:dialog>
                             <p:commandButton value="Ver Lista de Solicitudes" ajax="false" immediate="true" action="solicitud"/>

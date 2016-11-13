@@ -41,7 +41,7 @@ private String clave;
 private Date fecha;
 private Estudiante est;
 private Egresado egr;
-private Solicitud seleccionado;  
+private Solicitud seleccionado=new Solicitud();  
 private String pagina="index";
 private String respuestaSolicitud;
 

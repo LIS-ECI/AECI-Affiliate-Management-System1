@@ -46,8 +46,14 @@ public class ServiciosDao extends Servicios {
 
     @Override
     public List<Solicitud> consultarSolicitud() {
-
-        return daof.getDaoSolicitud().consultarSolicitud();
+        List<Solicitud> a=daof.getDaoSolicitud().consultarSolicitud();
+        try {
+            daof.commitTransaction();
+        } catch (PersistenceException ex) {
+            Logger.getLogger(ServiciosDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return a;
+        
     }
 
    
@@ -55,39 +61,78 @@ public class ServiciosDao extends Servicios {
     @Override
     public void enviarSolicitudEgresado(Egresado egr, Solicitud sol) {
 
-      daof.getDaoSolicitud().enviarSolicitudEgresado(egr, sol);
+      try {
+            daof.getDaoSolicitud().enviarSolicitudEgresado(egr, sol);
+            daof.commitTransaction();
+        } catch (PersistenceException ex) {
+            Logger.getLogger(ServiciosDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         
 
     }
 
     @Override
     public Estudiante consultarEstudiante(long identificacion, String tipo_identificacion) {
-        return daof.getDaoSolicitud().consultarEstudiante(identificacion, tipo_identificacion);
+        
+        Estudiante e=daof.getDaoSolicitud().consultarEstudiante(identificacion, tipo_identificacion);
+        try {
+            daof.commitTransaction();
+        } catch (PersistenceException ex) {
+            Logger.getLogger(ServiciosDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return e;
 
     }
 
     @Override
     public Egresado consultarEgresado(long identificacion, String tipo_identificacion) {
-        return daof.getDaoSolicitud().consultarEgresado(identificacion, tipo_identificacion);
+        
+        Egresado e=daof.getDaoSolicitud().consultarEgresado(identificacion, tipo_identificacion);
+        try {   
+            daof.commitTransaction();
+        } catch (PersistenceException ex) {
+            Logger.getLogger(ServiciosDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return e;
     }
 
     @Override
     public void InsertarUsuario(Usuario u) {
-        daof.getDaoSolicitud().InsertarUsuario(u);
+        
+        try {
+            daof.getDaoSolicitud().InsertarUsuario(u);
+            daof.commitTransaction();
+        } catch (PersistenceException ex) {
+            Logger.getLogger(ServiciosDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
 
 
     @Override
     public void ModificarSolicitud(String u, long ced, String tic) {
-        daof.getDaoSolicitud().ModificarSolicitud(u,ced,tic);
+        try {
+            daof.getDaoSolicitud().ModificarSolicitud(u,ced,tic);
+            daof.commitTransaction();
+        } catch (PersistenceException ex) {
+            Logger.getLogger(ServiciosDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
     }
 
-   
 
     @Override
     public void enviarSolicitudEstudiante(Estudiante est, Solicitud sol) {
-        daof.getDaoSolicitud().enviarSolicitudEstudiante(est, sol);
-    
+        try {
+            daof.getDaoSolicitud().enviarSolicitudEstudiante(est, sol);
+            daof.commitTransaction();
+        } catch (PersistenceException ex) {
+            Logger.getLogger(ServiciosDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 }

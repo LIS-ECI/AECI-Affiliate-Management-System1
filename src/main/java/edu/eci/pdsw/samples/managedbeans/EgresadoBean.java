@@ -177,6 +177,11 @@ public class EgresadoBean  implements Serializable{
         this.nombreEmpresa="";
         this.direccion_empresa="";
         this.cargo="";
+        this.nombre="";
+        this.cedula=0;
+        this.email="";
+        this.direccion_vivienda="";
+        
         
         
     }

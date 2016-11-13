@@ -22,6 +22,7 @@ import javax.faces.bean.SessionScoped;
 
 
 
+
 /**
  *
  * @author 2103216
@@ -40,7 +41,6 @@ private Date fecha;
 private Estudiante est;
 private Egresado egr;
 private Solicitud seleccionado;  
-static private List<Solicitud> solicitudes;
 private String pagina="index";
 
 
@@ -52,13 +52,8 @@ private String pagina="index";
 
     public void setSeleccionado(Solicitud seleccionado) {
         this.seleccionado = seleccionado;
-        if (seleccionado.getTipo().equals("Estudiante")){
-            est=Servicios.getInstance().consultarEstudiante(seleccionado.getCedula(),seleccionado.getTipo_cedula());
-            
-        }
-        else if (seleccionado.getTipo().equals("Egresado")){
-            egr=Servicios.getInstance().consultarEgresado(seleccionado.getCedula(),seleccionado.getTipo_cedula());
-        }
+        System.out.println("---------------------------------------dsd---------");
+        
         
     }
     
@@ -68,9 +63,6 @@ private String pagina="index";
 
     }
 
-    public void setSolicitudes(List<Solicitud> solicitudes) {
-        this.solicitudes = solicitudes;
-    }
 
     public String getUsuario() {
         return usuario;
@@ -96,8 +88,16 @@ private String pagina="index";
     }
     
     public String getPagina() {
-          this.pagina="detallesEstudiante";
-
+        System.out.println(this.seleccionado + "-------dpadas");
+        this.pagina = "detallesEstudiante";
+/***
+        if (seleccionado.getTipo().equals("Estudiante")) {
+            est = Servicios.getInstance().consultarEstudiante(seleccionado.getCedula(), seleccionado.getTipo_cedula());
+            this.pagina = "detallesEstudiante";
+        } else if (seleccionado.getTipo().equals("Egresado")) {
+            egr = Servicios.getInstance().consultarEgresado(seleccionado.getCedula(), seleccionado.getTipo_cedula());
+            this.pagina = "detallesEgresado";
+        }**/
         return pagina;
     }
 

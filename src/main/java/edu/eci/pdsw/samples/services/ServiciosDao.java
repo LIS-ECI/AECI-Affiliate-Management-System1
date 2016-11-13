@@ -68,7 +68,7 @@ public class ServiciosDao extends Servicios {
 
     @Override
     public Egresado consultarEgresado(long identificacion, String tipo_identificacion) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return daof.getDaoSolicitud().consultarEgresado(identificacion, tipo_identificacion);
     }
 
     @Override

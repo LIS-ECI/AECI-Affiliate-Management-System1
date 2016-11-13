@@ -47,4 +47,6 @@ public interface SolicitudMapper {
 
     public abstract void insertarSolicitud(@Param("sol") Solicitud sol);
 
+    public Egresado consultarEgresado(@Param("id") long identificacion, @Param("tipoid") String tipo_identificacion);
+
 }

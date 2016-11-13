@@ -81,6 +81,12 @@ public class MyBatisDAOSolicitud implements DaoSolicitud {
         somap.insertarDatosEgresado(egr);
         somap.insertarSolicitud(sol);
     }
+
+    @Override
+    public Egresado consultarEgresado(long identificacion, String tipo_identificacion) {
+        SolicitudMapper somap = currentSession.getMapper(SolicitudMapper.class);
+        return somap.consultarEgresado(identificacion,tipo_identificacion);
+    }
     
     
 

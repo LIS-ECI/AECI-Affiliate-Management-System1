@@ -188,13 +188,15 @@
                                 <h:selectBooleanCheckbox />
 
                                 <br>
-                                    <p:commandButton value="Enviar Solicitud" immediate="true" actionListener="#{beanEgresado.enviarSolicitud}" oncomplete="PF('campoEntradaDatos').show()" />
+                                    <p:commandButton value="Enviar Solicitud" actionListener="#{beanEgresado.enviarSolicitud}" oncomplete="PF('campoEntradaDatos').show()" action="index" />
 
                                     <p:dialog header="Solicitud Enviada!" widgetVar="campoEntradaDatos" modal="true" showEffect="fade" hideEffect="fade" resizable="false" width="400">
                                         <p:outputPanel id="inputQuantity" style="text-align:center;">
                                             <h:panelGrid columns="2" cellpadding="1" styleClass="ui-grid">
 
                                                 <p:outputLabel value="Tu solicitud ha sido enviada al adminsitrador, pronto llegará un mensaje a tu correo indicando los pasos a seguir  "  />
+                                                <p:commandButton value="Aceptar" action="index" immediate="true" ajax="false" styleClass="ui-priority-primary" />
+
                                             </h:panelGrid>
                                         </p:outputPanel>
                                     </p:dialog>

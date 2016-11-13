@@ -145,6 +145,15 @@ public class EstudianteBean  implements Serializable{
         Date fecha = new java.sql.Date(java.util.Calendar.getInstance().getTime().getTime());
         Solicitud sol = new Solicitud(fecha,(int)est.getNumero_identificacion(), est.getTipo_identificacion(),"Estudiante","Pend");
         Servicios.getInstance().enviarSolicitudEstudiante(est,sol);
+        this.carrera="";
+        this.celular=0;
+        this.codigo=0;
+        this.correo="";
+        this.direccion="";
+        this.nombre="";
+        this.numero_identificacion=0;
+        this.telefono_fijo=0;
+        
 
     }
 

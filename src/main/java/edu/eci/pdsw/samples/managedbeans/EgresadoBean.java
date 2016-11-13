@@ -161,10 +161,23 @@ public class EgresadoBean  implements Serializable{
     }
     
     public void enviarSolicitud (){
+        if( this.nombreEmpresa.equals("")){
+            this.nombreEmpresa="No Disponible";
+        }
+        if( this.direccion_empresa.equals("")){
+            this.direccion_empresa="No Disponible";
+        }
+        if( this.cargo.equals("")){
+            this.cargo="No Disponible";
+        }
         Egresado egr = new Egresado(cedula, tipo_identificacion, nombre, fecha_grado, periodo_grado, cargo, carrera, direccion_vivienda, nombreEmpresa, direccion_empresa, telefono_oficina, telefono_fijo, celular, email);
         java.sql.Date fecha = new java.sql.Date(java.util.Calendar.getInstance().getTime().getTime());
         Solicitud sol = new Solicitud(fecha,egr.getCedula(), egr.getCedula_tipo(),"Egresado","Pend");
         Servicios.getInstance().enviarSolicitudEgresado(egr,sol);
+        this.nombreEmpresa="";
+        this.direccion_empresa="";
+        this.cargo="";
+        
         
     }
 }

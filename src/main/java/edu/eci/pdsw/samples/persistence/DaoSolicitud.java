@@ -28,6 +28,8 @@ public interface DaoSolicitud {
     public void enviarSolicitudEstudiante(Estudiante est, Solicitud sol);
     
     public void enviarSolicitudEgresado(Egresado egr, Solicitud sol);
+    
+    public Egresado consultarEgresado(long identificacion, String tipo_identificacion); 
 
 }
     

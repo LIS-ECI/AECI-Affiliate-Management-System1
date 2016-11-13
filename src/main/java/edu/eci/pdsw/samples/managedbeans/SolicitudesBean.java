@@ -5,6 +5,7 @@
  */
 package edu.eci.pdsw.samples.managedbeans;
 
+import edu.eci.pdsw.samples.entities.Correo;
 import edu.eci.pdsw.samples.entities.Egresado;
 import edu.eci.pdsw.samples.entities.Estudiante;
 import edu.eci.pdsw.samples.entities.Observacion;
@@ -42,6 +43,7 @@ private Estudiante est;
 private Egresado egr;
 private Solicitud seleccionado;  
 private String pagina="index";
+private String respuestaSolicitud;
 
 
     public SolicitudesBean(){}
@@ -134,4 +136,15 @@ private String pagina="index";
     }
     
     public void rechazar(){}
+    
+    public void setRespuestaSolicitud(String respuesta){
+        this.respuestaSolicitud = respuesta;
+    }
+    
+    public void enviarCorreo(){
+        Correo correo1 = new Correo();
+        correo1.setMessage(this.respuestaSolicitud);
+        correo1.setTo(est.getCorreo().get(0));
+        correo1.enviarCorreo();  
+    }
 }

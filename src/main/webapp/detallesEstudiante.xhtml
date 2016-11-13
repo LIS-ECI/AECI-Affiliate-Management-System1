@@ -65,13 +65,13 @@
                                 <p:outputPanel id="inputQuantity" style="text-align:center;">
                                     <h:panelGrid columns="2" cellpadding="1" styleClass="ui-grid">
 
-                                <p:outputLabel value="Motivo:   "  />
-                                <p:inputText />
+                                <p:outputLabel value="Motivo:   "   />
+                                <p:inputText value="#{BeanSolicitudes}" />
 
 
 
                                 </h:panelGrid>
-                                <p:commandButton value="Enviar Justificacion" id="ajax" styleClass="ui-priority-primary" />
+                                    <p:commandButton value="Enviar Justificacion" actionListener="#{BeanSolicitudes}" id="ajax" styleClass="ui-priority-primary" />
 
 
 

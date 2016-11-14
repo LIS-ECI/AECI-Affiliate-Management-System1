@@ -67,7 +67,7 @@
                                         <p:outputLabel value="Motivo:   "   />
                                         <p:inputText value="#{BeanSolicitudes.respuestaSolicitud}" />
                                     </h:panelGrid>
-                                    <p:commandButton value="Enviar Justificacion"  id="ajax" styleClass="ui-priority-primary" actionListener="#{BeanSolicitudes.enviarCorreo()}" />
+                                    <p:commandButton value="Enviar Justificacion"  id="ajax" styleClass="ui-priority-primary" actionListener="#{BeanSolicitudes.enviarCorreo()}"/>
                                 </p:outputPanel>
                             </p:dialog>
                             <p:commandButton value="Ver Lista de Solicitudes" ajax="false" immediate="true" action="solicitud"/>

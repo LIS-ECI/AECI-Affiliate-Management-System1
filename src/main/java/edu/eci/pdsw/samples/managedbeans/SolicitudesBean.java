@@ -42,7 +42,7 @@ private Date fecha;
 private Estudiante est;
 private Egresado egr;
 private Solicitud s;  
-
+private String correos="";
 private String pagina="index";
 private String respuestaSolicitud;
 
@@ -89,20 +89,34 @@ private String respuestaSolicitud;
     public Date getFecha(){
         return fecha;
     }
+
+    public String getCorreos() {
+        return correos;
+    }
+
+    public void setCorreos(String correos) {
+        this.correos = correos;
+    }
     
     public String getPagina() {
-        System.out.println(this.s + "-------dpadas");
+        correos="";
         this.pagina = "detallesEstudiante";
-    switch (s.getTipo()) {
-        case "Estudiante":
-            est = Servicios.getInstance().consultarEstudiante(s.getCedula(), s.getTipo_cedula());
+        if (s.getTipo().equals("Estudiante")) {
+            this.est = Servicios.getInstance().consultarEstudiante(s.getCedula(), s.getTipo_cedula());
             this.pagina = "detallesEstudiante";
-            break;
-        case "Egresado":
-            egr = Servicios.getInstance().consultarEgresado(s.getCedula(), s.getTipo_cedula());
+            for (int i=0;i<est.getCorreo().size();i++){
+                correos+="      "+est.getCorreo().get(i).getCorreo();
+            }
+        }
+        else{
+            this.egr = Servicios.getInstance().consultarEgresado(s.getCedula(), s.getTipo_cedula());
+            System.out.println(s.getCedula()+ s.getTipo_cedula()+"  EGRESADO  ");
             this.pagina = "detallesEgresado";
-            break;
-    }
+            for (int i=0;i<egr.getCorreo().size();i++){
+                correos+="      "+egr.getCorreo().get(i).getCorreo();
+            }
+        }
+
         return pagina;
     }
 
@@ -111,8 +125,6 @@ private String respuestaSolicitud;
 
     }
 
-
-    
     public Estudiante getEst() {
         return est;
     }
@@ -129,8 +141,7 @@ private String respuestaSolicitud;
         this.egr = egr;
     }
 
-    
-    
+
     public void aprobar(){
         Usuario s= new Usuario(String.valueOf(est.getNumero_identificacion()),String.valueOf( est.getNumero_identificacion()), "Estudiante", "Activo", est.getNumero_identificacion(), est.getTipo_identificacion(), null, null, null );
         Servicios.getInstance().InsertarUsuario(s);

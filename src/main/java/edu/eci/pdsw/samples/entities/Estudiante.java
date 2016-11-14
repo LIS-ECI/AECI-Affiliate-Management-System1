@@ -104,17 +104,17 @@ public class Estudiante {
         return correo;
     }
 
-    public void setCorreo(CorreoPersonal correo) {
-        this.correo.add(correo);
+    public void setCorreo(List<CorreoPersonal> correo) {
+        this.correo=correo;
     }
 
-    public Estudiante(int codigo, long numero_identificacion, String nombre, int semestre, String tipo_identificacion, String carrera, int telefono_fijo, long celular, CorreoPersonal correo, String direccion) {
+    public Estudiante(int codigo, long numero_identificacion, String nombre, int semestre, String tipo_identificacion, String carrera, int telefono_fijo, long celular, List<CorreoPersonal> correo, String direccion) {
         this.codigo = codigo;
         this.numero_identificacion = numero_identificacion;
         this.carrera = carrera;
         this.celular = celular;
         this.correo = new LinkedList<>();
-        this.correo.add(correo);
+        this.correo = correo;
         this.semestre = semestre;
         this.telefono_fijo = telefono_fijo;
         this.tipo_identificacion = tipo_identificacion;

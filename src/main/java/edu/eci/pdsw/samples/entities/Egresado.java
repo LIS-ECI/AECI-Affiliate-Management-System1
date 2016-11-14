@@ -5,7 +5,6 @@
  */
 package edu.eci.pdsw.samples.entities;
 
-import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -27,9 +26,9 @@ public class Egresado {
     private int telefono_oficina;
     private int telefono_fijo;
     private long celular;
-    private List<String> correo;
+    private List<CorreoPersonal> correo;
 
-    public Egresado(long cedula, String cedula_tipo, String nombre, int fecha_grado, int periodo_grado, String cargo, String programa, String direccion_vivienda, String nombreEmpresa, String direccionEmpresa, int telefono_oficina, int telefono_fijo, long celular, String correo) {
+    public Egresado(long cedula, String cedula_tipo, String nombre, int fecha_grado, int periodo_grado, String cargo, String programa, String direccion_vivienda, String nombreEmpresa, String direccionEmpresa, int telefono_oficina, int telefono_fijo, long celular, List<CorreoPersonal> correo) {
         this.cedula = cedula;
         this.cedula_tipo = cedula_tipo;
         this.nombre = nombre;
@@ -43,8 +42,7 @@ public class Egresado {
         this.telefono_oficina = telefono_oficina;
         this.telefono_fijo = telefono_fijo;
         this.celular = celular;
-        this.correo=new LinkedList<>();
-        this.correo.add(correo);
+        this.correo=correo;
     }
     
     public Egresado(){}
@@ -236,14 +234,14 @@ public class Egresado {
     /**
      * @return the correo
      */
-    public List<String> getCorreo() {
+    public List<CorreoPersonal> getCorreo() {
         return correo;
     }
 
     /**
      * @param correo the correo to set
      */
-    public void setCorreo(List<String> correo) {
+    public void setCorreo(List<CorreoPersonal> correo) {
         this.correo = correo;
     }
 

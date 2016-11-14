@@ -41,28 +41,29 @@ private String clave;
 private Date fecha;
 private Estudiante est;
 private Egresado egr;
-private Solicitud seleccionado;  
+private Solicitud s;  
+private String correos="";
 private String pagina="index";
 private String respuestaSolicitud;
 
 
     public SolicitudesBean(){}
 
-    public Solicitud getSeleccionado() {
-        return seleccionado;
-    }
+   
+    public List<Solicitud> getSolicitudes() {
+        List<Solicitud> a=Servicios.getInstance().consultarSolicitud();
+        return a;
 
-    public void setSeleccionado(Solicitud seleccionado) {
-        this.seleccionado = seleccionado;
-        System.out.println("---------------------------------------dsd---------");
-        
-        
     }
     
-    public List<Solicitud> getSolicitudes() {
-        
-        return Servicios.getInstance().consultarSolicitud();
+    
+    public Solicitud getS() {
+        return s;
+    }
 
+    public void setS(Solicitud s) {
+        System.out.println("HOOOLA");
+        this.s = s;
     }
 
 
@@ -88,18 +89,34 @@ private String respuestaSolicitud;
     public Date getFecha(){
         return fecha;
     }
+
+    public String getCorreos() {
+        return correos;
+    }
+
+    public void setCorreos(String correos) {
+        this.correos = correos;
+    }
     
     public String getPagina() {
-        System.out.println(this.seleccionado + "-------dpadas");
+        correos="";
         this.pagina = "detallesEstudiante";
-/***
-        if (seleccionado.getTipo().equals("Estudiante")) {
-            est = Servicios.getInstance().consultarEstudiante(seleccionado.getCedula(), seleccionado.getTipo_cedula());
+        if (s.getTipo().equals("Estudiante")) {
+            this.est = Servicios.getInstance().consultarEstudiante(s.getCedula(), s.getTipo_cedula());
             this.pagina = "detallesEstudiante";
-        } else if (seleccionado.getTipo().equals("Egresado")) {
-            egr = Servicios.getInstance().consultarEgresado(seleccionado.getCedula(), seleccionado.getTipo_cedula());
+            for (int i=0;i<est.getCorreo().size();i++){
+                correos+="      "+est.getCorreo().get(i).getCorreo();
+            }
+        }
+        else{
+            this.egr = Servicios.getInstance().consultarEgresado(s.getCedula(), s.getTipo_cedula());
+            System.out.println(s.getCedula()+ s.getTipo_cedula()+"  EGRESADO  ");
             this.pagina = "detallesEgresado";
-        }**/
+            for (int i=0;i<egr.getCorreo().size();i++){
+                correos+="      "+egr.getCorreo().get(i).getCorreo();
+            }
+        }
+
         return pagina;
     }
 
@@ -108,8 +125,6 @@ private String respuestaSolicitud;
 
     }
 
-
-    
     public Estudiante getEst() {
         return est;
     }
@@ -126,8 +141,7 @@ private String respuestaSolicitud;
         this.egr = egr;
     }
 
-    
-    
+
     public void aprobar(){
         Usuario s= new Usuario(String.valueOf(est.getNumero_identificacion()),String.valueOf( est.getNumero_identificacion()), "Estudiante", "Activo", est.getNumero_identificacion(), est.getTipo_identificacion(), null, null, null );
         Servicios.getInstance().InsertarUsuario(s);

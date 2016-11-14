@@ -71,6 +71,10 @@ public class MyBatisDAOSolicitud implements DaoSolicitud {
         somap.insertarIdentificacion(est.getNumero_identificacion(), est.getTipo_identificacion());
         somap.insertarDatosEstudiante(est);
         somap.insertarSolicitud(sol);
+        for (int i=0;i<est.getCorreo().size();i++){
+            somap.insertarCorreoEstudiante(est,est.getCorreo().get(i).getCorreo());
+        }
+        
     }
 
     @Override
@@ -80,6 +84,9 @@ public class MyBatisDAOSolicitud implements DaoSolicitud {
         somap.insertarIdentificacion(egr.getCedula(), egr.getCedula_tipo());
         somap.insertarDatosEgresado(egr);
         somap.insertarSolicitud(sol);
+        for (int i=0;i<egr.getCorreo().size();i++){
+            somap.insertarCorreoEgresado(egr,egr.getCorreo().get(i).getCorreo());
+        }
     }
 
     @Override

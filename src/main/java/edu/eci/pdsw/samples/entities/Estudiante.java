@@ -14,7 +14,7 @@ import java.util.List;
  */
 public class Estudiante {
 
-    private List<String> correo;
+    private List<CorreoPersonal> correo;
     private String direccion;
     private int codigo;
     private long numero_identificacion;
@@ -100,21 +100,21 @@ public class Estudiante {
         this.celular = celular;
     }
 
-    public List<String> getCorreo() {
+    public List<CorreoPersonal> getCorreo() {
         return correo;
     }
 
-    public void setCorreo(String correo) {
-        this.correo.add(correo);
+    public void setCorreo(List<CorreoPersonal> correo) {
+        this.correo=correo;
     }
 
-    public Estudiante(int codigo, long numero_identificacion, String nombre, int semestre, String tipo_identificacion, String carrera, int telefono_fijo, long celular, String correo, String direccion) {
+    public Estudiante(int codigo, long numero_identificacion, String nombre, int semestre, String tipo_identificacion, String carrera, int telefono_fijo, long celular, List<CorreoPersonal> correo, String direccion) {
         this.codigo = codigo;
         this.numero_identificacion = numero_identificacion;
         this.carrera = carrera;
         this.celular = celular;
         this.correo = new LinkedList<>();
-        this.correo.add(correo);
+        this.correo = correo;
         this.semestre = semestre;
         this.telefono_fijo = telefono_fijo;
         this.tipo_identificacion = tipo_identificacion;

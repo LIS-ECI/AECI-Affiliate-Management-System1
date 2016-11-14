@@ -49,4 +49,8 @@ public interface SolicitudMapper {
 
     public Egresado consultarEgresado(@Param("id") long identificacion, @Param("tipoid") String tipo_identificacion);
 
+    public void insertarCorreoEstudiante(@Param("est") Estudiante est,@Param("cor") String cor);
+
+    public void insertarCorreoEgresado(@Param ("egr") Egresado egr,@Param ("correo") String correo);
+
 }

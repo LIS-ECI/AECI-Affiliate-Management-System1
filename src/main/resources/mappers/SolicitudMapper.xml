@@ -32,12 +32,13 @@
         <result property='periodo_grado' column = 'periodo_grado'/>
         <result property='cargo' column = 'cargo'/>
         <result property='direccion_vivienda' column = 'direccion_vivienda'/>
+        <result property='nombreEmpresa' column = 'nombreEmpresa'/>
+        <result property='direccionEmpresa' column = 'direccion_empresa'/>
         <result property='telefono_oficina' column = 'telefono_oficina'/>
         <result property='telefono_fijo' column = 'telefono_fijo'/>
         <result property='cedula' column = 'celular'/>
         <result property='programa' column = 'Programas_nombre'/>
-
-
+        <collection property='correo' ofType='CorreoPersonal' columnPrefix="correo_" resultMap='CorreoPersonalResult' ></collection> 
     </resultMap>
     
      <resultMap type='Estudiante' id='EstudianteResult'>
@@ -50,21 +51,31 @@
         <result property='celular' column = 'celular'/>
         <result property='direccion' column = 'direccion_vivienda'/>
         <result property='carrera' column = 'Programas_nombre'/>
-
+        <collection property='correo' ofType='CorreoPersonal' columnPrefix="correo_" resultMap='CorreoPersonalResult' ></collection> 
+    </resultMap>
+    
+    <resultMap type='CorreoPersonal' id='CorreoPersonalResult'>
+        <id property='correo' column='correo'/> 
+        <result property='cedula_numero' column = 'Cedula_Numero'/>
+        <result property='cedula_tipo' column = 'Cedula_Tipo'/>
     </resultMap>
     
     
     <select id="consultarEstudiante" resultMap="EstudianteResult">
-        select Cedula_Numero,Cedula_Tipo,codigo_estudiante,nombre,semestre_ponderado,telefono_fijo,celular,direccion_vivienda,Programas_nombre
-        from Datos_Estudiante 
-        where Cedula_Numero=#{id} and Cedula_Tipo=#{idtipo}
+        SELECT DE.Cedula_Numero,DE.Cedula_Tipo,DE.codigo_estudiante,DE.nombre,DE.semestre_ponderado,DE.telefono_fijo,DE.celular,DE.direccion_vivienda,DE.Programas_nombre,C.correo as correo_correo, C.Cedula_Numero as correo_Cedula_Numero, C.Cedula_Tipo as correo_Cedula_Tipo
+        FROM Datos_Estudiante as DE
+        LEFT JOIN Identificacion as I ON I.Numero= DE.Cedula_Numero
+        LEFT JOIN correo as C ON C.Cedula_Numero=I.Numero
+        WHERE DE.Cedula_Numero=#{id} and DE.Cedula_Tipo=#{tipoid}
     </select>
     
     
     <select id="consultarEgresado" resultMap="EgresadoResult">
-        select Cedula_Numero,Cedula_Tipo,nombre,anio_grado,periodo_grado,cargo,direccion_vivienda,telefono_oficina,telefono_fijo,celular,Programas_nombre
-        from Datos_Egresado
-        where Cedula_Numero=#{id} and Cedula_Tipo=#{idtipo}
+        SELECT DE.Cedula_Numero,DE.Cedula_Tipo,DE.nombre,DE.anio_grado,DE.periodo_grado,DE.cargo,DE.direccion_vivienda,DE.nombreEmpresa,DE.direccion_empresa,         DE.telefono_oficina,DE.telefono_fijo,DE.celular,DE.Programas_nombre,C.correo as correo_correo, C.Cedula_Numero as correo_Cedula_Numero, C.Cedula_Tipo as correo_Cedula_Tipo
+        FROM Datos_Egresado as DE
+        LEFT JOIN Identificacion as I ON I.Numero= DE.Cedula_Numero
+        LEFT JOIN correo as C ON C.Cedula_Numero=I.Numero
+        WHERE DE.Cedula_Numero=#{id} and DE.Cedula_Tipo=#{tipoid}
     </select>
     
     
@@ -91,6 +102,14 @@
    
     <insert parameterType="map" id="insertarDatosEgresado" >                    
         insert into Datos_Egresado values(#{egr.cedula}, #{egr.cedula_tipo}, #{egr.nombre}, #{egr.fecha_grado}, #{egr.periodo_grado}, #{egr.cargo}, #{egr.direccion_vivienda},#{egr.nombreEmpresa},#{egr.direccionEmpresa},#{egr.telefono_oficina},#{egr.telefono_fijo},#{egr.celular},#{egr.programa} );
+    </insert>
+    
+    <insert parameterType="map" id="insertarCorreoEstudiante" >                    
+        insert into correo values(#{cor}, #{est.numero_identificacion}, #{est.tipo_identificacion});
+    </insert>
+    
+    <insert parameterType="map" id="insertarCorreoEgresado" >                    
+        insert into correo values(#{correo}, #{egr.cedula}, #{egr.cedula_tipo});
     </insert>
    
 </mapper>

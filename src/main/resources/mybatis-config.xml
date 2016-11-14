@@ -10,7 +10,7 @@
     <typeAlias type='edu.eci.pdsw.samples.entities.Estudiante' alias='Estudiante'/>
     <typeAlias type='edu.eci.pdsw.samples.entities.Egresado' alias='Egresado'/>
     <typeAlias type='edu.eci.pdsw.samples.entities.Solicitud' alias='Solicitud'/>
-    <!--POSIBLE ERROR  -->
+    <typeAlias type='edu.eci.pdsw.samples.entities.CorreoPersonal' alias='CorreoPersonal'/>
     </typeAliases> 
     
     <environments default="development">

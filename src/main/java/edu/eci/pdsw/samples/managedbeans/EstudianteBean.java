@@ -36,13 +36,40 @@ public class EstudianteBean  implements Serializable{
     private int telefono_fijo;
     private long celular=0;
     private String direccion;
-    private String carrera;
-    
-    
-    
+    private String carrera="Ingenieria Civil";
+    private int min=8;
+    private int max=10;
     private String correo;
     private String enter;
 
+    public int getMin() {
+        if (carrera.equals("Matematicas") | carrera.equals("Administracion") | carrera.equals("Economia") | carrera.equals("Ingenieria Biomedica")){
+            this.min=7;
+        }
+        else{
+            this.min=8;
+        }
+        return this.min;
+    }
+
+    public void setMin(int min) {
+        this.min = min;
+    }
+
+    public int getMax() {
+        if (carrera.equals("Matematicas")| carrera.equals("Administracion") | carrera.equals("Economia") | carrera.equals("Ingenieria Biomedica")){
+            this.max=9;
+        }
+        else{
+            this.max=10;
+        }
+        return this.max;
+    }
+
+    public void setMax(int max) {
+        this.max = max;
+    }
+    
     public String getEnter() {
         return enter;
     }
@@ -159,6 +186,7 @@ public class EstudianteBean  implements Serializable{
         this.nombre="";
         this.numero_identificacion=0;
         this.telefono_fijo=0;
+        this.carrera="Ingenieria Civil";
         
 
     }

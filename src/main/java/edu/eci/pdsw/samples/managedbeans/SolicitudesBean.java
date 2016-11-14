@@ -62,7 +62,6 @@ private String respuestaSolicitud;
     }
 
     public void setS(Solicitud s) {
-        System.out.println("HOOOLA");
         this.s = s;
     }
 
@@ -142,14 +141,33 @@ private String respuestaSolicitud;
     }
 
 
-    public void aprobar(){
-        Usuario s= new Usuario(String.valueOf(est.getNumero_identificacion()),String.valueOf( est.getNumero_identificacion()), "Estudiante", "Activo", est.getNumero_identificacion(), est.getTipo_identificacion(), null, null, null );
-        Servicios.getInstance().InsertarUsuario(s);
+    public void aprobarEst(){
+        Usuario sa= new Usuario(String.valueOf(est.getNumero_identificacion()),String.valueOf( est.getNumero_identificacion()), "Estudiante", "Activo", est.getNumero_identificacion(), est.getTipo_identificacion(), null, null, null );
+        Servicios.getInstance().InsertarUsuario(sa);
         Servicios.getInstance().ModificarSolicitud("OK",est.getNumero_identificacion(),est.getTipo_identificacion());
         //Enviar Correo indicando usuario y contraseña
     }
     
-    public void rechazar(){}
+    public void rechazarEst(){
+        Servicios.getInstance().ModificarSolicitud("NOOK",est.getNumero_identificacion(),est.getTipo_identificacion());
+        enviarCorreo(this.respuestaSolicitud,est.getCorreo().get(0).getCorreo());
+        this.respuestaSolicitud="";
+    }
+    
+     public void aprobarEgr(){
+        Usuario s= new Usuario(String.valueOf(egr.getCedula()),String.valueOf( egr.getCedula()), "Egresado", "Inactivo", egr.getCedula(), egr.getCedula_tipo(), null, null, null );
+        Servicios.getInstance().InsertarUsuario(s);
+        Servicios.getInstance().ModificarSolicitud("OK",egr.getCedula(),egr.getCedula_tipo());
+        //Enviar Correo indicando usuario y contraseña
+    }
+    
+    public void rechazarEgr(){
+        Servicios.getInstance().ModificarSolicitud("NOOK",egr.getCedula(),egr.getCedula_tipo());
+        enviarCorreo(this.respuestaSolicitud,egr.getCorreo().get(0).getCorreo());
+        this.respuestaSolicitud="";
+
+    }
+    
     
     public void setRespuestaSolicitud(String respuesta){
         this.respuestaSolicitud = respuesta;
@@ -159,10 +177,12 @@ private String respuestaSolicitud;
         return this.respuestaSolicitud;
     }
     
-    public void enviarCorreo(){
+    public void enviarCorreo(String mensaje,String correo){
         Correo correo1 = new Correo();
-        correo1.setMessage(this.respuestaSolicitud);
-        //correo1.setTo(est.getCorreo().get(0));
-        correo1.enviarCorreo();  
+        correo1.setMessage(mensaje);
+        correo1.setTo(correo);
+        correo1.enviarCorreo(); 
+        
+        
     }
 }

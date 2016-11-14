@@ -51,12 +51,6 @@
                                     <h:outputText value="Nombre y Apellido: *" />
                                     <p:inputText  label="Nombre y Apellido" required="true" value="#{beanEgresado.nombre}"/>
 
-                                    <h:outputText value="Direccion: *" />
-                                    <p:inputText   label="Direccion" required="true" value="#{beanEgresado.direccion_vivienda}"/>
-
-                                    <h:outputText value="Telefono fijo: " />
-                                    <p:inputText   label="Telefono" value="#{beanEgresado.telefono_fijo}"/>
-
                                     <h:outputText value="Documento: *" />
                                     <p:inputText label="Documento" required="true" value="#{beanEgresado.cedula}"/>
 
@@ -65,6 +59,12 @@
                                         <f:selectItem itemLabel="CC" itemValue="CC" />
                                         <f:selectItem itemLabel="CE" itemValue="CE" />
                                     </p:selectOneMenu>
+                                    
+                                    <h:outputText value="Direccion: *" />
+                                    <p:inputText   label="Direccion" required="true" value="#{beanEgresado.direccion_vivienda}"/>
+
+                                    <h:outputText value="Telefono fijo: " />
+                                    <p:inputText   label="Telefono" value="#{beanEgresado.telefono_fijo}"/>
 
                                     <h:outputText value="Correo: *" />
                                     <p:inputText label="Correo" required="true" value="#{beanEgresado.email}"/>

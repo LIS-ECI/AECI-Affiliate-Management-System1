@@ -36,7 +36,7 @@
         <result property='direccionEmpresa' column = 'direccion_empresa'/>
         <result property='telefono_oficina' column = 'telefono_oficina'/>
         <result property='telefono_fijo' column = 'telefono_fijo'/>
-        <result property='cedula' column = 'celular'/>
+        <result property='celular' column = 'celular'/>
         <result property='programa' column = 'Programas_nombre'/>
         <collection property='correo' ofType='CorreoPersonal' columnPrefix="correo_" resultMap='CorreoPersonalResult' ></collection> 
     </resultMap>
@@ -82,10 +82,11 @@
     <insert parameterType="map" id="InsertarUsuario" >    
         insert into Usuario values(#{u.nombre},#{u.clave},#{u.tipo},#{u.estado},#{u.cedula_numero},#{u.cedula_tipo})
     </insert>
-    <update  parameterType="map" id="ModificarSolicitud" >    
-        UPDATE Solicitud
-        SET aprobado = #{u}
-        WHERE Cedula_Numero =10 and Cedula_Tipo="CE"  
+    
+    <update parameterType="map" id="ModificarSolicitud" >    
+        update Solicitud
+        set aprobado=#{u}
+        where Cedula_Numero=#{ced} and Cedula_Tipo=#{tic} 
     </update>
    
     <insert parameterType="map" id="insertarIdentificacion" >    

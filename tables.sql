@@ -92,8 +92,6 @@ CREATE TABLE Usuario (
     estado varchar(10) NOT NULL,
     identificacion bigint NOT NULL,
     tipo_identificacion varchar(2) NOT NULL,
-    UNIQUE INDEX Usuario_Cedula_Numero (identificacion),
-    UNIQUE INDEX Usuario_ak_2 (tipo_identificacion),
     CONSTRAINT Usuario_pk PRIMARY KEY (nombre)
 )ENGINE = InnoDB;
 

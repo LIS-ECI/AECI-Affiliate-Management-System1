@@ -23,18 +23,6 @@ public class Usuario {
     private List<Servicio> servicios_usados;
     private List<Pago> pagos;
 
-    /**
-     *
-     * @param nombre
-     * @param clave
-     * @param tipo
-     * @param estado
-     * @param cedula_numero
-     * @param cedula_tipo
-     * @param observacion
-     * @param servicio
-     * @param pago
-     */
     public Usuario(String nombre, String clave, String tipo, String estado, long cedula_numero, String cedula_tipo, Observacion observacion, Servicio servicio, Pago pago ) {
         this.nombre = nombre;
         this.clave = clave;

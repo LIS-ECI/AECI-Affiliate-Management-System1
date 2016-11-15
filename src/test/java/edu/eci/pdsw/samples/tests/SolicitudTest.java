@@ -44,18 +44,13 @@ public class SolicitudTest {
     public void clearDB() throws SQLException {
         Connection conn = DriverManager.getConnection("jdbc:h2:file:./target/db/testdb;MODE=MYSQL", "anonymous", "");
         Statement stmt = conn.createStatement();
-        stmt.execute("delete from CONSULTAS");
-        stmt.execute("delete from PACIENTES");
+        
         
         conn.commit();
         conn.close();
     }
 
-    /**
-     * Obtiene una conexion a la base de datos de prueba
-     * @return
-     * @throws SQLException 
-     */
+    
     private Connection getConnection() throws SQLException{
         return DriverManager.getConnection("jdbc:h2:file:./target/db/testdb;MODE=MYSQL", "anonymous", "");        
     }
@@ -67,10 +62,7 @@ public class SolicitudTest {
         Connection conn=getConnection();
         Statement stmt=conn.createStatement();  
         
-        /**
-         * Comprobar si la funcionalidad de agregar solicitudes esta funcionando
-         * 
-         */
+        
         
         stmt.execute("INSERT INTO `Identificacion` (`Numero`, `Tipo`) VALUES (9876,'CC')");
         stmt.execute("INSERT INTO `Solicitud` (`fecha`, `Cedula_Numero`, `Cedula_Tipo`, `tipo`, `aprobado`) VALUES ('2001-01-01 00:00:00',9876,'CC','Estudiante','OK')"); 

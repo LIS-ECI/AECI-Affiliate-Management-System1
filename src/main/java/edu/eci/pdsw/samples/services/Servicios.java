@@ -31,13 +31,7 @@ public abstract class Servicios {
         return instance;
     }
 
-    /**
-     * Dado un identificador, consulta una entrada a foro especifica
-     * @param id identificador de la entrada al foro
-     * @return la entrada al foro
-     * @throws ExcepcionServiciosForos si el identificador no corresponde a 
-     * un entrada a foro existente
-     */
+
     public abstract Estudiante consultarEstudiante(long identificacion, String tipo_identificacion) throws PersistenceException;
 
     public abstract Egresado consultarEgresado(long identificacion, String tipo_identificacion) throws PersistenceException;

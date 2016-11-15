@@ -43,7 +43,7 @@ private Estudiante est;
 private Egresado egr;
 private Solicitud s;  
 private String correos="";
-private String pagina="index";
+private String pagina="solicitud";
 private String respuestaSolicitud;
 
 
@@ -98,8 +98,9 @@ private String respuestaSolicitud;
     }
     
     public String getPagina() {
+        if (!(s == null)){
         correos="";
-        this.pagina = "detallesEstudiante";
+        
         if (s.getTipo().equals("Estudiante")) {
             this.est = Servicios.getInstance().consultarEstudiante(s.getCedula(), s.getTipo_cedula());
             this.pagina = "detallesEstudiante";
@@ -115,7 +116,7 @@ private String respuestaSolicitud;
                 correos+="      "+egr.getCorreo().get(i).getCorreo();
             }
         }
-
+        }
         return pagina;
     }
 

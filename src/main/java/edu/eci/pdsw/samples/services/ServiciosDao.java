@@ -29,10 +29,10 @@ public class ServiciosDao extends Servicios {
     Properties properties;
     DaoFactory daof;
 
-    public ServiciosDao() {
+    public ServiciosDao(String base) {
 
         try {
-            properties = new PropertiesLoader().readProperties("applicationconfig.properties");
+            properties = new PropertiesLoader().readProperties(base);
         } catch (IOException ex) {
             Logger.getLogger(ServiciosDao.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -45,7 +45,7 @@ public class ServiciosDao extends Servicios {
     }
 
     @Override
-    public List<Solicitud> consultarSolicitud() {
+    public List<Solicitud> consultarSolicitud() throws PersistenceException {
         List<Solicitud> a=daof.getDaoSolicitud().consultarSolicitud();
         try {
             daof.commitTransaction();
@@ -59,7 +59,7 @@ public class ServiciosDao extends Servicios {
    
 
     @Override
-    public void enviarSolicitudEgresado(Egresado egr, Solicitud sol) {
+    public void enviarSolicitudEgresado(Egresado egr, Solicitud sol)  throws PersistenceException{
 
       try {
             daof.getDaoSolicitud().enviarSolicitudEgresado(egr, sol);
@@ -73,7 +73,7 @@ public class ServiciosDao extends Servicios {
     }
 
     @Override
-    public Estudiante consultarEstudiante(long identificacion, String tipo_identificacion) {
+    public Estudiante consultarEstudiante(long identificacion, String tipo_identificacion) throws PersistenceException {
         
         Estudiante e=daof.getDaoSolicitud().consultarEstudiante(identificacion, tipo_identificacion);
         try {
@@ -87,7 +87,7 @@ public class ServiciosDao extends Servicios {
     }
 
     @Override
-    public Egresado consultarEgresado(long identificacion, String tipo_identificacion) {
+    public Egresado consultarEgresado(long identificacion, String tipo_identificacion) throws PersistenceException{
         
         Egresado e=daof.getDaoSolicitud().consultarEgresado(identificacion, tipo_identificacion);
         try {   
@@ -100,7 +100,7 @@ public class ServiciosDao extends Servicios {
     }
 
     @Override
-    public void InsertarUsuario(Usuario u) {
+    public void InsertarUsuario(Usuario u) throws PersistenceException{
         
         try {
             daof.getDaoSolicitud().InsertarUsuario(u);
@@ -113,7 +113,7 @@ public class ServiciosDao extends Servicios {
 
 
     @Override
-    public void ModificarSolicitud(String u, long ced, String tic) {
+    public void ModificarSolicitud(String u, long ced, String tic) throws PersistenceException{
         try {
             daof.getDaoSolicitud().ModificarSolicitud(u,ced,tic);
             daof.commitTransaction();
@@ -126,7 +126,7 @@ public class ServiciosDao extends Servicios {
 
 
     @Override
-    public void enviarSolicitudEstudiante(Estudiante est, Solicitud sol) {
+    public void enviarSolicitudEstudiante(Estudiante est, Solicitud sol) throws PersistenceException{
         try {
             daof.getDaoSolicitud().enviarSolicitudEstudiante(est, sol);
             daof.commitTransaction();

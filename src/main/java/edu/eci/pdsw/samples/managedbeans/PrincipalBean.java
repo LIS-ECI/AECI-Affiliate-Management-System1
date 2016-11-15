@@ -5,18 +5,31 @@
  */
 package edu.eci.pdsw.samples.managedbeans;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
+import java.util.ArrayList;
+import java.util.List;
+import javax.annotation.PostConstruct;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 /**
  *
  * @author 2107641
  */
-public class PrincipalBean {
+@ManagedBean(name="beanIndex")
+
+@SessionScoped
+public class PrincipalBean implements Serializable {
 
     private String usuario;
     private String clave;
-    private List<String> images;
+   
+     
+    
+ 
+    
     
     public String getUsuario() {
         return usuario;
@@ -33,17 +46,7 @@ public class PrincipalBean {
     public void setClave(String clave) {
         this.clave = clave;
     }
-    @PostConstruct
-    public void Cargar(){
-        images = new ArrayList<String>();
-        for (int i = 1; i <= 3; i++) {
-            images.add("imagen"+ i +".jpg");
-        }
-    }
     
-    public List<String> getIMages(){
-        return images;
-        
-    }
 
 }
+

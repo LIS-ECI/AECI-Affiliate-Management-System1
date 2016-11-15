@@ -20,11 +20,11 @@ import edu.eci.pdsw.samples.entities.Egresado;
 import edu.eci.pdsw.samples.entities.Estudiante;
 import edu.eci.pdsw.samples.entities.Solicitud;
 import edu.eci.pdsw.samples.entities.Usuario;
-import edu.eci.pdsw.samples.persistence.mybatisimpl.mappers.EstudianteMapper;
+
 import org.apache.ibatis.session.SqlSession;
 import edu.eci.pdsw.samples.persistence.DaoSolicitud;
 import edu.eci.pdsw.samples.persistence.PersistenceException;
-import edu.eci.pdsw.samples.persistence.mybatisimpl.mappers.EgresadoMapper;
+
 import edu.eci.pdsw.samples.persistence.mybatisimpl.mappers.SolicitudMapper;
 import java.util.List;
 
@@ -41,32 +41,32 @@ public class MyBatisDAOSolicitud implements DaoSolicitud {
     }
 
     @Override
-    public List<Solicitud> consultarSolicitud() {
+    public List<Solicitud> consultarSolicitud() throws PersistenceException {
         SolicitudMapper somap = currentSession.getMapper(SolicitudMapper.class);
         return somap.consultarSolicitud();
     }
 
    
     @Override
-    public Estudiante consultarEstudiante(long identificacion, String tipo_identificacion) {
+    public Estudiante consultarEstudiante(long identificacion, String tipo_identificacion) throws PersistenceException{
         SolicitudMapper somap = currentSession.getMapper(SolicitudMapper.class);
         return somap.consultarEstudiante(identificacion,tipo_identificacion);
     }
 
     @Override
-    public void InsertarUsuario(Usuario u) {
+    public void InsertarUsuario(Usuario u) throws PersistenceException{
         SolicitudMapper somap = currentSession.getMapper(SolicitudMapper.class);
         somap.InsertarUsuario(u);
     }
 
     @Override
-    public void ModificarSolicitud(String u, long ced, String tic) {
+    public void ModificarSolicitud(String u, long ced, String tic) throws PersistenceException{
         SolicitudMapper somap = currentSession.getMapper(SolicitudMapper.class);
         somap.ModificarSolicitud(u,ced,tic);
     }
 
     @Override
-    public void enviarSolicitudEstudiante(Estudiante est, Solicitud sol) {
+    public void enviarSolicitudEstudiante(Estudiante est, Solicitud sol) throws PersistenceException{
         SolicitudMapper somap = currentSession.getMapper(SolicitudMapper.class);
         somap.insertarIdentificacion(est.getNumero_identificacion(), est.getTipo_identificacion());
         somap.insertarDatosEstudiante(est);
@@ -78,9 +78,8 @@ public class MyBatisDAOSolicitud implements DaoSolicitud {
     }
 
     @Override
-    public void enviarSolicitudEgresado(Egresado egr, Solicitud sol) {
+    public void enviarSolicitudEgresado(Egresado egr, Solicitud sol) throws PersistenceException{
         SolicitudMapper somap = currentSession.getMapper(SolicitudMapper.class);
-        System.out.println(egr.getCedula()+ egr.getCedula_tipo());
         somap.insertarIdentificacion(egr.getCedula(), egr.getCedula_tipo());
         somap.insertarDatosEgresado(egr);
         somap.insertarSolicitud(sol);
@@ -90,7 +89,7 @@ public class MyBatisDAOSolicitud implements DaoSolicitud {
     }
 
     @Override
-    public Egresado consultarEgresado(long identificacion, String tipo_identificacion) {
+    public Egresado consultarEgresado(long identificacion, String tipo_identificacion) throws PersistenceException {
         SolicitudMapper somap = currentSession.getMapper(SolicitudMapper.class);
         return somap.consultarEgresado(identificacion,tipo_identificacion);
     }

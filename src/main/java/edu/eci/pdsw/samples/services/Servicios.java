@@ -9,6 +9,7 @@ import edu.eci.pdsw.samples.entities.Egresado;
 import edu.eci.pdsw.samples.entities.Estudiante;
 import edu.eci.pdsw.samples.entities.Solicitud;
 import edu.eci.pdsw.samples.entities.Usuario;
+import edu.eci.pdsw.samples.persistence.PersistenceException;
 import java.util.List;
 import java.util.Set;
 
@@ -19,30 +20,36 @@ import java.util.Set;
  * @author 2107641
  */
 public abstract class Servicios {
-    
-    private static Servicios instance=new ServiciosDao();
-    
+    private static Servicios instance;
     
     protected Servicios(){        
 
     }
     
-    public static Servicios getInstance() throws RuntimeException{            
+    public static Servicios getInstance(String base) throws RuntimeException{    
+        instance = new ServiciosDao(base);        
         return instance;
     }
 
-    public abstract Estudiante consultarEstudiante(long identificacion, String tipo_identificacion);
+    /**
+     * Dado un identificador, consulta una entrada a foro especifica
+     * @param id identificador de la entrada al foro
+     * @return la entrada al foro
+     * @throws ExcepcionServiciosForos si el identificador no corresponde a 
+     * un entrada a foro existente
+     */
+    public abstract Estudiante consultarEstudiante(long identificacion, String tipo_identificacion) throws PersistenceException;
 
-    public abstract Egresado consultarEgresado(long identificacion, String tipo_identificacion);
+    public abstract Egresado consultarEgresado(long identificacion, String tipo_identificacion) throws PersistenceException;
 
-    public abstract List<Solicitud> consultarSolicitud();
+    public abstract List<Solicitud> consultarSolicitud() throws PersistenceException;
 
-    public abstract void enviarSolicitudEstudiante(Estudiante est,Solicitud sol);
+    public abstract void enviarSolicitudEstudiante(Estudiante est,Solicitud sol) throws PersistenceException;
 
-    public abstract void enviarSolicitudEgresado(Egresado egr, Solicitud sol);
+    public abstract void enviarSolicitudEgresado(Egresado egr, Solicitud sol) throws PersistenceException;
 
-    public abstract void InsertarUsuario(Usuario u);
+    public abstract void InsertarUsuario(Usuario u) throws PersistenceException;
 
-    public abstract void ModificarSolicitud(String u, long ced, String tic);
+    public abstract void ModificarSolicitud(String u, long ced, String tic) throws PersistenceException;
 
 }

@@ -8,6 +8,7 @@ package edu.eci.pdsw.samples.managedbeans;
 import edu.eci.pdsw.samples.entities.CorreoPersonal;
 import edu.eci.pdsw.samples.entities.Estudiante;
 import edu.eci.pdsw.samples.entities.Solicitud;
+import edu.eci.pdsw.samples.persistence.PersistenceException;
 import edu.eci.pdsw.samples.services.Servicios;
 import java.sql.Date;
 import java.util.logging.Level;
@@ -41,6 +42,7 @@ public class EstudianteBean  implements Serializable{
     private int max=10;
     private String correo;
     private String enter;
+    private String base="applicationconfig.properties";
 
     public int getMin() {
         if (carrera.equals("Matematicas") | carrera.equals("Administracion") | carrera.equals("Economia") | carrera.equals("Ingenieria Biomedica")){
@@ -170,14 +172,14 @@ public class EstudianteBean  implements Serializable{
         this.celular = celular;
     }
     
-     public void enviarSolicitud (){
+     public void enviarSolicitud () throws PersistenceException{
         CorreoPersonal cp = new CorreoPersonal(correo,numero_identificacion,tipo_identificacion);
         List<CorreoPersonal> lisc = new ArrayList<>();
         lisc.add(cp);
         Estudiante est = new Estudiante(codigo, numero_identificacion,  nombre, semestre, tipo_identificacion, carrera, telefono_fijo, celular,  lisc, direccion );
         Date fecha = new java.sql.Date(java.util.Calendar.getInstance().getTime().getTime());
         Solicitud sol = new Solicitud(fecha,(int)est.getNumero_identificacion(), est.getTipo_identificacion(),"Estudiante","Pend");
-        Servicios.getInstance().enviarSolicitudEstudiante(est,sol);
+        Servicios.getInstance(base).enviarSolicitudEstudiante(est,sol);
         this.carrera="";
         this.celular=0;
         this.codigo=0;

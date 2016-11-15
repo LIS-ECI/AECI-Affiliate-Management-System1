@@ -8,6 +8,7 @@ package edu.eci.pdsw.samples.managedbeans;
 import edu.eci.pdsw.samples.entities.CorreoPersonal;
 import edu.eci.pdsw.samples.entities.Egresado;
 import edu.eci.pdsw.samples.entities.Solicitud;
+import edu.eci.pdsw.samples.persistence.PersistenceException;
 import edu.eci.pdsw.samples.services.ExcepcionServicios;
 import edu.eci.pdsw.samples.services.Servicios;
 import java.io.Serializable;
@@ -45,6 +46,7 @@ public class EgresadoBean  implements Serializable{
     private int telefono_fijo;
     private long celular;
     private String email;
+    private String base="applicationconfig.properties";
     //base de datos
 
     public String getEmail() {
@@ -163,7 +165,7 @@ public class EgresadoBean  implements Serializable{
         this.celular = celular;
     }
     
-    public void enviarSolicitud (){
+    public void enviarSolicitud () throws PersistenceException{
         if( this.nombreEmpresa.equals("")){
             this.nombreEmpresa="No Disponible";
         }
@@ -179,7 +181,7 @@ public class EgresadoBean  implements Serializable{
         Egresado egr = new Egresado(cedula, tipo_identificacion, nombre, fecha_grado, periodo_grado, cargo, carrera, direccion_vivienda, nombreEmpresa, direccion_empresa, telefono_oficina, telefono_fijo, celular, lisc);
         java.sql.Date fecha = new java.sql.Date(java.util.Calendar.getInstance().getTime().getTime());
         Solicitud sol = new Solicitud(fecha,egr.getCedula(), egr.getCedula_tipo(),"Egresado","Pend");
-        Servicios.getInstance().enviarSolicitudEgresado(egr,sol);
+        Servicios.getInstance(base).enviarSolicitudEgresado(egr,sol);
         this.nombreEmpresa="";
         this.direccion_empresa="";
         this.cargo="";

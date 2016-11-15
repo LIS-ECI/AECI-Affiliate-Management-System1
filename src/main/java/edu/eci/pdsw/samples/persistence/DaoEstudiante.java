@@ -28,8 +28,6 @@ import edu.eci.pdsw.samples.entities.Solicitud;
 public interface DaoEstudiante {
 
     
-    public Estudiante load(String email) throws PersistenceException;
-    
 
     
 }

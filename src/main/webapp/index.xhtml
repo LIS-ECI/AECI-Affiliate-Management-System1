@@ -36,17 +36,22 @@
 
                     <h:panelGrid columns="2" cellpadding="5">
                         
-                        <p:commandButton value="Ingresar " oncomplete="PF('campoEntradaDatos').show()" />
+                        <p:commandButton id="a1" value="Ingresar " oncomplete="PF('campoEntradaDatos').show()" />
                         
                         <p:dialog header="Ingresa tus datos" widgetVar="campoEntradaDatos" modal="true" showEffect="fade" hideEffect="fade" resizable="false" width="400">
                         <p:outputPanel id="inputQuantity" style="text-align:center;">
                             <h:panelGrid columns="2" cellpadding="1" styleClass="ui-grid">
                         
                         <p:outputLabel value="Usuario:   "  />
-                        <p:inputText />
+                        <p:inputText id="username"  value="#{loginBean.username}"/>
                         
                         <h:outputText value="Contraseña:  " />
-                        <p:password id="nonFeedback" />
+                        <p:password id="password" value="#{loginBean.password}"/>
+                        
+                        <h:outputText value="Remember me:"/>
+                        <p:selectBooleanCheckbox id="rememberMe" value="#{loginBean.rememberMe}"/>
+                        
+                        
                         <p:growl id="growl" life="2000" />
                        
                         
@@ -54,9 +59,9 @@
                             <h:outputText value="Olvide mi contraseña" />
                         </p:commandLink>
                         
-                        
+                        <p:commandButton id="ingresar2" value="Ingresar2" action="#{loginBean.doLogin}" />
                         </h:panelGrid>
-                        <p:commandButton value="Ingresar" id="ajax" styleClass="ui-priority-primary" />
+                        
                         
 
                             

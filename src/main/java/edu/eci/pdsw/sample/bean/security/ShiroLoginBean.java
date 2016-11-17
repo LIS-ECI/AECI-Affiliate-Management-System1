@@ -24,8 +24,8 @@ import javax.faces.bean.ManagedBean;
 public class ShiroLoginBean implements Serializable {
     private static final Logger log = LoggerFactory.getLogger(ShiroLoginBean.class);
 
-    private String username;
-    private String password;
+    private String username="";
+    private String password="";
     private Boolean rememberMe;
 
     public ShiroLoginBean() {
@@ -43,12 +43,12 @@ public class ShiroLoginBean implements Serializable {
         Subject subject = SecurityUtils.getSubject();
 
         UsernamePasswordToken token = new UsernamePasswordToken(getUsername(), getPassword(), getRememberMe());
-
+        System.out.println(token.toString());
         try {
             subject.login(token);
 
             if (subject.hasRole("admin")) {
-                FacesContext.getCurrentInstance().getExternalContext().redirect("restricted/index.xhtml");
+                FacesContext.getCurrentInstance().getExternalContext().redirect("admin/solicitud.xhtml");
             }
             else if(subject.hasRole("employee")){
                 FacesContext.getCurrentInstance().getExternalContext().redirect("employees/index.xhtml");

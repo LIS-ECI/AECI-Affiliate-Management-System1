@@ -9,7 +9,7 @@ import java.util.Date;
 
 /**
  *
- * @author 2106088
+ * @author Grupo 3 Pdsw
  */
 public class Solicitud {
 
@@ -19,6 +19,14 @@ public class Solicitud {
     private String tipo;
     private String estado; 
 
+    /**
+    * Constructor Clase Correo
+     * @param fecha
+     * @param cedula
+     * @param tipo_cedula
+     * @param tipo
+     * @param estado
+    */
     public Solicitud(java.sql.Date  fecha, long cedula, String tipo_cedula, String tipo,String estado) {
         this.fecha = fecha;
         this.cedula = cedula;

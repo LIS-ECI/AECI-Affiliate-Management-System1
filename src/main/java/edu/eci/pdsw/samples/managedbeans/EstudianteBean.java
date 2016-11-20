@@ -22,7 +22,7 @@ import java.util.List;
 
 /**
  *
- * @author 21
+ * @author Grupo 3 Pdsw
  */
 @ManagedBean(name="beanEstudiante")
 
@@ -172,6 +172,9 @@ public class EstudianteBean  implements Serializable{
         this.celular = celular;
     }
     
+    /**
+    * Metodo enviarSolicitudEstudiante
+    */
      public void enviarSolicitud () throws PersistenceException{
         CorreoPersonal cp = new CorreoPersonal(correo,numero_identificacion,tipo_identificacion);
         List<CorreoPersonal> lisc = new ArrayList<>();

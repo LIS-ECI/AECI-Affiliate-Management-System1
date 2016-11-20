@@ -27,7 +27,7 @@ import javax.faces.bean.SessionScoped;
 
 /**
  *
- * @author 2103216
+ * @author Grupo 3 Pdsw
  */
 
 /* Intento Commit con correccion de autor */
@@ -42,7 +42,7 @@ private String clave;
 private Date fecha;
 private Estudiante est;
 private Egresado egr;
-private Solicitud s;  
+private Solicitud soli;  
 private String correos="";
 private String pagina="solicitud";
 private String respuestaSolicitud;
@@ -51,7 +51,11 @@ private String base="applicationconfig.properties";
 
     public SolicitudesBean(){}
 
-   
+   /**
+    * Metodo de obtener solicitudes
+     * @return lista de solicitudes
+     * @throws edu.eci.pdsw.samples.persistence.PersistenceException 
+    */
     public List<Solicitud> getSolicitudes() throws PersistenceException {
         List<Solicitud> a=Servicios.getInstance(base).consultarSolicitud();
         return a;
@@ -59,12 +63,12 @@ private String base="applicationconfig.properties";
     }
     
     
-    public Solicitud getS() {
-        return s;
+    public Solicitud getSoli() {
+        return soli;
     }
 
-    public void setS(Solicitud s) {
-        this.s = s;
+    public void setSoli(Solicitud soli) {
+        this.soli = soli;
     }
 
 
@@ -100,18 +104,18 @@ private String base="applicationconfig.properties";
     }
     
     public String getPagina() throws PersistenceException {
-        if (!(s == null)){
+        if (!(soli == null)){
         correos="";
         
-        if (s.getTipo().equals("Estudiante")) {
-            this.est = Servicios.getInstance(base).consultarEstudiante(s.getCedula(), s.getTipo_cedula());
+        if (soli.getTipo().equals("Estudiante")) {
+            this.est = Servicios.getInstance(base).consultarEstudiante(soli.getCedula(), soli.getTipo_cedula());
             this.pagina = "detallesEstudiante";
             for (int i=0;i<est.getCorreo().size();i++){
                 correos+="      "+est.getCorreo().get(i).getCorreo();
             }
         }
         else{
-            this.egr = Servicios.getInstance(base).consultarEgresado(s.getCedula(), s.getTipo_cedula());
+            this.egr = Servicios.getInstance(base).consultarEgresado(soli.getCedula(), soli.getTipo_cedula());
             this.pagina = "detallesEgresado";
             for (int i=0;i<egr.getCorreo().size();i++){
                 correos+="      "+egr.getCorreo().get(i).getCorreo();

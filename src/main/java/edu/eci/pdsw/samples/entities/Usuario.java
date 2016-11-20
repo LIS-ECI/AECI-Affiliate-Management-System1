@@ -10,7 +10,7 @@ import java.util.List;
 
 /**
  *
- * @author 2089340
+ * @author Grupo 3 Pdsw
  */
 public class Usuario {
     private String nombre;
@@ -23,6 +23,18 @@ public class Usuario {
     private List<Servicio> servicios_usados;
     private List<Pago> pagos;
 
+    /**
+    * Constructor Clase Correo
+     * @param nombre
+     * @param clave
+     * @param tipo
+     * @param estado
+     * @param observacion
+     * @param cedula_numero
+     * @param servicio
+     * @param cedula_tipo
+     * @param pago
+    */
     public Usuario(String nombre, String clave, String tipo, String estado, long cedula_numero, String cedula_tipo, Observacion observacion, Servicio servicio, Pago pago ) {
         this.nombre = nombre;
         this.clave = clave;

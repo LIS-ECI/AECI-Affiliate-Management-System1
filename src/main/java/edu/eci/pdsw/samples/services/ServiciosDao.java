@@ -21,7 +21,7 @@ import org.apache.ibatis.session.SqlSession;
 
 /**
  *
- * @author 2106088
+ * @author Grupo 3 Pdsw
  */
 public class ServiciosDao extends Servicios {
 
@@ -37,17 +37,16 @@ public class ServiciosDao extends Servicios {
             Logger.getLogger(ServiciosDao.class.getName()).log(Level.SEVERE, null, ex);
         }
         daof = DaoFactory.getInstance(properties);
-        try {
-            daof.beginSession();
-        } catch (PersistenceException ex) {
-            Logger.getLogger(ServiciosDao.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
     }
 
     @Override
     public List<Solicitud> consultarSolicitud() throws PersistenceException {
-        List<Solicitud> a=daof.getDaoSolicitud().consultarSolicitud();
+        
+        List<Solicitud> a=null;
         try {
+            daof.beginSession();
+            a = daof.getDaoSolicitud().consultarSolicitud();
             daof.commitTransaction();
         } catch (PersistenceException ex) {
             Logger.getLogger(ServiciosDao.class.getName()).log(Level.SEVERE, null, ex);
@@ -62,6 +61,7 @@ public class ServiciosDao extends Servicios {
     public void enviarSolicitudEgresado(Egresado egr, Solicitud sol)  throws PersistenceException{
 
       try {
+            daof.beginSession();
             daof.getDaoSolicitud().enviarSolicitudEgresado(egr, sol);
             daof.commitTransaction();
         } catch (PersistenceException ex) {
@@ -75,8 +75,10 @@ public class ServiciosDao extends Servicios {
     @Override
     public Estudiante consultarEstudiante(long identificacion, String tipo_identificacion) throws PersistenceException {
         
-        Estudiante e=daof.getDaoSolicitud().consultarEstudiante(identificacion, tipo_identificacion);
+        Estudiante e= null;
         try {
+             daof.beginSession();
+             e=daof.getDaoSolicitud().consultarEstudiante(identificacion, tipo_identificacion);
             daof.commitTransaction();
         } catch (PersistenceException ex) {
             Logger.getLogger(ServiciosDao.class.getName()).log(Level.SEVERE, null, ex);
@@ -89,8 +91,10 @@ public class ServiciosDao extends Servicios {
     @Override
     public Egresado consultarEgresado(long identificacion, String tipo_identificacion) throws PersistenceException{
         
-        Egresado e=daof.getDaoSolicitud().consultarEgresado(identificacion, tipo_identificacion);
+        Egresado e=null;
         try {   
+            daof.beginSession();
+            e=daof.getDaoSolicitud().consultarEgresado(identificacion, tipo_identificacion);
             daof.commitTransaction();
         } catch (PersistenceException ex) {
             Logger.getLogger(ServiciosDao.class.getName()).log(Level.SEVERE, null, ex);
@@ -103,6 +107,7 @@ public class ServiciosDao extends Servicios {
     public void InsertarUsuario(Usuario u) throws PersistenceException{
         
         try {
+            daof.beginSession();
             daof.getDaoSolicitud().InsertarUsuario(u);
             daof.commitTransaction();
         } catch (PersistenceException ex) {
@@ -115,6 +120,7 @@ public class ServiciosDao extends Servicios {
     @Override
     public void ModificarSolicitud(String u, long ced, String tic) throws PersistenceException{
         try {
+            daof.beginSession();
             daof.getDaoSolicitud().ModificarSolicitud(u,ced,tic);
             daof.commitTransaction();
         } catch (PersistenceException ex) {
@@ -128,6 +134,7 @@ public class ServiciosDao extends Servicios {
     @Override
     public void enviarSolicitudEstudiante(Estudiante est, Solicitud sol) throws PersistenceException{
         try {
+            daof.beginSession();
             daof.getDaoSolicitud().enviarSolicitudEstudiante(est, sol);
             daof.commitTransaction();
         } catch (PersistenceException ex) {

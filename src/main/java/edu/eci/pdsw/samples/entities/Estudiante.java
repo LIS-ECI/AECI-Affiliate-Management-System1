@@ -10,7 +10,7 @@ import java.util.List;
 
 /**
  *
- * @author 2107641
+ * @author  Grupo 3 Pdsw
  */
 public class Estudiante {
 
@@ -108,6 +108,19 @@ public class Estudiante {
         this.correo=correo;
     }
 
+     /**
+    * Constructor Clase Egresado
+     * @param codigo
+     * @param numero_identificacion
+     * @param nombre
+     * @param semestre
+     * @param tipo_identificacion
+     * @param carrera
+     * @param telefono_fijo
+     * @param celular
+     * @param direccion
+     * @param correo
+    */
     public Estudiante(int codigo, long numero_identificacion, String nombre, int semestre, String tipo_identificacion, String carrera, int telefono_fijo, long celular, List<CorreoPersonal> correo, String direccion) {
         this.codigo = codigo;
         this.numero_identificacion = numero_identificacion;

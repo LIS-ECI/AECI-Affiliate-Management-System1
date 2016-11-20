@@ -17,7 +17,7 @@ import java.util.Set;
 
 /**
  *
- * @author 2107641
+ * @author Grupo 3 Pdsw
  */
 public abstract class Servicios {
     private static Servicios instance;
@@ -31,19 +31,61 @@ public abstract class Servicios {
         return instance;
     }
 
-
+    /**
+    * Metodo consultar Estudiante
+     * @param identificacion
+     * @param tipo_identificacion
+     * @return Estudiante con la identificacion ingresada por parametro
+     * @throws edu.eci.pdsw.samples.persistence.PersistenceException
+    */
     public abstract Estudiante consultarEstudiante(long identificacion, String tipo_identificacion) throws PersistenceException;
 
+    /**
+    * Metodo consultar Egresado
+     * @param identificacion
+     * @param tipo_identificacion
+     * @return 
+     * @throws edu.eci.pdsw.samples.persistence.PersistenceException 
+    */
     public abstract Egresado consultarEgresado(long identificacion, String tipo_identificacion) throws PersistenceException;
 
+    /**
+    * Metodo consultar Solicitud
+     * @return 
+     * @throws edu.eci.pdsw.samples.persistence.PersistenceException 
+    */
     public abstract List<Solicitud> consultarSolicitud() throws PersistenceException;
 
+    /**
+    * Metodo enviar Solicitud Estudiante
+     * @param est
+     * @param sol
+     * @throws edu.eci.pdsw.samples.persistence.PersistenceException
+    */
     public abstract void enviarSolicitudEstudiante(Estudiante est,Solicitud sol) throws PersistenceException;
 
+    /**
+    * Metodo enviar Solicitud Egresado
+     * @param egr
+     * @param sol
+     * @throws edu.eci.pdsw.samples.persistence.PersistenceException
+    */
     public abstract void enviarSolicitudEgresado(Egresado egr, Solicitud sol) throws PersistenceException;
 
+    /**
+    * Metodo Insertar Usuario
+     * @param u
+     * @throws edu.eci.pdsw.samples.persistence.PersistenceException
+    */
     public abstract void InsertarUsuario(Usuario u) throws PersistenceException;
 
+    /**
+    * Metodo Modificar Solicitud
+     * @param u
+     * @param ced
+     * @param tic
+     * @throws edu.eci.pdsw.samples.persistence.PersistenceException
+    */
     public abstract void ModificarSolicitud(String u, long ced, String tic) throws PersistenceException;
 
 }

@@ -9,7 +9,7 @@ import java.util.List;
 
 /**
  *
- * @author 2089340
+ * @author  Grupo 3 Pdsw
  */
 public class Egresado {
     
@@ -28,6 +28,23 @@ public class Egresado {
     private long celular;
     private List<CorreoPersonal> correo;
 
+    /**
+    * Constructor Clase Egresado
+     * @param cedula
+     * @param cedula_tipo
+     * @param nombre
+     * @param fecha_grado
+     * @param periodo_grado
+     * @param cargo
+     * @param programa
+     * @param direccion_vivienda
+     * @param nombreEmpresa
+     * @param direccionEmpresa
+     * @param telefono_oficina
+     * @param telefono_fijo
+     * @param celular
+     * @param correo
+    */
     public Egresado(long cedula, String cedula_tipo, String nombre, int fecha_grado, int periodo_grado, String cargo, String programa, String direccion_vivienda, String nombreEmpresa, String direccionEmpresa, int telefono_oficina, int telefono_fijo, long celular, List<CorreoPersonal> correo) {
         this.cedula = cedula;
         this.cedula_tipo = cedula_tipo;

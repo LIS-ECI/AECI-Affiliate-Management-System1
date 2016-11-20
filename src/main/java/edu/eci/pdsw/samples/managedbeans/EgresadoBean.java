@@ -18,7 +18,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author 2106088
+ * @author Grupo 3 Pdsw
  */
 
 import javax.faces.bean.ManagedBean;
@@ -65,9 +65,6 @@ public class EgresadoBean  implements Serializable{
         this.cedula = cedula;
     }
     
-
-   
-
     public String getTipo_identificacion() {
         return tipo_identificacion;
     }
@@ -165,6 +162,12 @@ public class EgresadoBean  implements Serializable{
         this.celular = celular;
     }
     
+    /**
+    * Metodo enviarSolicitud egresado
+    * 
+     * @throws edu.eci.pdsw.samples.persistence.PersistenceException
+     * 
+    */
     public void enviarSolicitud () throws PersistenceException{
         if( this.nombreEmpresa.equals("")){
             this.nombreEmpresa="No Disponible";

@@ -16,7 +16,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 /**
  *
- * @author 2107641
+ * @author Grupo 3 Pdsw
  */
 @ManagedBean(name="beanIndex")
 

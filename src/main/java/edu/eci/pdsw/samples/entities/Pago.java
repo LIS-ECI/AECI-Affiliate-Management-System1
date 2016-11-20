@@ -9,7 +9,7 @@ import java.sql.Blob;
 
 /**
  *
- * @author 2089340
+ * @author  Grupo 3 Pdsw
  */
 public class Pago {
     
@@ -18,6 +18,13 @@ public class Pago {
     private Blob foto;
     private String validacion;
 
+    /**
+    * Constructor Clase Pago
+     * @param id_pago
+     * @param tipo
+     * @param validacion
+     * @param foto
+    */
     public Pago(int id_pago, String tipo, Blob foto, String validacion) {
         this.id_pago = id_pago;
         this.tipo = tipo;

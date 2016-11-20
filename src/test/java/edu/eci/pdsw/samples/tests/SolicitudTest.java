@@ -22,8 +22,8 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.junit.After;
-import org.junit.Assert;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -42,7 +42,7 @@ public class SolicitudTest {
 
     @After
     public void clearDB() throws SQLException {
-        Connection conn = DriverManager.getConnection("jdbc:h2:file:./target/db/testdb;MODE=MYSQL", "anonymous", "");
+        Connection conn = DriverManager.getConnection("jdbc:h2:file:./target/db/testdb;MODE=MYSQL", "an", "");
         Statement stmt = conn.createStatement();
         
         
@@ -52,10 +52,10 @@ public class SolicitudTest {
 
     
     private Connection getConnection() throws SQLException{
-        return DriverManager.getConnection("jdbc:h2:file:./target/db/testdb;MODE=MYSQL", "anonymous", "");        
+        return DriverManager.getConnection("jdbc:h2:file:./target/db/testdb;MODE=MYSQL","an", "");        
     }
     
-    //@Test
+    @Test
     public void pruebaCeroTest() throws SQLException {
         //Insertar datos en la base de datos de pruebas, de acuerdo con la clase
         //de equivalencia correspondiente
@@ -65,7 +65,7 @@ public class SolicitudTest {
         
         
         stmt.execute("INSERT INTO `Identificacion` (`Numero`, `Tipo`) VALUES (9876,'CC')");
-        stmt.execute("INSERT INTO `Solicitud` (`fecha`, `Cedula_Numero`, `Cedula_Tipo`, `tipo`, `aprobado`) VALUES ('2001-01-01 00:00:00',9876,'CC','Estudiante','OK')"); 
+        stmt.execute("INSERT INTO `Solicitud` (`fecha`, `Cedula_Numero`, `Cedula_Tipo`, `tipo`, `aprobado`) VALUES ('2001-01-01',9876,'CC','Estudiante','OK')"); 
         
         
         ResultSet rs=stmt.executeQuery("select count(*) from Solicitud");
@@ -94,7 +94,7 @@ public class SolicitudTest {
             List<Solicitud> ls = servicios.consultarSolicitud();
             assertEquals("No realizó la solicitud adecuadamente",ls.size(),resultado);
         } catch (PersistenceException ex) {
-            Logger.getLogger(SolicitudTest.class.getName()).log(Level.SEVERE, null, ex);
+            assertTrue("No se realizo adecuadamente la solicitud egresado",false);
         }
         
         

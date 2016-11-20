@@ -10,6 +10,7 @@
     <typeAlias type='edu.eci.pdsw.samples.entities.Estudiante' alias='Estudiante'/>
     <typeAlias type='edu.eci.pdsw.samples.entities.Egresado' alias='Egresado'/>
     <typeAlias type='edu.eci.pdsw.samples.entities.Solicitud' alias='Solicitud'/>
+    <typeAlias type='edu.eci.pdsw.samples.entities.CorreoPersonal' alias='CorreoPersonal'/>
     </typeAliases> 
                
     <environments default="development">
@@ -18,7 +19,7 @@
             <dataSource type="POOLED">
                 <property name="driver" value="org.h2.Driver" />
                 <property name="url" value="jdbc:h2:file:./target/db/testdb;MODE=MYSQL" />
-                <property name="username" value="anonymous" />
+                <property name="username" value="an" />
                 <property name="password" value="" />
             </dataSource>
         </environment>

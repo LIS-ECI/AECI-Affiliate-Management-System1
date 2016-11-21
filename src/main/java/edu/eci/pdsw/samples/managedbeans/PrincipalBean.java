@@ -46,6 +46,10 @@ public class PrincipalBean implements Serializable {
         this.usuario = usuario;
     }
 
+    /**
+ *
+ * Obtener la clave del usuario
+ */
     public String getClave() {
         return clave;
     }

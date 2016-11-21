@@ -23,15 +23,7 @@
         order by fecha
     </select>
     
-    
-    <resultMap type='Pago' id='PagoResult'>
-        <id property='id_pago' column='id_pago'/>
-        <result property='Usuario_nombre' column = 'Usuario_nombre'/>
-        <result property = 'tipo' column = 'Tipo' />
-        <result property='foto' column = 'foto'/>
-         <result property='validacion' column = 'validacion'/>
-        </resultMap>
-        
+
         
          <resultMap type='Observacion' id='ObservacionResult'>
         <id property='numero_observacion' column='numero_observacion'/>
@@ -39,6 +31,15 @@
         <result property = 'comentario' column = 'comentario' />
         <result property='Usuario_nombre' column = 'Usuario_nombre'/>
         
+        </resultMap>
+        
+        
+            <resultMap type='Pago' id='PagoResult'>
+        <id property='id_pago' column='id_pago'/>
+        <result property='Usuario_nombre' column = 'Usuario_nombre'/>
+        <result property = 'tipo' column = 'Tipo' />
+        <result property='foto' column = 'foto'/>
+         <result property='validacion' column = 'validacion'/>
         </resultMap>
     
     

@@ -38,6 +38,8 @@ public class ShiroLoginBean implements Serializable {
     
     /**
      * Try and authenticate the user
+     * 
+     * comentario
      */
     public void doLogin() {
         Subject subject = SecurityUtils.getSubject();

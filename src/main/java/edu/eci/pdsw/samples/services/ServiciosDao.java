@@ -142,7 +142,19 @@ public class ServiciosDao extends Servicios {
         }
     }
 
-}
+    @Override
+    public Usuario getUsuario(String username) throws PersistenceException {
+        Usuario u=null;
+        try {
+            daof.beginSession();
+            u=daof.getDaoSolicitud().getUsuario(username);
+            daof.commitTransaction();
+        } catch (PersistenceException ex) {
+            Logger.getLogger(ServiciosDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return u;
+    }
+
 
 class PropertiesLoader {
 
@@ -153,4 +165,6 @@ class PropertiesLoader {
         properties.load(input);
         return properties;
     }
+}
+
 }

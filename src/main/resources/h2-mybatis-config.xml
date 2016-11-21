@@ -7,10 +7,13 @@
         <setting name="logImpl" value="LOG4J"/>        
     </settings>
     <typeAliases>
-    <typeAlias type='edu.eci.pdsw.samples.entities.Estudiante' alias='Estudiante'/>
-    <typeAlias type='edu.eci.pdsw.samples.entities.Egresado' alias='Egresado'/>
-    <typeAlias type='edu.eci.pdsw.samples.entities.Solicitud' alias='Solicitud'/>
-    <typeAlias type='edu.eci.pdsw.samples.entities.CorreoPersonal' alias='CorreoPersonal'/>
+        <typeAlias type='edu.eci.pdsw.samples.entities.Estudiante' alias='Estudiante'/>
+        <typeAlias type='edu.eci.pdsw.samples.entities.Egresado' alias='Egresado'/>
+        <typeAlias type='edu.eci.pdsw.samples.entities.Solicitud' alias='Solicitud'/>
+        <typeAlias type='edu.eci.pdsw.samples.entities.CorreoPersonal' alias='CorreoPersonal'/>
+        <typeAlias type='edu.eci.pdsw.samples.entities.Usuario' alias='Usuario'/>
+        <typeAlias type='edu.eci.pdsw.samples.entities.Pago' alias='Pago'/>
+        <typeAlias type='edu.eci.pdsw.samples.entities.Observacion' alias='Observacion'/>
     </typeAliases> 
                
     <environments default="development">

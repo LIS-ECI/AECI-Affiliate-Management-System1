@@ -17,6 +17,7 @@ public class Pago {
     private String tipo;
     private Blob foto;
     private String validacion;
+    private String Usuario_nombre;
 
     /**
     * Constructor Clase Pago
@@ -24,12 +25,14 @@ public class Pago {
      * @param tipo
      * @param validacion
      * @param foto
+     * @param Usuario_nombre
     */
-    public Pago(int id_pago, String tipo, Blob foto, String validacion) {
+    public Pago(int id_pago, String tipo, Blob foto, String validacion, String Usuario_nombre) {
         this.id_pago = id_pago;
         this.tipo = tipo;
         this.foto = foto;
         this.validacion = validacion;
+        this.Usuario_nombre= Usuario_nombre;
     }
 
     public Pago(){}
@@ -88,6 +91,14 @@ public class Pago {
      */
     public void setValidacion(String validacion) {
         this.validacion = validacion;
+    }
+
+    public String getUsuario_nombre() {
+        return Usuario_nombre;
+    }
+
+    public void setUsuario_nombre(String Usuario_nombre) {
+        this.Usuario_nombre = Usuario_nombre;
     }
     
     

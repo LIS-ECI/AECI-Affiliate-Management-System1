@@ -12,15 +12,17 @@ package edu.eci.pdsw.samples.entities;
     public class Observacion {
        private int numero_observacion;
        private String comentario;
+       private String Usuario_nombre;
 
      /**
     * Constructor Clase Observacion
      * @param numero_observacion
      * @param comentario
     */
-    public Observacion(int numero_observacion, String comentario) {
+    public Observacion(int numero_observacion, String comentario,String Usuario_nombre) {
         this.numero_observacion = numero_observacion;
         this.comentario = comentario;
+        this.Usuario_nombre=Usuario_nombre;
     }
     public Observacion(){}
     /**
@@ -49,6 +51,14 @@ package edu.eci.pdsw.samples.entities;
      */
     public void setComentario(String comentario) {
         this.comentario = comentario;
+    }
+
+    public String getUsuario_nombre() {
+        return Usuario_nombre;
+    }
+
+    public void setUsuario_nombre(String Usuario_nombre) {
+        this.Usuario_nombre = Usuario_nombre;
     }
        
 }

@@ -1,0 +1,69 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Solicitud</title>
+    </h:head>
+    <h:body>
+        <p:growl id="growl" showDetail="true" sticky="true" autoUpdate="true"/>
+        <h:form id="soli_form">
+            <p:focus context="panelSolicitudes"/>
+            <p:layout>
+                <p:layoutUnit position="north">
+                    <p:panel style=" font-size:  medium; height: 185px;color: #cccccc" >
+                        <f:facet name="header" >
+                            <img  src="https://media.licdn.com/mpr/mpr/shrink_200_200/AAEAAQAAAAAAAAgDAAAAJDk3ZGM0MDU2LWRhNWEtNDMwNi1iOTNjLTllMDY1OWNkMjk3ZQ.png" width="280" height="170" align="left"/>
+                            <h1 style="text-align: center; color: darkblue;">BIENVENIDO</h1>
+                            <h2 style="text-align: center; color: darkblue;">Asociación de Egresados Escuela Colombiana de Ingenieria Julio Garavito</h2>
+                        </f:facet>
+                        <p:growl id="msj" showDetail="true" autoUpdate="true"/>
+
+                    </p:panel>
+                </p:layoutUnit>
+
+
+
+                <p:layoutUnit position="center">
+                    <p:panel  header = "Solicitudes" id="panelSolicitudes">
+
+
+
+
+                    </p:panel>
+                </p:layoutUnit>
+
+                <p:layoutUnit position="west">
+                    <p:panel style="width:220px">
+                        <p:commandButton value="Inicio" action="/index" immediate="true" style="width: 100%; background: lightgrey "/>
+                        <br/>
+                        <br/>
+                        <p:commandButton value="Generar Certificado"  oncomplete="PF('campoEntradaDatos').show()"  style="width: 100%; background: lightgrey"/>
+                        <br/>
+
+                        <p:dialog header="Certificado" widgetVar="campoEntradaDatos" showEffect="fade" hideEffect="fade" resizable="false" width="800">
+                            <p:outputPanel id="inputQuantity" style="text-align:center;">
+                            <h:panelGrid columns="2" cellpadding="1" styleClass="ui-grid">
+                                    <p:media value="#{beanUsuario.streamedContent}" width="760px" height="700px" player="pdf" />
+</h:panelGrid>
+                        
+                        
+
+                            
+                        </p:outputPanel>
+                                    </p:dialog>
+
+
+
+                        <br/>                           
+                        <p:commandButton value="Información Estudiantes"  action="informacionestudiante" immediate="true" style="background: lightgrey"/>  
+                    </p:panel>
+                </p:layoutUnit>
+            </p:layout>
+
+        </h:form>
+    </h:body>
+</html>
+
+
+

@@ -93,6 +93,12 @@ public class MyBatisDAOSolicitud implements DaoSolicitud {
         SolicitudMapper somap = currentSession.getMapper(SolicitudMapper.class);
         return somap.consultarEgresado(identificacion,tipo_identificacion);
     }
+
+    @Override
+    public Usuario getUsuario(String username) {
+       SolicitudMapper somap = currentSession.getMapper(SolicitudMapper.class);
+       return somap.getUsuario(username);
+    }
     
     
 

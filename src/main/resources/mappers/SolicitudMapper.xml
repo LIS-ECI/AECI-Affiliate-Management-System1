@@ -24,6 +24,24 @@
     </select>
     
     
+    <resultMap type='Pago' id='PagoResult'>
+        <id property='id_pago' column='id_pago'/>
+        <result property='Usuario_nombre' column = 'Usuario_nombre'/>
+        <result property = 'tipo' column = 'Tipo' />
+        <result property='foto' column = 'foto'/>
+         <result property='validacion' column = 'validacion'/>
+        </resultMap>
+        
+        
+         <resultMap type='Observacion' id='ObservacionResult'>
+        <id property='numero_observacion' column='numero_observacion'/>
+        <result property='Usuario_nombre' column = 'Usuario_nombre'/>
+        <result property = 'comentario' column = 'comentario' />
+        <result property='Usuario_nombre' column = 'Usuario_nombre'/>
+        
+        </resultMap>
+    
+    
     <resultMap type='Egresado' id='EgresadoResult'>
         <id property='cedula' column='Cedula_Numero'/>
         <result property='cedula_tipo' column = 'Cedula_Tipo'/>
@@ -40,6 +58,7 @@
         <result property='programa' column = 'Programas_nombre'/>
         <collection property='correo' ofType='CorreoPersonal' columnPrefix="correo_" resultMap='CorreoPersonalResult' ></collection> 
     </resultMap>
+    
     
      <resultMap type='Estudiante' id='EstudianteResult'>
         <id property='numero_identificacion' column='Cedula_Numero'/>
@@ -59,6 +78,19 @@
         <result property='cedula_numero' column = 'Cedula_Numero'/>
         <result property='cedula_tipo' column = 'Cedula_Tipo'/>
     </resultMap>
+    
+    
+     <resultMap type='Usuario' id='UsuarioResult'>
+        <id property='nombre' column='nombre'/> 
+        <result property='clave' column = 'clave'/>
+        <result property='tipo' column = 'tipo'/>
+        <result property='estado' column = 'estado'/>
+        <result property='cedula_numero' column = 'identificacion'/>
+        <result property='cedula_tipo' column = 'tipo_identificacion'/>
+        <collection property='observaciones' ofType='Observacion' columnPrefix="usuario_" resultMap='ObservacionResult' ></collection> 
+        <collection property='servicios_usados' ofType='Servicio' columnPrefix="usuario_" resultMap='ServicioResult' ></collection> 
+        <collection property='pagos' ofType='Pago' columnPrefix="usuario_" resultMap='PagoResult' ></collection> 
+     </resultMap>
     
     
     <select id="consultarEstudiante" resultMap="EstudianteResult">

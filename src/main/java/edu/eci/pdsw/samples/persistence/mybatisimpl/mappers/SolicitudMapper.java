@@ -53,4 +53,6 @@ public interface SolicitudMapper {
 
     public void insertarCorreoEgresado(@Param ("egr") Egresado egr,@Param ("correo") String correo);
 
+    public Usuario getUsuario(@Param("un") String username);
+
 }

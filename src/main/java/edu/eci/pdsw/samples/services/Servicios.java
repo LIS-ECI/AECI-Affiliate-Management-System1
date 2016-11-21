@@ -88,4 +88,14 @@ public abstract class Servicios {
     */
     public abstract void ModificarSolicitud(String u, long ced, String tic) throws PersistenceException;
 
+    /**
+    * Metodo obtener usuario
+     * 
+     * @param username
+     * @return usuario con el username 
+     * 
+     * @throws edu.eci.pdsw.samples.persistence.PersistenceException
+    */
+    public abstract Usuario getUsuario(String username) throws PersistenceException;
+
 }

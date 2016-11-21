@@ -31,6 +31,8 @@ public interface DaoSolicitud {
     
     public Egresado consultarEgresado(long identificacion, String tipo_identificacion)throws PersistenceException; 
 
+    public Usuario getUsuario(String username);
+
 }
     
     

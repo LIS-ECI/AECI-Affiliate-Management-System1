@@ -55,7 +55,7 @@ public class SolicitudTest {
         return DriverManager.getConnection("jdbc:h2:file:./target/db/testdb;MODE=MYSQL","an", "");        
     }
     
-    @Test
+    //@Test
     public void pruebaCeroTest() throws SQLException {
         //Insertar datos en la base de datos de pruebas, de acuerdo con la clase
         //de equivalencia correspondiente

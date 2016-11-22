@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="edu.eci.pdsw.samples.persistence.mybatisimpl.mappers.SolicitudMapper">
+    
+    
+    <resultMap type='Afiliaciones' id='AfiliacionesResult'>
+        <id property='fecha' column='fecha'/>
+        <result property='cedula' column = 'Cedula_Numero'/>
+        <result property = 'tipo_cedula' column = 'Cedula_Tipo' />
+        <result property='tipo' column = 'tipo'/>
+        <result property='estado' column = 'aprobado'/>
+    </resultMap>
+    
+    
+    
+    <select id="consultarSolicitud" resultMap="SolicitudResult">
+        select fecha , Cedula_Numero , Cedula_Tipo , tipo , aprobado
+        from Solicitud 
+        where aprobado='Pend'
+        order by fecha
+    </select>
+    
+
+        
+         <resultMap type='Observacion' id='ObservacionResult'>
+        <id property='numero_observacion' column='numero_observacion'/>
+        <result property='Usuario_nombre' column = 'Usuario_nombre'/>
+        <result property = 'comentario' column = 'comentario' />
+        <result property='Usuario_nombre' column = 'Usuario_nombre'/>
+        
+        </resultMap>
+        
+        
+            <resultMap type='Pago' id='PagoResult'>
+        <id property='id_pago' column='id_pago'/>
+        <result property='Usuario_nombre' column = 'Usuario_nombre'/>
+        <result property = 'tipo' column = 'Tipo' />
+        <result property='foto' column = 'foto'/>
+         <result property='validacion' column = 'validacion'/>
+        </resultMap>
+    
+    
+    <resultMap type='Egresado' id='EgresadoResult'>
+        <id property='cedula' column='Cedula_Numero'/>
+        <result property='cedula_tipo' column = 'Cedula_Tipo'/>
+        <result property = 'nombre' column = 'nombre' />
+        <result property='fecha_grado' column = 'anio_grado'/>
+        <result property='periodo_grado' column = 'periodo_grado'/>
+        <result property='cargo' column = 'cargo'/>
+        <result property='direccion_vivienda' column = 'direccion_vivienda'/>
+        <result property='nombreEmpresa' column = 'nombreEmpresa'/>
+        <result property='direccionEmpresa' column = 'direccion_empresa'/>
+        <result property='telefono_oficina' column = 'telefono_oficina'/>
+        <result property='telefono_fijo' column = 'telefono_fijo'/>
+        <result property='celular' column = 'celular'/>
+        <result property='programa' column = 'Programas_nombre'/>
+        <collection property='correo' ofType='CorreoPersonal' columnPrefix="correo_" resultMap='CorreoPersonalResult' ></collection> 
+    </resultMap>
+    
+    
+     <resultMap type='Estudiante' id='EstudianteResult'>
+        <id property='numero_identificacion' column='Cedula_Numero'/>
+        <result property='tipo_identificacion' column = 'Cedula_Tipo'/>
+        <result property = 'codigo' column = 'codigo_estudiante' />
+        <result property='nombre' column = 'nombre'/>
+        <result property='semestre' column = 'semestre_ponderado'/>
+        <result property='telefono_fijo' column = 'telefono_fijo'/>
+        <result property='celular' column = 'celular'/>
+        <result property='direccion' column = 'direccion_vivienda'/>
+        <result property='carrera' column = 'Programas_nombre'/>
+        <collection property='correo' ofType='CorreoPersonal' columnPrefix="correo_" resultMap='CorreoPersonalResult' ></collection> 
+    </resultMap>
+    
+    <resultMap type='CorreoPersonal' id='CorreoPersonalResult'>
+        <id property='correo' column='correo'/> 
+        <result property='cedula_numero' column = 'Cedula_Numero'/>
+        <result property='cedula_tipo' column = 'Cedula_Tipo'/>
+    </resultMap>
+    
+    
+     <resultMap type='Usuario' id='UsuarioResult'>
+        <id property='nombre' column='nombre'/> 
+        <result property='clave' column = 'clave'/>
+        <result property='tipo' column = 'tipo'/>
+        <result property='estado' column = 'estado'/>
+        <result property='cedula_numero' column = 'identificacion'/>
+        <result property='cedula_tipo' column = 'tipo_identificacion'/>
+        <collection property='observaciones' ofType='Observacion' columnPrefix="usuario_" resultMap='ObservacionResult' ></collection> 
+        <collection property='servicios_usados' ofType='Servicio' columnPrefix="usuario_" resultMap='ServicioResult' ></collection> 
+        <collection property='pagos' ofType='Pago' columnPrefix="usuario_" resultMap='PagoResult' ></collection> 
+     </resultMap>
+    
+    
+    <select id="consultarEstudiante" resultMap="EstudianteResult">
+        SELECT DE.Cedula_Numero,DE.Cedula_Tipo,DE.codigo_estudiante,DE.nombre,DE.semestre_ponderado,DE.telefono_fijo,DE.celular,DE.direccion_vivienda,DE.Programas_nombre,C.correo as correo_correo, C.Cedula_Numero as correo_Cedula_Numero, C.Cedula_Tipo as correo_Cedula_Tipo
+        FROM Datos_Estudiante as DE
+        LEFT JOIN Identificacion as I ON I.Numero= DE.Cedula_Numero
+        LEFT JOIN correo as C ON C.Cedula_Numero=I.Numero
+        WHERE DE.Cedula_Numero=#{id} and DE.Cedula_Tipo=#{tipoid}
+    </select>
+    
+    
+    <select id="consultarEgresado" resultMap="EgresadoResult">
+        SELECT DE.Cedula_Numero,DE.Cedula_Tipo,DE.nombre,DE.anio_grado,DE.periodo_grado,DE.cargo,DE.direccion_vivienda,DE.nombreEmpresa,DE.direccion_empresa,         DE.telefono_oficina,DE.telefono_fijo,DE.celular,DE.Programas_nombre,C.correo as correo_correo, C.Cedula_Numero as correo_Cedula_Numero, C.Cedula_Tipo as correo_Cedula_Tipo
+        FROM Datos_Egresado as DE
+        LEFT JOIN Identificacion as I ON I.Numero= DE.Cedula_Numero
+        LEFT JOIN correo as C ON C.Cedula_Numero=I.Numero
+        WHERE DE.Cedula_Numero=#{id} and DE.Cedula_Tipo=#{tipoid}
+    </select>
+    
+    
+    <insert parameterType="map" id="InsertarUsuario" >    
+        insert into Usuario values(#{u.nombre},#{u.clave},#{u.tipo},#{u.estado},#{u.cedula_numero},#{u.cedula_tipo})
+    </insert>
+    
+    <update parameterType="map" id="ModificarSolicitud" >    
+        update Solicitud
+        set aprobado=#{u}
+        where Cedula_Numero=#{ced} and Cedula_Tipo=#{tic} 
+    </update>
+   
+    <insert parameterType="map" id="insertarIdentificacion" >    
+        insert into Identificacion values (#{id}, #{tipoid})
+    </insert>
+   
+    <insert parameterType="map" id="insertarDatosEstudiante" >    
+        insert into Datos_Estudiante values (#{est.numero_identificacion}, #{est.tipo_identificacion}, #{est.codigo}, #{est.nombre}, #{est.semestre},#{est.telefono_fijo}, #{est.celular}, #{est.direccion}, #{est.carrera})
+    </insert>
+   
+    <insert parameterType="map" id="insertarSolicitud" >    
+        insert into Solicitud values(#{sol.fecha}, #{sol.cedula}, #{sol.tipo_cedula}, #{sol.tipo}, #{sol.estado})
+    </insert>
+   
+    <insert parameterType="map" id="insertarDatosEgresado" >                    
+        insert into Datos_Egresado values(#{egr.cedula}, #{egr.cedula_tipo}, #{egr.nombre}, #{egr.fecha_grado}, #{egr.periodo_grado}, #{egr.cargo}, #{egr.direccion_vivienda},#{egr.nombreEmpresa},#{egr.direccionEmpresa},#{egr.telefono_oficina},#{egr.telefono_fijo},#{egr.celular},#{egr.programa} );
+    </insert>
+    
+    <insert parameterType="map" id="insertarCorreoEstudiante" >                    
+        insert into correo values(#{cor}, #{est.numero_identificacion}, #{est.tipo_identificacion});
+    </insert>
+    
+    <insert parameterType="map" id="insertarCorreoEgresado" >                    
+        insert into correo values(#{correo}, #{egr.cedula}, #{egr.cedula_tipo});
+    </insert>
+   
+</mapper>

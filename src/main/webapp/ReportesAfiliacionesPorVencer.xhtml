@@ -32,6 +32,20 @@ and open the template in the editor.
                 
                 <p:layoutUnit position ="center"/>
             </p:layout>
+        <p:layoutUnit position="center">
+                    <p:panel  header = "Afiliaciones Por vencer " id="panelSolicitudes">
+                        <p:dataTable var="solicitudes"  selectionMode="single" selection="#{BeanSolicitudes.soli}" rowKey="#{solicitudes.cedula}"
+                            <p:column headerText="Fecha Afiliacion">
+                                <h:outputText value= />
+                            </p:column>
+                            <p:column headerText="Tipo de afiliacion">
+                                <h:outputText  />
+                            </p:column>
+                        </p:dataTable>
+                        <br/>
+                        <br/>
+                    </p:panel>
+                </p:layoutUnit>
         </h:form>
     </h:body>
 </html>

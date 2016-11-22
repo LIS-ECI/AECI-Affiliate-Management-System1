@@ -24,6 +24,8 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
+import javax.el.ELContext;
+import javax.faces.FacesException;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
 import org.primefaces.model.DefaultStreamedContent;
@@ -56,7 +58,11 @@ public class UsuarioBean  implements Serializable{
             PdfWriter writer = PdfWriter.getInstance(doc, out);
 
             doc.open();
+            ShiroLoginBean bean= (ShiroLoginBean) getManagedBean("loginBean");
+            
             doc.add(new Paragraph("Hello World. ok........"));
+            
+            doc.add(new Paragraph());
             doc.close();
             out.close();
 
@@ -88,28 +94,31 @@ public class UsuarioBean  implements Serializable{
         this.streamedContent = streamedContent;
     }
     
-     @ManagedProperty(value="#{ShiroLoginBean}")
-    private ShiroLoginBean neededBean;
+   public static Object getManagedBean(final String beanName) {
+        FacesContext fc = FacesContext.getCurrentInstance();
 
-    public ShiroLoginBean getNeededBean()
-    {
-    return neededBean;
+        Object bean=null;
+        try {
+            ELContext elContext = fc.getELContext();
+            bean = elContext.getELResolver().getValue(elContext, null, beanName);
+        } catch (RuntimeException e) {
+            throw new FacesException(e.getMessage(), e);
+        }
+
+        if (bean == null) {
+            throw new FacesException("Managed bean with name '" + beanName + "' was not found. Check your faces-config.xml or @ManagedBean annotation.");
+        }
+        return bean;
     }
+  
 
-    public void setNeededBean(ShiroLoginBean neededBean)
-    {
-    this.neededBean = neededBean;
-    }
-
-   
 
     public Usuario getUsuario(){
         Usuario u=null;
         
         try {
-            Servicios.getInstance(base).getUsuario(neededBean.getUsername());
+            Servicios.getInstance(base).getUsuario("");
         } catch (PersistenceException ex) {
-            Logger.getLogger(UsuarioBean.class.getName()).log(Level.SEVERE, null, ex);
         }
         return u;
     }

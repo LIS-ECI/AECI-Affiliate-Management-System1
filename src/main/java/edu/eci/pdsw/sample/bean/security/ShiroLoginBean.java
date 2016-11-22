@@ -56,7 +56,7 @@ public class ShiroLoginBean implements Serializable {
                 FacesContext.getCurrentInstance().getExternalContext().redirect("employees/index.xhtml");
             }
             else {
-                FacesContext.getCurrentInstance().getExternalContext().redirect("open/index.xhtml");
+                FacesContext.getCurrentInstance().getExternalContext().redirect("PrincipalUsuario.xhtml");
             }
         }
         catch (UnknownAccountException ex) {

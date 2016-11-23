@@ -14,6 +14,7 @@
         <typeAlias type='edu.eci.pdsw.samples.entities.Usuario' alias='Usuario'/>
         <typeAlias type='edu.eci.pdsw.samples.entities.Pago' alias='Pago'/>
         <typeAlias type='edu.eci.pdsw.samples.entities.Observacion' alias='Observacion'/>
+        <typeAlias type='edu.eci.pdsw.samples.entities.Servicio' alias='Servicio'/>
     </typeAliases> 
                
     <environments default="development">

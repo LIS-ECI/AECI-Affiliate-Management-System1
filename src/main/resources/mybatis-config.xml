@@ -10,6 +10,7 @@
         <typeAlias type='edu.eci.pdsw.samples.entities.Estudiante' alias='Estudiante'/>
         <typeAlias type='edu.eci.pdsw.samples.entities.Egresado' alias='Egresado'/>
         <typeAlias type='edu.eci.pdsw.samples.entities.Solicitud' alias='Solicitud'/>
+        <typeAlias type='edu.eci.pdsw.samples.entities.Servicio' alias='Servicio'/>
         <typeAlias type='edu.eci.pdsw.samples.entities.Usuario' alias='Usuario'/>
         <typeAlias type='edu.eci.pdsw.samples.entities.Pago' alias='Pago'/>
         <typeAlias type='edu.eci.pdsw.samples.entities.Observacion' alias='Observacion'/>

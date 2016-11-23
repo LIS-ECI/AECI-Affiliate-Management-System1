@@ -27,6 +27,7 @@ import javax.annotation.PostConstruct;
 import javax.el.ELContext;
 import javax.faces.FacesException;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
@@ -38,10 +39,8 @@ import org.primefaces.model.StreamedContent;
  * @author Grupo 3 Pdsw
  */
 @ManagedBean(name="beanUsuario")
-
-@SessionScoped
-public class UsuarioBean  implements Serializable{
-    
+@RequestScoped
+public class UsuarioBean  {
     private static final long serialVersionUID = 1L;
 
     private StreamedContent streamedContent;
@@ -56,24 +55,20 @@ public class UsuarioBean  implements Serializable{
 
             OutputStream out = new ByteArrayOutputStream();
             PdfWriter writer = PdfWriter.getInstance(doc, out);
-
             doc.open();
-            ShiroLoginBean bean= (ShiroLoginBean) getManagedBean("loginBean");
-            
-            doc.add(new Paragraph("Hello World. ok........"));
-            
-            doc.add(new Paragraph());
+            doc.add(new Paragraph("Hdsfdjskfsdfs"));
+            doc.add(new Paragraph("Certificado AECI"));
             doc.close();
             out.close();
 
             InputStream in = new ByteArrayInputStream(((ByteArrayOutputStream) out).toByteArray());
 
-            streamedContent = new DefaultStreamedContent(in, "application/pdf");
+            streamedContent = new DefaultStreamedContent(in, "application/pdf","c.pdf");
             //-------
             Map<String, Object> session = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
             byte[] b = (byte[]) session.get("reportBytes");
             if (b != null) {
-                streamedContent = new DefaultStreamedContent(new ByteArrayInputStream(b), "application/pdf");
+                streamedContent = new DefaultStreamedContent(new ByteArrayInputStream(b), "application/pdf", "c.pdf");
             }
         } catch (Exception e) {
         }

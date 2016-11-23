@@ -27,10 +27,9 @@ public class Pago {
      * @param foto
      * @param Usuario_nombre
     */
-    public Pago(int id_pago, String tipo, Blob foto, String validacion, String Usuario_nombre) {
+    public Pago(int id_pago, String tipo, String validacion, String Usuario_nombre) {
         this.id_pago = id_pago;
         this.tipo = tipo;
-        this.foto = foto;
         this.validacion = validacion;
         this.Usuario_nombre= Usuario_nombre;
     }

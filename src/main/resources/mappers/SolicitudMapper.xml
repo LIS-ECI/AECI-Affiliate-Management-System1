@@ -38,7 +38,6 @@
         <id property='id_pago' column='id_pago'/>
         <result property='Usuario_nombre' column = 'Usuario_nombre'/>
         <result property = 'tipo' column = 'Tipo' />
-        <result property='foto' column = 'foto'/>
          <result property='validacion' column = 'validacion'/>
         </resultMap>
     

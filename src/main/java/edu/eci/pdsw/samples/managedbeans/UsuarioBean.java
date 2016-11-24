@@ -53,7 +53,7 @@ public class UsuarioBean  {
             OutputStream out = new ByteArrayOutputStream();
             PdfWriter writer = PdfWriter.getInstance(doc, out);
             doc.open();
-            doc.add(new Paragraph("Pdsw Grupo 3"));
+            doc.add(new Paragraph("Jessica Fresneda"));
             
             doc.close();
             out.close();

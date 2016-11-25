@@ -10,13 +10,14 @@ import edu.eci.pdsw.samples.entities.Estudiante;
 import edu.eci.pdsw.samples.entities.Solicitud;
 import edu.eci.pdsw.samples.persistence.PersistenceException;
 import edu.eci.pdsw.samples.services.Servicios;
-import java.sql.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 
@@ -205,7 +206,7 @@ public class EstudianteBean  implements Serializable{
         lisc.add(cp2);
         Estudiante est = new Estudiante(genero,apellido,codigo, numero_identificacion,  nombre, semestre, tipo_identificacion, carrera, telefono_fijo, celular,  lisc, direccion );
         Date fecha = new java.sql.Date(java.util.Calendar.getInstance().getTime().getTime());
-        Solicitud sol = new Solicitud(fecha,(int)est.getNumero_identificacion(), est.getTipo_identificacion(),"Estudiante","Pend");
+        Solicitud sol = new Solicitud((java.sql.Date) fecha,(int)est.getNumero_identificacion(), est.getTipo_identificacion(),"Estudiante","Pend");
         Servicios.getInstance(base).enviarSolicitudEstudiante(est,sol);
         this.carrera="";
         this.celular=0;
@@ -227,5 +228,7 @@ public class EstudianteBean  implements Serializable{
     public void setEmail_institucional(String email_institucional) {
         this.email_institucional = email_institucional;
     }
+    
+
 
 }

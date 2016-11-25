@@ -148,8 +148,8 @@ private String base="applicationconfig.properties";
 
 
     public void aprobarEst() throws PersistenceException{
-        Usuario sa= new Usuario(String.valueOf(est.getNumero_identificacion()),String.valueOf( est.getNumero_identificacion()), "Estudiante", "Activo", est.getNumero_identificacion(), est.getTipo_identificacion(), null, null, null );
-        Servicios.getInstance(base).InsertarUsuario(sa);
+        //Usuario sa= new Usuario(String.valueOf(est.getNumero_identificacion()),String.valueOf( est.getNumero_identificacion()), "Estudiante", "Activo", est.getNumero_identificacion(), est.getTipo_identificacion(), null, null, null );
+        //Servicios.getInstance(base).InsertarUsuario(sa);
         Servicios.getInstance(base).ModificarSolicitud("OK",est.getNumero_identificacion(),est.getTipo_identificacion());
         //Enviar Correo indicando usuario y contraseña
     }
@@ -161,8 +161,8 @@ private String base="applicationconfig.properties";
     }
     
      public void aprobarEgr() throws PersistenceException{
-        Usuario s= new Usuario(String.valueOf(egr.getCedula()),String.valueOf( egr.getCedula()), "Egresado", "Inactivo", egr.getCedula(), egr.getCedula_tipo(), null, null, null );
-        Servicios.getInstance(base).InsertarUsuario(s);
+        //Usuario s= new Usuario(String.valueOf(egr.getCedula()),String.valueOf( egr.getCedula()), "Egresado", "Inactivo", egr.getCedula(), egr.getCedula_tipo(), null, null, null );
+        //Servicios.getInstance(base).InsertarUsuario(s);
         Servicios.getInstance(base).ModificarSolicitud("OK",egr.getCedula(),egr.getCedula_tipo());
         //Enviar Correo indicando usuario y contraseña
     }

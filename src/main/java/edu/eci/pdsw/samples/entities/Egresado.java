@@ -29,6 +29,14 @@ public class Egresado {
     private List<CorreoPersonal> correo;
     private String apellido;
     private String genero;
+
+    public String getGenero() {
+        return genero;
+    }
+
+    public void setGenero(String genero) {
+        this.genero = genero;
+    }
     
     
     public String getApellido() {

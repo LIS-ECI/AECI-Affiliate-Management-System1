@@ -51,8 +51,11 @@
                         <p:panel header="Informacion Personal">
                             <p:messages />
                             <h:panelGrid columns="2" columnClasses="label, value">
-                                <h:outputText value="Nombre y Apellido: *" />
-                                <p:inputText label="Nombre y Apellido" required="true" value="#{beanEstudiante.nombre}"/>
+                                <h:outputText value="Nombre : *" />
+                                <p:inputText label="Nombre " required="true" value="#{beanEstudiante.nombre}"/>
+                                
+                                <h:outputText value="Apellido : *" />
+                                <p:inputText label="Apellido" required="true" value="#{beanEstudiante.apellido}"/>
 
                                 <h:outputText value="Tipo de documento" />
                                 <p:selectOneMenu id="tipoId"  value="#{beanEstudiante.tipo_identificacion}" style="width:90px">

@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="edu.eci.pdsw.samples.persistence.mybatisimpl.mappers.SolicitudMapper">
+<mapper namespace="edu.eci.pdsw.samples.persistence.mybatisimpl.mappers.AfiliacionesporVencerMapper">
     
     
     <resultMap type='Afiliaciones' id='AfiliacionesResult'>
@@ -19,7 +19,6 @@
     <select id="consultarSolicitud" resultMap="SolicitudResult">
         select fecha , Cedula_Numero , Cedula_Tipo , tipo , aprobado
         from Solicitud 
-        where aprobado='Pend'
         order by fecha
     </select>
     

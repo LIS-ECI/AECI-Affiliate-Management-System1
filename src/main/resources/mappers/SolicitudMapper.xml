@@ -8,7 +8,7 @@
     
     <resultMap type='Solicitud' id='SolicitudResult'>
         <id property='fecha' column='fecha'/>
-        <result property='cedula' column = 'Cedula_Numero'/>
+        <result property='numero_identificacion' column = 'Cedula_Numero'/>
         <result property = 'tipo_cedula' column = 'Cedula_Tipo' />
         <result property='tipo' column = 'tipo'/>
         <result property='estado' column = 'aprobado'/>

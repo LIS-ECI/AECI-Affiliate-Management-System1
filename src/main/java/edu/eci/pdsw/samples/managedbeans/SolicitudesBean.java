@@ -108,14 +108,14 @@ private String base="applicationconfig.properties";
         correos="";
         
         if (soli.getTipo().equals("Estudiante")) {
-            this.est = Servicios.getInstance(base).consultarEstudiante(soli.getCedula(), soli.getTipo_cedula());
+            this.est = Servicios.getInstance(base).consultarEstudiante(soli.getNumero_identificacion(), soli.getTipo_cedula());
             this.pagina = "detallesEstudiante";
             for (int i=0;i<est.getCorreo().size();i++){
                 correos+="      "+est.getCorreo().get(i).getCorreo();
             }
         }
         else{
-            this.egr = Servicios.getInstance(base).consultarEgresado(soli.getCedula(), soli.getTipo_cedula());
+            this.egr = Servicios.getInstance(base).consultarEgresado(soli.getNumero_identificacion(), soli.getTipo_cedula());
             this.pagina = "detallesEgresado";
             for (int i=0;i<egr.getCorreo().size();i++){
                 correos+="      "+egr.getCorreo().get(i).getCorreo();

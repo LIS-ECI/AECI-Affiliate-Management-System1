@@ -29,23 +29,52 @@ and open the template in the editor.
 
                     </p:panel>
                 </p:layoutUnit>
-                
-                <p:layoutUnit position ="center"/>
-            </p:layout>
-        <p:layoutUnit position="center">
+                            
+                <p:layoutUnit position="center">
                     <p:panel  header = "Afiliaciones Por vencer " id="panelSolicitudes">
-                        <p:dataTable var="solicitudes"  selectionMode="single" selection="#{BeanSolicitudes.soli}" rowKey="#{solicitudes.cedula}"
-                            <p:column headerText="Fecha Afiliacion">
-                                <h:outputText value= />
+                        <p:dataTable id="singleDT" var="solicitudes" value="#{BeanSolicitudes.solicitudes}"  selectionMode="single" selection="#{beanEstudiante}" rowKey="#{solicitudes.numero_identificacion}">
+                            <p:column headerText="Nombre Afiliado">
+                                <h:outputText value="#{solicitudes}"/>
                             </p:column>
-                            <p:column headerText="Tipo de afiliacion">
-                                <h:outputText  />
+                            <p:column headerText="Documento">
+                                <h:outputText  value="#{solicitudes.numero_identificacion}"/>
                             </p:column>
+                            <p:column headerText="Dirección">
+                                <h:outputText  value="#{solicitudes}"/>
+                            </p:column>
+                            <p:column headerText="Correo Electronico">
+                                <h:outputText  value="#{solicitudes}"/>
+                            </p:column>
+                            <f:facet name="footer">
+                                <p:commandButton process="singleDT" update=":Inicio:afiDetail" icon="ui-icon-search" value="View" oncomplete="PF('carDialog').show()" />
+                            </f:facet>
                         </p:dataTable>
+                        
+                        <p:dialog header="Info Afiliado" widgetVar="afiDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+                            <p:outputPanel id="afiDetail" style="text-align:center;">
+                                <p:panelGrid  columns="2" rendered="#{not empty beanEstudiante}" columnClasses="label,value">
+                                    
+                                    <h:outputText value="Nombre Afiliado:" />
+                                    <h:outputText value="#{beanEstudiante.nombre}" />
+
+                                    <h:outputText value="Documento:" />
+                                    <h:outputText value="#{beanEstudiante.numero_identificacion}" />
+
+                                    <h:outputText value="Dirección:" />
+                                    <h:outputText value="#{beanEstudiante.direccion}"/>
+
+                                    <h:outputText value="Correo Electronico" />
+                                    <h:outputText value="#{beanEstudiante.email_institucional}" />
+                                </p:panelGrid>
+                            </p:outputPanel>
+                        </p:dialog>
                         <br/>
                         <br/>
                     </p:panel>
                 </p:layoutUnit>
+            </p:layout>
+            
+            
         </h:form>
     </h:body>
 </html>

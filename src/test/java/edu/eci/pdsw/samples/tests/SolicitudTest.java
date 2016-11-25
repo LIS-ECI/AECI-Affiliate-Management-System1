@@ -55,7 +55,7 @@ public class SolicitudTest {
         return DriverManager.getConnection("jdbc:h2:file:./target/db/testdb;MODE=MYSQL","an", "");        
     }
     
-    @Test
+    //@Test
     public void pruebaCeroTest() throws SQLException {
         //Insertar datos en la base de datos de pruebas, de acuerdo con la clase
         //de equivalencia correspondiente
@@ -86,7 +86,7 @@ public class SolicitudTest {
         CorreoPersonal cp = new CorreoPersonal("pruba@hotmail.com",123456,"CC");
         List<CorreoPersonal> lisc = new ArrayList<>();
         lisc.add(cp);
-        Egresado egr = new Egresado(123456, "CC", "NombreDePrueba",2001, 2, "CargoDePrueba", "CarreraDePrueba","DireccionDePrueba", "NombreEmpresa", "DireccionDeEmpresa",1234,1234,4321, lisc);
+        Egresado egr = new Egresado("Masculino","ApellidodePrueba",123456, "CC", "NombreDePrueba",2001, 2, "CargoDePrueba", "CarreraDePrueba","DireccionDePrueba", "NombreEmpresa", "DireccionDeEmpresa",1234,1234,4321, lisc);
         java.sql.Date fecha = new java.sql.Date(java.util.Calendar.getInstance().getTime().getTime());
         Solicitud sol = new Solicitud(fecha,egr.getCedula(), egr.getCedula_tipo(),"Egresado","Pend");
         try {

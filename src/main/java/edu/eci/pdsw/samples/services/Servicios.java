@@ -33,8 +33,8 @@ public abstract class Servicios {
 
     /**
     * Metodo consultar Estudiante
-     * @param identificacion
-     * @param tipo_identificacion
+     * @param identificacion identificacion del estudiante
+     * @param tipo_identificacion tipo de identificacion
      * @return Estudiante con la identificacion ingresada por parametro
      * @throws edu.eci.pdsw.samples.persistence.PersistenceException
     */
@@ -42,48 +42,48 @@ public abstract class Servicios {
 
     /**
     * Metodo consultar Egresado
-     * @param identificacion
-     * @param tipo_identificacion
-     * @return 
+     * @param identificacion identificacion egresado
+     * @param tipo_identificacion tipo identificacion
+     * @return Egresado con el id requerido
      * @throws edu.eci.pdsw.samples.persistence.PersistenceException 
     */
     public abstract Egresado consultarEgresado(long identificacion, String tipo_identificacion) throws PersistenceException;
 
     /**
     * Metodo consultar Solicitud
-     * @return 
+     * @return Lista de solicitudes pendientes
      * @throws edu.eci.pdsw.samples.persistence.PersistenceException 
     */
     public abstract List<Solicitud> consultarSolicitud() throws PersistenceException;
 
     /**
     * Metodo enviar Solicitud Estudiante
-     * @param est
-     * @param sol
+     * @param est estudiante
+     * @param sol solicitud
      * @throws edu.eci.pdsw.samples.persistence.PersistenceException
     */
     public abstract void enviarSolicitudEstudiante(Estudiante est,Solicitud sol) throws PersistenceException;
 
     /**
     * Metodo enviar Solicitud Egresado
-     * @param egr
-     * @param sol
+     * @param egr egresado
+     * @param sol solicitud
      * @throws edu.eci.pdsw.samples.persistence.PersistenceException
     */
     public abstract void enviarSolicitudEgresado(Egresado egr, Solicitud sol) throws PersistenceException;
 
     /**
     * Metodo Insertar Usuario
-     * @param u
+     * @param u usuario
      * @throws edu.eci.pdsw.samples.persistence.PersistenceException
     */
     public abstract void InsertarUsuario(Usuario u) throws PersistenceException;
 
     /**
     * Metodo Modificar Solicitud
-     * @param u
-     * @param ced
-     * @param tic
+     * @param u usuario
+     * @param ced cedula del usuario
+     * @param tic tipodecedula
      * @throws edu.eci.pdsw.samples.persistence.PersistenceException
     */
     public abstract void ModificarSolicitud(String u, long ced, String tic) throws PersistenceException;
@@ -91,7 +91,7 @@ public abstract class Servicios {
     /**
     * Metodo obtener usuario
      * 
-     * @param username
+     * @param username usuario
      * @return usuario con el username 
      * 
      * @throws edu.eci.pdsw.samples.persistence.PersistenceException

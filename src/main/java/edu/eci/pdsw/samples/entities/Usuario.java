@@ -24,16 +24,16 @@ public class Usuario {
     private List<Pago> pagos;
 
     /**
-    * Constructor Clase Correo
-     * @param nombre
-     * @param clave
-     * @param tipo
-     * @param estado
-     * @param observacion
-     * @param cedula_numero
-     * @param servicio
-     * @param cedula_tipo
-     * @param pago
+    * Constructor Clase Usuario
+     * @param nombre nombre usuario
+     * @param clave clave
+     * @param tipo tipo usuario
+     * @param estado estado usuario
+     * @param observacion observacion 
+     * @param cedula_numero cedula
+     * @param servicio servicio
+     * @param cedula_tipo cedula tipo
+     * @param pago pago
     */
     public Usuario(String nombre, String clave, String tipo, String estado, long cedula_numero, String cedula_tipo, Observacion observacion, Servicio servicio, Pago pago ) {
         this.nombre = nombre;

@@ -27,25 +27,38 @@ public class Egresado {
     private int telefono_fijo;
     private long celular;
     private List<CorreoPersonal> correo;
+    private String apellido;
+    private String genero;
+    
+    
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
 
     /**
     * Constructor Clase Egresado
-     * @param cedula
-     * @param cedula_tipo
-     * @param nombre
-     * @param fecha_grado
-     * @param periodo_grado
-     * @param cargo
-     * @param programa
-     * @param direccion_vivienda
-     * @param nombreEmpresa
-     * @param direccionEmpresa
-     * @param telefono_oficina
-     * @param telefono_fijo
-     * @param celular
-     * @param correo
+     * @param genero genero
+     * @param apellido apellido
+     * @param cedula cedula
+     * @param cedula_tipo cedula tipo
+     * @param nombre nombre
+     * @param fecha_grado anio del grado
+     * @param periodo_grado periodo grado
+     * @param cargo cargo opcional
+     * @param programa programa
+     * @param direccion_vivienda direccion vivienda opcional
+     * @param nombreEmpresa nombre empresa opcional
+     * @param direccionEmpresa direccion de la empresa opcional
+     * @param telefono_oficina telefono oficina
+     * @param telefono_fijo telefono fijo
+     * @param celular celular
+     * @param correo correo
     */
-    public Egresado(long cedula, String cedula_tipo, String nombre, int fecha_grado, int periodo_grado, String cargo, String programa, String direccion_vivienda, String nombreEmpresa, String direccionEmpresa, int telefono_oficina, int telefono_fijo, long celular, List<CorreoPersonal> correo) {
+    public Egresado(String genero, String apellido,long cedula, String cedula_tipo, String nombre, int fecha_grado, int periodo_grado, String cargo, String programa, String direccion_vivienda, String nombreEmpresa, String direccionEmpresa, int telefono_oficina, int telefono_fijo, long celular, List<CorreoPersonal> correo) {
         this.cedula = cedula;
         this.cedula_tipo = cedula_tipo;
         this.nombre = nombre;
@@ -59,7 +72,9 @@ public class Egresado {
         this.telefono_oficina = telefono_oficina;
         this.telefono_fijo = telefono_fijo;
         this.celular = celular;
+        this.genero =genero;
         this.correo=correo;
+        this.apellido=apellido;
     }
     
     public Egresado(){}

@@ -19,8 +19,8 @@ public class Servicio {
     
     /**
     * Constructor Clase Servicio
-     * @param tDeServicio
-     * @param fecha
+     * @param tDeServicio tipo de servicio
+     * @param fecha fecha
     */
     public Servicio(String tDeServicio, Date fecha) {
         this.tDeServicio = tDeServicio;

@@ -24,6 +24,24 @@ public class Estudiante {
     private String carrera;
     private int telefono_fijo;
     private long celular=12345;
+    private String apellido;
+    private String genero;
+
+    public String getGenero() {
+        return genero;
+    }
+
+    public void setGenero(String genero) {
+        this.genero = genero;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
 
     
     public Estudiante(){}
@@ -109,19 +127,19 @@ public class Estudiante {
     }
 
      /**
-    * Constructor Clase Egresado
-     * @param codigo
-     * @param numero_identificacion
-     * @param nombre
-     * @param semestre
-     * @param tipo_identificacion
-     * @param carrera
-     * @param telefono_fijo
-     * @param celular
-     * @param direccion
-     * @param correo
+    * Constructor Clase Estudiante
+     * @param codigo codigo del estudiante
+     * @param numero_identificacion numero de identificacion del estudiante
+     * @param nombre nombre del estudiante
+     * @param semestre semestre del estudiante
+     * @param tipo_identificacion tipo de identificacion
+     * @param carrera carrera del estudiante
+     * @param telefono_fijo telefono del estudiante
+     * @param celular celular del estudiante
+     * @param direccion direccion del estudiante
+     * @param correo correo del estudiante
     */
-    public Estudiante(int codigo, long numero_identificacion, String nombre, int semestre, String tipo_identificacion, String carrera, int telefono_fijo, long celular, List<CorreoPersonal> correo, String direccion) {
+    public Estudiante(String genero,String apellido,int codigo, long numero_identificacion, String nombre, int semestre, String tipo_identificacion, String carrera, int telefono_fijo, long celular, List<CorreoPersonal> correo, String direccion) {
         this.codigo = codigo;
         this.numero_identificacion = numero_identificacion;
         this.carrera = carrera;
@@ -133,6 +151,8 @@ public class Estudiante {
         this.tipo_identificacion = tipo_identificacion;
         this.direccion = direccion;
         this.nombre = nombre;
+        this.apellido=apellido;
+        this.genero=genero;
     }
 
 }

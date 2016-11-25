@@ -49,6 +49,24 @@ public class EgresadoBean  implements Serializable{
     private String email;
     private String base="applicationconfig.properties";
     //base de datos
+     private String genero;
+     private String apellido;
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
+    public String getGenero() {
+        return genero;
+    }
+
+    public void setGenero(String genero) {
+        this.genero = genero;
+    }
 
     public String getEmail() {
         return email;
@@ -166,7 +184,7 @@ public class EgresadoBean  implements Serializable{
     /**
     * Metodo enviarSolicitud egresado
     * 
-     * @throws edu.eci.pdsw.samples.persistence.PersistenceException
+     * @throws edu.eci.pdsw.samples.persistence.PersistenceException x
      * 
     */
     public void enviarSolicitud () throws PersistenceException{
@@ -179,10 +197,13 @@ public class EgresadoBean  implements Serializable{
         if( this.cargo.equals("")){
             this.cargo="No Disponible";
         }
+        if( this.direccion_vivienda.equals("")){
+            this.direccion_vivienda="No Disponible";
+        }
         CorreoPersonal cp = new CorreoPersonal(email,cedula,tipo_identificacion);
         List<CorreoPersonal> lisc = new ArrayList<>();
         lisc.add(cp);
-        Egresado egr = new Egresado(cedula, tipo_identificacion, nombre, fecha_grado, periodo_grado, cargo, carrera, direccion_vivienda, nombreEmpresa, direccion_empresa, telefono_oficina, telefono_fijo, celular, lisc);
+        Egresado egr = new Egresado(genero,apellido,cedula, tipo_identificacion, nombre, fecha_grado, periodo_grado, cargo, carrera, direccion_vivienda, nombreEmpresa, direccion_empresa, telefono_oficina, telefono_fijo, celular, lisc);
         java.sql.Date fecha = new java.sql.Date(java.util.Calendar.getInstance().getTime().getTime());
         Solicitud sol = new Solicitud(fecha,egr.getCedula(), egr.getCedula_tipo(),"Egresado","Pend");
         Estudiante e= Servicios.getInstance(base).consultarEstudiante(cedula, tipo_identificacion);

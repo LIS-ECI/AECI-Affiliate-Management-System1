@@ -21,11 +21,10 @@ public class Pago {
 
     /**
     * Constructor Clase Pago
-     * @param id_pago
-     * @param tipo
-     * @param validacion
-     * @param foto
-     * @param Usuario_nombre
+     * @param id_pago identificador del pago
+     * @param tipo tipo de pago
+     * @param validacion validacion
+     * @param Usuario_nombre usuario que realizo el pago
     */
     public Pago(int id_pago, String tipo, String validacion, String Usuario_nombre) {
         this.id_pago = id_pago;

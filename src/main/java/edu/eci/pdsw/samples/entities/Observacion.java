@@ -16,8 +16,8 @@ package edu.eci.pdsw.samples.entities;
 
      /**
     * Constructor Clase Observacion
-     * @param numero_observacion
-     * @param comentario
+     * @param numero_observacion identificador observacion
+     * @param comentario comentario
     */
     public Observacion(int numero_observacion, String comentario,String Usuario_nombre) {
         this.numero_observacion = numero_observacion;

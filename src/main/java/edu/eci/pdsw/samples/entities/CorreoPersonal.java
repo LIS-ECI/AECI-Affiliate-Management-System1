@@ -21,9 +21,9 @@ public class CorreoPersonal {
     /**
     * Constructor Clase CorreoPersonal
     * Que representa el correo de una persona
-     * @param correo
-     * @param cedula
-     * @param tipo
+     * @param correo correo
+     * @param cedula cedula
+     * @param tipo tipo
     */
     public CorreoPersonal(String correo, long cedula, String tipo){
         this.correo=correo;

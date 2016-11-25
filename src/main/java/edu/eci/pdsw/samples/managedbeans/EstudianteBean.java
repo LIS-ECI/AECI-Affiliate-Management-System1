@@ -42,7 +42,26 @@ public class EstudianteBean  implements Serializable{
     private int max=10;
     private String correo;
     private String enter;
+    private String email_institucional;
     private String base="applicationconfig.properties";
+    private String genero;
+    private String apellido;
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
+    public String getGenero() {
+        return genero;
+    }
+
+    public void setGenero(String genero) {
+        this.genero = genero;
+    }
 
     public int getMin() {
         if (carrera.equals("Matematicas") | carrera.equals("Administracion") | carrera.equals("Economia") | carrera.equals("Ingenieria Biomedica")){
@@ -176,10 +195,15 @@ public class EstudianteBean  implements Serializable{
     * Metodo enviarSolicitudEstudiante
     */
      public void enviarSolicitud () throws PersistenceException{
+         if( this.direccion.equals("")){
+            this.direccion="No Disponible";
+        }
         CorreoPersonal cp = new CorreoPersonal(correo,numero_identificacion,tipo_identificacion);
+        CorreoPersonal cp2 = new CorreoPersonal(email_institucional,numero_identificacion,tipo_identificacion);
         List<CorreoPersonal> lisc = new ArrayList<>();
         lisc.add(cp);
-        Estudiante est = new Estudiante(codigo, numero_identificacion,  nombre, semestre, tipo_identificacion, carrera, telefono_fijo, celular,  lisc, direccion );
+        lisc.add(cp2);
+        Estudiante est = new Estudiante(genero,apellido,codigo, numero_identificacion,  nombre, semestre, tipo_identificacion, carrera, telefono_fijo, celular,  lisc, direccion );
         Date fecha = new java.sql.Date(java.util.Calendar.getInstance().getTime().getTime());
         Solicitud sol = new Solicitud(fecha,(int)est.getNumero_identificacion(), est.getTipo_identificacion(),"Estudiante","Pend");
         Servicios.getInstance(base).enviarSolicitudEstudiante(est,sol);
@@ -194,6 +218,14 @@ public class EstudianteBean  implements Serializable{
         this.carrera="Ingenieria Civil";
         
 
+    }
+
+    public String getEmail_institucional() {
+        return email_institucional;
+    }
+
+    public void setEmail_institucional(String email_institucional) {
+        this.email_institucional = email_institucional;
     }
 
 }

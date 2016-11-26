@@ -13,6 +13,7 @@ import com.itextpdf.text.pdf.PdfWriter;
 import edu.eci.pdsw.sample.bean.security.ShiroLoginBean;
 import edu.eci.pdsw.samples.entities.Egresado;
 import edu.eci.pdsw.samples.entities.Estudiante;
+import edu.eci.pdsw.samples.entities.Pago;
 import edu.eci.pdsw.samples.entities.Usuario;
 import static edu.eci.pdsw.samples.managedbeans.UsuarioBean.getManagedBean;
 import edu.eci.pdsw.samples.persistence.PersistenceException;
@@ -22,6 +23,8 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.Date;
+import java.util.List;
 import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.el.ELContext;
@@ -87,12 +90,44 @@ public class UsuarioBean {
                     text += " afiliada ";
                 }
                 text += "a la asociación de egresado de la Escuela Colombiana de Ingeniería Julio Garavito en condición de estudiante, cursando "+ est.getSemestre() + "semestre cuya fecha de vigencia es desde " ;
-                      
+                text += u.getFechaInicio()+" hasta "+u.getFechaFin()+", cuya afiliación es gratuita";
+     
             } else {
                 
+                if (egr.getGenero().equals("Masculino")) {
+                    text += "El Señor";
+                } else {
+                    text += "La Señora";
+                }
+                text += egr.getNombre().toUpperCase() + " " + egr.getApellido().toUpperCase();
+                if (egr.getGenero().equals("Masculino")) {
+                    text += " identificado ";
+                } else {
+                    text += " identificada ";
+                }
+                text += "con " + egr.getCedula_tipo()+ " " + egr.getCedula_tipo()+ " " + "se encuentra";
+                if (egr.getGenero().equals("Masculino")) {
+                    text += " afiliado ";
+                } else {
+                    text += " afiliada ";
+                }
+                text += "a la asociación de egresado de la Escuela Colombiana de Ingeniería Julio Garavito en condición de egresado, cuyo periodo de grafo fue "+ egr.getFecha_grado()+"-"+ String.valueOf(egr.getPeriodo_grado()) + " cuya fecha de vigencia es desde " ;
+                text += u.getFechaInicio()+" hasta "+u.getFechaFin()+", cuyo ultimo pago se dió el día ";
+                List<Pago> p = Servicios.getInstance(base).getPagos(u.getNombre());
+                text+=p.get(p.size()-1);
+    
+                
             }
+            
+            text += "\n"+"La presente certificacion  se expide a solicitud del(de la) interesado(a) en Bogotá para QUIEN INTERESE a la fecha de ";
+                Date fecha = new java.sql.Date(java.util.Calendar.getInstance().getTime().getTime());
+                text+=fecha+"."+"\n"+"Cordialmente,"+"\n";
+                text+="Asociación de Egresados de la Escuela Colombiana De Ingeniería Julio Garavito";
+            
 
             doc.add(new Paragraph("\n"));
+            doc.add(new Paragraph(text));
+            
             
             doc.close();
             out.close();

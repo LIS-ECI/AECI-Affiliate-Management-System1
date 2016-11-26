@@ -13,7 +13,7 @@ import java.sql.Blob;
  */
 public class Pago {
     
-    private int id_pago;
+    private String id_pago;
     private String tipo;
     private Blob foto;
     private String validacion;
@@ -26,7 +26,7 @@ public class Pago {
      * @param validacion validacion
      * @param Usuario_nombre usuario que realizo el pago
     */
-    public Pago(int id_pago, String tipo, String validacion, String Usuario_nombre) {
+    public Pago(String id_pago, String tipo, String validacion, String Usuario_nombre) {
         this.id_pago = id_pago;
         this.tipo = tipo;
         this.validacion = validacion;
@@ -38,14 +38,14 @@ public class Pago {
     /**
      * @return the id_pago
      */
-    public int getId_pago() {
+    public String getId_pago() {
         return id_pago;
     }
 
     /**
      * @param id_pago the id_pago to set
      */
-    public void setId_pago(int id_pago) {
+    public void setId_pago(String id_pago) {
         this.id_pago = id_pago;
     }
 

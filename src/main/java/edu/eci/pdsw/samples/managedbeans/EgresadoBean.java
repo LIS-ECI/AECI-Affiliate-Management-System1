@@ -206,11 +206,6 @@ public class EgresadoBean  implements Serializable{
         Egresado egr = new Egresado(genero,apellido,cedula, tipo_identificacion, nombre, fecha_grado, periodo_grado, cargo, carrera, direccion_vivienda, nombreEmpresa, direccion_empresa, telefono_oficina, telefono_fijo, celular, lisc);
         java.sql.Date fecha = new java.sql.Date(java.util.Calendar.getInstance().getTime().getTime());
         Solicitud sol = new Solicitud(fecha,egr.getCedula(), egr.getCedula_tipo(),"Egresado","Pend");
-        Estudiante e= Servicios.getInstance(base).consultarEstudiante(cedula, tipo_identificacion);
-        if (e==null){
-            throw new PersistenceException("Ya existe una solicitud pendiente con el numero de identificacion ingresado");
-        }
-        else{
         Servicios.getInstance(base).enviarSolicitudEgresado(egr,sol);
         this.nombreEmpresa="";
         this.direccion_empresa="";
@@ -218,7 +213,7 @@ public class EgresadoBean  implements Serializable{
         this.nombre="";
         this.cedula=0;
         this.email="";
-        this.direccion_vivienda="";}
+        this.direccion_vivienda="";
         
         
         

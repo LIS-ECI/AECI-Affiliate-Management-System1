@@ -7,6 +7,7 @@ package edu.eci.pdsw.samples.services;
 
 import edu.eci.pdsw.samples.entities.Egresado;
 import edu.eci.pdsw.samples.entities.Estudiante;
+import edu.eci.pdsw.samples.entities.Pago;
 import edu.eci.pdsw.samples.entities.Solicitud;
 import edu.eci.pdsw.samples.entities.Usuario;
 import edu.eci.pdsw.samples.persistence.DaoFactory;
@@ -153,6 +154,19 @@ public class ServiciosDao extends Servicios {
             Logger.getLogger(ServiciosDao.class.getName()).log(Level.SEVERE, null, ex);
         }
         return u;
+    }
+
+    @Override
+    public List<Pago> getPagos(String username) throws PersistenceException {
+        List<Pago> li=null;
+        try {
+            daof.beginSession();
+            li=daof.getDaoSolicitud().getPagos(username);
+            daof.commitTransaction();
+        } catch (PersistenceException ex) {
+            Logger.getLogger(ServiciosDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return li;
     }
 
 

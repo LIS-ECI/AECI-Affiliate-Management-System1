@@ -5,6 +5,12 @@
 
 <mapper namespace="edu.eci.pdsw.samples.persistence.mybatisimpl.mappers.SolicitudMapper">
     
+    <select id="cantidadCertificados" >
+        select count(*)
+        from Certificado
+    </select>
+    
+    
     
     <resultMap type='Solicitud' id='SolicitudResult'>
         <id property='fecha' column='fecha'/>
@@ -28,14 +34,12 @@
          <resultMap type='Observacion' id='ObservacionResult'>
         <id property='numero_observacion' column='numero_observacion'/>
         <result property='Usuario_nombre' column = 'Usuario_nombre'/>
-        <result property = 'comentario' column = 'comentario' />
-        <result property='Usuario_nombre' column = 'Usuario_nombre'/>
-        
+        <result property = 'comentario' column = 'comentario' />        
         </resultMap>
         
         
             <resultMap type='Pago' id='PagoResult'>
-        <id property='id_pago' column='id_pago'/>
+        <id property='id_pago' column='numeroFactura'/>
         <result property='Usuario_nombre' column = 'Usuario_nombre'/>
         <result property = 'tipo' column = 'Tipo' />
          <result property='validacion' column = 'validacion'/>
@@ -56,6 +60,8 @@
         <result property='telefono_fijo' column = 'telefono_fijo'/>
         <result property='celular' column = 'celular'/>
         <result property='programa' column = 'Programas_nombre'/>
+        <result property='apellido' column = 'apellido'/>
+        <result property='genero' column = 'genero'/>
         <collection property='correo' ofType='CorreoPersonal' columnPrefix="correo_" resultMap='CorreoPersonalResult' ></collection> 
     </resultMap>
     
@@ -70,6 +76,8 @@
         <result property='celular' column = 'celular'/>
         <result property='direccion' column = 'direccion_vivienda'/>
         <result property='carrera' column = 'Programas_nombre'/>
+         <result property='apellido' column = 'apellido'/>
+        <result property='genero' column = 'genero'/>
         <collection property='correo' ofType='CorreoPersonal' columnPrefix="correo_" resultMap='CorreoPersonalResult' ></collection> 
     </resultMap>
     
@@ -87,6 +95,8 @@
         <result property='estado' column = 'estado'/>
         <result property='cedula_numero' column = 'identificacion'/>
         <result property='cedula_tipo' column = 'tipo_identificacion'/>
+        <result property='fechaInicio' column = 'fechaInicio'/>
+        <result property='fechaFin' column = 'fechafin'/>
         <collection property='observaciones' ofType='Observacion' columnPrefix="usuario_" resultMap='ObservacionResult' ></collection> 
         <collection property='servicios_usados' ofType='Servicio' columnPrefix="usuario_" resultMap='ServicioResult' ></collection> 
         <collection property='pagos' ofType='Pago' columnPrefix="usuario_" resultMap='PagoResult' ></collection> 
@@ -94,7 +104,7 @@
     
     
     <select id="consultarEstudiante" resultMap="EstudianteResult">
-        SELECT DE.Cedula_Numero,DE.Cedula_Tipo,DE.codigo_estudiante,DE.nombre,DE.semestre_ponderado,DE.telefono_fijo,DE.celular,DE.direccion_vivienda,DE.Programas_nombre,C.correo as correo_correo, C.Cedula_Numero as correo_Cedula_Numero, C.Cedula_Tipo as correo_Cedula_Tipo
+        SELECT DE.Cedula_Numero,DE.Cedula_Tipo,DE.codigo_estudiante,DE.nombre,DE.semestre_ponderado,DE.telefono_fijo,DE.celular,DE.direccion_vivienda,DE.Programas_nombre,DE.genero,DE.apellido,C.correo as correo_correo, C.Cedula_Numero as correo_Cedula_Numero, C.Cedula_Tipo as correo_Cedula_Tipo
         FROM Datos_Estudiante as DE
         LEFT JOIN Identificacion as I ON I.Numero= DE.Cedula_Numero
         LEFT JOIN correo as C ON C.Cedula_Numero=I.Numero
@@ -103,7 +113,7 @@
     
     
     <select id="consultarEgresado" resultMap="EgresadoResult">
-        SELECT DE.Cedula_Numero,DE.Cedula_Tipo,DE.nombre,DE.anio_grado,DE.periodo_grado,DE.cargo,DE.direccion_vivienda,DE.nombreEmpresa,DE.direccion_empresa,         DE.telefono_oficina,DE.telefono_fijo,DE.celular,DE.Programas_nombre,C.correo as correo_correo, C.Cedula_Numero as correo_Cedula_Numero, C.Cedula_Tipo as correo_Cedula_Tipo
+        SELECT DE.Cedula_Numero,DE.Cedula_Tipo,DE.nombre,DE.anio_grado,DE.periodo_grado,DE.cargo,DE.direccion_vivienda,DE.nombreEmpresa,DE.direccion_empresa,DE.telefono_oficina,DE.telefono_fijo,DE.celular,DE.Programas_nombre,DE.genero,DE.apellido,C.correo as correo_correo, C.Cedula_Numero as correo_Cedula_Numero, C.Cedula_Tipo as correo_Cedula_Tipo
         FROM Datos_Egresado as DE
         LEFT JOIN Identificacion as I ON I.Numero= DE.Cedula_Numero
         LEFT JOIN correo as C ON C.Cedula_Numero=I.Numero
@@ -112,7 +122,7 @@
     
     
     <insert parameterType="map" id="InsertarUsuario" >    
-        insert into Usuario values(#{u.nombre},#{u.clave},#{u.tipo},#{u.estado},#{u.cedula_numero},#{u.cedula_tipo})
+        insert into Usuario values(#{u.nombre},#{u.clave},#{u.tipo},#{u.estado},#{u.cedula_numero},#{u.cedula_tipo},#{u.fechaInicio},#{u.fechaFin})
     </insert>
     
     <update parameterType="map" id="ModificarSolicitud" >    
@@ -126,15 +136,15 @@
     </insert>
    
     <insert parameterType="map" id="insertarDatosEstudiante" >    
-        insert into Datos_Estudiante values (#{est.numero_identificacion}, #{est.tipo_identificacion}, #{est.codigo}, #{est.nombre}, #{est.semestre},#{est.telefono_fijo}, #{est.celular}, #{est.direccion}, #{est.carrera})
+        insert into Datos_Estudiante values (#{est.numero_identificacion}, #{est.tipo_identificacion}, #{est.codigo}, #{est.nombre}, #{est.semestre},#{est.telefono_fijo}, #{est.celular}, #{est.direccion}, #{est.carrera},#{est.genero},#{est.apellido})
     </insert>
    
     <insert parameterType="map" id="insertarSolicitud" >    
-        insert into Solicitud values(#{sol.fecha}, #{sol.cedula}, #{sol.tipo_cedula}, #{sol.tipo}, #{sol.estado})
+        insert into Solicitud values(#{sol.fecha}, #{sol.numero_identificacion}, #{sol.tipo_cedula}, #{sol.tipo}, #{sol.estado})
     </insert>
    
     <insert parameterType="map" id="insertarDatosEgresado" >                    
-        insert into Datos_Egresado values(#{egr.cedula}, #{egr.cedula_tipo}, #{egr.nombre}, #{egr.fecha_grado}, #{egr.periodo_grado}, #{egr.cargo}, #{egr.direccion_vivienda},#{egr.nombreEmpresa},#{egr.direccionEmpresa},#{egr.telefono_oficina},#{egr.telefono_fijo},#{egr.celular},#{egr.programa} );
+        insert into Datos_Egresado values(#{egr.cedula}, #{egr.cedula_tipo}, #{egr.nombre}, #{egr.fecha_grado}, #{egr.periodo_grado}, #{egr.cargo}, #{egr.direccion_vivienda},#{egr.nombreEmpresa},#{egr.direccionEmpresa},#{egr.telefono_oficina},#{egr.telefono_fijo},#{egr.celular},#{egr.programa},#{egr.genero},#{egr.apellido} );
     </insert>
     
     <insert parameterType="map" id="insertarCorreoEstudiante" >                    
@@ -144,5 +154,11 @@
     <insert parameterType="map" id="insertarCorreoEgresado" >                    
         insert into correo values(#{correo}, #{egr.cedula}, #{egr.cedula_tipo});
     </insert>
+    
+     <select id="getPagos" resultMap="PagoResult">
+        select numeroFactura , Usuario_nombre , Tipo , validacion
+        from Pagos
+        where Usuario_nombre=#{uname} and aprobado='Ok'
+    </select>
    
 </mapper>

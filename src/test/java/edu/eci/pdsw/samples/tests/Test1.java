@@ -26,7 +26,7 @@ public class Test1 {
         DaoFactory daof=DaoFactory.getInstance(properties);
         
         daof.beginSession();
-        //Prueba load de MyBatisDAoEntradaForo
+        //Prueba load de MyBatisDAoSolicitud
         System.out.println("Prueba LOAD  "+daof.getDaoSolicitud().consultarSolicitud().get(0));
         daof.commitTransaction();
         daof.endSession();

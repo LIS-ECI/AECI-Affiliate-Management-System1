@@ -9,13 +9,19 @@ import java.util.Date;
 
 /**
  *
- * @author 2089340
+ * @author Grupo 3 Pdsw
  */
 public class Servicio {
 
     private String tDeServicio;
     private Date fecha;
 
+    
+    /**
+    * Constructor Clase Servicio
+     * @param tDeServicio tipo de servicio
+     * @param fecha fecha
+    */
     public Servicio(String tDeServicio, Date fecha) {
         this.tDeServicio = tDeServicio;
         this.fecha = fecha;
@@ -24,7 +30,7 @@ public class Servicio {
     public Servicio(){}
     
     /**
-     * @return the tDeServicio
+     * @return the tDeServicio - tipo del servicio
      */
     public String gettDeServicio() {
         return tDeServicio;

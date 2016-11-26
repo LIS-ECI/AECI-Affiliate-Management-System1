@@ -9,7 +9,7 @@ import java.sql.Blob;
 
 /**
  *
- * @author 2089340
+ * @author  Grupo 3 Pdsw
  */
 public class Pago {
     
@@ -17,12 +17,20 @@ public class Pago {
     private String tipo;
     private Blob foto;
     private String validacion;
+    private String Usuario_nombre;
 
-    public Pago(int id_pago, String tipo, Blob foto, String validacion) {
+    /**
+    * Constructor Clase Pago
+     * @param id_pago identificador del pago
+     * @param tipo tipo de pago
+     * @param validacion validacion
+     * @param Usuario_nombre usuario que realizo el pago
+    */
+    public Pago(int id_pago, String tipo, String validacion, String Usuario_nombre) {
         this.id_pago = id_pago;
         this.tipo = tipo;
-        this.foto = foto;
         this.validacion = validacion;
+        this.Usuario_nombre= Usuario_nombre;
     }
 
     public Pago(){}
@@ -81,6 +89,14 @@ public class Pago {
      */
     public void setValidacion(String validacion) {
         this.validacion = validacion;
+    }
+
+    public String getUsuario_nombre() {
+        return Usuario_nombre;
+    }
+
+    public void setUsuario_nombre(String Usuario_nombre) {
+        this.Usuario_nombre = Usuario_nombre;
     }
     
     

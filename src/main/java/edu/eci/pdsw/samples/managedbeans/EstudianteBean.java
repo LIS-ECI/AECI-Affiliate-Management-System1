@@ -8,20 +8,22 @@ package edu.eci.pdsw.samples.managedbeans;
 import edu.eci.pdsw.samples.entities.CorreoPersonal;
 import edu.eci.pdsw.samples.entities.Estudiante;
 import edu.eci.pdsw.samples.entities.Solicitud;
+import edu.eci.pdsw.samples.persistence.PersistenceException;
 import edu.eci.pdsw.samples.services.Servicios;
-import java.sql.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 
 /**
  *
- * @author 21
+ * @author Grupo 3 Pdsw
  */
 @ManagedBean(name="beanEstudiante")
 
@@ -36,13 +38,60 @@ public class EstudianteBean  implements Serializable{
     private int telefono_fijo;
     private long celular=0;
     private String direccion;
-    private String carrera;
-    
-    
-    
+    private String carrera="Ingenieria Civil";
+    private int min=8;
+    private int max=10;
     private String correo;
     private String enter;
+    private String email_institucional;
+    private String base="applicationconfig.properties";
+    private String genero;
+    private String apellido;
 
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
+    public String getGenero() {
+        return genero;
+    }
+
+    public void setGenero(String genero) {
+        this.genero = genero;
+    }
+
+    public int getMin() {
+        if (carrera.equals("Matematicas") | carrera.equals("Administracion") | carrera.equals("Economia") | carrera.equals("Ingenieria Biomedica")){
+            this.min=7;
+        }
+        else{
+            this.min=8;
+        }
+        return this.min;
+    }
+
+    public void setMin(int min) {
+        this.min = min;
+    }
+
+    public int getMax() {
+        if (carrera.equals("Matematicas")| carrera.equals("Administracion") | carrera.equals("Economia") | carrera.equals("Ingenieria Biomedica")){
+            this.max=9;
+        }
+        else{
+            this.max=10;
+        }
+        return this.max;
+    }
+
+    public void setMax(int max) {
+        this.max = max;
+    }
+    
     public String getEnter() {
         return enter;
     }
@@ -143,14 +192,22 @@ public class EstudianteBean  implements Serializable{
         this.celular = celular;
     }
     
-     public void enviarSolicitud (){
+    /**
+    * Metodo enviarSolicitudEstudiante
+    */
+     public void enviarSolicitud () throws PersistenceException{
+         if( this.direccion.equals("")){
+            this.direccion="No Disponible";
+        }
         CorreoPersonal cp = new CorreoPersonal(correo,numero_identificacion,tipo_identificacion);
+        CorreoPersonal cp2 = new CorreoPersonal(email_institucional,numero_identificacion,tipo_identificacion);
         List<CorreoPersonal> lisc = new ArrayList<>();
         lisc.add(cp);
-        Estudiante est = new Estudiante(codigo, numero_identificacion,  nombre, semestre, tipo_identificacion, carrera, telefono_fijo, celular,  lisc, direccion );
+        lisc.add(cp2);
+        Estudiante est = new Estudiante(genero,apellido,codigo, numero_identificacion,  nombre, semestre, tipo_identificacion, carrera, telefono_fijo, celular,  lisc, direccion );
         Date fecha = new java.sql.Date(java.util.Calendar.getInstance().getTime().getTime());
-        Solicitud sol = new Solicitud(fecha,(int)est.getNumero_identificacion(), est.getTipo_identificacion(),"Estudiante","Pend");
-        Servicios.getInstance().enviarSolicitudEstudiante(est,sol);
+        Solicitud sol = new Solicitud((java.sql.Date) fecha,(int)est.getNumero_identificacion(), est.getTipo_identificacion(),"Estudiante","Pend");
+        Servicios.getInstance(base).enviarSolicitudEstudiante(est,sol);
         this.carrera="";
         this.celular=0;
         this.codigo=0;
@@ -159,8 +216,19 @@ public class EstudianteBean  implements Serializable{
         this.nombre="";
         this.numero_identificacion=0;
         this.telefono_fijo=0;
+        this.carrera="Ingenieria Civil";
         
 
     }
+
+    public String getEmail_institucional() {
+        return email_institucional;
+    }
+
+    public void setEmail_institucional(String email_institucional) {
+        this.email_institucional = email_institucional;
+    }
+    
+
 
 }

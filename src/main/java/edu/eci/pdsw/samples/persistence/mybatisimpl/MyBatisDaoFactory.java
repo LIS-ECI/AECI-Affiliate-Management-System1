@@ -99,16 +99,6 @@ public class MyBatisDaoFactory extends DaoFactory {
     }
 
     @Override
-    public DaoEstudiante getDaoEstudiante() {
-        return new MyBatisDAOEstudiante(currentSession);
-    }
-
-    @Override
-    public DaoEgresado getDaoEgresado() {
-        return new MyBatisDAOEgresado(currentSession);
-    }
-
-    @Override
     public DaoSolicitud getDaoSolicitud() {
         return new MyBatisDAOSolicitud(currentSession);
     }

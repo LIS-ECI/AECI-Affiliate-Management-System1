@@ -5,23 +5,33 @@
  */
 package edu.eci.pdsw.samples.entities;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  *
- * @author 2106088
+ * @author Grupo 3 Pdsw
  */
-public class Solicitud {
+public class Solicitud{
 
     private java.sql.Date fecha;
-    private long cedula;
+    private long numero_identificacion;
     private String tipo_cedula;
     private String tipo;
     private String estado; 
+    private java.sql.Date fechaAfiliacion;
 
+    /**
+    * Constructor Clase Correo
+     * @param fecha fecha solicitud
+     * @param cedula cedula 
+     * @param tipo_cedula tipo cedula
+     * @param tipo tipo
+     * @param estado estado
+    */
     public Solicitud(java.sql.Date  fecha, long cedula, String tipo_cedula, String tipo,String estado) {
         this.fecha = fecha;
-        this.cedula = cedula;
+        this.numero_identificacion= cedula;
         this.tipo_cedula = tipo_cedula;
         this.tipo = tipo;
         this.estado=estado;
@@ -55,15 +65,15 @@ public class Solicitud {
     /**
      * @return the cedula
      */
-    public long getCedula() {
-        return cedula;
+    public long getNumero_identificacion() {
+        return numero_identificacion;
     }
 
     /**
      * @param cedula the cedula to set
      */
-    public void setCedula(long cedula) {
-        this.cedula = cedula;
+    public void setNumero_identificacion(long cedula) {
+        this.numero_identificacion = cedula;
     }
 
     /**
@@ -93,6 +103,21 @@ public class Solicitud {
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
+    
+    /**
+     * @return the tipo
+     */
+    public java.sql.Date getFechaAfiliacion() {
+        return fechaAfiliacion;
+    }
+
+    /**
+     * @param fAfiliacion the tipo to set
+     */
+    public void setFechaAfiliacion(java.sql.Date fAfiliacion){
+        this.fechaAfiliacion = fAfiliacion;
+    }
+    
     
     
 }

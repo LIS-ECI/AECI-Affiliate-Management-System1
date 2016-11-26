@@ -19,13 +19,13 @@
                 </p:panel>
                 
             </h:panelGrid>
-            <h:panelGrid columns="1" style="position: absolute; top: 30%; left: 45%">
-                <p:galleria value="#{PrincipalBean.images}" var="image" panelWidth="500" panelHeight="313" showCaption="true">
-                    <p:graphicImage name="Images/#{imagen}" alt="Image Description for #{imagen}" title="#{imagen}"/>
-                </p:galleria>
-            </h:panelGrid>
             
+            <h:panelGrid columns="1" style="position: fixed; top: 30%; left: 45%">
+                <img src="http://imagenes.universia.net/gc/net/images/institution/11404/Escuela-Colombiana-Ingenieria-Julio-Garavito1_Carrusel.jpg" alt="AECI"></img>
+                
+            </h:panelGrid>
 
+            
             <h:panelGrid columns="1" style="position: absolute; top: 0px; left: 1000px">
 
 
@@ -37,17 +37,22 @@
 
                     <h:panelGrid columns="2" cellpadding="5">
                         
-                        <p:commandButton value="Ingresar " oncomplete="PF('campoEntradaDatos').show()" />
+                        <p:commandButton id="a1" value="Ingresar " oncomplete="PF('campoEntradaDatos').show()" />
                         
                         <p:dialog header="Ingresa tus datos" widgetVar="campoEntradaDatos" modal="true" showEffect="fade" hideEffect="fade" resizable="false" width="400">
                         <p:outputPanel id="inputQuantity" style="text-align:center;">
                             <h:panelGrid columns="2" cellpadding="1" styleClass="ui-grid">
                         
                         <p:outputLabel value="Usuario:   "  />
-                        <p:inputText />
+                        <p:inputText id="username"  value="#{loginBean.username}"/>
                         
                         <h:outputText value="Contraseña:  " />
-                        <p:password id="nonFeedback" />
+                        <p:password id="password" value="#{loginBean.password}"/>
+                        
+                        <h:outputText value="Remember me:"/>
+                        <p:selectBooleanCheckbox id="rememberMe" value="#{loginBean.rememberMe}"/>
+                        
+                        
                         <p:growl id="growl" life="2000" />
                        
                         
@@ -55,9 +60,9 @@
                             <h:outputText value="Olvide mi contraseña" />
                         </p:commandLink>
                         
-                        
+                        <p:commandButton id="ingresar2" value="Ingresar2" action="#{loginBean.doLogin}" />
                         </h:panelGrid>
-                        <p:commandButton value="Ingresar" id="ajax" styleClass="ui-priority-primary" />
+                        
                         
 
                             
@@ -69,10 +74,13 @@
                             <p:separator />
                             <p:menuitem value="Egresado" immediate="true" action="informacionegresado" />
                         </p:splitButton>
+                       
+                        
+                        
 
                     </h:panelGrid>
 
-
+                    <p:commandButton value="Solicitudes" action="solicitud" styleClass="ui-priority-primary" />
 
 
                 </p:panel>

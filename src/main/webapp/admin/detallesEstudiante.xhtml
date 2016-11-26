@@ -58,16 +58,29 @@
 
 
                         <br>
-                            <p:commandButton id="Aceptar" value="Aceptar Solicitud" immediate="true" actionListener="#{BeanSolicitudes.aprobar}" />
-                            <p:commandButton id="Rechazar" value="Rechazar Solicitud" oncomplete="PF('campoEntradaDatos').show()" immediate="true" actionListener="#{BeanSolicitudes.rechazar}" />
+                            <p:commandButton id="Aceptar" value="Aceptar Solicitud" actionListener="#{BeanSolicitudes.aprobarEst}" oncomplete="PF('campoEntradaDatos2').show()"  />
+                                 <p:dialog header="Confirmacion" widgetVar="campoEntradaDatos2" showEffect="fade" hideEffect="fade" resizable="false" width="400">
+                                <p:outputPanel id="inputQuantity2" style="text-align:center;">
+                                    <h:panelGrid columns="2" cellpadding="1" styleClass="ui-grid">
+                                        <p:outputLabel value="Solicitud Aceptada"   />
+                                    </h:panelGrid>
+                                    <p:commandButton value="Aceptar" action="solicitud"  id="ajax22" styleClass="ui-priority-primary"  />
+                                </p:outputPanel>
+                            </p:dialog>
+                            
+                            <p:commandButton id="Rechazar" value="Rechazar Solicitud" oncomplete="PF('campoEntradaDatos').show()"  />
                             <br/>
                             <p:dialog header="Ingresa la justificación" widgetVar="campoEntradaDatos" showEffect="fade" hideEffect="fade" resizable="false" width="400">
                                 <p:outputPanel id="inputQuantity" style="text-align:center;">
                                     <h:panelGrid columns="2" cellpadding="1" styleClass="ui-grid">
                                         <p:outputLabel value="Motivo:   "   />
-                                        <p:inputText value="#{BeanSolicitudes.respuestaSolicitud}" />
+
+                                        <p:inputTextarea rows="6" cols="33"  value="#{BeanSolicitudes.respuestaSolicitud}" />
+                               
                                     </h:panelGrid>
-                                    <p:commandButton value="Enviar Justificacion"  id="ajax" styleClass="ui-priority-primary" actionListener="#{BeanSolicitudes.enviarCorreo()}"/>
+
+                                    <p:commandButton value="Enviar Justificacion"  id="ajax" styleClass="ui-priority-primary" actionListener="#{BeanSolicitudes.rechazarEst}" action="solicitud"/>
+
                                 </p:outputPanel>
                             </p:dialog>
                             <p:commandButton value="Ver Lista de Solicitudes" ajax="false" immediate="true" action="solicitud"/>

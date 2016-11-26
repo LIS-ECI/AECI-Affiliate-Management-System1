@@ -46,6 +46,13 @@
         </dependency>
 
         <dependency>
+            <groupId>com.itextpdf</groupId>
+            <artifactId>itextpdf</artifactId>
+            <version>5.0.6</version>
+        </dependency>
+
+
+        <dependency>
             <groupId>org.apache.shiro</groupId>
             <artifactId>shiro-web</artifactId>
             <version>1.2.1</version>
@@ -146,7 +153,7 @@
                 <configuration>
                     <driver>org.h2.Driver</driver>                    
                     <url>jdbc:h2:file:./target/db/testdb;MODE=MYSQL</url>
-                    <username></username>
+                    <username>an</username>
                     <password></password>
                     <autocommit>false</autocommit>
                     <skip>${maven.test.skip}</skip>

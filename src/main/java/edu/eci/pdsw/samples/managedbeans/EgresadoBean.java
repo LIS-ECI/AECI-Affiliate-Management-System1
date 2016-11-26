@@ -7,7 +7,9 @@ package edu.eci.pdsw.samples.managedbeans;
 
 import edu.eci.pdsw.samples.entities.CorreoPersonal;
 import edu.eci.pdsw.samples.entities.Egresado;
+import edu.eci.pdsw.samples.entities.Estudiante;
 import edu.eci.pdsw.samples.entities.Solicitud;
+import edu.eci.pdsw.samples.persistence.PersistenceException;
 import edu.eci.pdsw.samples.services.ExcepcionServicios;
 import edu.eci.pdsw.samples.services.Servicios;
 import java.io.Serializable;
@@ -17,7 +19,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author 2106088
+ * @author Grupo 3 Pdsw
  */
 
 import javax.faces.bean.ManagedBean;
@@ -45,7 +47,26 @@ public class EgresadoBean  implements Serializable{
     private int telefono_fijo;
     private long celular;
     private String email;
+    private String base="applicationconfig.properties";
     //base de datos
+     private String genero;
+     private String apellido;
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
+    public String getGenero() {
+        return genero;
+    }
+
+    public void setGenero(String genero) {
+        this.genero = genero;
+    }
 
     public String getEmail() {
         return email;
@@ -63,9 +84,6 @@ public class EgresadoBean  implements Serializable{
         this.cedula = cedula;
     }
     
-
-   
-
     public String getTipo_identificacion() {
         return tipo_identificacion;
     }
@@ -163,7 +181,13 @@ public class EgresadoBean  implements Serializable{
         this.celular = celular;
     }
     
-    public void enviarSolicitud (){
+    /**
+    * Metodo enviarSolicitud egresado
+    * 
+     * @throws edu.eci.pdsw.samples.persistence.PersistenceException x
+     * 
+    */
+    public void enviarSolicitud () throws PersistenceException{
         if( this.nombreEmpresa.equals("")){
             this.nombreEmpresa="No Disponible";
         }
@@ -173,20 +197,28 @@ public class EgresadoBean  implements Serializable{
         if( this.cargo.equals("")){
             this.cargo="No Disponible";
         }
+        if( this.direccion_vivienda.equals("")){
+            this.direccion_vivienda="No Disponible";
+        }
         CorreoPersonal cp = new CorreoPersonal(email,cedula,tipo_identificacion);
         List<CorreoPersonal> lisc = new ArrayList<>();
         lisc.add(cp);
-        Egresado egr = new Egresado(cedula, tipo_identificacion, nombre, fecha_grado, periodo_grado, cargo, carrera, direccion_vivienda, nombreEmpresa, direccion_empresa, telefono_oficina, telefono_fijo, celular, lisc);
+        Egresado egr = new Egresado(genero,apellido,cedula, tipo_identificacion, nombre, fecha_grado, periodo_grado, cargo, carrera, direccion_vivienda, nombreEmpresa, direccion_empresa, telefono_oficina, telefono_fijo, celular, lisc);
         java.sql.Date fecha = new java.sql.Date(java.util.Calendar.getInstance().getTime().getTime());
         Solicitud sol = new Solicitud(fecha,egr.getCedula(), egr.getCedula_tipo(),"Egresado","Pend");
-        Servicios.getInstance().enviarSolicitudEgresado(egr,sol);
+        Estudiante e= Servicios.getInstance(base).consultarEstudiante(cedula, tipo_identificacion);
+        if (e==null){
+            throw new PersistenceException("Ya existe una solicitud pendiente con el numero de identificacion ingresado");
+        }
+        else{
+        Servicios.getInstance(base).enviarSolicitudEgresado(egr,sol);
         this.nombreEmpresa="";
         this.direccion_empresa="";
         this.cargo="";
         this.nombre="";
         this.cedula=0;
         this.email="";
-        this.direccion_vivienda="";
+        this.direccion_vivienda="";}
         
         
         

@@ -49,9 +49,7 @@ public abstract class DaoFactory {
         }
         return instance;
     }
-    public abstract DaoEstudiante getDaoEstudiante();
-
-    public abstract DaoEgresado getDaoEgresado();
+    
     
     public abstract DaoSolicitud getDaoSolicitud();
 

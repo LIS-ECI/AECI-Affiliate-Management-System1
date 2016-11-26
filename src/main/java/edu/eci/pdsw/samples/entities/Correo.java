@@ -14,7 +14,7 @@ import javax.mail.MessagingException;
 
 /**
  *
- * @author miguel
+ * @author Grupo 3 Pdsw
  */
 public class Correo {
     
@@ -23,6 +23,9 @@ public class Correo {
     String subject;
     String message;
     
+    /**
+    * Constructor Clase Correo
+    */
     public Correo(){
         from = "me@gmail.com";
         to = "test@gmail.com";
@@ -30,6 +33,10 @@ public class Correo {
         message = "test";
     }
     
+    
+    /**
+    *  Metodo que sirve para enviar un correo
+    */
     public void enviarCorreo(){
         Email email = new SimpleEmail(from, to, subject, message);
         EmailSender sender = new SimpleEmailSender(new EmailConfiguration());

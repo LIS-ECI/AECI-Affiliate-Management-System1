@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Afilicaciones por vencer</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+
+    <h:body>
+        <h:form id="Inicio">
+            <p:layout>
+                <p:layoutUnit position="north">
+                    <p:panel style=" font-size:  medium; height: 185px;color: #cccccc" >
+                        <f:facet name="header" >
+                            <img  src="https://media.licdn.com/mpr/mpr/shrink_200_200/AAEAAQAAAAAAAAgDAAAAJDk3ZGM0MDU2LWRhNWEtNDMwNi1iOTNjLTllMDY1OWNkMjk3ZQ.png" width="280" height="170" align="left"/>
+                            <h1 style="text-align: center; color: darkblue;">BIENVENIDO</h1>
+                            <h1 style="text-align: center; color: darkblue;">Afiliaciones por vencer</h1>
+                            <h2 style="text-align: center; color: darkblue;">Asociación de Egresados Escuela Colombiana de Ingenieria Julio Garavito</h2>
+                        </f:facet>
+                        <p:growl id="msj" showDetail="true" autoUpdate="true"/>
+
+                    </p:panel>
+                </p:layoutUnit>
+                            
+                <p:layoutUnit position="center">
+                    <p:panel  header = "Afiliaciones Por vencer " id="panelSolicitudes">
+                        <p:dataTable id="singleDT" var="afiliaciones" value="#{BeanReporteAfiliaciones.afiliaciones}"  selectionMode="single" selection="#{beanEstudiante}" rowKey="#{numero_identificacion}">
+                            <p:column headerText="Tipo Afiliación">
+                                <h:outputText value="#{afiliaciones.tipo}"/>
+                            </p:column>
+                            <p:column headerText="Tipo Documento Afiliado">
+                                <h:outputText  value="#{afiliaciones.tipo_cedula}"/>
+                            </p:column>
+                            <p:column headerText="Documento Afiliado">
+                                <h:outputText  value="#{afiliaciones.numero_identificacion}"/>
+                            </p:column>
+                            <p:column headerText="Fecha Afiliación">
+                                <h:outputText  value="#{afiliaciones.fechaAfiliacion}"/>
+                            </p:column>
+                            <f:facet name="footer">
+                                <p:commandButton process="singleDT" update=":Inicio:afiDetail" icon="ui-icon-search" value="View" oncomplete="PF('carDialog').show()" />
+                            </f:facet>
+                        </p:dataTable>
+                        
+                        <p:dialog header="Info Afiliado" widgetVar="afiDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+                            <p:outputPanel id="afiDetail" style="text-align:center;">
+                                <p:panelGrid  columns="2" rendered="#{not empty beanEstudiante}" columnClasses="label,value">
+                                    
+                                    <h:outputText value="Nombre Afiliado:" />
+                                    <h:outputText value="#{beanEstudiante.nombre}" />
+
+                                    <h:outputText value="Documento:" />
+                                    <h:outputText value="#{beanEstudiante.numero_identificacion}" />
+
+                                    <h:outputText value="Dirección:" />
+                                    <h:outputText value="#{beanEstudiante.direccion}"/>
+
+                                    <h:outputText value="Correo Electronico" />
+                                    <h:outputText value="#{beanEstudiante.email_institucional}" />
+                                </p:panelGrid>
+                            </p:outputPanel>
+                        </p:dialog>
+                        <br/>
+                        <br/>
+                    </p:panel>
+                </p:layoutUnit>
+            </p:layout>
+            
+            
+        </h:form>
+    </h:body>
+</html>

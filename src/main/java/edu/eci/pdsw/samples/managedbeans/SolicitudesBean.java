@@ -13,6 +13,7 @@ import edu.eci.pdsw.samples.entities.Pago;
 import edu.eci.pdsw.samples.entities.Servicio;
 import edu.eci.pdsw.samples.entities.Solicitud;
 import edu.eci.pdsw.samples.entities.Usuario;
+import edu.eci.pdsw.samples.persistence.PersistenceException;
 import edu.eci.pdsw.samples.services.Servicios;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -26,7 +27,7 @@ import javax.faces.bean.SessionScoped;
 
 /**
  *
- * @author 2103216
+ * @author Grupo 3 Pdsw
  */
 
 /* Intento Commit con correccion de autor */
@@ -41,29 +42,33 @@ private String clave;
 private Date fecha;
 private Estudiante est;
 private Egresado egr;
-private Solicitud s;  
+private Solicitud soli;  
 private String correos="";
-private String pagina="index";
+private String pagina="solicitud";
 private String respuestaSolicitud;
+private String base="applicationconfig.properties";
 
 
     public SolicitudesBean(){}
 
-   
-    public List<Solicitud> getSolicitudes() {
-        List<Solicitud> a=Servicios.getInstance().consultarSolicitud();
+   /**
+    * Metodo de obtener solicitudes
+     * @return lista de solicitudes
+     * @throws edu.eci.pdsw.samples.persistence.PersistenceException 
+    */
+    public List<Solicitud> getSolicitudes() throws PersistenceException {
+        List<Solicitud> a=Servicios.getInstance(base).consultarSolicitud();
         return a;
 
     }
     
     
-    public Solicitud getS() {
-        return s;
+    public Solicitud getSoli() {
+        return soli;
     }
 
-    public void setS(Solicitud s) {
-        System.out.println("HOOOLA");
-        this.s = s;
+    public void setSoli(Solicitud soli) {
+        this.soli = soli;
     }
 
 
@@ -98,25 +103,25 @@ private String respuestaSolicitud;
         this.correos = correos;
     }
     
-    public String getPagina() {
+    public String getPagina() throws PersistenceException {
+        if (!(soli == null)){
         correos="";
-        this.pagina = "detallesEstudiante";
-        if (s.getTipo().equals("Estudiante")) {
-            this.est = Servicios.getInstance().consultarEstudiante(s.getCedula(), s.getTipo_cedula());
+        
+        if (soli.getTipo().equals("Estudiante")) {
+            this.est = Servicios.getInstance(base).consultarEstudiante(soli.getNumero_identificacion(), soli.getTipo_cedula());
             this.pagina = "detallesEstudiante";
             for (int i=0;i<est.getCorreo().size();i++){
                 correos+="      "+est.getCorreo().get(i).getCorreo();
             }
         }
         else{
-            this.egr = Servicios.getInstance().consultarEgresado(s.getCedula(), s.getTipo_cedula());
-            System.out.println(s.getCedula()+ s.getTipo_cedula()+"  EGRESADO  ");
+            this.egr = Servicios.getInstance(base).consultarEgresado(soli.getNumero_identificacion(), soli.getTipo_cedula());
             this.pagina = "detallesEgresado";
             for (int i=0;i<egr.getCorreo().size();i++){
                 correos+="      "+egr.getCorreo().get(i).getCorreo();
             }
         }
-
+        }
         return pagina;
     }
 
@@ -142,14 +147,33 @@ private String respuestaSolicitud;
     }
 
 
-    public void aprobar(){
-        Usuario s= new Usuario(String.valueOf(est.getNumero_identificacion()),String.valueOf( est.getNumero_identificacion()), "Estudiante", "Activo", est.getNumero_identificacion(), est.getTipo_identificacion(), null, null, null );
-        Servicios.getInstance().InsertarUsuario(s);
-        Servicios.getInstance().ModificarSolicitud("OK",est.getNumero_identificacion(),est.getTipo_identificacion());
+    public void aprobarEst() throws PersistenceException{
+        //Usuario sa= new Usuario(String.valueOf(est.getNumero_identificacion()),String.valueOf( est.getNumero_identificacion()), "Estudiante", "Activo", est.getNumero_identificacion(), est.getTipo_identificacion(), null, null, null );
+        //Servicios.getInstance(base).InsertarUsuario(sa);
+        Servicios.getInstance(base).ModificarSolicitud("OK",est.getNumero_identificacion(),est.getTipo_identificacion());
         //Enviar Correo indicando usuario y contraseña
     }
     
-    public void rechazar(){}
+    public void rechazarEst() throws PersistenceException{
+        Servicios.getInstance(base).ModificarSolicitud("NOOK",est.getNumero_identificacion(),est.getTipo_identificacion());
+        enviarCorreo(this.respuestaSolicitud,est.getCorreo().get(0).getCorreo());
+        this.respuestaSolicitud="";
+    }
+    
+     public void aprobarEgr() throws PersistenceException{
+        //Usuario s= new Usuario(String.valueOf(egr.getCedula()),String.valueOf( egr.getCedula()), "Egresado", "Inactivo", egr.getCedula(), egr.getCedula_tipo(), null, null, null );
+        //Servicios.getInstance(base).InsertarUsuario(s);
+        Servicios.getInstance(base).ModificarSolicitud("OK",egr.getCedula(),egr.getCedula_tipo());
+        //Enviar Correo indicando usuario y contraseña
+    }
+    
+    public void rechazarEgr() throws PersistenceException{
+        Servicios.getInstance(base).ModificarSolicitud("NOOK",egr.getCedula(),egr.getCedula_tipo());
+        enviarCorreo(this.respuestaSolicitud,egr.getCorreo().get(0).getCorreo());
+        this.respuestaSolicitud="";
+
+    }
+    
     
     public void setRespuestaSolicitud(String respuesta){
         this.respuestaSolicitud = respuesta;
@@ -159,10 +183,12 @@ private String respuestaSolicitud;
         return this.respuestaSolicitud;
     }
     
-    public void enviarCorreo(){
+    public void enviarCorreo(String mensaje,String correo){
         Correo correo1 = new Correo();
-        correo1.setMessage(this.respuestaSolicitud);
-        //correo1.setTo(est.getCorreo().get(0));
-        correo1.enviarCorreo();  
+        correo1.setMessage(mensaje);
+        correo1.setTo(correo);
+        correo1.enviarCorreo(); 
+        
+        
     }
 }

@@ -48,23 +48,26 @@
                             <p:panel header="Informacion Personal">
                                 <p:messages />
                                 <h:panelGrid columns="2" columnClasses="label, value">
-                                    <h:outputText value="Nombre y Apellido: *" />
-                                    <p:inputText  label="Nombre y Apellido" required="true" value="#{beanEgresado.nombre}"/>
+                                    <h:outputText value="Nombre : *" />
+                                    <p:inputText label="Nombre " required="true" value="#{beanEgresado.nombre}"/>
 
-                                    <h:outputText value="Direccion: *" />
-                                    <p:inputText   label="Direccion" required="true" value="#{beanEgresado.direccion_vivienda}"/>
-
-                                    <h:outputText value="Telefono fijo: " />
-                                    <p:inputText   label="Telefono" value="#{beanEgresado.telefono_fijo}"/>
-
-                                    <h:outputText value="Documento: *" />
-                                    <p:inputText label="Documento" required="true" value="#{beanEgresado.cedula}"/>
+                                    <h:outputText value="Apellido : *" />
+                                    <p:inputText label="Apellido" required="true" value="#{beanEgresado.apellido}"/>
 
                                     <h:outputText value="Tipo de documento " />
                                     <p:selectOneMenu id="tipoId" style="width:90px" value="#{beanEgresado.tipo_identificacion}">
                                         <f:selectItem itemLabel="CC" itemValue="CC" />
                                         <f:selectItem itemLabel="CE" itemValue="CE" />
                                     </p:selectOneMenu>
+
+                                    <h:outputText value="Documento: *" />
+                                    <p:inputText label="Documento" required="true" value="#{beanEgresado.cedula}"/>
+
+                                    <h:outputText value="Direccion: " />
+                                    <p:inputText   label="Direccion"  value="#{beanEgresado.direccion_vivienda}"/>
+
+                                    <h:outputText value="Telefono fijo: " />
+                                    <p:inputText   label="Telefono" value="#{beanEgresado.telefono_fijo}"/>
 
                                     <h:outputText value="Correo: *" />
                                     <p:inputText label="Correo" required="true" value="#{beanEgresado.email}"/>
@@ -86,7 +89,12 @@
 
                                     <p:spinner id="minMaxper" value="#{beanEgresado.periodo_grado}" min="1" max="2" />
 
+                                    <h:outputText value="Genero " />
+                                    <p:selectOneMenu id="console2" value="#{beanEgresado.genero}" style="width:250px" immediate="true">
+                                        <f:selectItem itemLabel="Masculino" itemValue="Masculino" />
+                                        <f:selectItem itemLabel="Femenino" itemValue="Femenino" />
 
+                                    </p:selectOneMenu>
 
                                     <h:outputText value="Programa: " />
                                     <p:selectOneMenu id="console" style="width:250px" value="#{beanEgresado.carrera}">
@@ -103,8 +111,8 @@
                                         <f:selectItem itemLabel="Ingeniería Biomédica" itemValue="Ingenieria Biomedica" />
                                     </p:selectOneMenu>
 
-                                    <h:outputText value="Telefono celular: " />
-                                    <p:inputText value="#{beanEgresado.celular}"/>
+                                    <h:outputText value="Telefono celular: *" />
+                                    <p:inputText value="#{beanEgresado.celular}" required="true"/>
                                 </h:panelGrid>
                             </p:panel>
                         </p:tab>

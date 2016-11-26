@@ -5,12 +5,13 @@
  */
 package edu.eci.pdsw.samples.entities;
 
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
 /**
  *
- * @author 2089340
+ * @author Grupo 3 Pdsw
  */
 public class Usuario {
     private String nombre;
@@ -22,20 +23,25 @@ public class Usuario {
     private List<Observacion> observaciones;
     private List<Servicio> servicios_usados;
     private List<Pago> pagos;
+    private Date fechaInicio;
+    private Date fechaFin;
+    
 
     /**
-     *
-     * @param nombre
-     * @param clave
-     * @param tipo
-     * @param estado
-     * @param cedula_numero
-     * @param cedula_tipo
-     * @param observacion
-     * @param servicio
-     * @param pago
-     */
-    public Usuario(String nombre, String clave, String tipo, String estado, long cedula_numero, String cedula_tipo, Observacion observacion, Servicio servicio, Pago pago ) {
+    * Constructor Clase Usuario
+     * @param fechaInicio inicio de afiliacion
+     * @param fechaFin fin de afiliacion
+     * @param nombre nombre usuario
+     * @param clave clave
+     * @param tipo tipo usuario
+     * @param estado estado usuario
+     * @param observacion observacion 
+     * @param cedula_numero cedula
+     * @param servicio servicio
+     * @param cedula_tipo cedula tipo
+     * @param pago pago
+    */
+    public Usuario(Date fechaInicio,Date fechaFin, String nombre, String clave, String tipo, String estado, long cedula_numero, String cedula_tipo, Observacion observacion, Servicio servicio, Pago pago ) {
         this.nombre = nombre;
         this.clave = clave;
         this.tipo = tipo;
@@ -48,6 +54,8 @@ public class Usuario {
         this.servicios_usados.add(servicio);
         this.pagos = new LinkedList<>();
         this.pagos.add(pago);
+        this.fechaFin=fechaFin;
+        this.fechaInicio=fechaInicio;
     }
     public Usuario(){}
     /**
@@ -174,6 +182,22 @@ public class Usuario {
      */
     public void setPagos(List<Pago> pagos) {
         this.pagos = pagos;
+    }
+
+    public Date getFechaInicio() {
+        return fechaInicio;
+    }
+
+    public void setFechaInicio(Date fechaInicio) {
+        this.fechaInicio = fechaInicio;
+    }
+
+    public Date getFechaFin() {
+        return fechaFin;
+    }
+
+    public void setFechaFin(Date fechaFin) {
+        this.fechaFin = fechaFin;
     }
 
     

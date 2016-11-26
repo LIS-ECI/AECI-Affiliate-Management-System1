@@ -7,7 +7,7 @@ package edu.eci.pdsw.samples.entities;
 
 /**
  *
- * @author USER
+ * @author  Grupo 3 Pdsw
  */
 public class CorreoPersonal {
     
@@ -17,6 +17,14 @@ public class CorreoPersonal {
     
     public CorreoPersonal(){
     }
+    
+    /**
+    * Constructor Clase CorreoPersonal
+    * Que representa el correo de una persona
+     * @param correo correo
+     * @param cedula cedula
+     * @param tipo tipo
+    */
     public CorreoPersonal(String correo, long cedula, String tipo){
         this.correo=correo;
         this.cedula_numero=cedula;

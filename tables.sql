@@ -1,7 +1,13 @@
 -- Created by Vertabelo (http://vertabelo.com)
--- Last modification date: 2016-11-10 16:18:27.083
+-- Last modification date: 2016-11-26 16:30:39.239
 
 -- tables
+-- Table: Certificado
+CREATE TABLE Certificado (
+    id int NOT NULL,
+    Usuario_nombre varchar(20) NOT NULL
+)ENGINE = InnoDB;
+
 -- Table: Datos_Egresado
 CREATE TABLE Datos_Egresado (
     Cedula_Numero bigint NOT NULL,
@@ -16,7 +22,9 @@ CREATE TABLE Datos_Egresado (
     telefono_oficina int NOT NULL,
     telefono_fijo int NOT NULL,
     celular bigint NOT NULL,
-    Programas_nombre varchar(100) NOT NULL
+    Programas_nombre varchar(100) NOT NULL,
+    genero varchar(15) NOT NULL,
+    apellido varchar(100) NOT NULL
 )ENGINE = InnoDB;
 
 -- Table: Datos_Empresas
@@ -37,7 +45,9 @@ CREATE TABLE Datos_Estudiante (
     telefono_fijo int NOT NULL,
     celular bigint NOT NULL,
     direccion_vivienda varchar(100) NOT NULL,
-    Programas_nombre varchar(100) NOT NULL
+    Programas_nombre varchar(100) NOT NULL,
+    genero varchar(15) NOT NULL,
+    apellido varchar(100) NOT NULL
 )ENGINE = InnoDB;
 
 -- Table: Identificacion
@@ -48,7 +58,7 @@ CREATE TABLE Identificacion (
 
 -- Table: Pagos
 CREATE TABLE Pagos (
-    id_pago int NOT NULL,
+    numeroFactura varchar(100) NOT NULL,
     Usuario_nombre varchar(20) NOT NULL,
     Tipo varchar(100) NOT NULL,
     foto blob NOT NULL,
@@ -79,11 +89,13 @@ CREATE TABLE Usos_Convenios (
 -- Table: Usuario
 CREATE TABLE Usuario (
     nombre varchar(20) NOT NULL,
-    clave varchar(25) NOT NULL,
+    clave varchar(100) NOT NULL,
     tipo varchar(15) NOT NULL,
     estado varchar(10) NOT NULL,
     identificacion bigint NOT NULL,
-    tipo_identificacion varchar(2) NOT NULL
+    tipo_identificacion varchar(2) NOT NULL,
+    fechaInicio date NOT NULL,
+    fechafin date NOT NULL
 )ENGINE = InnoDB;
 
 -- Table: correo
@@ -100,6 +112,8 @@ CREATE TABLE observacion (
     comentario varchar(1000) NOT NULL
 )ENGINE = InnoDB;
 
+
+-- End of file.
 
 insert into Programas(nombre) values('Ingenieria Civil');
 insert into Programas(nombre) values('Ingenieria Electronica');

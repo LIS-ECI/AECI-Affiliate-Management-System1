@@ -18,6 +18,7 @@ package edu.eci.pdsw.samples.persistence.mybatisimpl;
 
 import edu.eci.pdsw.samples.entities.Egresado;
 import edu.eci.pdsw.samples.entities.Estudiante;
+import edu.eci.pdsw.samples.entities.Pago;
 import edu.eci.pdsw.samples.entities.Solicitud;
 import edu.eci.pdsw.samples.entities.Usuario;
 
@@ -95,9 +96,15 @@ public class MyBatisDAOSolicitud implements DaoSolicitud {
     }
 
     @Override
-    public Usuario getUsuario(String username) {
+    public Usuario getUsuario(String username) throws PersistenceException {
        SolicitudMapper somap = currentSession.getMapper(SolicitudMapper.class);
        return somap.getUsuario(username);
+    }
+
+    @Override
+    public List<Pago> getPagos(String username) throws PersistenceException {
+       SolicitudMapper somap = currentSession.getMapper(SolicitudMapper.class);
+       return somap.getPagos(username);
     }
     
     

@@ -7,6 +7,7 @@ package edu.eci.pdsw.samples.services;
 
 import edu.eci.pdsw.samples.entities.Egresado;
 import edu.eci.pdsw.samples.entities.Estudiante;
+import edu.eci.pdsw.samples.entities.Pago;
 import edu.eci.pdsw.samples.entities.Solicitud;
 import edu.eci.pdsw.samples.entities.Usuario;
 import edu.eci.pdsw.samples.persistence.PersistenceException;
@@ -97,5 +98,16 @@ public abstract class Servicios {
      * @throws edu.eci.pdsw.samples.persistence.PersistenceException
     */
     public abstract Usuario getUsuario(String username) throws PersistenceException;
+    
+    
+    /**
+    * Metodo obtener lista de pagos realizados por un usuario
+     * 
+     * @param username string con el nombre del usuario
+     * @return lista de pagos del usuario
+     * 
+     * @throws edu.eci.pdsw.samples.persistence.PersistenceException
+    */
+    public abstract List<Pago> getPagos(String username) throws PersistenceException ;
 
 }

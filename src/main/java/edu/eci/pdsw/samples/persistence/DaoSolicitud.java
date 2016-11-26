@@ -8,6 +8,7 @@ package edu.eci.pdsw.samples.persistence;
 
 import edu.eci.pdsw.samples.entities.Egresado;
 import edu.eci.pdsw.samples.entities.Estudiante;
+import edu.eci.pdsw.samples.entities.Pago;
 import edu.eci.pdsw.samples.entities.Solicitud;
 import edu.eci.pdsw.samples.entities.Usuario;
 import java.util.List;
@@ -31,7 +32,9 @@ public interface DaoSolicitud {
     
     public Egresado consultarEgresado(long identificacion, String tipo_identificacion)throws PersistenceException; 
 
-    public Usuario getUsuario(String username);
+    public Usuario getUsuario(String username) throws PersistenceException;
+
+    public List<Pago> getPagos(String username) throws PersistenceException;
 
 }
     

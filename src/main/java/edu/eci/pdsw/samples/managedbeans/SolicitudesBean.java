@@ -17,6 +17,7 @@ import edu.eci.pdsw.samples.persistence.PersistenceException;
 import edu.eci.pdsw.samples.services.Servicios;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
@@ -113,6 +114,7 @@ private String base="applicationconfig.properties";
             for (int i=0;i<est.getCorreo().size();i++){
                 correos+="      "+est.getCorreo().get(i).getCorreo();
             }
+            this.est.setNombre(est.getNombre()+' '+est.getApellido());
         }
         else{
             this.egr = Servicios.getInstance(base).consultarEgresado(soli.getNumero_identificacion(), soli.getTipo_cedula());
@@ -120,6 +122,7 @@ private String base="applicationconfig.properties";
             for (int i=0;i<egr.getCorreo().size();i++){
                 correos+="      "+egr.getCorreo().get(i).getCorreo();
             }
+            this.egr.setNombre(egr.getNombre()+' '+egr.getApellido());
         }
         }
         return pagina;
@@ -148,8 +151,13 @@ private String base="applicationconfig.properties";
 
 
     public void aprobarEst() throws PersistenceException{
-        //Usuario sa= new Usuario(String.valueOf(est.getNumero_identificacion()),String.valueOf( est.getNumero_identificacion()), "Estudiante", "Activo", est.getNumero_identificacion(), est.getTipo_identificacion(), null, null, null );
-        //Servicios.getInstance(base).InsertarUsuario(sa);
+        Date fecha = new java.sql.Date(java.util.Calendar.getInstance().getTime().getTime());
+        Calendar calendar = Calendar.getInstance();	
+        calendar.setTime(fecha); 	
+        calendar.add(Calendar.DAY_OF_YEAR, 183); 		
+        Date fecha2=  new java.sql.Date(calendar.getTime().getTime());
+        Usuario sa= new Usuario(fecha,fecha2,String.valueOf(est.getNumero_identificacion()),String.valueOf( est.getNumero_identificacion()), "Estudiante", "Activo", est.getNumero_identificacion(), est.getTipo_identificacion(), null, null, null );
+        Servicios.getInstance(base).InsertarUsuario(sa);
         Servicios.getInstance(base).ModificarSolicitud("OK",est.getNumero_identificacion(),est.getTipo_identificacion());
         //Enviar Correo indicando usuario y contraseña
     }
@@ -161,8 +169,13 @@ private String base="applicationconfig.properties";
     }
     
      public void aprobarEgr() throws PersistenceException{
-        //Usuario s= new Usuario(String.valueOf(egr.getCedula()),String.valueOf( egr.getCedula()), "Egresado", "Inactivo", egr.getCedula(), egr.getCedula_tipo(), null, null, null );
-        //Servicios.getInstance(base).InsertarUsuario(s);
+        Date fecha = new java.sql.Date(java.util.Calendar.getInstance().getTime().getTime());
+        Calendar calendar = Calendar.getInstance();	
+        calendar.setTime(fecha); 	
+        calendar.add(Calendar.DAY_OF_YEAR, 366); 		
+        Date fecha2=  new java.sql.Date(calendar.getTime().getTime());
+        Usuario s= new Usuario(fecha,fecha2,String.valueOf(egr.getCedula()),String.valueOf( egr.getCedula()), "Egresado", "Inactivo", egr.getCedula(), egr.getCedula_tipo(), null, null, null );
+        Servicios.getInstance(base).InsertarUsuario(s);
         Servicios.getInstance(base).ModificarSolicitud("OK",egr.getCedula(),egr.getCedula_tipo());
         //Enviar Correo indicando usuario y contraseña
     }

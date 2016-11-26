@@ -18,6 +18,7 @@ package edu.eci.pdsw.samples.persistence.mybatisimpl.mappers;
 
 import edu.eci.pdsw.samples.entities.Egresado;
 import edu.eci.pdsw.samples.entities.Estudiante;
+import edu.eci.pdsw.samples.entities.Pago;
 import edu.eci.pdsw.samples.entities.Solicitud;
 import edu.eci.pdsw.samples.entities.Usuario;
 import java.util.List;
@@ -54,5 +55,7 @@ public interface SolicitudMapper {
     public void insertarCorreoEgresado(@Param ("egr") Egresado egr,@Param ("correo") String correo);
 
     public Usuario getUsuario(@Param("un") String username);
+
+    public List<Pago> getPagos(@Param("uname") String username);
 
 }

@@ -28,7 +28,7 @@
                     <p:panel  header = "Solicitudes" id="panelSolicitudes">
 
 
-                        <p:dataTable var="solicitudes" value="#{BeanSolicitudes.solicitudes}" selectionMode="single" selection="#{BeanSolicitudes.soli}" rowKey="#{solicitudes.cedula}">
+                        <p:dataTable var="solicitudes" value="#{BeanSolicitudes.solicitudes}" selectionMode="single" selection="#{BeanSolicitudes.soli}" rowKey="#{solicitudes.numero_identificacion}">
                             
                             <p:column headerText="Fecha">
                                 <h:outputText value="#{solicitudes.fecha}" />

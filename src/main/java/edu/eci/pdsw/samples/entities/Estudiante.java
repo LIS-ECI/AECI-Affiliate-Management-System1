@@ -128,6 +128,8 @@ public class Estudiante {
 
      /**
     * Constructor Clase Estudiante
+     * @param genero genero del estudiante
+     * @param apellido apellido del estudiante
      * @param codigo codigo del estudiante
      * @param numero_identificacion numero de identificacion del estudiante
      * @param nombre nombre del estudiante

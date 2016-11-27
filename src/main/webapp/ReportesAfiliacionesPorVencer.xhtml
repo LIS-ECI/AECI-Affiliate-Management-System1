@@ -32,18 +32,18 @@ and open the template in the editor.
                             
                 <p:layoutUnit position="center">
                     <p:panel  header = "Afiliaciones Por vencer " id="panelSolicitudes">
-                        <p:dataTable id="singleDT" var="solicitudes" value="#{BeanSolicitudes.solicitudes}"  selectionMode="single" selection="#{beanEstudiante}" rowKey="#{solicitudes.numero_identificacion}">
-                            <p:column headerText="Nombre Afiliado">
-                                <h:outputText value="#{solicitudes}"/>
+                        <p:dataTable id="singleDT" var="afiliaciones" value="#{BeanReporteAfiliaciones.afiliaciones}"  selectionMode="single" selection="#{beanEstudiante}" rowKey="#{numero_identificacion}">
+                            <p:column headerText="Tipo Afiliación">
+                                <h:outputText value="#{afiliaciones.tipo}"/>
                             </p:column>
-                            <p:column headerText="Documento">
-                                <h:outputText  value="#{solicitudes.numero_identificacion}"/>
+                            <p:column headerText="Tipo Documento Afiliado">
+                                <h:outputText  value="#{afiliaciones.tipo_cedula}"/>
                             </p:column>
-                            <p:column headerText="Dirección">
-                                <h:outputText  value="#{solicitudes}"/>
+                            <p:column headerText="Documento Afiliado">
+                                <h:outputText  value="#{afiliaciones.numero_identificacion}"/>
                             </p:column>
-                            <p:column headerText="Correo Electronico">
-                                <h:outputText  value="#{solicitudes}"/>
+                            <p:column headerText="Fecha Afiliación">
+                                <h:outputText  value="#{afiliaciones.fechaAfiliacion}"/>
                             </p:column>
                             <f:facet name="footer">
                                 <p:commandButton process="singleDT" update=":Inicio:afiDetail" icon="ui-icon-search" value="View" oncomplete="PF('carDialog').show()" />

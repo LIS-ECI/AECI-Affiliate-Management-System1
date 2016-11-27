@@ -6,7 +6,7 @@
 <mapper namespace="edu.eci.pdsw.samples.persistence.mybatisimpl.mappers.AfiliacionesporVencerMapper">
     
     
-    <resultMap type='Afiliaciones' id='AfiliacionesResult'>
+    <resultMap type='Solicitud' id='SolicitudResult'>
         <id property='fecha' column='fecha'/>
         <result property='cedula' column = 'Cedula_Numero'/>
         <result property = 'tipo_cedula' column = 'Cedula_Tipo' />
@@ -37,7 +37,6 @@
         <id property='id_pago' column='id_pago'/>
         <result property='Usuario_nombre' column = 'Usuario_nombre'/>
         <result property = 'tipo' column = 'Tipo' />
-        <result property='foto' column = 'foto'/>
          <result property='validacion' column = 'validacion'/>
         </resultMap>
     

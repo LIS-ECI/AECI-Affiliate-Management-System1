@@ -19,6 +19,7 @@ public class Solicitud{
     private String tipo_cedula;
     private String tipo;
     private String estado; 
+    private java.sql.Date fechaAfiliacion;
 
     /**
     * Constructor Clase Correo
@@ -102,6 +103,21 @@ public class Solicitud{
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
+    
+    /**
+     * @return the tipo
+     */
+    public java.sql.Date getFechaAfiliacion() {
+        return fechaAfiliacion;
+    }
+
+    /**
+     * @param fAfiliacion the tipo to set
+     */
+    public void setFechaAfiliacion(java.sql.Date fAfiliacion){
+        this.fechaAfiliacion = fAfiliacion;
+    }
+    
     
     
 }

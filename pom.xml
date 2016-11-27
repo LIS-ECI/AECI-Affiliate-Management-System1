@@ -8,7 +8,7 @@
 
     <name>Aeci_web03</name>
     <properties>
-        <endorsed.dir>${project.build.directory}/dependency</endorsed.dir>
+        <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
     

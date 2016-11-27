@@ -50,13 +50,13 @@ public class ShiroLoginBean implements Serializable {
             subject.login(token);
 
             if (subject.hasRole("admin")) {
-                FacesContext.getCurrentInstance().getExternalContext().redirect("admin/solicitud.xhtml");
+                FacesContext.getCurrentInstance().getExternalContext().redirect("faces/admin/solicitud.xhtml");
             }
             else if(subject.hasRole("employee")){
                 FacesContext.getCurrentInstance().getExternalContext().redirect("employees/index.xhtml");
             }
             else {
-                FacesContext.getCurrentInstance().getExternalContext().redirect("PrincipalUsuario.xhtml");
+                FacesContext.getCurrentInstance().getExternalContext().redirect("faces/PrincipalUsuario.xhtml");
             }
         }
         catch (UnknownAccountException ex) {

@@ -5,6 +5,7 @@
  */
 package edu.eci.pdsw.samples.managedbeans;
 
+import edu.eci.pdsw.samples.entities.Afiliado;
 import edu.eci.pdsw.samples.entities.Egresado;
 import edu.eci.pdsw.samples.entities.Estudiante;
 import edu.eci.pdsw.samples.entities.Solicitud;
@@ -37,6 +38,8 @@ public class ReportesBean implements Serializable {
     private String nombre;
     private String direccion;
     private String correoElectronico;
+    private Afiliado selectedAfiliado;
+    private List<Afiliado> selectedAfiliados;
     
     
     
@@ -97,5 +100,20 @@ public class ReportesBean implements Serializable {
         correoElectronico=coel;
     }
     
+    public Afiliado getSelectedAfiliado() {
+        return selectedAfiliado;
+    }
+ 
+    public void setSelectedCar(Afiliado selectedAfiliado) {
+        this.selectedAfiliado = selectedAfiliado;
+    }
+    
+    public List<Afiliado> getSelectedAfiliados() {
+        return selectedAfiliados;
+    }
+ 
+    public void setSelectedAfiliados(List<Afiliado> selectedAfiliados) {
+        this.selectedAfiliados = selectedAfiliados;
+    }
     
 }

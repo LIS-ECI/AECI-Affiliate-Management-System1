@@ -8,8 +8,8 @@
     
     <resultMap type='Solicitud' id='SolicitudResult'>
         <id property='fecha' column='fecha'/>
-        <result property='cedula' column = 'Cedula_Numero'/>
-        <result property = 'tipo_cedula' column = 'Cedula_Tipo' />
+        <result property='numero_identificacion' column = 'Cedula_Numero'/>
+        <result property = 'tipo_identificacion' column = 'Cedula_Tipo' />
         <result property='tipo' column = 'tipo'/>
         <result property='estado' column = 'aprobado'/>
     </resultMap>
@@ -42,8 +42,8 @@
     
     
     <resultMap type='Egresado' id='EgresadoResult'>
-        <id property='cedula' column='Cedula_Numero'/>
-        <result property='cedula_tipo' column = 'Cedula_Tipo'/>
+        <id property='numero_identificacion' column='Cedula_Numero'/>
+        <result property='tipo_identificacion' column = 'Cedula_Tipo'/>
         <result property = 'nombre' column = 'nombre' />
         <result property='fecha_grado' column = 'anio_grado'/>
         <result property='periodo_grado' column = 'periodo_grado'/>

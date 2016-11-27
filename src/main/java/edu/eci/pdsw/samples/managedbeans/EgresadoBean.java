@@ -205,7 +205,7 @@ public class EgresadoBean  implements Serializable{
         lisc.add(cp);
         Egresado egr = new Egresado(genero,apellido,cedula, tipo_identificacion, nombre, fecha_grado, periodo_grado, cargo, carrera, direccion_vivienda, nombreEmpresa, direccion_empresa, telefono_oficina, telefono_fijo, celular, lisc);
         java.sql.Date fecha = new java.sql.Date(java.util.Calendar.getInstance().getTime().getTime());
-        Solicitud sol = new Solicitud(fecha,egr.getCedula(), egr.getCedula_tipo(),"Egresado","Pend");
+        Solicitud sol = new Solicitud(fecha,egr.getNumero_identificacion(), egr.getTipo_identificacion(),"Egresado","Pend");
         Servicios.getInstance(base).enviarSolicitudEgresado(egr,sol);
         this.nombreEmpresa="";
         this.direccion_empresa="";

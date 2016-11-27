@@ -11,15 +11,15 @@ import java.util.List;
  *
  * @author  Grupo 3 Pdsw
  */
-public class Egresado {
+public class Egresado extends Afiliado{
     
-    private long cedula;
-    private String cedula_tipo;
+    private long numero_identificacion;
+    private String tipo_identificacion;
     private String nombre;
     private int fecha_grado;
     private int periodo_grado;
     private String cargo;
-    private String programa;
+    private String carrera;
     private String direccion_vivienda;
     private String nombreEmpresa;
     private String direccionEmpresa;
@@ -29,23 +29,6 @@ public class Egresado {
     private List<CorreoPersonal> correo;
     private String apellido;
     private String genero;
-
-    public String getGenero() {
-        return genero;
-    }
-
-    public void setGenero(String genero) {
-        this.genero = genero;
-    }
-    
-    
-    public String getApellido() {
-        return apellido;
-    }
-
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
-    }
 
     /**
     * Constructor Clase Egresado
@@ -67,13 +50,13 @@ public class Egresado {
      * @param correo correo
     */
     public Egresado(String genero, String apellido,long cedula, String cedula_tipo, String nombre, int fecha_grado, int periodo_grado, String cargo, String programa, String direccion_vivienda, String nombreEmpresa, String direccionEmpresa, int telefono_oficina, int telefono_fijo, long celular, List<CorreoPersonal> correo) {
-        this.cedula = cedula;
-        this.cedula_tipo = cedula_tipo;
+        this.numero_identificacion = cedula;
+        this.tipo_identificacion = cedula_tipo;
         this.nombre = nombre;
         this.fecha_grado = fecha_grado;
         this.periodo_grado = periodo_grado;
         this.cargo = cargo;
-        this.programa = programa;
+        this.carrera = programa;
         this.direccion_vivienda = direccion_vivienda;
         this.nombreEmpresa = nombreEmpresa;
         this.direccionEmpresa = direccionEmpresa;
@@ -86,48 +69,6 @@ public class Egresado {
     }
     
     public Egresado(){}
-
-    /**
-     * @return the cedula
-     */
-    public long getCedula() {
-        return cedula;
-    }
-
-    /**
-     * @param cedula the cedula to set
-     */
-    public void setCedula(long cedula) {
-        this.cedula = cedula;
-    }
-
-    /**
-     * @return the cedula_tipo
-     */
-    public String getCedula_tipo() {
-        return cedula_tipo;
-    }
-
-    /**
-     * @param cedula_tipo the cedula_tipo to set
-     */
-    public void setCedula_tipo(String cedula_tipo) {
-        this.cedula_tipo = cedula_tipo;
-    }
-
-    /**
-     * @return the nombre
-     */
-    public String getNombre() {
-        return nombre;
-    }
-
-    /**
-     * @param nombre the nombre to set
-     */
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
 
     /**
      * @return the fecha_grado
@@ -175,14 +116,14 @@ public class Egresado {
      * @return the programa
      */
     public String getPrograma() {
-        return programa;
+        return carrera;
     }
 
     /**
      * @param programa the programa to set
      */
     public void setPrograma(String programa) {
-        this.programa = programa;
+        this.carrera = programa;
     }
 
     /**
@@ -241,48 +182,6 @@ public class Egresado {
      */
     public void setTelefono_oficina(int telefono_oficina) {
         this.telefono_oficina = telefono_oficina;
-    }
-
-    /**
-     * @return the telefono_fijo
-     */
-    public int getTelefono_fijo() {
-        return telefono_fijo;
-    }
-
-    /**
-     * @param telefono_fijo the telefono_fijo to set
-     */
-    public void setTelefono_fijo(int telefono_fijo) {
-        this.telefono_fijo = telefono_fijo;
-    }
-
-    /**
-     * @return the celular
-     */
-    public long getCelular() {
-        return celular;
-    }
-
-    /**
-     * @param celular the celular to set
-     */
-    public void setCelular(long celular) {
-        this.celular = celular;
-    }
-
-    /**
-     * @return the correo
-     */
-    public List<CorreoPersonal> getCorreo() {
-        return correo;
-    }
-
-    /**
-     * @param correo the correo to set
-     */
-    public void setCorreo(List<CorreoPersonal> correo) {
-        this.correo = correo;
     }
 
     

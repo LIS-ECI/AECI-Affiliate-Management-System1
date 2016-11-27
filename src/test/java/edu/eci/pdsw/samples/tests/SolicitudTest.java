@@ -88,7 +88,7 @@ public class SolicitudTest {
         lisc.add(cp);
         Egresado egr = new Egresado("Masculino","ApellidodePrueba",123456, "CC", "NombreDePrueba",2001, 2, "CargoDePrueba", "CarreraDePrueba","DireccionDePrueba", "NombreEmpresa", "DireccionDeEmpresa",1234,1234,4321, lisc);
         java.sql.Date fecha = new java.sql.Date(java.util.Calendar.getInstance().getTime().getTime());
-        Solicitud sol = new Solicitud(fecha,egr.getCedula(), egr.getCedula_tipo(),"Egresado","Pend");
+        Solicitud sol = new Solicitud(fecha,egr.getNumero_identificacion(), egr.getTipo_identificacion(),"Egresado","Pend");
         try {
             servicios.enviarSolicitudEgresado(egr,sol);
             List<Solicitud> ls = servicios.consultarSolicitud();

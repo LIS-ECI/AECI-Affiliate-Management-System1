@@ -118,7 +118,7 @@ public class UsuarioBean implements Serializable{
                 } else {
                     text += " identificada ";
                 }
-                text += "con " + egr.getCedula_tipo() + " " + egr.getCedula_tipo() + " " + "se encuentra";
+                text += "con " + egr.getNumero_identificacion() + " " + egr.getTipo_identificacion() + " " + "se encuentra";
                 if (egr.getGenero().equals("Masculino")) {
                     text += " afiliado ";
                 } else {

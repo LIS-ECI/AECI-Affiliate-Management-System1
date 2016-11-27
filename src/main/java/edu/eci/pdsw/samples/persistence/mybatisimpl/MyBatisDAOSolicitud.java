@@ -82,7 +82,7 @@ public class MyBatisDAOSolicitud implements DaoSolicitud {
     @Override
     public void enviarSolicitudEgresado(Egresado egr, Solicitud sol) throws PersistenceException{
         SolicitudMapper somap = currentSession.getMapper(SolicitudMapper.class);
-        somap.insertarIdentificacion(egr.getCedula(), egr.getCedula_tipo());
+        somap.insertarIdentificacion(egr.getNumero_identificacion(), egr.getTipo_identificacion());
         somap.insertarDatosEgresado(egr);
         somap.insertarSolicitud(sol);
         for (int i=0;i<egr.getCorreo().size();i++){

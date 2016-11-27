@@ -174,14 +174,14 @@ private String base="applicationconfig.properties";
         calendar.setTime(fecha); 	
         calendar.add(Calendar.DAY_OF_YEAR, 366); 		
         Date fecha2=  new java.sql.Date(calendar.getTime().getTime());
-        Usuario s= new Usuario(fecha,fecha2,String.valueOf(egr.getCedula()),String.valueOf( egr.getCedula()), "Egresado", "Inactivo", egr.getCedula(), egr.getCedula_tipo(), null, null, null );
+        Usuario s= new Usuario(fecha,fecha2,String.valueOf(egr.getNumero_identificacion()),String.valueOf( egr.getNumero_identificacion()), "Egresado", "Inactivo", egr.getNumero_identificacion(), egr.getTipo_identificacion(), null, null, null );
         Servicios.getInstance(base).InsertarUsuario(s);
-        Servicios.getInstance(base).ModificarSolicitud("OK",egr.getCedula(),egr.getCedula_tipo());
+        Servicios.getInstance(base).ModificarSolicitud("OK",egr.getNumero_identificacion(),egr.getTipo_identificacion());
         //Enviar Correo indicando usuario y contraseña
     }
     
     public void rechazarEgr() throws PersistenceException{
-        Servicios.getInstance(base).ModificarSolicitud("NOOK",egr.getCedula(),egr.getCedula_tipo());
+        Servicios.getInstance(base).ModificarSolicitud("NOOK",egr.getNumero_identificacion(),egr.getTipo_identificacion());
         enviarCorreo(this.respuestaSolicitud,egr.getCorreo().get(0).getCorreo());
         this.respuestaSolicitud="";
 

@@ -38,22 +38,8 @@
                         <p:commandButton value="Inicio" action="/index" immediate="true" style="width: 100%; background: lightgrey "/>
                         <br/>
                         <br/>
-                        <p:commandButton value="Generar Certificado"  oncomplete="PF('campoEntradaDatos').show()"  style="width: 100%; background: lightgrey"/>
+                        <p:commandButton value="Generar Certificado"  action="certificado" style="width: 100%; background: lightgrey"/>
                         <br/>
-
-                        <p:dialog header="Certificado" widgetVar="campoEntradaDatos" showEffect="fade" hideEffect="fade" resizable="false" width="800">
-                            <p:outputPanel id="inputQuantity" style="text-align:center;">
-                            <h:panelGrid columns="2" cellpadding="1" styleClass="ui-grid">
-                                    <p:media value="#{beanUsuario.streamedContent}" width="760px" height="700px" player="pdf"  cache="false"/>
-</h:panelGrid>
-                        
-                        
-
-                            
-                        </p:outputPanel>
-                                    </p:dialog>
-
-
 
                         <br/>                           
                         <p:commandButton value="Información Estudiantes"  action="informacionestudiante" immediate="true" style="background: lightgrey"/>  

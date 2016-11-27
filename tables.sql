@@ -5,7 +5,8 @@
 -- Table: Certificado
 CREATE TABLE Certificado (
     id int NOT NULL,
-    Usuario_nombre varchar(20) NOT NULL
+    Usuario_nombre varchar(20) NOT NULL,
+	valido varchar(5) NOT NULL
 )ENGINE = InnoDB;
 
 -- Table: Datos_Egresado

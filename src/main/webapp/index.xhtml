@@ -7,25 +7,25 @@
 
     <h:body>
         <h:form id="Inicio">
-                <h:panelGrid columns="1" style="position: absolute; top: 0px; left: 0px">
-                    <p:panel style=" font-size:  medium; height: 185px;color: #cccccc" >
+            <h:panelGrid columns="1" style="position: absolute; top: 0px; left: 0px">
+                <p:panel style=" font-size:  medium; height: 185px;color: #cccccc" >
                     <f:facet name="header" >
                         <img  src="https://media.licdn.com/mpr/mpr/shrink_200_200/AAEAAQAAAAAAAAgDAAAAJDk3ZGM0MDU2LWRhNWEtNDMwNi1iOTNjLTllMDY1OWNkMjk3ZQ.png" width="280" height="170" align="left"/>
                         <h2 style="text-align: center; color: darkblue;">BIENVENIDO</h2>
                         <h3 style="text-align: center; color: darkblue;">Asociación de Egresados Escuela Colombiana de Ingenieria Julio Garavito</h3>
                     </f:facet>
                     <p:growl id="msj" showDetail="true" autoUpdate="true"/>
-                    
+
                 </p:panel>
-                
-            </h:panelGrid>
-            
-            <h:panelGrid columns="1" style="position: fixed; top: 30%; left: 45%">
-                <img src="http://imagenes.universia.net/gc/net/images/institution/11404/Escuela-Colombiana-Ingenieria-Julio-Garavito1_Carrusel.jpg" alt="AECI"></img>
-                
+
             </h:panelGrid>
 
-            
+            <h:panelGrid columns="1" style="position: fixed; top: 30%; left: 45%">
+                <img src="http://imagenes.universia.net/gc/net/images/institution/11404/Escuela-Colombiana-Ingenieria-Julio-Garavito1_Carrusel.jpg" alt="AECI"></img>
+
+            </h:panelGrid>
+
+
             <h:panelGrid columns="1" style="position: absolute; top: 0px; left: 1000px">
 
 
@@ -36,56 +36,89 @@
                     <p:growl id="msgs" showDetail="true" />
 
                     <h:panelGrid columns="2" cellpadding="5">
-                        
-                        <p:commandButton id="a1" value="Ingresar " oncomplete="PF('campoEntradaDatos').show()" />
-                        
-                        <p:dialog header="Ingresa tus datos" widgetVar="campoEntradaDatos" modal="true" showEffect="fade" hideEffect="fade" resizable="false" width="400">
-                        <p:outputPanel id="inputQuantity" style="text-align:center;">
-                            <h:panelGrid columns="2" cellpadding="1" styleClass="ui-grid">
-                        
-                        <p:outputLabel value="Usuario:   "  />
-                        <p:inputText id="username"  value="#{loginBean.username}"/>
-                        
-                        <h:outputText value="Contraseña:  " />
-                        <p:password id="password" value="#{loginBean.password}"/>
-                        
-                        <h:outputText value="Remember me:"/>
-                        <p:selectBooleanCheckbox id="rememberMe" value="#{loginBean.rememberMe}"/>
-                        
-                        
-                        <p:growl id="growl" life="2000" />
-                       
-                        
-                        <p:commandLink id="ajax2" update="growl">
-                            <h:outputText value="Olvide mi contraseña" />
-                        </p:commandLink>
-                        
-                        <p:commandButton id="ingresar2" value="Ingresar2" action="#{loginBean.doLogin}" />
-                        </h:panelGrid>
-                        
-                        
 
-                            
-                        </p:outputPanel>
-            </p:dialog>
-                        
+                        <p:commandButton id="a1" value="Ingresar " oncomplete="PF('campoEntradaDatos').show()" />
+
+                        <p:dialog header="Ingresa tus datos" widgetVar="campoEntradaDatos" modal="true" showEffect="fade" hideEffect="fade" resizable="false" width="400">
+                            <p:outputPanel id="inputQuantity" style="text-align:center;">
+                                <h:panelGrid columns="2" cellpadding="1" styleClass="ui-grid">
+
+                                    <p:outputLabel value="Usuario:   "  />
+                                    <p:inputText id="username"  value="#{loginBean.username}"/>
+
+                                    <h:outputText value="Contraseña:  " />
+                                    <p:password id="password" value="#{loginBean.password}"/>
+
+                                    <h:outputText value="Remember me:"/>
+                                    <p:selectBooleanCheckbox id="rememberMe" value="#{loginBean.rememberMe}"/>
+
+
+                                    <p:growl id="growl" life="2000" />
+
+
+                                    <p:commandLink id="ajax2" update="growl">
+                                        <h:outputText value="Olvide mi contraseña" />
+                                    </p:commandLink>
+
+                                    <p:commandButton id="ingresar2" value="Ingresar2" action="#{loginBean.doLogin}" />
+                                </h:panelGrid>
+
+
+
+
+                            </p:outputPanel>
+                        </p:dialog>
+
                         <p:splitButton value="Solicitud de registro">
                             <p:menuitem value="Estudiante" immediate="true" action="informacionestudiante"/>
                             <p:separator />
                             <p:menuitem value="Egresado" immediate="true" action="informacionegresado" />
                         </p:splitButton>
-                       
-                        
-                        
+
+
+
 
                     </h:panelGrid>
 
-                    <p:commandButton value="Solicitudes" action="solicitud" styleClass="ui-priority-primary" />
 
 
                 </p:panel>
-            </h:panelGrid>
 
+
+
+            </h:panelGrid>
+            <br>
+            </br>
+            <br>
+            </br>
+            <br>
+            </br>
+            <br>
+            </br>
+            <br>
+            </br>
+            <br>
+            </br>
+            
+            
+           
+            <p:panel  header = "Validar Certificado" id="panelSolicitudes" style=" font-size:  medium; width: 415px" >
+                <p:outputLabel value="Código del Certificado:   "  />
+                <p:inputText id="codigo"  value="#{beanIndex.codigo}" />
+                <br></br>
+                <p:commandButton id="validar" value="Validar Certificado" actionListener="#{beanIndex.validar}" oncomplete="PF('campoEntradaDatos34').show()"  />
+                
+                <p:dialog header="Validación del certificado" widgetVar="campoEntradaDatos34" resizable="false" width="400">
+                    <p:outputPanel id="inputQuantity346" autoUpdate="true" style="text-align:center;">
+                        <h:panelGrid columns="2" cellpadding="1" styleClass="ui-grid">
+                            <p:outputLabel value="#{beanIndex.validacion}"  />                               
+                        </h:panelGrid>
+
+                     
+                    </p:outputPanel>
+                </p:dialog>
+
+            </p:panel>
 
         </h:form>
     </h:body>

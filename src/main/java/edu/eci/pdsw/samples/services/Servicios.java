@@ -5,6 +5,7 @@
  */
 package edu.eci.pdsw.samples.services;
 
+import edu.eci.pdsw.samples.entities.Certificado;
 import edu.eci.pdsw.samples.entities.Egresado;
 import edu.eci.pdsw.samples.entities.Estudiante;
 import edu.eci.pdsw.samples.entities.Pago;
@@ -98,16 +99,37 @@ public abstract class Servicios {
      * @throws edu.eci.pdsw.samples.persistence.PersistenceException
     */
     public abstract Usuario getUsuario(String username) throws PersistenceException;
-    
-    
+
     /**
-    * Metodo obtener lista de pagos realizados por un usuario
+    * Metodo cantidad de certificados
      * 
-     * @param username string con el nombre del usuario
-     * @return lista de pagos del usuario
+     * @return numero de certificados para crear un id
      * 
      * @throws edu.eci.pdsw.samples.persistence.PersistenceException
     */
-    public abstract List<Pago> getPagos(String username) throws PersistenceException ;
+    public abstract int cantidadCertificados() throws PersistenceException;
+
+     /**
+    * Metodo insertar un certificado- el codigo del certificado en la base de datos para poder validarlo
+     * 
+     * @param codigo codigo del certificado
+     * @param nombre nombre del usuario al que se le realiza el certificado
+     * @param valido saber si el certificado es valido
+     * @throws edu.eci.pdsw.samples.persistence.PersistenceException
+    */
+    public abstract void putCertificado(int codigo, String nombre, String valido) throws PersistenceException;
+
+    
+     /**
+    * Metodo obtener datos de un certificado para validarlo
+     * 
+     * @param codigo codigo del certificado
+     * @return Certificado informacion
+     * @throws edu.eci.pdsw.samples.persistence.PersistenceException
+    */
+    public abstract Certificado getCertificado(int codigo) throws PersistenceException;
+    
+    
+  
 
 }

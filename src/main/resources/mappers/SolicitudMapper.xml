@@ -5,12 +5,20 @@
 
 <mapper namespace="edu.eci.pdsw.samples.persistence.mybatisimpl.mappers.SolicitudMapper">
     
-    <select id="cantidadCertificados" >
-        select count(*)
+    <select id="cantidadCertificados" resultType="int" >
+        select count(id)
         from Certificado
     </select>
     
+    <insert parameterType="map" id="putCertificado" >    
+        insert into Certificado values (#{codigo}, #{nombre},#{val})
+    </insert>
     
+     <select id="getCertificado"  resultMap="CertificadoResult">
+        select id,Usuario_nombre,valido
+        from Certificado
+         where id=#{codigo} and valido="Ok"
+    </select>
     
     <resultMap type='Solicitud' id='SolicitudResult'>
         <id property='fecha' column='fecha'/>
@@ -18,6 +26,19 @@
         <result property = 'tipo_cedula' column = 'Cedula_Tipo' />
         <result property='tipo' column = 'tipo'/>
         <result property='estado' column = 'aprobado'/>
+    </resultMap>
+    
+    <resultMap type='Certificado' id='CertificadoResult'>
+        <id property='id' column='id'/>
+        <result property='Usuario_nombre' column = 'Usuario_nombre'/>
+        <result property='valido' column = 'valido'/>
+    </resultMap>
+    
+    
+    <resultMap type='Servicio' id='ServicioResult'>
+        <id property='username' column='Usuario_nombre'/>
+        <result property='tDeServicio' column = 'TdeServicio'/>
+        <result property = 'fecha' column = 'Fecha' />
     </resultMap>
     
     
@@ -97,14 +118,14 @@
         <result property='cedula_tipo' column = 'tipo_identificacion'/>
         <result property='fechaInicio' column = 'fechaInicio'/>
         <result property='fechaFin' column = 'fechafin'/>
-        <collection property='observaciones' ofType='Observacion' columnPrefix="usuario_" resultMap='ObservacionResult' ></collection> 
-        <collection property='servicios_usados' ofType='Servicio' columnPrefix="usuario_" resultMap='ServicioResult' ></collection> 
-        <collection property='pagos' ofType='Pago' columnPrefix="usuario_" resultMap='PagoResult' ></collection> 
+        <collection property='observaciones' ofType='Observacion' columnPrefix="observacion_" resultMap='ObservacionResult' ></collection> 
+        <collection property='servicios_usados' ofType='Servicio' columnPrefix="servicio_" resultMap='ServicioResult' ></collection> 
+        <collection property='pagos' ofType='Pago' columnPrefix="pagos_" resultMap='PagoResult' ></collection> 
      </resultMap>
     
     
     <select id="consultarEstudiante" resultMap="EstudianteResult">
-        SELECT DE.Cedula_Numero,DE.Cedula_Tipo,DE.codigo_estudiante,DE.nombre,DE.semestre_ponderado,DE.telefono_fijo,DE.celular,DE.direccion_vivienda,DE.Programas_nombre,DE.genero,DE.apellido,C.correo as correo_correo, C.Cedula_Numero as correo_Cedula_Numero, C.Cedula_Tipo as correo_Cedula_Tipo
+        SELECT DE.Cedula_Numero,DE.Cedula_Tipo,DE.codigo_estudiante,DE.nombre,DE.semestre_ponderado,DE.telefono_fijo,DE.celular,DE.direccion_vivienda,DE.Programas_nombre,DE.genero,DE.apellido,C.correo as correo_correo, C.Cedula_Numero as correo_Cedula_Numero, C.Cedula_Tipo as correo_Cedula_Tipo 
         FROM Datos_Estudiante as DE
         LEFT JOIN Identificacion as I ON I.Numero= DE.Cedula_Numero
         LEFT JOIN correo as C ON C.Cedula_Numero=I.Numero
@@ -120,6 +141,13 @@
         WHERE DE.Cedula_Numero=#{id} and DE.Cedula_Tipo=#{tipoid}
     </select>
     
+    <select id="getUsuario" resultMap="UsuarioResult">
+        select U.nombre,U.clave,U.tipo,U.estado,U.identificacion,U.tipo_identificacion,U.fechainicio,U.fechafin,UC.Usuario_nombre as servicio_Usuario_nom, UC.TdeServicio as servicio_TdeServicio, UC.Fecha as servicio_Fecha, P.numeroFactura as pagos_numeroFactura, P.Usuario_nombre as pagos_Usuario_nombre,
+        P.Tipo as pagos_Tipo, P.validacion as pagos_validacion, O.numero_observacion as  observacion_numero_observacion, O.Usuario_nombre as observacion_Usuario_nombre, O.comentario as observacion_comentario
+        from Usuario as U LEFT JOIN Usos_Convenios as UC ON UC.Usuario_nombre=U.nombre LEFT JOIN observacion as O on O.Usuario_nombre=U.nombre LEFT JOIN Pagos as P ON P.Usuario_nombre=U.nombre
+        where U.nombre=#{un}
+    
+    </select>
     
     <insert parameterType="map" id="InsertarUsuario" >    
         insert into Usuario values(#{u.nombre},#{u.clave},#{u.tipo},#{u.estado},#{u.cedula_numero},#{u.cedula_tipo},#{u.fechaInicio},#{u.fechaFin})
@@ -154,11 +182,6 @@
     <insert parameterType="map" id="insertarCorreoEgresado" >                    
         insert into correo values(#{correo}, #{egr.cedula}, #{egr.cedula_tipo});
     </insert>
-    
-     <select id="getPagos" resultMap="PagoResult">
-        select numeroFactura , Usuario_nombre , Tipo , validacion
-        from Pagos
-        where Usuario_nombre=#{uname} and aprobado='Ok'
-    </select>
+
    
 </mapper>

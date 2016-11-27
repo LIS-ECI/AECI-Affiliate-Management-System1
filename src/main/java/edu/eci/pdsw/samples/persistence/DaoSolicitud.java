@@ -6,6 +6,7 @@
 package edu.eci.pdsw.samples.persistence;
 
 
+import edu.eci.pdsw.samples.entities.Certificado;
 import edu.eci.pdsw.samples.entities.Egresado;
 import edu.eci.pdsw.samples.entities.Estudiante;
 import edu.eci.pdsw.samples.entities.Pago;
@@ -34,7 +35,12 @@ public interface DaoSolicitud {
 
     public Usuario getUsuario(String username) throws PersistenceException;
 
-    public List<Pago> getPagos(String username) throws PersistenceException;
+    public int cantidadCertificados() throws PersistenceException;
+
+    public void putCertificado(int codigo, String nombre,String valido);
+
+    public Certificado getCertificado(int codigo);
+
 
 }
     

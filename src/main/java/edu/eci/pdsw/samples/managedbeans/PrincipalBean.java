@@ -6,25 +6,17 @@
 package edu.eci.pdsw.samples.managedbeans;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-import javax.annotation.PostConstruct;
-import java.util.ArrayList;
-import java.util.List;
-import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import org.primefaces.model.StreamedContent;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.util.Map;
-import javax.faces.context.FacesContext;
-import org.primefaces.model.DefaultStreamedContent;
-import com.itextpdf.text.Document;
-import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.pdf.PdfWriter;
+import edu.eci.pdsw.samples.entities.Certificado;
+import edu.eci.pdsw.samples.entities.Egresado;
+import edu.eci.pdsw.samples.entities.Estudiante;
+import edu.eci.pdsw.samples.entities.Usuario;
+import edu.eci.pdsw.samples.persistence.PersistenceException;
+import edu.eci.pdsw.samples.services.Servicios;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -36,7 +28,19 @@ import com.itextpdf.text.pdf.PdfWriter;
 public class PrincipalBean implements Serializable {
 
     private String usuario;
+    private String base="applicationconfig.properties";
     private String clave;
+    private String validacion="";
+
+
+    public int getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
+    }
+    private int codigo=0;
 
     public String getUsuario() {
         return usuario;
@@ -56,6 +60,48 @@ public class PrincipalBean implements Serializable {
 
     public void setClave(String clave) {
         this.clave = clave;
+    }
+
+    public String getValidacion() {
+        try {
+            validar();
+        } catch (PersistenceException ex) {
+            Logger.getLogger(PrincipalBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return this.validacion;
+        
+    }
+
+    public void setValidacion(String validacion) {
+        this.validacion = validacion;
+    }
+    
+    public void validar() throws PersistenceException{
+        
+        validacion="";
+        String nombre="";
+        Certificado c=Servicios.getInstance(base).getCertificado(codigo);
+        if (c==null){
+            this.validacion="El Certificado No Es Válido";
+        }
+        else{
+            Usuario u= Servicios.getInstance(base).getUsuario(c.getUsuario_nombre());
+            if(u.getTipo().equals("Estudiante")){
+                Estudiante est=Servicios.getInstance(base).consultarEstudiante(u.getCedula_numero(), u.getCedula_tipo());
+                nombre= est.getNombre()+' '+est.getApellido();
+            }
+            else{
+                Egresado egr=Servicios.getInstance(base).consultarEgresado(u.getCedula_numero(), u.getCedula_tipo());
+                nombre= egr.getNombre()+' '+egr.getApellido();
+            }
+            Date fecha11 = new java.sql.Date(u.getFechaInicio().getTime());
+                Date fecha22 = new java.sql.Date(u.getFechaFin().getTime());
+
+            this.validacion="El Certificado Ingresado Pertenece a "+nombre+" identificado con "+u.getCedula_tipo()+" "+u.getCedula_numero()+" y cuya aficiacion va desde "+fecha11+" hasta "+fecha22;
+            
+        }
+        
+        
     }
 
 }

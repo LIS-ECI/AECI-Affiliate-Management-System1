@@ -16,6 +16,7 @@
  */
 package edu.eci.pdsw.samples.persistence.mybatisimpl;
 
+import edu.eci.pdsw.samples.entities.Certificado;
 import edu.eci.pdsw.samples.entities.Egresado;
 import edu.eci.pdsw.samples.entities.Estudiante;
 import edu.eci.pdsw.samples.entities.Pago;
@@ -102,10 +103,26 @@ public class MyBatisDAOSolicitud implements DaoSolicitud {
     }
 
     @Override
-    public List<Pago> getPagos(String username) throws PersistenceException {
-       SolicitudMapper somap = currentSession.getMapper(SolicitudMapper.class);
-       return somap.getPagos(username);
+    public int cantidadCertificados() throws PersistenceException {
+        SolicitudMapper somap = currentSession.getMapper(SolicitudMapper.class);
+       return somap.cantidadCertificados();
     }
+
+    @Override
+    public void putCertificado(int codigo, String nombre,String valido) {
+        SolicitudMapper somap = currentSession.getMapper(SolicitudMapper.class);
+        somap.putCertificado(codigo,nombre,valido);
+    }
+
+    @Override
+    public Certificado getCertificado(int codigo) {
+        SolicitudMapper somap = currentSession.getMapper(SolicitudMapper.class);
+        return somap.getCertificado(codigo);
+    }
+
+    
+
+  
     
     
 

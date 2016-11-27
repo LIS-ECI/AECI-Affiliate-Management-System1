@@ -15,15 +15,24 @@ public class Servicio {
 
     private String tDeServicio;
     private Date fecha;
+    private String username;
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
     
     /**
     * Constructor Clase Servicio
      * @param tDeServicio tipo de servicio
      * @param fecha fecha
     */
-    public Servicio(String tDeServicio, Date fecha) {
+    public Servicio(String tDeServicio, Date fecha,String username) {
         this.tDeServicio = tDeServicio;
+        this.username=username;
         this.fecha = fecha;
     }
 

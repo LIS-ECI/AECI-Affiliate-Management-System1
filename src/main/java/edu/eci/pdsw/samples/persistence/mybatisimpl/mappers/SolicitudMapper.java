@@ -16,6 +16,7 @@
  */
 package edu.eci.pdsw.samples.persistence.mybatisimpl.mappers;
 
+import edu.eci.pdsw.samples.entities.Certificado;
 import edu.eci.pdsw.samples.entities.Egresado;
 import edu.eci.pdsw.samples.entities.Estudiante;
 import edu.eci.pdsw.samples.entities.Pago;
@@ -57,5 +58,11 @@ public interface SolicitudMapper {
     public Usuario getUsuario(@Param("un") String username);
 
     public List<Pago> getPagos(@Param("uname") String username);
+
+    public int cantidadCertificados();
+
+    public void putCertificado(@Param("codigo") int codigo,@Param("nombre") String nombre,@Param("val") String valido);
+
+    public Certificado getCertificado(@Param("codigo") int codigo);
 
 }

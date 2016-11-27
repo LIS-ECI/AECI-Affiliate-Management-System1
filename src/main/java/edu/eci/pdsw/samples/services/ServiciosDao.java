@@ -5,6 +5,7 @@
  */
 package edu.eci.pdsw.samples.services;
 
+import edu.eci.pdsw.samples.entities.Certificado;
 import edu.eci.pdsw.samples.entities.Egresado;
 import edu.eci.pdsw.samples.entities.Estudiante;
 import edu.eci.pdsw.samples.entities.Pago;
@@ -157,17 +158,44 @@ public class ServiciosDao extends Servicios {
     }
 
     @Override
-    public List<Pago> getPagos(String username) throws PersistenceException {
-        List<Pago> li=null;
+    public int cantidadCertificados() throws PersistenceException {
+        int cantidad=0;
         try {
             daof.beginSession();
-            li=daof.getDaoSolicitud().getPagos(username);
+            cantidad=daof.getDaoSolicitud().cantidadCertificados();
             daof.commitTransaction();
         } catch (PersistenceException ex) {
             Logger.getLogger(ServiciosDao.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return li;
+        return cantidad;
     }
+
+    @Override
+    public void putCertificado(int codigo, String nombre,String valido) throws PersistenceException {
+        try {
+            daof.beginSession();
+            daof.getDaoSolicitud().putCertificado(codigo,nombre,valido);
+            daof.commitTransaction();
+        } catch (PersistenceException ex) {
+            Logger.getLogger(ServiciosDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @Override
+    public Certificado getCertificado(int codigo) throws PersistenceException {
+        Certificado c=null;
+        try {
+            daof.beginSession();
+            c=daof.getDaoSolicitud().getCertificado(codigo);
+            daof.commitTransaction();
+        } catch (PersistenceException ex) {
+            Logger.getLogger(ServiciosDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return c;
+    
+    }
+
+ 
 
 
 class PropertiesLoader {

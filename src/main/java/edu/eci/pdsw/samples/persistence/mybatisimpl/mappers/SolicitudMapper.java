@@ -62,6 +62,8 @@ public interface SolicitudMapper {
     public int cantidadCertificados();
 
     public void putCertificado(@Param("codigo") int codigo,@Param("nombre") String nombre,@Param("val") String valido);
+    
+    public void invalidarCertificado(@Param("id") int id);
 
     public Certificado getCertificado(@Param("codigo") int codigo);
 

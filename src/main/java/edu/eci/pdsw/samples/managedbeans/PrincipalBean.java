@@ -17,6 +17,9 @@ import edu.eci.pdsw.samples.services.Servicios;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+import org.apache.ibatis.annotations.Param;
 
 /**
  *
@@ -31,6 +34,7 @@ public class PrincipalBean implements Serializable {
     private String base="applicationconfig.properties";
     private String clave;
     private String validacion="";
+    private boolean validador=false; 
 
 
     public int getCodigo() {
@@ -77,10 +81,12 @@ public class PrincipalBean implements Serializable {
     }
     
     public void validar() throws PersistenceException{
-        
         validacion="";
         String nombre="";
         Certificado c=Servicios.getInstance(base).getCertificado(codigo);
+        System.out.println(c);
+        System.out.println(codigo);
+
         if (c==null){
             this.validacion="El Certificado No Es Válido";
         }
@@ -98,10 +104,18 @@ public class PrincipalBean implements Serializable {
                 Date fecha22 = new java.sql.Date(u.getFechaFin().getTime());
 
             this.validacion="El Certificado Ingresado Pertenece a "+nombre+" identificado con "+u.getCedula_tipo()+" "+u.getCedula_numero()+" y cuya aficiacion va desde "+fecha11+" hasta "+fecha22;
-            
+            if(validador){
+                Servicios.getInstance(base).invalidarCertificado(codigo);
+                validador=false;
+            }  
+            else{
+            validador=true;
+            }
         }
         
         
+        
     }
+
 
 }

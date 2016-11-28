@@ -29,6 +29,7 @@ import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.el.ELContext;
 import javax.faces.FacesException;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
@@ -50,7 +51,12 @@ public class UsuarioBean implements Serializable{
 
     private String base = "applicationconfig.properties";
     
-
+    
+    private void facesError(String message) {
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, message, null));
+    }
+    
+    
 
     //==================================================================
     public StreamedContent getStreamedContent() {
@@ -205,5 +211,24 @@ public class UsuarioBean implements Serializable{
 
         return bean;
     }
+
+    /**
+     * @return the pagina
+     */
+    public String pagina() {
+        String pagina;
+        Usuario u = getUsuario("1234");
+        Date fecha = new java.sql.Date(java.util.Calendar.getInstance().getTime().getTime());
+        if (u.getFechaFin().compareTo(fecha)<0){
+            facesError("Se requiere renovar la afiliación con el correspondiente pago No se puede generar certificado.");
+            pagina="PrincipalUsuario";
+        }
+        else{
+            pagina="certificado";
+        }
+        return pagina;
+    }
+
+    
 
 }

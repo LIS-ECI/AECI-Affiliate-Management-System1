@@ -20,6 +20,12 @@
          where id=#{codigo} and valido="Ok"
     </select>
     
+    <update parameterType="map" id="invalidarCertificado" >    
+        update Certificado
+        set valido="NoOk"
+        where id=#{id}
+    </update>
+    
     <resultMap type='Solicitud' id='SolicitudResult'>
         <id property='fecha' column='fecha'/>
         <result property='numero_identificacion' column = 'Cedula_Numero'/>

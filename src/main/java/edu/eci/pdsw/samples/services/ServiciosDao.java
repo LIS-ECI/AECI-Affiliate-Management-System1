@@ -50,6 +50,7 @@ public class ServiciosDao extends Servicios {
             daof.beginSession();
             a = daof.getDaoSolicitud().consultarSolicitud();
             daof.commitTransaction();
+            daof.endSession();
         } catch (PersistenceException ex) {
             Logger.getLogger(ServiciosDao.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -66,6 +67,7 @@ public class ServiciosDao extends Servicios {
             daof.beginSession();
             daof.getDaoSolicitud().enviarSolicitudEgresado(egr, sol);
             daof.commitTransaction();
+            daof.endSession();
         } catch (PersistenceException ex) {
             Logger.getLogger(ServiciosDao.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -82,6 +84,7 @@ public class ServiciosDao extends Servicios {
              daof.beginSession();
              e=daof.getDaoSolicitud().consultarEstudiante(identificacion, tipo_identificacion);
             daof.commitTransaction();
+            daof.endSession();
         } catch (PersistenceException ex) {
             Logger.getLogger(ServiciosDao.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -98,6 +101,7 @@ public class ServiciosDao extends Servicios {
             daof.beginSession();
             e=daof.getDaoSolicitud().consultarEgresado(identificacion, tipo_identificacion);
             daof.commitTransaction();
+            daof.endSession();
         } catch (PersistenceException ex) {
             Logger.getLogger(ServiciosDao.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -112,6 +116,7 @@ public class ServiciosDao extends Servicios {
             daof.beginSession();
             daof.getDaoSolicitud().InsertarUsuario(u);
             daof.commitTransaction();
+            daof.endSession();
         } catch (PersistenceException ex) {
             Logger.getLogger(ServiciosDao.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -125,6 +130,7 @@ public class ServiciosDao extends Servicios {
             daof.beginSession();
             daof.getDaoSolicitud().ModificarSolicitud(u,ced,tic);
             daof.commitTransaction();
+            daof.endSession();
         } catch (PersistenceException ex) {
             Logger.getLogger(ServiciosDao.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -139,6 +145,7 @@ public class ServiciosDao extends Servicios {
             daof.beginSession();
             daof.getDaoSolicitud().enviarSolicitudEstudiante(est, sol);
             daof.commitTransaction();
+            daof.endSession();
         } catch (PersistenceException ex) {
             Logger.getLogger(ServiciosDao.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -151,6 +158,7 @@ public class ServiciosDao extends Servicios {
             daof.beginSession();
             u=daof.getDaoSolicitud().getUsuario(username);
             daof.commitTransaction();
+            daof.endSession();
         } catch (PersistenceException ex) {
             Logger.getLogger(ServiciosDao.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -164,6 +172,7 @@ public class ServiciosDao extends Servicios {
             daof.beginSession();
             cantidad=daof.getDaoSolicitud().cantidadCertificados();
             daof.commitTransaction();
+            daof.endSession();
         } catch (PersistenceException ex) {
             Logger.getLogger(ServiciosDao.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -176,6 +185,7 @@ public class ServiciosDao extends Servicios {
             daof.beginSession();
             daof.getDaoSolicitud().putCertificado(codigo,nombre,valido);
             daof.commitTransaction();
+            daof.endSession();
         } catch (PersistenceException ex) {
             Logger.getLogger(ServiciosDao.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -188,11 +198,24 @@ public class ServiciosDao extends Servicios {
             daof.beginSession();
             c=daof.getDaoSolicitud().getCertificado(codigo);
             daof.commitTransaction();
+            daof.endSession();
         } catch (PersistenceException ex) {
             Logger.getLogger(ServiciosDao.class.getName()).log(Level.SEVERE, null, ex);
         }
         return c;
     
+    }
+
+    @Override
+    public void invalidarCertificado(int codigo) throws PersistenceException {
+        try {
+            daof.beginSession();
+            daof.getDaoSolicitud().invalidarCertificado(codigo);
+            daof.commitTransaction();
+            daof.endSession();
+        } catch (PersistenceException ex) {
+            Logger.getLogger(ServiciosDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
  

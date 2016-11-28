@@ -37,9 +37,11 @@ public interface DaoSolicitud {
 
     public int cantidadCertificados() throws PersistenceException;
 
-    public void putCertificado(int codigo, String nombre,String valido);
+    public void putCertificado(int codigo, String nombre,String valido) throws PersistenceException;
 
-    public Certificado getCertificado(int codigo);
+    public Certificado getCertificado(int codigo) throws PersistenceException;
+
+    public void invalidarCertificado(int codigo) throws PersistenceException;
 
 
 }

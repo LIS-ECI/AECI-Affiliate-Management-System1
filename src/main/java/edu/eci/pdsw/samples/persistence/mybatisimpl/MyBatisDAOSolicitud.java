@@ -109,15 +109,22 @@ public class MyBatisDAOSolicitud implements DaoSolicitud {
     }
 
     @Override
-    public void putCertificado(int codigo, String nombre,String valido) {
+    public void putCertificado(int codigo, String nombre,String valido) throws PersistenceException{
         SolicitudMapper somap = currentSession.getMapper(SolicitudMapper.class);
         somap.putCertificado(codigo,nombre,valido);
     }
 
     @Override
-    public Certificado getCertificado(int codigo) {
+    public Certificado getCertificado(int codigo) throws PersistenceException {
         SolicitudMapper somap = currentSession.getMapper(SolicitudMapper.class);
         return somap.getCertificado(codigo);
+    }
+
+    @Override
+    public void invalidarCertificado(int codigo) throws PersistenceException {
+        SolicitudMapper somap = currentSession.getMapper(SolicitudMapper.class);
+        somap.invalidarCertificado(codigo);
+
     }
 
     

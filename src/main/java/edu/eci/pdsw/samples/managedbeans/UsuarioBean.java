@@ -31,6 +31,7 @@ import javax.el.ELContext;
 import javax.faces.FacesException;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
@@ -44,6 +45,8 @@ import org.primefaces.model.StreamedContent;
 @ManagedBean(name = "beanUsuario")
 @SessionScoped
 public class UsuarioBean implements Serializable{
+    @ManagedProperty("#{loginBean}")
+    private ShiroLoginBean shiroLoginBean;
 
     private static final long serialVersionUID = 1L;
 
@@ -64,14 +67,14 @@ public class UsuarioBean implements Serializable{
         try {
             //----------------------------------
             Document doc = new Document();
-            //ShiroLoginBean bean = (ShiroLoginBean) getManagedBean("loginBean");
-            //System.out.println(bean.getUsername()+"-------------------");
+
             int codigo = Servicios.getInstance(base).cantidadCertificados();
-            //int codigo=123;
             OutputStream out = new ByteArrayOutputStream();
             PdfWriter writer = PdfWriter.getInstance(doc, out);
 
-            Usuario u = getUsuario("1234");
+            
+            
+            Usuario u = getUsuario(getShiroLoginBean().getUsername());
             
             Egresado egr = null;
             Estudiante est = null;
@@ -192,32 +195,12 @@ public class UsuarioBean implements Serializable{
         return u;
     }
 
-    public static Object getManagedBean(final String beanName) {
-        FacesContext fc = FacesContext.getCurrentInstance();
-
-        Object bean = null;
-        try {
-            ELContext elContext = fc.getELContext();
-            bean = elContext.getELResolver().getValue(elContext, null, beanName);
-        } catch (RuntimeException e) {
-            throw new FacesException(e.getMessage(), e);
-
-        }
-
-        if (bean == null) {
-            throw new FacesException("Managed bean with name '" + beanName + "' was not found. Check your faces-config.xml or @ManagedBean annotation.");
-
-        }
-
-        return bean;
-    }
-
     /**
      * @return the pagina
      */
     public String pagina() {
         String pagina;
-        Usuario u = getUsuario("1234");
+        Usuario u = getUsuario(getShiroLoginBean().getUsername());
         Date fecha = new java.sql.Date(java.util.Calendar.getInstance().getTime().getTime());
         if (u.getFechaFin().compareTo(fecha)<0){
             facesError("Se requiere renovar la afiliación con el correspondiente pago No se puede generar certificado.");
@@ -227,6 +210,20 @@ public class UsuarioBean implements Serializable{
             pagina="certificado";
         }
         return pagina;
+    }
+
+    /**
+     * @return the shiroLoginBean
+     */
+    public ShiroLoginBean getShiroLoginBean() {
+        return shiroLoginBean;
+    }
+
+    /**
+     * @param shiroLoginBean the shiroLoginBean to set
+     */
+    public void setShiroLoginBean(ShiroLoginBean shiroLoginBean) {
+        this.shiroLoginBean = shiroLoginBean;
     }
 
     

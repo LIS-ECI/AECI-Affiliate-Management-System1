@@ -84,8 +84,7 @@ public class PrincipalBean implements Serializable {
         validacion="";
         String nombre="";
         Certificado c=Servicios.getInstance(base).getCertificado(codigo);
-        System.out.println(c);
-        System.out.println(codigo);
+        
 
         if (c==null){
             this.validacion="El Certificado No Es Válido";

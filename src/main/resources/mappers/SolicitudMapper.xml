@@ -95,7 +95,7 @@
         <result property='semestre' column = 'semestre_ponderado'/>
         <result property='telefono_fijo' column = 'telefono_fijo'/>
         <result property='celular' column = 'celular'/>
-        <result property='direccion' column = 'direccion_vivienda'/>
+        <result property='direccion_vivienda' column = 'direccion_vivienda'/>
         <result property='carrera' column = 'Programas_nombre'/>
          <result property='apellido' column = 'apellido'/>
         <result property='genero' column = 'genero'/>
@@ -164,7 +164,7 @@
     </insert>
    
     <insert parameterType="map" id="insertarDatosEstudiante" >    
-        insert into Datos_Estudiante values (#{est.numero_identificacion}, #{est.tipo_identificacion}, #{est.codigo}, #{est.nombre}, #{est.semestre},#{est.telefono_fijo}, #{est.celular}, #{est.direccion}, #{est.carrera},#{est.genero},#{est.apellido})
+        insert into Datos_Estudiante values (#{est.numero_identificacion}, #{est.tipo_identificacion}, #{est.codigo}, #{est.nombre}, #{est.semestre},#{est.telefono_fijo}, #{est.celular}, #{est.direccion_vivienda}, #{est.carrera},#{est.genero},#{est.apellido})
     </insert>
    
     <insert parameterType="map" id="insertarSolicitud" >    

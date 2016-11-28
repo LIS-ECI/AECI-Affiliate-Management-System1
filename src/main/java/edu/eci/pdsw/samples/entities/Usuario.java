@@ -9,10 +9,14 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
+
+    
+
 /**
  *
  * @author Grupo 3 Pdsw
  */
+
 public class Usuario {
     private String nombre;
     private String clave;

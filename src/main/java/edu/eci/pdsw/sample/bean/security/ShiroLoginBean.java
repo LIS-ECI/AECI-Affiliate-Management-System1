@@ -16,11 +16,12 @@ import javax.faces.context.FacesContext;
 import java.io.IOException;
 import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 
 
 @ManagedBean(name = "loginBean")
-@ViewScoped
+@SessionScoped
 public class ShiroLoginBean implements Serializable {
     private static final Logger log = LoggerFactory.getLogger(ShiroLoginBean.class);
 
@@ -45,12 +46,9 @@ public class ShiroLoginBean implements Serializable {
         Subject subject = SecurityUtils.getSubject();
 
         UsernamePasswordToken token = new UsernamePasswordToken(getUsername(), getPassword(), getRememberMe());
-        System.out.println(token.toString());
+        
         try {
             subject.login(token);
-	    System.out.println("admin: "+subject.hasRole("Administrador"));
-		System.out.println("egresado: "+subject.hasRole("Egresado"));
-		System.out.println("estudiante: "+subject.hasRole("Estudiante"));
 
             if (subject.hasRole("Administrador")) {
                 FacesContext.getCurrentInstance().getExternalContext().redirect("admin/solicitud.xhtml");

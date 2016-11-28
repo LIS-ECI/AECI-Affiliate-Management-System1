@@ -68,8 +68,8 @@
     
     
     <resultMap type='Egresado' id='EgresadoResult'>
-        <id property='cedula' column='Cedula_Numero'/>
-        <result property='cedula_tipo' column = 'Cedula_Tipo'/>
+        <id property='numero_identificacion' column='Cedula_Numero'/>
+        <result property='tipo_identificacion' column = 'Cedula_Tipo'/>
         <result property = 'nombre' column = 'nombre' />
         <result property='fecha_grado' column = 'anio_grado'/>
         <result property='periodo_grado' column = 'periodo_grado'/>
@@ -80,7 +80,7 @@
         <result property='telefono_oficina' column = 'telefono_oficina'/>
         <result property='telefono_fijo' column = 'telefono_fijo'/>
         <result property='celular' column = 'celular'/>
-        <result property='programa' column = 'Programas_nombre'/>
+        <result property='carrera' column = 'Programas_nombre'/>
         <result property='apellido' column = 'apellido'/>
         <result property='genero' column = 'genero'/>
         <collection property='correo' ofType='CorreoPersonal' columnPrefix="correo_" resultMap='CorreoPersonalResult' ></collection> 
@@ -172,7 +172,7 @@
     </insert>
    
     <insert parameterType="map" id="insertarDatosEgresado" >                    
-        insert into Datos_Egresado values(#{egr.cedula}, #{egr.cedula_tipo}, #{egr.nombre}, #{egr.fecha_grado}, #{egr.periodo_grado}, #{egr.cargo}, #{egr.direccion_vivienda},#{egr.nombreEmpresa},#{egr.direccionEmpresa},#{egr.telefono_oficina},#{egr.telefono_fijo},#{egr.celular},#{egr.programa},#{egr.genero},#{egr.apellido} );
+        insert into Datos_Egresado values(#{egr.numero_identificacion}, #{egr.tipo_identificacion}, #{egr.nombre}, #{egr.fecha_grado}, #{egr.periodo_grado}, #{egr.cargo}, #{egr.direccion_vivienda},#{egr.nombreEmpresa},#{egr.direccionEmpresa},#{egr.telefono_oficina},#{egr.telefono_fijo},#{egr.celular},#{egr.programa},#{egr.genero},#{egr.apellido} );
     </insert>
     
     <insert parameterType="map" id="insertarCorreoEstudiante" >                    
@@ -180,7 +180,7 @@
     </insert>
     
     <insert parameterType="map" id="insertarCorreoEgresado" >                    
-        insert into correo values(#{correo}, #{egr.cedula}, #{egr.cedula_tipo});
+        insert into correo values(#{correo}, #{egr.numero_identificacion}, #{egr.tipo_identificacion});
     </insert>
 
    

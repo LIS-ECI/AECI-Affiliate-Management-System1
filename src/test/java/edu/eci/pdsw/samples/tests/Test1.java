@@ -20,7 +20,7 @@ import org.junit.Test;
 public class Test1 {
 
 
-        //@Test
+        @Test
         public void EntradaForoTest1()  throws PersistenceException, IOException{
         Properties properties=new PropertiesLoader().readProperties("applicationconfig.properties");
         DaoFactory daof=DaoFactory.getInstance(properties);

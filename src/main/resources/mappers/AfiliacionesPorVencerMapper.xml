@@ -17,12 +17,13 @@
     
     
     <select id="consultarSolicitud" resultMap="SolicitudResult">
-        select fecha , Cedula_Numero , Cedula_Tipo , tipo , aprobado
-        from Solicitud 
-        order by fecha
+        select s.fecha , s.Cedula_Numero , s.Cedula_Tipo , s.tipo , s.aprobado
+        from Solicitud as s
+        JOIN Usuario as u  ON(s.Cedula_Numero=u.cedula_numero)
+        where DATEDIFF(u.fechaFin,SysDate())&lt;30
     </select>
-    
-
+        
+    </select>
         
          <resultMap type='Observacion' id='ObservacionResult'>
         <id property='numero_observacion' column='numero_observacion'/>
@@ -33,7 +34,7 @@
         </resultMap>
         
         
-            <resultMap type='Pago' id='PagoResult'>
+        <resultMap type='Pago' id='PagoResult'>
         <id property='id_pago' column='id_pago'/>
         <result property='Usuario_nombre' column = 'Usuario_nombre'/>
         <result property = 'tipo' column = 'Tipo' />
@@ -86,12 +87,15 @@
         <result property='estado' column = 'estado'/>
         <result property='cedula_numero' column = 'identificacion'/>
         <result property='cedula_tipo' column = 'tipo_identificacion'/>
+        <result property='fechaInicio' column = 'fechaInicio'/>
+        <result property='fechaFin' column = 'fechafin'/>
         <collection property='observaciones' ofType='Observacion' columnPrefix="usuario_" resultMap='ObservacionResult' ></collection> 
         <collection property='servicios_usados' ofType='Servicio' columnPrefix="usuario_" resultMap='ServicioResult' ></collection> 
         <collection property='pagos' ofType='Pago' columnPrefix="usuario_" resultMap='PagoResult' ></collection> 
      </resultMap>
-    
-    
+
+         
+     </select>
     <select id="consultarEstudiante" resultMap="EstudianteResult">
         SELECT DE.Cedula_Numero,DE.Cedula_Tipo,DE.codigo_estudiante,DE.nombre,DE.semestre_ponderado,DE.telefono_fijo,DE.celular,DE.direccion_vivienda,DE.Programas_nombre,C.correo as correo_correo, C.Cedula_Numero as correo_Cedula_Numero, C.Cedula_Tipo as correo_Cedula_Tipo
         FROM Datos_Estudiante as DE

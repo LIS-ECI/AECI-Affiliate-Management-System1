@@ -6,9 +6,11 @@
 package edu.eci.pdsw.samples.managedbeans;
 
 import edu.eci.pdsw.samples.entities.Afiliado;
+import edu.eci.pdsw.samples.entities.Correo;
 import edu.eci.pdsw.samples.entities.Egresado;
 import edu.eci.pdsw.samples.entities.Estudiante;
 import edu.eci.pdsw.samples.entities.Solicitud;
+import edu.eci.pdsw.samples.entities.Usuario;
 import edu.eci.pdsw.samples.persistence.PersistenceException;
 import edu.eci.pdsw.samples.services.Servicios;
 import java.io.Serializable;
@@ -17,8 +19,11 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import org.primefaces.event.SelectEvent;
+import org.primefaces.event.UnselectEvent;
 
 /**
  *
@@ -43,18 +48,15 @@ public class ReportesBean implements Serializable {
     private Afiliado selectedAfiliado;
     private List<Afiliado> selectedAfiliados;
     
+    
    
   
     
     
     public List<Solicitud> getAfiliaciones() throws PersistenceException  {
         List<Solicitud> a =Servicios.getInstance(base).consultarSolicitud();
-        //for(int i=0; i < a.size();i++){
-        //    if(a.get(i).getFechaAfiliacion().getDay() - fecha.getDay() < 30 ){
-        //       afiliaciones.add(a.get(i));
-        //    }
-        //}
-        return afiliaciones;
+
+        return a;
     }
     
     public void setAfiliaciones( List<Solicitud>  afiliaciones){
@@ -119,4 +121,13 @@ public class ReportesBean implements Serializable {
         this.selectedAfiliados = selectedAfiliados;
     }
     
+    public void enviarCorreo(String mensaje,String correo){
+        Correo correo1 = new Correo();
+        correo1.setMessage(mensaje);
+        correo1.setTo(correo);
+        correo1.enviarCorreo(); 
+        
+        
+    }
+
 }

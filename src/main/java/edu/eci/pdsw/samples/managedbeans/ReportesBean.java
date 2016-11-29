@@ -13,8 +13,10 @@ import edu.eci.pdsw.samples.persistence.PersistenceException;
 import edu.eci.pdsw.samples.services.Servicios;
 import java.io.Serializable;
 import java.sql.Date;
-//import java.time.LocalDate;
+import java.time.LocalDate;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
@@ -33,7 +35,7 @@ public class ReportesBean implements Serializable {
     private long numero_identificacion;
     private String base="applicationconfig.properties";
     private List<Solicitud> afiliaciones;
-   // private Date fecha = Date.valueOf(LocalDate.MAX);   
+    private Date fecha = Date.valueOf(LocalDate.MAX);   
     private String tipo_identificacion;
     private String nombre;
     private String direccion;
@@ -41,21 +43,22 @@ public class ReportesBean implements Serializable {
     private Afiliado selectedAfiliado;
     private List<Afiliado> selectedAfiliados;
     
+   
+  
     
     
-    public ReportesBean() throws PersistenceException{
-      List<Solicitud> a = getAfiliaciones();
+    public List<Solicitud> getAfiliaciones() throws PersistenceException  {
+        List<Solicitud> a =Servicios.getInstance(base).consultarSolicitud();
+        //for(int i=0; i < a.size();i++){
+        //    if(a.get(i).getFechaAfiliacion().getDay() - fecha.getDay() < 30 ){
+        //       afiliaciones.add(a.get(i));
+        //    }
+        //}
+        return afiliaciones;
     }
     
-    
-    public List<Solicitud> getAfiliaciones() throws PersistenceException {
-        List<Solicitud> a =Servicios.getInstance(base).consultarSolicitud();
-        for(int i=0; i < a.size();i++){
-           // if(a.get(i).getFechaAfiliacion().getDay() - fecha.getDay() < 30 ){
-           //    afiliaciones.add(a.get(i));
-           // }
-        }
-        return afiliaciones;
+    public void setAfiliaciones( List<Solicitud>  afiliaciones){
+        this.afiliaciones=afiliaciones;
     }
     
     public Estudiante getEstudiante() throws PersistenceException{

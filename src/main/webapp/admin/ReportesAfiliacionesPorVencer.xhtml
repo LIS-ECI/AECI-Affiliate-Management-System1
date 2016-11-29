@@ -32,7 +32,7 @@ and open the template in the editor.
                             
                 <p:layoutUnit position="center">
                     <p:panel  header = "Afiliaciones Por vencer " id="panelSolicitudes">
-                        <p:dataTable id="singleDT" var="afiliaciones" value="#{BeanReporteAfiliaciones.afiliaciones}"  selectionMode="single" selection="#{beanEstudiante}" rowKey="#{numero_identificacion}">
+                        <p:dataTable id="singleDT" var="afiliaciones" value="#{BeanReporteAfiliaciones.afiliaciones}"  selectionMode="single" selection="#{BeanReporteAfiliaciones.selectedAfiliado}" rowKey="#{afiliaciones.numero_identificacion}">
                             <p:column headerText="Tipo Afiliación">
                                 <h:outputText value="#{afiliaciones.tipo}"/>
                             </p:column>

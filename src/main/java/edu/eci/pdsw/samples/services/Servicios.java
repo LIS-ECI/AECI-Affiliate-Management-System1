@@ -58,6 +58,15 @@ public abstract class Servicios {
      * @throws edu.eci.pdsw.samples.persistence.PersistenceException 
     */
     public abstract List<Solicitud> consultarSolicitud() throws PersistenceException;
+    
+    
+    
+    /**
+    * Metodo consultar Usuarios
+     * @return Lista de Usuarios
+     * @throws edu.eci.pdsw.samples.persistence.PersistenceException 
+    */
+    public abstract List<Usuario> consultarUsuarios() throws PersistenceException;
 
     /**
     * Metodo enviar Solicitud Estudiante

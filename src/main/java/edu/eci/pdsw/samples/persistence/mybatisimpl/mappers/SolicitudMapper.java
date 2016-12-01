@@ -67,4 +67,6 @@ public interface SolicitudMapper {
 
     public Certificado getCertificado(@Param("codigo") int codigo);
 
+    public List<Usuario> consultarAfiliacion();
+
 }

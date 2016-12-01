@@ -58,7 +58,21 @@ public class ServiciosDao extends Servicios {
         return a;
         
     }
+    @Override
+        public List<Usuario> consultarUsuarios() throws PersistenceException {
 
+            List<Usuario> a=null;
+            try {
+                daof.beginSession();
+                a = daof.getDaoSolicitud().consultarUsuarios();
+                daof.commitTransaction();
+                daof.endSession();
+            } catch (PersistenceException ex) {
+                Logger.getLogger(ServiciosDao.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            return a;
+
+        }
    
 
     @Override

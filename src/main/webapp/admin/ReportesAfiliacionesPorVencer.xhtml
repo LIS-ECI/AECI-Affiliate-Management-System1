@@ -32,39 +32,39 @@ and open the template in the editor.
                             
                 <p:layoutUnit position="center">
                     <p:panel  header = "Afiliaciones Por vencer " id="panelSolicitudes">
-                        <p:dataTable id="singleDT" var="afiliaciones" value="#{BeanReporteAfiliaciones.afiliaciones}"  selectionMode="single" selection="#{BeanReporteAfiliaciones.selectedAfiliado}" rowKey="#{afiliaciones.numero_identificacion}">
+                        <p:dataTable id="singleDT" var="Usuarios" value="#{BeanReporteAfiliaciones.usuarios}"  selectionMode="single" selection="#{BeanReporteAfiliaciones.selectedAfiliado}" rowKey="#{Usuarios.nombre}">
                             <p:column headerText="Tipo Afiliación">
-                                <h:outputText value="#{afiliaciones.tipo}"/>
+                                <h:outputText value="#{Usuarios.tipo}"/>
                             </p:column>
                             <p:column headerText="Tipo Documento Afiliado">
-                                <h:outputText  value="#{afiliaciones.tipo_cedula}"/>
+                                <h:outputText  value="#{Usuarios.cedula_tipo}"/>
                             </p:column>
                             <p:column headerText="Documento Afiliado">
-                                <h:outputText  value="#{afiliaciones.numero_identificacion}"/>
+                                <h:outputText  value="#{Usuarios.cedula_numero}"/>
                             </p:column>
                             <p:column headerText="Fecha Afiliación">
-                                <h:outputText  value="#{afiliaciones.fechaAfiliacion}"/>
+                                <h:outputText  value="#{Usuarios.fechaInicio}"/>
                             </p:column>
                             <f:facet name="footer">
                                 <p:commandButton process="singleDT" update=":Inicio:afiDetail" icon="ui-icon-search" value="Ver Afiliación" oncomplete="PF('afiDialog').show()" />
                             </f:facet>
                         </p:dataTable>
                         
-                        <p:dialog header="Información Afiliado" widgetVar="afiDialog" modal="true" showEffect="fade" resizable="false">
+                        <p:dialog header="Información Afiliado" widgetVar="afiDialog" modal="false" showEffect="fade" resizable="false">
                             <p:outputPanel id="afiDetail" style="text-align:center;">
-                                <p:panelGrid  columns="2" rendered="#{not empty BeanReporteAfiliaciones}" columnClasses="label,value">
+                                <p:panelGrid  columns="2" rendered="#{not empty BeanReporteAfiliaciones.selectedAfiliado}" columnClasses="label,value">
                                     
                                     <h:outputText value="Nombre Afiliado:" />
-                                    <h:outputText value="#{BeanReporteAfiliaciones.nombre}" />
+                                    <h:outputText value="#{BeanReporteAfiliaciones.selectedAfiliado.nombre}" />
 
                                     <h:outputText value="Documento:" />
-                                    <h:outputText value="#{BeanReporteAfiliaciones.docIdentificacion}" />
+                                    <h:outputText value="#{BeanReporteAfiliaciones.selectedAfiliado.cedula_numero}" />
 
                                     <h:outputText value="Dirección:" />
-                                    <h:outputText value="#{BeanReporteAfiliaciones.direccion}"/>
+                                    <h:outputText value="#{BeanReporteAfiliaciones.selectedAfiliado.estado}"/>
 
                                     <h:outputText value="Correo Electronico" />
-                                    <h:outputText value="#{BeanReporteAfiliaciones.correoElectronico}" />
+                                    <h:outputText value="#{BeanReporteAfiliaciones.selectedAfiliado.clave}" />
                                 </p:panelGrid>
                             </p:outputPanel>
                         <p:commandButton id="RegresarSolicitudes" value="Regresar" action="ReportesAfiliacionesPorVencer" />

@@ -21,6 +21,8 @@ public interface DaoSolicitud {
     
     public List<Solicitud> consultarSolicitud() throws PersistenceException;
 
+    public List<Usuario> consultarUsuarios() throws PersistenceException;
+
     public Estudiante consultarEstudiante(long identificacion, String tipo_identificacion) throws PersistenceException;
 
     public void InsertarUsuario(Usuario u) throws PersistenceException;

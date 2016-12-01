@@ -22,6 +22,7 @@ import java.util.logging.Logger;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.event.UnselectEvent;
 
@@ -45,34 +46,26 @@ public class ReportesBean implements Serializable {
     private String nombre;
     private String direccion;
     private String correoElectronico;
-    private Afiliado selectedAfiliado;
-    private List<Afiliado> selectedAfiliados;
+    private Usuario selectedAfiliado;
+    private List<Usuario> selectedAfiliados;
     
     
    
   
     
     
-    public List<Solicitud> getAfiliaciones() throws PersistenceException  {
-        List<Solicitud> a =Servicios.getInstance(base).consultarSolicitud();
-
+    public List<Usuario> getUsuarios() throws PersistenceException  {
+        List<Usuario> a =Servicios.getInstance(base).consultarUsuarios();
         return a;
     }
     
+
     public void setAfiliaciones( List<Solicitud>  afiliaciones){
         this.afiliaciones=afiliaciones;
     }
     
-    public Estudiante getEstudiante() throws PersistenceException{
-        Estudiante est = Servicios.getInstance(base).consultarEstudiante(numero_identificacion, tipo_identificacion);
-        return est;
-    }
-    
-    public Egresado getEgresado() throws PersistenceException{
-        Egresado egre = Servicios.getInstance(base).consultarEgresado(numero_identificacion, tipo_identificacion);
-        return egre;
-    }
-    
+  
+
     public String getNombre(){
         return this.nombre;
     }
@@ -105,19 +98,19 @@ public class ReportesBean implements Serializable {
         correoElectronico=coel;
     }
     
-    public Afiliado getSelectedAfiliado() {
+    public Usuario getSelectedAfiliado() {
         return selectedAfiliado;
     }
  
-    public void setSelectedCar(Afiliado selectedAfiliado) {
+    public void setSelectedAfiliado(Usuario selectedAfiliado) {
         this.selectedAfiliado = selectedAfiliado;
     }
     
-    public List<Afiliado> getSelectedAfiliados() {
+    public List<Usuario> getSelectedAfiliados() {
         return selectedAfiliados;
     }
  
-    public void setSelectedAfiliados(List<Afiliado> selectedAfiliados) {
+    public void setSelectedAfiliados(List<Usuario> selectedAfiliados) {
         this.selectedAfiliados = selectedAfiliados;
     }
     
@@ -125,9 +118,8 @@ public class ReportesBean implements Serializable {
         Correo correo1 = new Correo();
         correo1.setMessage(mensaje);
         correo1.setTo(correo);
-        correo1.enviarCorreo(); 
-        
+        correo1.enviarCorreo();     
         
     }
-
+    
 }

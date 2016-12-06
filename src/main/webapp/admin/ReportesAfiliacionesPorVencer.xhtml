@@ -67,15 +67,21 @@ and open the template in the editor.
                                     <h:outputText value="#{BeanReporteAfiliaciones.selectedAfiliado.clave}" />
                                 </p:panelGrid>
                             </p:outputPanel>
-                        <p:commandButton id="RegresarSolicitudes" value="Regresar" action="ReportesAfiliacionesPorVencer" />
                         <p:commandButton id="Enviaradvertencia" value="Enviar Advertencia" action="ReportesAfiliacionesPorVencer" />
                         </p:dialog>
                         <br/>
                         <br/>
                     </p:panel>
                 </p:layoutUnit>
+                <p:layoutUnit position="west">
+                    <p:panel style="width:220px">
+                    <p:commandButton value="Regresar" ajax="false" immediate="true" action="solicitud"/>
+                            <br/>
+                    </p:panel>
+                    <h:outputLink value="/logout">logout</h:outputLink>
+                </p:layoutUnit>
             </p:layout>
-            
+        
             
         </h:form>
     </h:body>

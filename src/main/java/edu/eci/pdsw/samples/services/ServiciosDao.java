@@ -16,6 +16,8 @@ import edu.eci.pdsw.samples.persistence.DaoFactory;
 import edu.eci.pdsw.samples.persistence.PersistenceException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Properties;
 import java.util.logging.Level;
@@ -29,6 +31,7 @@ import org.apache.ibatis.session.SqlSession;
 public class ServiciosDao extends Servicios {
 
     private SqlSession currentSession = null;
+    private Date fecha = Date.valueOf(LocalDate.MAX);   
     Properties properties;
     DaoFactory daof;
 
@@ -60,11 +63,11 @@ public class ServiciosDao extends Servicios {
     }
     @Override
         public List<Usuario> consultarUsuarios() throws PersistenceException {
-
             List<Usuario> a=null;
             try {
                 daof.beginSession();
                 a = daof.getDaoSolicitud().consultarUsuarios();
+         
                 daof.commitTransaction();
                 daof.endSession();
             } catch (PersistenceException ex) {

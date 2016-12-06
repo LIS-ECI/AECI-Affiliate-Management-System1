@@ -48,7 +48,7 @@ public class ReportesBean implements Serializable {
     private String correoElectronico;
     private Usuario selectedAfiliado;
     private List<Usuario> selectedAfiliados;
-    
+    private List<Usuario> UsuariosFIltrados;
     
    
   
@@ -56,15 +56,17 @@ public class ReportesBean implements Serializable {
     
     public List<Usuario> getUsuarios() throws PersistenceException  {
         List<Usuario> a =Servicios.getInstance(base).consultarUsuarios();
+
         return a;
     }
+    
+    
     
 
     public void setAfiliaciones( List<Solicitud>  afiliaciones){
         this.afiliaciones=afiliaciones;
     }
-    
-  
+
 
     public String getNombre(){
         return this.nombre;

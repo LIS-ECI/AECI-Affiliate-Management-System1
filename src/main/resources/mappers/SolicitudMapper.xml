@@ -132,7 +132,10 @@
          
     <select id="consultarAfiliacion" resultMap="UsuarioResult">
         select *
-        from Usuario as u
+        from Usuario 
+        where (DAY(fechafin) - DAY(SYSDATE())) BETWEEN 0 AND 30
+        AND YEAR(SYSDATE()) = YEAR(fechafin)
+        AND MONTH(SYSDATE()) = MONTH(fechafin)
     </select>
         
     

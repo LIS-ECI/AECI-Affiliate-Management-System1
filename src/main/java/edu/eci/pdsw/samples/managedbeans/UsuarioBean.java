@@ -55,7 +55,7 @@ public class UsuarioBean implements Serializable{
     private String base = "applicationconfig.properties";
     
     
-    private void facesError(String message) {
+    private void facesMessage(String message) {
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, message, null));
     }
     
@@ -203,7 +203,7 @@ public class UsuarioBean implements Serializable{
         Usuario u = getUsuario(getShiroLoginBean().getUsername());
         Date fecha = new java.sql.Date(java.util.Calendar.getInstance().getTime().getTime());
         if (u.getFechaFin().compareTo(fecha)<0){
-            facesError("Se requiere renovar la afiliación con el correspondiente pago No se puede generar certificado.");
+            facesMessage("Se requiere renovar la afiliación con el correspondiente pago No se puede generar certificado.");
             pagina="PrincipalUsuario";
         }
         else{

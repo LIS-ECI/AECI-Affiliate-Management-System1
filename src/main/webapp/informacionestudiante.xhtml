@@ -169,7 +169,7 @@
                             <br>
                                 <p:commandButton id="enviar" value="Enviar Solicitud" immediate="true" actionListener="#{beanEstudiante.enviarSolicitud}" oncomplete="PF('campoEntradaDatos').show()"  />
 
-                                <p:dialog header="Solicitud Enviada!" widgetVar="campoEntradaDatos" modal="true" showEffect="fade" hideEffect="fade" resizable="false" width="400">
+                                <p:dialog header="Solicitud Enviada!" widgetVar="campoEntradaDatos" modal="true" visible="false" showEffect="fade" hideEffect="fade" resizable="false" width="400">
                                     <p:outputPanel id="inputQuantity" style="text-align:center;">
                                         <h:panelGrid columns="2" cellpadding="1" styleClass="ui-grid">
 

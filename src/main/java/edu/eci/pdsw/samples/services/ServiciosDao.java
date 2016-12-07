@@ -55,8 +55,10 @@ public class ServiciosDao extends Servicios {
             a = daof.getDaoSolicitud().consultarSolicitud();
             daof.commitTransaction();
             daof.endSession();
+            
         } catch (PersistenceException ex) {
-            Logger.getLogger(ServiciosDao.class.getName()).log(Level.SEVERE, null, ex);
+            daof.endSession();
+            throw new PersistenceException("No se efectuó la consulta de solicitudes",ex.getCause());     
         }
         return a;
         
@@ -71,7 +73,8 @@ public class ServiciosDao extends Servicios {
                 daof.commitTransaction();
                 daof.endSession();
             } catch (PersistenceException ex) {
-                Logger.getLogger(ServiciosDao.class.getName()).log(Level.SEVERE, null, ex);
+                daof.endSession();
+                throw new PersistenceException("No se efectuó la consulta de usuarios",ex.getCause());
             }
             return a;
 
@@ -87,7 +90,9 @@ public class ServiciosDao extends Servicios {
             daof.commitTransaction();
             daof.endSession();
         } catch (PersistenceException ex) {
-            Logger.getLogger(ServiciosDao.class.getName()).log(Level.SEVERE, null, ex);
+            daof.rollbackTransaction();
+            daof.endSession();
+            throw new PersistenceException("No se pudo enviar la solicitud egresado",ex.getCause());
         }
         
         
@@ -104,7 +109,8 @@ public class ServiciosDao extends Servicios {
             daof.commitTransaction();
             daof.endSession();
         } catch (PersistenceException ex) {
-            Logger.getLogger(ServiciosDao.class.getName()).log(Level.SEVERE, null, ex);
+            daof.endSession();
+            throw new PersistenceException("No se pudo obtener el estudiante",ex.getCause());
         }
         
         return e;
@@ -121,7 +127,8 @@ public class ServiciosDao extends Servicios {
             daof.commitTransaction();
             daof.endSession();
         } catch (PersistenceException ex) {
-            Logger.getLogger(ServiciosDao.class.getName()).log(Level.SEVERE, null, ex);
+            daof.endSession();
+            throw new PersistenceException("No se pudo obtener el egresado",ex.getCause());
         }
         
         return e;
@@ -136,7 +143,9 @@ public class ServiciosDao extends Servicios {
             daof.commitTransaction();
             daof.endSession();
         } catch (PersistenceException ex) {
-            Logger.getLogger(ServiciosDao.class.getName()).log(Level.SEVERE, null, ex);
+            daof.rollbackTransaction();
+            daof.endSession();
+            throw new PersistenceException("No se pudo guardar el usuario",ex.getCause());
         }
         
     }
@@ -150,7 +159,9 @@ public class ServiciosDao extends Servicios {
             daof.commitTransaction();
             daof.endSession();
         } catch (PersistenceException ex) {
-            Logger.getLogger(ServiciosDao.class.getName()).log(Level.SEVERE, null, ex);
+            daof.rollbackTransaction();
+            daof.endSession();
+            throw new PersistenceException("No se modificó la solicitud",ex.getCause());
         }
         
         
@@ -165,7 +176,9 @@ public class ServiciosDao extends Servicios {
             daof.commitTransaction();
             daof.endSession();
         } catch (PersistenceException ex) {
-            Logger.getLogger(ServiciosDao.class.getName()).log(Level.SEVERE, null, ex);
+            daof.rollbackTransaction();
+            daof.endSession();
+            throw new PersistenceException("No se pudo Enviar la solicitud estudiante",ex.getCause());
         }
     }
 
@@ -178,7 +191,8 @@ public class ServiciosDao extends Servicios {
             daof.commitTransaction();
             daof.endSession();
         } catch (PersistenceException ex) {
-            Logger.getLogger(ServiciosDao.class.getName()).log(Level.SEVERE, null, ex);
+            daof.endSession();
+            throw new PersistenceException("No se pudo obtener el usuario",ex.getCause());
         }
         return u;
     }
@@ -192,7 +206,8 @@ public class ServiciosDao extends Servicios {
             daof.commitTransaction();
             daof.endSession();
         } catch (PersistenceException ex) {
-            Logger.getLogger(ServiciosDao.class.getName()).log(Level.SEVERE, null, ex);
+            daof.endSession();
+            throw new PersistenceException("No se pudo obtener la cantidad de certificados",ex.getCause());
         }
         return cantidad;
     }
@@ -205,7 +220,9 @@ public class ServiciosDao extends Servicios {
             daof.commitTransaction();
             daof.endSession();
         } catch (PersistenceException ex) {
-            Logger.getLogger(ServiciosDao.class.getName()).log(Level.SEVERE, null, ex);
+            daof.rollbackTransaction();
+            daof.endSession();
+            throw new PersistenceException("No se pudo guardar el certificado",ex.getCause());
         }
     }
 
@@ -218,7 +235,8 @@ public class ServiciosDao extends Servicios {
             daof.commitTransaction();
             daof.endSession();
         } catch (PersistenceException ex) {
-            Logger.getLogger(ServiciosDao.class.getName()).log(Level.SEVERE, null, ex);
+            daof.endSession();
+            throw new PersistenceException("No se cargó el certificado",ex.getCause());
         }
         return c;
     
@@ -232,7 +250,10 @@ public class ServiciosDao extends Servicios {
             daof.commitTransaction();
             daof.endSession();
         } catch (PersistenceException ex) {
-            Logger.getLogger(ServiciosDao.class.getName()).log(Level.SEVERE, null, ex);
+            daof.rollbackTransaction();
+            daof.endSession();
+            throw new PersistenceException("No se llevó a cabo invalidar certificado",ex.getCause());
+            
         }
     }
 

@@ -55,22 +55,29 @@ and open the template in the editor.
                                 <p:panelGrid  columns="2" rendered="#{not empty BeanReporteAfiliaciones.selectedAfiliado}" columnClasses="label,value">
                                     
                                     <h:outputText value="Nombre Afiliado:" />
-                                    <h:outputText value="#{BeanReporteAfiliaciones.selectedAfiliado.nombre}" />
+                                    <h:outputText value="#{BeanReporteAfiliaciones.nombre}" />
+                                    
+                                    <h:outputText value="Apellido Afiliado:" />
+                                    <h:outputText value="#{BeanReporteAfiliaciones.apellido}" />
 
                                     <h:outputText value="Documento:" />
                                     <h:outputText value="#{BeanReporteAfiliaciones.selectedAfiliado.cedula_numero}" />
 
                                     <h:outputText value="Dirección:" />
-                                    <h:outputText value="#{BeanReporteAfiliaciones.selectedAfiliado.estado}"/>
+                                    <h:outputText value="#{BeanReporteAfiliaciones.direccion}"/>
 
                                     <h:outputText value="Correo Electronico" />
-                                    <h:outputText value="#{BeanReporteAfiliaciones.selectedAfiliado.clave}" />
+                                    <h:outputText value="#{BeanReporteAfiliaciones.correo}" />
                                 </p:panelGrid>
                             </p:outputPanel>
-                        <p:commandButton id="Enviaradvertencia" value="Enviar Advertencia" action="ReportesAfiliacionesPorVencer" />
+                            <p:commandButton id="Enviaradvertencia" value="Enviar Advertencia" action="ReportesAfiliacionesPorVencer" actionListener="#{BeanReporteAfiliaciones.enviarAdvertencia}" oncomplete="PF('afiD').show()"/>
                         </p:dialog>
-                        <br/>
-                        <br/>
+                        <p:dialog header="" widgetVar="afiD" modal="false" showEffect="fade" resizable="false">
+                        <h:panelGrid columns="2" cellpadding="1" styleClass="ui-grid">
+                            <p:outputLabel value="La Advertencia ha sido generada correctamente."  />
+                            <p:commandButton value="Aceptar" action="ReportesAfiliacionesPorVencer" immediate="true" ajax="false" styleClass="ui-priority-primary" />       
+                        </h:panelGrid>
+                        </p:dialog>
                     </p:panel>
                 </p:layoutUnit>
                 <p:layoutUnit position="west">

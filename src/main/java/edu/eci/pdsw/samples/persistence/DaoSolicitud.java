@@ -20,6 +20,8 @@ import java.util.List;
 public interface DaoSolicitud {
     
     public List<Solicitud> consultarSolicitud() throws PersistenceException;
+    
+    public List<Pago> consultarPago() throws PersistenceException;
 
     public List<Usuario> consultarUsuarios() throws PersistenceException;
 

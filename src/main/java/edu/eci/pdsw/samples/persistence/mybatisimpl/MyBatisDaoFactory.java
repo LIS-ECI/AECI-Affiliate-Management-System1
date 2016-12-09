@@ -18,7 +18,6 @@ package edu.eci.pdsw.samples.persistence.mybatisimpl;
 
 
 
-import edu.eci.pdsw.samples.persistence.DaoEgresado;
 import edu.eci.pdsw.samples.persistence.DaoFactory;
 import edu.eci.pdsw.samples.persistence.PersistenceException;
 import java.io.InputStream;
@@ -27,7 +26,6 @@ import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-import edu.eci.pdsw.samples.persistence.DaoEstudiante;
 import edu.eci.pdsw.samples.persistence.DaoSolicitud;
 
 /**

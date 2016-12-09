@@ -66,6 +66,7 @@ public class ServiciosDao extends Servicios {
     @Override
         public List<Usuario> consultarUsuarios() throws PersistenceException {
             List<Usuario> a=null;
+            
             try {
                 daof.beginSession();
                 a = daof.getDaoSolicitud().consultarUsuarios();
@@ -84,6 +85,7 @@ public class ServiciosDao extends Servicios {
     @Override
     public void enviarSolicitudEgresado(Egresado egr, Solicitud sol)  throws PersistenceException{
 
+
       try {
             daof.beginSession();
             daof.getDaoSolicitud().enviarSolicitudEgresado(egr, sol);
@@ -94,6 +96,7 @@ public class ServiciosDao extends Servicios {
             daof.endSession();
             throw new PersistenceException("No se pudo enviar la solicitud egresado",ex.getCause());
         }
+      
         
         
 

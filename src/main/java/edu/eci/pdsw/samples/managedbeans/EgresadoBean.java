@@ -190,7 +190,6 @@ public class EgresadoBean  implements Serializable{
     /**
     * Metodo enviarSolicitud egresado
     * 
-     * @throws edu.eci.pdsw.samples.persistence.PersistenceException x
      * 
     */
     public void enviarSolicitud () {
@@ -212,18 +211,33 @@ public class EgresadoBean  implements Serializable{
         Egresado egr = new Egresado(genero,apellido,cedula, tipo_identificacion, nombre, fecha_grado, periodo_grado, cargo, carrera, direccion_vivienda, nombreEmpresa, direccion_empresa, telefono_oficina, telefono_fijo, celular, lisc);
         java.sql.Date fecha = new java.sql.Date(java.util.Calendar.getInstance().getTime().getTime());
         Solicitud sol = new Solicitud(fecha,egr.getNumero_identificacion(), egr.getTipo_identificacion(),"Egresado","Pend");
+        
         try {
-            Servicios.getInstance(base).enviarSolicitudEgresado(egr,sol);
+            Egresado e = Servicios.getInstance(base).consultarEgresado(cedula, tipo_identificacion);
+            if (e != null) {
+                facesMessage("Ya existe una solicitud con el numero de identificación ingresado");
+            }
+            else{
+                try {
+                    Servicios.getInstance(base).enviarSolicitudEgresado(egr,sol);
+                } catch (PersistenceException ex) {
+                    facesMessage("Ocurrió un error al enviar lo solicitud, inténtelo nuevamente");
+                }
+                this.nombreEmpresa="";
+                this.direccion_empresa="";
+                this.cargo="";
+                this.nombre="";
+                this.cedula=0;
+                this.email="";
+                this.direccion_vivienda="";
+                facesMessage("Su Solicitud Ha Sido Enviada Correctamente, Pronto Llegará un Mensaje a su Correo Indicándole los pasos a seguir");
+
+            }
         } catch (PersistenceException ex) {
-            facesMessage("Ocurrió un error al enviar lo solicitud, inténtelo nuevamente");
+            facesMessage("Ocurrió un error al consultar la base de datos, por favor inténtelo nuevamente");
         }
-        this.nombreEmpresa="";
-        this.direccion_empresa="";
-        this.cargo="";
-        this.nombre="";
-        this.cedula=0;
-        this.email="";
-        this.direccion_vivienda="";
+
+        
         
         
         

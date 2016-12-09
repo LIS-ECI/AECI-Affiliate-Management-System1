@@ -50,6 +50,14 @@ public class EstudianteBean implements Serializable {
     private String genero;
     private String apellido;
 
+    public String getBase() {
+        return base;
+    }
+
+    public void setBase(String base) {
+        this.base = base;
+    }
+
     private void facesMessage(String message) {
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, message, null));
     }
@@ -212,6 +220,7 @@ public class EstudianteBean implements Serializable {
             Estudiante e = Servicios.getInstance(base).consultarEstudiante(numero_identificacion, tipo_identificacion);
             if (e != null) {
                 facesMessage("Ya existe una solicitud con el numero de identificación ingresado");
+                
             }
             else {
                 try {
@@ -229,12 +238,13 @@ public class EstudianteBean implements Serializable {
                 this.numero_identificacion = 0;
                 this.telefono_fijo = 0;
                 this.carrera = "Ingenieria Civil";
+                facesMessage("Su Solicitud Ha Sido Enviada Correctamente, Pronto Llegará un Mensaje a su Correo Indicándole los pasos a seguir");
             }
         }
     catch (PersistenceException ex){ 
             facesMessage("Ocurrió un error al consultar la base de datos, por favor inténtelo nuevamente");
     }
-    facesMessage("Su Solicitud Ha Sido Enviada Exitosamente");
+    
 
 }
 

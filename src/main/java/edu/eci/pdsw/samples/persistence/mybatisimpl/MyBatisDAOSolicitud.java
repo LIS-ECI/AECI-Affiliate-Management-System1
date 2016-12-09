@@ -97,7 +97,7 @@ public class MyBatisDAOSolicitud implements DaoSolicitud {
         SolicitudMapper somap = currentSession.getMapper(SolicitudMapper.class);
         somap.insertarIdentificacion(egr.getNumero_identificacion(), egr.getTipo_identificacion());
         somap.insertarDatosEgresado(egr);
-        somap.insertarSolicitud(sol);
+        somap.insertarSolicitud(sol);        
         for (int i=0;i<egr.getCorreo().size();i++){
             somap.insertarCorreoEgresado(egr,egr.getCorreo().get(i).getCorreo());
         }

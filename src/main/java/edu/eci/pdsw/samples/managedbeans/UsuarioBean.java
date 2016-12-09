@@ -18,13 +18,28 @@ import edu.eci.pdsw.samples.entities.Usuario;
 import edu.eci.pdsw.samples.persistence.PersistenceException;
 import edu.eci.pdsw.samples.services.Servicios;
 import java.awt.Color;
+import com.itextpdf.text.Anchor;
+import com.itextpdf.text.BadElementException;
+import com.itextpdf.text.BaseColor;
+import com.itextpdf.text.Chapter;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.List;
+import com.itextpdf.text.ListItem;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.Section;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.el.ELContext;
@@ -54,6 +69,8 @@ public class UsuarioBean implements Serializable{
 
     private String base = "applicationconfig.properties";
     
+    private static Font smallBold = new Font(Font.FontFamily.TIMES_ROMAN, 15,
+                        Font.BOLD);
     
     private void facesMessage(String message) {
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, message, null));
@@ -84,23 +101,25 @@ public class UsuarioBean implements Serializable{
                 egr = Servicios.getInstance(base).consultarEgresado(u.getCedula_numero(), u.getCedula_tipo());
             }
             doc.open();
-            Image imagen = Image.getInstance("https://media.licdn.com/mpr/mpr/shrink_200_200/AAEAAQAAAAAAAAgDAAAAJDk3ZGM0MDU2LWRhNWEtNDMwNi1iOTNjLTllMDY1OWNkMjk3ZQ.png");
-            imagen.scalePercent(50);
-            imagen.setAbsolutePosition(240f, 710f);
+            Image imagen = Image.getInstance("http://static.wixstatic.com/media/926fce_4cc266e8ca394a5097cc08320dc5ff73.jpg_256");
+            imagen.scalePercent(32);
+            imagen.setAbsolutePosition(187f, 700f);
             doc.add(imagen);
             String text = "";
-            doc.add(new Paragraph("\n" + "\n" + "\n" + "\n" + "\n" + "\n" + "la Asociación de Egresados de la Escuela Colombiana de Ingeniería Julio Garavito" + "\n" + "CERTIFICA QUE:"));
+            doc.add(new Paragraph("\n" + "\n" + "\n" + "\n" + "\n" + "\n" + "                                      Certificado de Afiliación AECI" + "\n"+"\n"+"\n",smallBold));
+            doc.add(new Paragraph("La Asociación de Egresados de la Escuela Colombiana de Ingeniería Julio Garavito AECI, con Nit. 830.031.137- 4, certifica que "));
             if (u.getTipo().equals("Estudiante")) {
                 if (est.getGenero().equals("Masculino")) {
-                    text += "El Señor ";
+                    text += "El Estudiante de "+est.getCarrera();
+                    
                 } else {
-                    text += "La Señora ";
+                    text += "La Estudiante de "+est.getCarrera();
                 }
-                text += est.getNombre().toUpperCase() + " " + est.getApellido().toUpperCase();
+                text += " "+est.getNombre().toUpperCase() + " " + est.getApellido().toUpperCase();
                 if (est.getGenero().equals("Masculino")) {
-                    text += " identificado ";
+                    text += ", identificado ";
                 } else {
-                    text += " identificada ";
+                    text += ", identificada ";
                 }
                 text += "con " + est.getTipo_identificacion() + " " + est.getNumero_identificacion() + " " + "se encuentra";
                 if (est.getGenero().equals("Masculino")) {
@@ -108,11 +127,16 @@ public class UsuarioBean implements Serializable{
                 } else {
                     text += " afiliada ";
                 }
-                text += "a la Asociación de Egresados de la Escuela Colombiana de Ingeniería Julio Garavito en condición de estudiante, cursando " + est.getSemestre() + "o. semestre cuya fecha de vigencia es desde ";
+                text += "a la Asociación de Egresados de la Escuela Colombiana de Ingeniería Julio Garavito en condición de estudiante, cursando " + est.getSemestre() + "o. semestre.";
+                doc.add(new Paragraph(text));
+                doc.add(new Paragraph("  Vigencia: "+ "\n" ,smallBold));
+                text="";
+                
+                
                 Date fecha11 = new java.sql.Date(u.getFechaInicio().getTime());
                 Date fecha22 = new java.sql.Date(u.getFechaFin().getTime());
 
-                text += fecha11 + " hasta " + fecha22 + ", y cuya afiliación es gratuita.";
+                text += "   *Desde " + fecha11 + "\n" + "    *Hasta " + fecha22 + "\n" +"Es de anotar que la afiliación estudiantil es gratuita.";
 
             } else {
 
@@ -142,7 +166,7 @@ public class UsuarioBean implements Serializable{
 
             }
 
-            text += "\n" + "La presente certificacion  se expide a solicitud del(de la) interesado(a) en Bogotá para QUIEN INTERESE a la fecha de ";
+            text += "\n" +"\n" + "La presente certificacion  se expide a solicitud del(de la) interesado(a) en Bogotá para QUIEN INTERESE a la fecha de ";
             Date fecha = new java.sql.Date(java.util.Calendar.getInstance().getTime().getTime());
             text += fecha + "." + "\n" + "Cordialmente," + "\n" + "\n" + "\n";
             text += "Asociación de Egresados de la "

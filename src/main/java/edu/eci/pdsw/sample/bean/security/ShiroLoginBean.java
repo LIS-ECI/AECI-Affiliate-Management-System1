@@ -16,11 +16,12 @@ import javax.faces.context.FacesContext;
 import java.io.IOException;
 import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 
 
 @ManagedBean(name = "loginBean")
-@ViewScoped
+@SessionScoped
 public class ShiroLoginBean implements Serializable {
     private static final Logger log = LoggerFactory.getLogger(ShiroLoginBean.class);
 
@@ -45,18 +46,18 @@ public class ShiroLoginBean implements Serializable {
         Subject subject = SecurityUtils.getSubject();
 
         UsernamePasswordToken token = new UsernamePasswordToken(getUsername(), getPassword(), getRememberMe());
-        System.out.println(token.toString());
+        
         try {
             subject.login(token);
 
-            if (subject.hasRole("admin")) {
-                FacesContext.getCurrentInstance().getExternalContext().redirect("faces/admin/solicitud.xhtml");
+            if (subject.hasRole("Administrador")) {
+                FacesContext.getCurrentInstance().getExternalContext().redirect("admin/solicitud.xhtml");
             }
-            else if(subject.hasRole("employee")){
-                FacesContext.getCurrentInstance().getExternalContext().redirect("employees/index.xhtml");
+            else if(subject.hasRole("Usuario")){
+                FacesContext.getCurrentInstance().getExternalContext().redirect("usuario/PrincipalUsuario.xhtml");
             }
             else {
-                FacesContext.getCurrentInstance().getExternalContext().redirect("faces/PrincipalUsuario.xhtml");
+                FacesContext.getCurrentInstance().getExternalContext().redirect("usuario/PrincipalUsuario.xhtml");
             }
         }
         catch (UnknownAccountException ex) {

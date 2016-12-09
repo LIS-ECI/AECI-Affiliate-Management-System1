@@ -1,3 +1,4 @@
+
 /*
  * Copyright (C) 2016 hcadavid
  *
@@ -29,6 +30,10 @@ import edu.eci.pdsw.samples.persistence.PersistenceException;
 
 import edu.eci.pdsw.samples.persistence.mybatisimpl.mappers.SolicitudMapper;
 import java.util.List;
+import org.apache.shiro.authc.credential.DefaultPasswordService;
+import org.apache.shiro.crypto.hash.DefaultHashService;
+import org.apache.shiro.crypto.hash.Sha256Hash;
+import org.apache.shiro.util.SimpleByteSource;
 
 /**
  *
@@ -47,6 +52,13 @@ public class MyBatisDAOSolicitud implements DaoSolicitud {
         SolicitudMapper somap = currentSession.getMapper(SolicitudMapper.class);
         return somap.consultarSolicitud();
     }
+    
+    @Override
+    public List<Usuario> consultarUsuarios() throws PersistenceException {
+        SolicitudMapper somap = currentSession.getMapper(SolicitudMapper.class);
+        
+        return somap.consultarAfiliacion();
+    }
 
    
     @Override
@@ -58,6 +70,7 @@ public class MyBatisDAOSolicitud implements DaoSolicitud {
     @Override
     public void InsertarUsuario(Usuario u) throws PersistenceException{
         SolicitudMapper somap = currentSession.getMapper(SolicitudMapper.class);
+        u.setClave(MyBatisDAOSolicitud.generateHash(u.getClave()));
         somap.InsertarUsuario(u);
     }
 
@@ -84,7 +97,7 @@ public class MyBatisDAOSolicitud implements DaoSolicitud {
         SolicitudMapper somap = currentSession.getMapper(SolicitudMapper.class);
         somap.insertarIdentificacion(egr.getNumero_identificacion(), egr.getTipo_identificacion());
         somap.insertarDatosEgresado(egr);
-        somap.insertarSolicitud(sol);
+        somap.insertarSolicitud(sol);        
         for (int i=0;i<egr.getCorreo().size();i++){
             somap.insertarCorreoEgresado(egr,egr.getCorreo().get(i).getCorreo());
         }
@@ -109,19 +122,41 @@ public class MyBatisDAOSolicitud implements DaoSolicitud {
     }
 
     @Override
-    public void putCertificado(int codigo, String nombre,String valido) {
+    public void putCertificado(int codigo, String nombre,String valido) throws PersistenceException{
         SolicitudMapper somap = currentSession.getMapper(SolicitudMapper.class);
         somap.putCertificado(codigo,nombre,valido);
     }
 
     @Override
-    public Certificado getCertificado(int codigo) {
+    public Certificado getCertificado(int codigo) throws PersistenceException {
         SolicitudMapper somap = currentSession.getMapper(SolicitudMapper.class);
         return somap.getCertificado(codigo);
     }
 
-    
+    @Override
+    public void invalidarCertificado(int codigo) throws PersistenceException {
+        SolicitudMapper somap = currentSession.getMapper(SolicitudMapper.class);
+        somap.invalidarCertificado(codigo);
 
+    }
+
+    
+    public static String generateHash(String password){
+        DefaultHashService hashService = new DefaultHashService();
+        hashService.setHashIterations(500000); // 500000
+        hashService.setHashAlgorithmName(Sha256Hash.ALGORITHM_NAME);
+        
+        // Same salt as in shiro.ini, but NOT base64-encoded!!
+        hashService.setPrivateSalt(new SimpleByteSource("myprivatesalt")); 
+        hashService.setGeneratePublicSalt(true);
+
+        DefaultPasswordService passwordService = new DefaultPasswordService();
+        passwordService.setHashService(hashService);
+        String encryptedPassword = passwordService.encryptPassword(password);
+        
+        return encryptedPassword;
+        
+    }
   
     
     

@@ -20,34 +20,47 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
-
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 
 /**
  *
  * @author Grupo 3 Pdsw
  */
-@ManagedBean(name="beanEstudiante")
+@ManagedBean(name = "beanEstudiante")
 
 @SessionScoped
-public class EstudianteBean  implements Serializable{
-    
+public class EstudianteBean implements Serializable {
+
     private long numero_identificacion;
     private String tipo_identificacion;
     private int codigo;
     private String nombre;
-    private int semestre=8;
+    private int semestre = 8;
     private int telefono_fijo;
-    private long celular=0;
+    private long celular = 0;
     private String direccion;
-    private String carrera="Ingenieria Civil";
-    private int min=8;
-    private int max=10;
+    private String carrera = "Ingenieria Civil";
+    private int min = 8;
+    private int max = 10;
     private String correo;
     private String enter;
     private String email_institucional;
-    private String base="applicationconfig.properties";
+    private String base = "applicationconfig.properties";
     private String genero;
     private String apellido;
+
+    public String getBase() {
+        return base;
+    }
+
+    public void setBase(String base) {
+        this.base = base;
+    }
+
+    private void facesMessage(String message) {
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, message, null));
+    }
 
     public String getApellido() {
         return apellido;
@@ -66,11 +79,10 @@ public class EstudianteBean  implements Serializable{
     }
 
     public int getMin() {
-        if (carrera.equals("Matematicas") | carrera.equals("Administracion") | carrera.equals("Economia") | carrera.equals("Ingenieria Biomedica")){
-            this.min=7;
-        }
-        else{
-            this.min=8;
+        if (carrera.equals("Matematicas") | carrera.equals("Administracion") | carrera.equals("Economia") | carrera.equals("Ingenieria Biomedica")) {
+            this.min = 7;
+        } else {
+            this.min = 8;
         }
         return this.min;
     }
@@ -80,11 +92,10 @@ public class EstudianteBean  implements Serializable{
     }
 
     public int getMax() {
-        if (carrera.equals("Matematicas")| carrera.equals("Administracion") | carrera.equals("Economia") | carrera.equals("Ingenieria Biomedica")){
-            this.max=9;
-        }
-        else{
-            this.max=10;
+        if (carrera.equals("Matematicas") | carrera.equals("Administracion") | carrera.equals("Economia") | carrera.equals("Ingenieria Biomedica")) {
+            this.max = 9;
+        } else {
+            this.max = 10;
         }
         return this.max;
     }
@@ -92,7 +103,7 @@ public class EstudianteBean  implements Serializable{
     public void setMax(int max) {
         this.max = max;
     }
-    
+
     public String getEnter() {
         return enter;
     }
@@ -100,7 +111,7 @@ public class EstudianteBean  implements Serializable{
     public void setEnter(String enter) {
         this.enter = enter;
     }
-    
+
     public int getDocumento() {
         return documento;
     }
@@ -116,7 +127,7 @@ public class EstudianteBean  implements Serializable{
 
     public long getCelular() {
         return celular;
-    }    
+    }
 
     public String getCorreo() {
         return correo;
@@ -133,8 +144,6 @@ public class EstudianteBean  implements Serializable{
     public void setDireccion(String direccion) {
         this.direccion = direccion;
     }
-    
-   
 
     public int getCodigo() {
         return codigo;
@@ -146,8 +155,7 @@ public class EstudianteBean  implements Serializable{
 
     public long getNumero_identificacion() {
         return numero_identificacion;
-    }            
-          
+    }
 
     public void setNumero_identificacion(long numero_identificacion) {
         this.numero_identificacion = numero_identificacion;
@@ -184,7 +192,7 @@ public class EstudianteBean  implements Serializable{
     public void setCarrera(String carrera) {
         this.carrera = carrera;
     }
-        
+
     public void setTelefono_fijo(int telefono_fijo) {
         this.telefono_fijo = telefono_fijo;
     }
@@ -192,44 +200,60 @@ public class EstudianteBean  implements Serializable{
     public void setCelular(long celular) {
         this.celular = celular;
     }
-    
+
     /**
-    * Metodo enviarSolicitudEstudiante
-    */
-     public void enviarSolicitud () throws PersistenceException{
-         if( this.direccion.equals("")){
-            this.direccion="No Disponible";
+     * Metodo enviarSolicitudEstudiante
+     */
+    public void enviarSolicitud() {
+        if (this.direccion.equals("")) {
+            this.direccion = "No Disponible";
         }
-        CorreoPersonal cp = new CorreoPersonal(correo,numero_identificacion,tipo_identificacion);
-        CorreoPersonal cp2 = new CorreoPersonal(email_institucional,numero_identificacion,tipo_identificacion);
+        CorreoPersonal cp = new CorreoPersonal(correo, numero_identificacion, tipo_identificacion);
+        CorreoPersonal cp2 = new CorreoPersonal(email_institucional, numero_identificacion, tipo_identificacion);
         List<CorreoPersonal> lisc = new ArrayList<>();
         lisc.add(cp);
         lisc.add(cp2);
-        Estudiante est = new Estudiante(genero,apellido,codigo, numero_identificacion,  nombre, semestre, tipo_identificacion, carrera, telefono_fijo, celular,  lisc, direccion );
+        Estudiante est = new Estudiante(genero, apellido, codigo, numero_identificacion, nombre, semestre, tipo_identificacion, carrera, telefono_fijo, celular, lisc, direccion);
         Date fecha = new java.sql.Date(java.util.Calendar.getInstance().getTime().getTime());
-        Solicitud sol = new Solicitud((java.sql.Date) fecha,(int)est.getNumero_identificacion(), est.getTipo_identificacion(),"Estudiante","Pend");
-        Servicios.getInstance(base).enviarSolicitudEstudiante(est,sol);
-        this.carrera="";
-        this.celular=0;
-        this.codigo=0;
-        this.correo="";
-        this.direccion="";
-        this.nombre="";
-        this.numero_identificacion=0;
-        this.telefono_fijo=0;
-        this.carrera="Ingenieria Civil";
-        
-
+        Solicitud sol = new Solicitud((java.sql.Date) fecha, (int) est.getNumero_identificacion(), est.getTipo_identificacion(), "Estudiante", "Pend");
+        try {
+            Estudiante e = Servicios.getInstance(base).consultarEstudiante(numero_identificacion, tipo_identificacion);
+            if (e != null) {
+                facesMessage("Ya existe una solicitud con el numero de identificación ingresado");
+                
+            }
+            else {
+                try {
+                    Servicios.getInstance(base).enviarSolicitudEstudiante(est, sol);
+                } 
+                catch (PersistenceException ex) {
+                    facesMessage("Ocurrió un error al enviar lo solicitud, inténtelo nuevamente");
+                }
+                this.carrera = "";
+                this.celular = 0;
+                this.codigo = 0;
+                this.correo = "";
+                this.direccion = "";
+                this.nombre = "";
+                this.numero_identificacion = 0;
+                this.telefono_fijo = 0;
+                this.carrera = "Ingenieria Civil";
+                facesMessage("Su Solicitud Ha Sido Enviada Correctamente, Pronto Llegará un Mensaje a su Correo Indicándole los pasos a seguir");
+            }
+        }
+    catch (PersistenceException ex){ 
+            facesMessage("Ocurrió un error al consultar la base de datos, por favor inténtelo nuevamente");
     }
+    
 
-    public String getEmail_institucional() {
+}
+
+public String getEmail_institucional() {
         return email_institucional;
     }
 
     public void setEmail_institucional(String email_institucional) {
         this.email_institucional = email_institucional;
     }
-    
-
 
 }

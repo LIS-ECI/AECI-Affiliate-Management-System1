@@ -33,7 +33,7 @@
     <mappers>
         <mapper resource="mappers/EgresadoMapper.xml"></mapper>
         <mapper resource="mappers/SolicitudMapper.xml"></mapper>
-        <mapper resource="mappers/AfiliacionesPorVencerMapper.xml"></mapper>
+
     </mappers>
         
 </configuration>

@@ -20,6 +20,12 @@
          where id=#{codigo} and valido="Ok"
     </select>
     
+    <update parameterType="map" id="invalidarCertificado" >    
+        update Certificado
+        set valido="NoOk"
+        where id=#{id}
+    </update>
+    
     <resultMap type='Solicitud' id='SolicitudResult'>
         <id property='fecha' column='fecha'/>
         <result property='numero_identificacion' column = 'Cedula_Numero'/>
@@ -68,8 +74,8 @@
     
     
     <resultMap type='Egresado' id='EgresadoResult'>
-        <id property='cedula' column='Cedula_Numero'/>
-        <result property='cedula_tipo' column = 'Cedula_Tipo'/>
+        <id property='numero_identificacion' column='Cedula_Numero'/>
+        <result property='tipo_identificacion' column = 'Cedula_Tipo'/>
         <result property = 'nombre' column = 'nombre' />
         <result property='fecha_grado' column = 'anio_grado'/>
         <result property='periodo_grado' column = 'periodo_grado'/>
@@ -80,7 +86,7 @@
         <result property='telefono_oficina' column = 'telefono_oficina'/>
         <result property='telefono_fijo' column = 'telefono_fijo'/>
         <result property='celular' column = 'celular'/>
-        <result property='programa' column = 'Programas_nombre'/>
+        <result property='carrera' column = 'Programas_nombre'/>
         <result property='apellido' column = 'apellido'/>
         <result property='genero' column = 'genero'/>
         <collection property='correo' ofType='CorreoPersonal' columnPrefix="correo_" resultMap='CorreoPersonalResult' ></collection> 
@@ -95,7 +101,7 @@
         <result property='semestre' column = 'semestre_ponderado'/>
         <result property='telefono_fijo' column = 'telefono_fijo'/>
         <result property='celular' column = 'celular'/>
-        <result property='direccion' column = 'direccion_vivienda'/>
+        <result property='direccion_vivienda' column = 'direccion_vivienda'/>
         <result property='carrera' column = 'Programas_nombre'/>
          <result property='apellido' column = 'apellido'/>
         <result property='genero' column = 'genero'/>
@@ -122,6 +128,16 @@
         <collection property='servicios_usados' ofType='Servicio' columnPrefix="servicio_" resultMap='ServicioResult' ></collection> 
         <collection property='pagos' ofType='Pago' columnPrefix="pagos_" resultMap='PagoResult' ></collection> 
      </resultMap>
+     
+         
+    <select id="consultarAfiliacion" resultMap="UsuarioResult">
+        select *
+        from Usuario 
+        where (DAY(fechafin) - DAY(SYSDATE())) BETWEEN 0 AND 30
+        AND YEAR(SYSDATE()) = YEAR(fechafin)
+        AND MONTH(SYSDATE()) = MONTH(fechafin)
+    </select>
+        
     
     
     <select id="consultarEstudiante" resultMap="EstudianteResult">
@@ -164,7 +180,7 @@
     </insert>
    
     <insert parameterType="map" id="insertarDatosEstudiante" >    
-        insert into Datos_Estudiante values (#{est.numero_identificacion}, #{est.tipo_identificacion}, #{est.codigo}, #{est.nombre}, #{est.semestre},#{est.telefono_fijo}, #{est.celular}, #{est.direccion}, #{est.carrera},#{est.genero},#{est.apellido})
+        insert into Datos_Estudiante values (#{est.numero_identificacion}, #{est.tipo_identificacion}, #{est.codigo}, #{est.nombre}, #{est.semestre},#{est.telefono_fijo}, #{est.celular}, #{est.direccion_vivienda}, #{est.carrera},#{est.genero},#{est.apellido})
     </insert>
    
     <insert parameterType="map" id="insertarSolicitud" >    
@@ -172,7 +188,7 @@
     </insert>
    
     <insert parameterType="map" id="insertarDatosEgresado" >                    
-        insert into Datos_Egresado values(#{egr.cedula}, #{egr.cedula_tipo}, #{egr.nombre}, #{egr.fecha_grado}, #{egr.periodo_grado}, #{egr.cargo}, #{egr.direccion_vivienda},#{egr.nombreEmpresa},#{egr.direccionEmpresa},#{egr.telefono_oficina},#{egr.telefono_fijo},#{egr.celular},#{egr.programa},#{egr.genero},#{egr.apellido} );
+        insert into Datos_Egresado values(#{egr.numero_identificacion}, #{egr.tipo_identificacion}, #{egr.nombre}, #{egr.fecha_grado}, #{egr.periodo_grado}, #{egr.cargo}, #{egr.direccion_vivienda},#{egr.nombreEmpresa},#{egr.direccionEmpresa},#{egr.telefono_oficina},#{egr.telefono_fijo},#{egr.celular},#{egr.programa},#{egr.genero},#{egr.apellido} );
     </insert>
     
     <insert parameterType="map" id="insertarCorreoEstudiante" >                    
@@ -180,7 +196,7 @@
     </insert>
     
     <insert parameterType="map" id="insertarCorreoEgresado" >                    
-        insert into correo values(#{correo}, #{egr.cedula}, #{egr.cedula_tipo});
+        insert into correo values(#{correo}, #{egr.numero_identificacion}, #{egr.tipo_identificacion});
     </insert>
 
    

@@ -6,17 +6,25 @@
 package edu.eci.pdsw.samples.managedbeans;
 
 import edu.eci.pdsw.samples.entities.Afiliado;
+import edu.eci.pdsw.samples.entities.Correo;
 import edu.eci.pdsw.samples.entities.Egresado;
 import edu.eci.pdsw.samples.entities.Estudiante;
 import edu.eci.pdsw.samples.entities.Solicitud;
+import edu.eci.pdsw.samples.entities.Usuario;
 import edu.eci.pdsw.samples.persistence.PersistenceException;
 import edu.eci.pdsw.samples.services.Servicios;
 import java.io.Serializable;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+import org.primefaces.event.SelectEvent;
+import org.primefaces.event.UnselectEvent;
 
 /**
  *
@@ -36,44 +44,79 @@ public class ReportesBean implements Serializable {
     private Date fecha = Date.valueOf(LocalDate.MAX);   
     private String tipo_identificacion;
     private String nombre;
+    private String Apellido;
     private String direccion;
     private String correoElectronico;
-    private Afiliado selectedAfiliado;
-    private List<Afiliado> selectedAfiliados;
+    private Usuario selectedAfiliado;
+    private List<Usuario> selectedAfiliados;
+    private List<Usuario> UsuariosFIltrados;
+    private String Correo;
+    
+   
+  
     
     
-    
-    public ReportesBean() throws PersistenceException{
-      List<Solicitud> a = getAfiliaciones();
+    public List<Usuario> getUsuarios() throws PersistenceException  {
+        List<Usuario> a =Servicios.getInstance(base).consultarUsuarios();
+
+        return a;
     }
     
     
-    public List<Solicitud> getAfiliaciones() throws PersistenceException {
-        List<Solicitud> a =Servicios.getInstance(base).consultarSolicitud();
-        for(int i=0; i < a.size();i++){
-            if(a.get(i).getFechaAfiliacion().getDay() - fecha.getDay() < 30 ){
-                afiliaciones.add(a.get(i));
+    public String getCorreo() throws PersistenceException{
+        Correo= "";
+        if(selectedAfiliado.getTipo().equals("Estudiante")){
+        Estudiante e= Servicios.getInstance(base).consultarEstudiante(selectedAfiliado.getCedula_numero(),selectedAfiliado.getCedula_tipo());
+        for (int i=0;i<e.getCorreo().size();i++){
+                Correo+="      "+e.getCorreo().get(i).getCorreo();
             }
+        } 
+        else{
+        Egresado e= Servicios.getInstance(base).consultarEgresado(selectedAfiliado.getCedula_numero(),selectedAfiliado.getCedula_tipo());
+        for (int i=0;i<e.getCorreo().size();i++){
+                Correo+="      "+e.getCorreo().get(i).getCorreo();
+            }
+        
         }
-        return afiliaciones;
+        return Correo;
+    
     }
     
-    public Estudiante getEstudiante() throws PersistenceException{
-        Estudiante est = Servicios.getInstance(base).consultarEstudiante(numero_identificacion, tipo_identificacion);
-        return est;
+    public void setAfiliaciones( List<Solicitud>  afiliaciones){
+        this.afiliaciones=afiliaciones;
     }
-    
-    public Egresado getEgresado() throws PersistenceException{
-        Egresado egre = Servicios.getInstance(base).consultarEgresado(numero_identificacion, tipo_identificacion);
-        return egre;
-    }
-    
-    public String getNombre(){
-        return this.nombre;
+
+
+    public String getNombre() throws PersistenceException{
+        nombre="";
+        if(selectedAfiliado.getTipo().equals("Estudiante")){
+        Estudiante e= Servicios.getInstance(base).consultarEstudiante(selectedAfiliado.getCedula_numero(),selectedAfiliado.getCedula_tipo());
+        nombre=e.getNombre();
+        }else {
+        Egresado eg= Servicios.getInstance(base).consultarEgresado(selectedAfiliado.getCedula_numero(),selectedAfiliado.getCedula_tipo());
+        nombre=eg.getNombre();
+        }        
+        return nombre;
     }
     
     public void setNombre(String name){
         nombre = name;
+    }
+    
+    public String getApellido() throws PersistenceException{
+    Apellido="";
+     if(selectedAfiliado.getTipo().equals("Estudiante")){
+        Estudiante e= Servicios.getInstance(base).consultarEstudiante(selectedAfiliado.getCedula_numero(),selectedAfiliado.getCedula_tipo());
+        Apellido=e.getApellido();
+        }else {
+        Egresado eg= Servicios.getInstance(base).consultarEgresado(selectedAfiliado.getCedula_numero(),selectedAfiliado.getCedula_tipo());
+        Apellido=eg.getApellido();
+        }        
+        return Apellido;
+    }
+    
+    public void setApellido(String Apell){
+        Apellido= Apell;
     }
     
     public long getDocIdentificacion(){
@@ -84,9 +127,19 @@ public class ReportesBean implements Serializable {
         numero_identificacion = in;
     }
     
-    public String getDireccion(){
-        return this.direccion;
+    public String getDireccion() throws PersistenceException{
+        direccion="";
+        if(selectedAfiliado.getTipo().equals("Estudiante")){
+        Estudiante e= Servicios.getInstance(base).consultarEstudiante(selectedAfiliado.getCedula_numero(),selectedAfiliado.getCedula_tipo());
+        direccion=e.getDireccion_vivienda();
+        
     }
+        else {
+        Egresado eg= Servicios.getInstance(base).consultarEgresado(selectedAfiliado.getCedula_numero(),selectedAfiliado.getCedula_tipo());
+        direccion=eg.getDireccion_vivienda();
+        }
+        return direccion;
+        }
     
     public void setDireccion(String dir){
         direccion =dir;
@@ -96,24 +149,71 @@ public class ReportesBean implements Serializable {
         return this.correoElectronico;
     }
     
-    public void getCorreoElectronico(String coel){
+    public void setCorreoElectronico(String coel){
         correoElectronico=coel;
     }
     
-    public Afiliado getSelectedAfiliado() {
+    public Usuario getSelectedAfiliado() {
         return selectedAfiliado;
     }
  
-    public void setSelectedCar(Afiliado selectedAfiliado) {
+    public void setSelectedAfiliado(Usuario selectedAfiliado) {
         this.selectedAfiliado = selectedAfiliado;
     }
     
-    public List<Afiliado> getSelectedAfiliados() {
+    public List<Usuario> getSelectedAfiliados() {
         return selectedAfiliados;
     }
  
-    public void setSelectedAfiliados(List<Afiliado> selectedAfiliados) {
+    public void setSelectedAfiliados(List<Usuario> selectedAfiliados) {
         this.selectedAfiliados = selectedAfiliados;
+    }
+    
+    public void EnviarAdvertencia() throws PersistenceException{
+        //Servicios.getInstance(base).ModificarSolicitud("NOOK",egr.getNumero_identificacion(),egr.getTipo_identificacion());
+        //enviarCorreo(this.respuestaSolicitud,egr.getCorreo().get(0).getCorreo());
+        //this.respuestaSolicitud="";
+        String Mensaje;
+        String Correo1="";
+        String Genero = "";
+        if(selectedAfiliado.getTipo().equals("Estudiante")){
+        Estudiante e= Servicios.getInstance(base).consultarEstudiante(selectedAfiliado.getCedula_numero(),selectedAfiliado.getCedula_tipo());
+            if(e.getGenero().equals("Masculino")){
+             Genero="Apreciado "+e.getNombre(); 
+            }
+            else{
+            Genero="Apreciada "+e.getNombre();  
+            }
+        }
+        else {
+        Egresado e= Servicios.getInstance(base).consultarEgresado(selectedAfiliado.getCedula_numero(),selectedAfiliado.getCedula_tipo());
+            if(e.getGenero().equals("Masculino")){
+            Genero="Apreciado "+e.getNombre();
+            }
+            else{
+            Genero="Apreciada "+e.getNombre();  
+            }
+        }
+        Mensaje=Genero +"le recordamos que su afiliacion se vencera pronto, no olvide realizar su pago oportunamente";
+        if(selectedAfiliado.getTipo().equals("Estudiante")){
+        Estudiante e= Servicios.getInstance(base).consultarEstudiante(selectedAfiliado.getCedula_numero(),selectedAfiliado.getCedula_tipo());
+        Correo1=e.getCorreo().get(0).getCorreo();
+        }
+        else{
+        Egresado eg= Servicios.getInstance(base).consultarEgresado(selectedAfiliado.getCedula_numero(),selectedAfiliado.getCedula_tipo());
+        Correo1=eg.getCorreo().get(0).getCorreo();
+        }
+        enviarCorreo(Mensaje, Correo1);
+    }
+    
+    
+    
+    public void enviarCorreo(String mensaje,String correo){
+        Correo correo1 = new Correo();
+        correo1.setMessage(mensaje);
+        correo1.setTo(correo);
+        correo1.enviarCorreo();     
+        
     }
     
 }

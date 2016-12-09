@@ -1,0 +1,56 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <h:head>
+        
+        <title>Usuario</title>
+
+        <style>
+            body {
+    background-image: url("https://pbs.twimg.com/media/CzL9OK4XUAYFfuU.jpg:large");
+    background-size: inherit;
+    background-repeat: inherit; 
+    background-attachment: local ;
+
+}
+        </style>
+        
+    </h:head>
+    </h:head>
+    <h:body>
+        <h:form id="soli_form">
+            <p:focus context="panelSolicitudes" />
+                    
+                        <h:panelGrid columns="1" style="position: absolute; top: 10px; left: 80px">
+                   
+                        <img  src="https://media.licdn.com/mpr/mpr/shrink_200_200/AAEAAQAAAAAAAAgDAAAAJDk3ZGM0MDU2LWRhNWEtNDMwNi1iOTNjLTllMDY1OWNkMjk3ZQ.png" width="280" height="170" align="left"/>
+                        <h2 style=" color: white; position:  fixed; top: 40px; left: 640px ">PAGINA DE USUARIOS</h2>
+                        <h3 style=" color: white; position:  fixed; top: 70px; left: 470px ">Asociación de Egresados Escuela Colombiana de Ingenieria Julio Garavito</h3>
+                    
+
+            </h:panelGrid>
+
+               
+                    <p:panel  id="panelSolicitudes" style="position: fixed; top: 300px; left: 60px">
+                            <p:stack icon="http://www.primefaces.org/showcase/resources/demo/images/dock/stack.png" expanded="true">
+                                <p:menuitem value="Home" icon="http://www.condominiosec.com/es/images/casa4.png" url="#"/>
+                                <p:menuitem value="Mi Perfil" icon="https://cdn.pixabay.com/photo/2014/04/02/10/48/symbol-304598_960_720.png" url="#"/>
+                                <p:menuitem value="Registrar Un Pago" icon="http://academiadeltrafico.com/wp-content/uploads/2016/05/centro-de-ayuda-pagos-boton-ok.png" url="#"/>
+                                <p:menuitem value="Email" icon="http://servicio.us.es/splanestu/WS/BotonCorreo.jpg" url="#"/>
+                                <p:menuitem value="Generar Certificado" icon="http://previews.123rf.com/images/dirkercken/dirkercken1403/dirkercken140300228/26322919-descarga-de-archivos-pdf-o-documento-bot-n-de-descargar-o-icono-Foto-de-archivo.jpg" action="#{beanUsuario.pagina}" immediate="true" />
+                            </p:stack>
+                    <h:outputLink value="/logout">logout</h:outputLink>
+
+                    </p:panel>
+                
+
+                    
+
+        </h:form>
+    </h:body>
+</html>
+
+

@@ -11,7 +11,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
+        <endorsed.dir>${project.build.directory}/dependency</endorsed.dir>
     </properties>
     
     <dependencies>
@@ -21,6 +21,11 @@
             <groupId>org.primefaces.themes</groupId>  
             <artifactId>all-themes</artifactId>  
             <version>1.0.10</version>
+        </dependency>
+        <dependency>
+            <groupId>org.primefaces.extensions</groupId>
+            <artifactId>primefaces-extensions</artifactId>
+            <version>6.0.0</version>
         </dependency>
         
         <!--mail-->
@@ -40,19 +45,45 @@
             <artifactId>jsf-impl</artifactId>
             <version>2.2.12</version>
         </dependency>
+        
+         <dependency>
+            <groupId>com.opera</groupId>
+            <artifactId>operadriver</artifactId>
+            <scope>test</scope>
+            <version>1.5</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.seleniumhq.selenium</groupId>
+                    <artifactId>selenium-remote-driver</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <scope>test</scope>
+            <version>2.44.0</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>jstl</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.2</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>com.itextpdf</groupId>
+            <artifactId>itextpdf</artifactId>
+            <version>5.0.6</version>
+        </dependency>
+        
         <!--security-->
         <dependency>
             <groupId>org.apache.shiro</groupId>
             <artifactId>shiro-core</artifactId>
             <version>1.2.1</version>
         </dependency>
-
-        <dependency>
-            <groupId>com.itextpdf</groupId>
-            <artifactId>itextpdf</artifactId>
-            <version>5.0.6</version>
-        </dependency>
-
 
         <dependency>
             <groupId>org.apache.shiro</groupId>
@@ -73,6 +104,17 @@
             <version>5.0</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.ops4j.pax.swissbox</groupId>
+            <artifactId>pax-swissbox-optional-jcl</artifactId>
+            <version>1.6.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.jolbox</groupId>
+            <artifactId>bonecp</artifactId>
+            <version>0.8.0.RELEASE</version>
+            <scope>compile</scope>
+        </dependency>
         
         <dependency>
             <groupId>junit</groupId>

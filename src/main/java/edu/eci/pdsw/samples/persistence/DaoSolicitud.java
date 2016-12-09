@@ -21,6 +21,8 @@ public interface DaoSolicitud {
     
     public List<Solicitud> consultarSolicitud() throws PersistenceException;
 
+    public List<Usuario> consultarUsuarios() throws PersistenceException;
+
     public Estudiante consultarEstudiante(long identificacion, String tipo_identificacion) throws PersistenceException;
 
     public void InsertarUsuario(Usuario u) throws PersistenceException;
@@ -37,9 +39,11 @@ public interface DaoSolicitud {
 
     public int cantidadCertificados() throws PersistenceException;
 
-    public void putCertificado(int codigo, String nombre,String valido);
+    public void putCertificado(int codigo, String nombre,String valido) throws PersistenceException;
 
-    public Certificado getCertificado(int codigo);
+    public Certificado getCertificado(int codigo) throws PersistenceException;
+
+    public void invalidarCertificado(int codigo) throws PersistenceException;
 
 
 }

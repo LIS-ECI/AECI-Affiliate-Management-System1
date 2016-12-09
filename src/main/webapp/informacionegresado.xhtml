@@ -3,45 +3,65 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui" 
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-    <h:head></h:head>
+    <h:head>
+        
+        <title>Solicitud Egresado</title>
+
+        <style>
+            body {
+    background-image: url("https://pbs.twimg.com/media/CzL9OK4XUAYFfuU.jpg:large");
+    background-size: inherit;
+    background-repeat: inherit; 
+    background-attachment: local ;
+
+}
+        </style>
+        
+        
+    </h:head>
 
     <h:body>
         <h:form id="infoEgresado">
-            <h:panelGrid columns="1" style="position: absolute; top: 0px; left: 0px">
-                <p:panel style=" font-size:  medium; height: 185px;color: #cccccc" >
+            <h:panelGrid columns="1" style="position: absolute; top: 10px; left: 60px">
                     <f:facet name="header" >
                         <img  src="https://media.licdn.com/mpr/mpr/shrink_200_200/AAEAAQAAAAAAAAgDAAAAJDk3ZGM0MDU2LWRhNWEtNDMwNi1iOTNjLTllMDY1OWNkMjk3ZQ.png" width="280" height="170" align="left"/>
-                        <h2 style="text-align: center; color: darkblue;">BIENVENIDO</h2>
-                        <h3 style="text-align: center; color: darkblue;">Asociación de Egresados Escuela Colombiana de Ingenieria Julio Garavito</h3>
+                        <h2 style="text-align: center; color: white;">BIENVENIDO</h2>
+                        <h3 style="text-align: center; color: white;">Asociación de Egresados Escuela Colombiana de Ingenieria Julio Garavito</h3>
                     </f:facet>
                     <p:growl id="msj" showDetail="true" autoUpdate="true"/>
 
-                </p:panel>
+               
+                    
+                   
+                    
+                    
+                    
 
             </h:panelGrid>
 
-            <br>
-            </br>
-            <br>
-            </br>
-            <br>
-            </br>
-            <br>
-            </br>
-            <br>
-            </br>
-            <br>
-            </br>
+            <h3 style="text-align: center;  background:black;  color: white; position: absolute; top: 203px; left: 90px">Solicitud Afiliación Egresado </h3>
 
-
-            <p:outputLabel value="Solicitud de registro Egresado " />
-            <p:outputLabel value="Informacion Personal" />
-
-            <p:panelGrid columns="2">
+             <br>
+                    </br>
+                    <br>
+                    </br>
+                    <br>
+                    </br>
+                    <br>
+                    </br>
+                    <br>
+                    </br>
+                    <br>
+                    </br>
+            <br>
+                    </br>
+                    
+            
+            <p:panelGrid columns="2" style="position: relative; left: 80px">
 
                 <h:form>
-
-                    <p:growl id="growl" sticky="true" showDetail="true"/>
+                    
+                <p:growl id="growl" sticky="true" showDetail="true"/>
 
                     <p:wizard >
                         <p:tab id="personal" title="Informacion Basica">
@@ -192,22 +212,10 @@
                                     </h:panelGrid>
                                 </h:panelGrid>  
 
-                                <h:outputText value="¿ Autoriza el envio de informacion de la AECI ?" />
-                                <h:selectBooleanCheckbox />
-
                                 <br>
-                                    <p:commandButton value="Enviar Solicitud" actionListener="#{beanEgresado.enviarSolicitud}" oncomplete="PF('campoEntradaDatos').show()"  />
+                                    <p:commandButton value="Enviar Solicitud" actionListener="#{beanEgresado.enviarSolicitud}" />
 
-                                    <p:dialog header="Solicitud Enviada!" widgetVar="campoEntradaDatos" modal="true" showEffect="fade" hideEffect="fade" resizable="false" width="400">
-                                        <p:outputPanel id="inputQuantity" style="text-align:center;">
-                                            <h:panelGrid columns="2" cellpadding="1" styleClass="ui-grid">
-
-                                                <p:outputLabel value="Tu solicitud ha sido enviada al adminsitrador, pronto llegará un mensaje a tu correo indicando los pasos a seguir  "  />
-                                                <p:commandButton value="Aceptar" action="index" immediate="true" ajax="false" styleClass="ui-priority-primary" />
-
-                                            </h:panelGrid>
-                                        </p:outputPanel>
-                                    </p:dialog>
+                                
                                 </br>
 
                             </p:panel>
@@ -221,7 +229,9 @@
 
 
             </p:panelGrid>
-            <p:commandButton value="Regresar" action="index" immediate="true" styleClass="ui-priority-primary" />
+            <p:commandButton  style="position: relative; left: 80px" value="Regresar" action="index" immediate="true" ajax="false" styleClass="ui-priority-primary" />
+
+
 
         </h:form>
     </h:body>

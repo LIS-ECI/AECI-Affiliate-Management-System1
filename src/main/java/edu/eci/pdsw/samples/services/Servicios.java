@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -57,6 +58,15 @@ public abstract class Servicios {
      * @throws edu.eci.pdsw.samples.persistence.PersistenceException 
     */
     public abstract List<Solicitud> consultarSolicitud() throws PersistenceException;
+    
+    
+    
+    /**
+    * Metodo consultar Usuarios
+     * @return Lista de Usuarios
+     * @throws edu.eci.pdsw.samples.persistence.PersistenceException 
+    */
+    public abstract List<Usuario> consultarUsuarios() throws PersistenceException;
 
     /**
     * Metodo enviar Solicitud Estudiante
@@ -128,6 +138,14 @@ public abstract class Servicios {
      * @throws edu.eci.pdsw.samples.persistence.PersistenceException
     */
     public abstract Certificado getCertificado(int codigo) throws PersistenceException;
+
+     /**
+    * Metodo invalidar un certificado
+     * 
+     * @param codigo codigo del certificado
+     * @throws edu.eci.pdsw.samples.persistence.PersistenceException
+    */
+    public abstract void invalidarCertificado(int codigo) throws PersistenceException;
     
     
   

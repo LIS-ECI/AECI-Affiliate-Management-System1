@@ -3,35 +3,109 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-    <h:head></h:head>
+    <h:head>
+        
+        <title>Bienvenido</title>
 
-    <h:body>
+        <style>
+            body {
+    background-image: url("https://pbs.twimg.com/media/CzL9OK4XUAYFfuU.jpg:large");
+    background-size: inherit;
+    background-repeat: inherit; 
+    background-attachment: local ;
+
+}
+        </style>
+        
+    </h:head>
+
+    <h:body  >
+
+        
         <h:form id="Inicio">
-            <h:panelGrid columns="1" style="position: absolute; top: 0px; left: 0px">
-                <p:panel style=" font-size:  medium; height: 185px;color: #cccccc" >
+            <h:panelGrid columns="1" style="position: absolute; top: 10px; left: 60px">
                     <f:facet name="header" >
                         <img  src="https://media.licdn.com/mpr/mpr/shrink_200_200/AAEAAQAAAAAAAAgDAAAAJDk3ZGM0MDU2LWRhNWEtNDMwNi1iOTNjLTllMDY1OWNkMjk3ZQ.png" width="280" height="170" align="left"/>
-                        <h2 style="text-align: center; color: darkblue;">BIENVENIDO</h2>
-                        <h3 style="text-align: center; color: darkblue;">Asociación de Egresados Escuela Colombiana de Ingenieria Julio Garavito</h3>
+                        <h2 style="text-align: center; color: white;">BIENVENIDO</h2>
+                        <h3 style="text-align: center; color: white;">Asociación de Egresados Escuela Colombiana de Ingenieria Julio Garavito</h3>
                     </f:facet>
                     <p:growl id="msj" showDetail="true" autoUpdate="true"/>
 
-                </p:panel>
-
-            </h:panelGrid>
-
-            <h:panelGrid columns="1" style="position: fixed; top: 30%; left: 45%">
-                <img src="http://imagenes.universia.net/gc/net/images/institution/11404/Escuela-Colombiana-Ingenieria-Julio-Garavito1_Carrusel.jpg" alt="AECI"></img>
+               
 
             </h:panelGrid>
 
 
-            <h:panelGrid columns="1" style="position: absolute; top: 0px; left: 1000px">
+                
+                    <p:tabView style=" position: absolute; top: 250px; left: 140px ; width: 1060px " >
+                        <p:tab title="Nosotros">
+                            <h:panelGrid columns="2" cellpadding="10">
+                                <img src="http://imagenes.universia.net/gc/net/images/institution/11404/Escuela-Colombiana-Ingenieria-Julio-Garavito1_Carrusel.jpg" align="left" height="230" width="360"></img>
+                                <h:outputText
+                                    value="Somos una asociación sin ánimo de lucro, conformada por Egresados de Programas de Pregrado y Posgrado de la Escuela Colombiana de Ingeniería Julio Garavito,con el fin de mejorar la calidad de vida generando  múltiples beneficios para nuestros egresados  en aspectos  académicos ,comerciales y del sector salud . Trabajamos por ofrecer una amplia oferta de opciones  laborales con empresas que confían en  la calidad  de nuestro Capital Humano. Los miembros elegidos  de la Junta Directiva de  la AECI,  trabajan en favor de los intereses gremiales, sirviendo como un canal de comunicación entre el sector real y la Academia,  potenciando  un profesional íntegro y ético comprometido  con el desarrollo social, económico y humano de Nuestro País . " />
+                            </h:panelGrid>
+                        </p:tab>
+                        
+                        <p:tab title="Nuestra Junta Directiva">
+                            <h:panelGrid columns="2" cellpadding="10">
+                                <p:graphicImage name="http://www.escuelaing.edu.co/uploads/generica/porteria.jpg" />
+                                <h:outputText value="Francis Ford Coppola's legendary..." />
+                            </h:panelGrid>
+                        </p:tab>
+                        <p:tab title="Convenios">
+                            <h:panelGrid columns="2" cellpadding="10">
+                                <p:graphicImage name="http://www.escuelaing.edu.co/uploads/generica/porteria.jpg" />
+                                <h:outputText value="Francis Ford Coppola's legendary..." />
+                            </h:panelGrid>
+                        </p:tab>
+                        <p:tab title="Como Afiliarse">
+                            <h:panelGrid columns="2" cellpadding="10">
+                                <p:graphicImage name="http://www.escuelaing.edu.co/uploads/generica/porteria.jpg" />
+                                <h:outputText value="After a break of more than 15 years..." />
+                            </h:panelGrid>
+                        </p:tab>
+                        <p:tab title="Politicas de Tratamiento de datos">
+                            <h:panelGrid columns="2" cellpadding="10">
+                                <p:graphicImage name="http://www.escuelaing.edu.co/uploads/generica/porteria.jpg" />
+                                <h:outputText value="Francis Ford Coppola's legendary..." />
+                            </h:panelGrid>
+                        </p:tab>
+                        <p:tab title="Validar Certificado De Afiliación">
+                            <h:panelGrid columns="2" cellpadding="10">
+                                <p:panel  header = "Validar Certificado" id="panelSolicitudes" style=" font-size:  medium; width: 415px" >
+                                    <p:outputLabel value="Código del Certificado:   "  />
+                                    <p:inputText id="codigo"  value="#{beanIndex.codigo}" />
+                                    <br></br>
+                                    <p:commandButton id="validar" value="Validar Certificado" actionListener="#{beanIndex.validar}" oncomplete="PF('campoEntradaDatos34').show()"  />
+
+                                    <p:dialog header="Validación del certificado" widgetVar="campoEntradaDatos34" resizable="false" width="400">
+                                        <p:outputPanel id="inputQuantity346" autoUpdate="true" style="text-align:center;">
+                                            <h:panelGrid columns="2" cellpadding="1" styleClass="ui-grid">
+                                                <p:outputLabel value="#{beanIndex.validacion}"  />                               
+                                            </h:panelGrid>
+
+
+                                        </p:outputPanel>
+                                    </p:dialog>
+
+                                </p:panel>
+                            </h:panelGrid>
+                        </p:tab>
+                        <p:tab title="Contacto">
+                            <h:panelGrid columns="2" cellpadding="10">
+                                <p:graphicImage name="http://www.escuelaing.edu.co/uploads/generica/porteria.jpg" />
+                                <h:outputText value="Francis Ford Coppola's legendary..." />
+                            </h:panelGrid>
+                        </p:tab>
+
+                    </p:tabView>
+               
 
 
 
 
-                <p:panel style=" font-size:  medium; height: 160px;color: #ffffff" >
+            <h:panelGrid columns="1" style="position: absolute; top: 0px; left: 970px">
+
 
                     <p:growl id="msgs" showDetail="true" />
 
@@ -60,7 +134,7 @@
                                         <h:outputText value="Olvide mi contraseña" />
                                     </p:commandLink>
 
-                                    <p:commandButton id="ingresar2" value="Ingresar2" action="#{loginBean.doLogin}" />
+                                    <p:commandButton id="ingresar2" value="Ingresar" action="#{loginBean.doLogin}" />
                                 </h:panelGrid>
 
 
@@ -82,43 +156,12 @@
 
 
 
-                </p:panel>
-
-
 
             </h:panelGrid>
-            <br>
-            </br>
-            <br>
-            </br>
-            <br>
-            </br>
-            <br>
-            </br>
-            <br>
-            </br>
-            <br>
-            </br>
-            
-            
-           
-            <p:panel  header = "Validar Certificado" id="panelSolicitudes" style=" font-size:  medium; width: 415px" >
-                <p:outputLabel value="Código del Certificado:   "  />
-                <p:inputText id="codigo"  value="#{beanIndex.codigo}" />
-                <br></br>
-                <p:commandButton id="validar" value="Validar Certificado" actionListener="#{beanIndex.validar}" oncomplete="PF('campoEntradaDatos34').show()"  />
-                
-                <p:dialog header="Validación del certificado" widgetVar="campoEntradaDatos34" resizable="false" width="400">
-                    <p:outputPanel id="inputQuantity346" autoUpdate="true" style="text-align:center;">
-                        <h:panelGrid columns="2" cellpadding="1" styleClass="ui-grid">
-                            <p:outputLabel value="#{beanIndex.validacion}"  />                               
-                        </h:panelGrid>
+    
 
-                     
-                    </p:outputPanel>
-                </p:dialog>
 
-            </p:panel>
+
 
         </h:form>
     </h:body>

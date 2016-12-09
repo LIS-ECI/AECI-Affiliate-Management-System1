@@ -27,6 +27,8 @@ import javax.faces.bean.SessionScoped;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 
 
 @ManagedBean(name="beanEgresado")
@@ -181,13 +183,16 @@ public class EgresadoBean  implements Serializable{
         this.celular = celular;
     }
     
+     private void facesMessage(String message) {
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, message, null));
+    }
+    
     /**
     * Metodo enviarSolicitud egresado
     * 
-     * @throws edu.eci.pdsw.samples.persistence.PersistenceException x
      * 
     */
-    public void enviarSolicitud () throws PersistenceException{
+    public void enviarSolicitud () {
         if( this.nombreEmpresa.equals("")){
             this.nombreEmpresa="No Disponible";
         }
@@ -206,14 +211,33 @@ public class EgresadoBean  implements Serializable{
         Egresado egr = new Egresado(genero,apellido,cedula, tipo_identificacion, nombre, fecha_grado, periodo_grado, cargo, carrera, direccion_vivienda, nombreEmpresa, direccion_empresa, telefono_oficina, telefono_fijo, celular, lisc);
         java.sql.Date fecha = new java.sql.Date(java.util.Calendar.getInstance().getTime().getTime());
         Solicitud sol = new Solicitud(fecha,egr.getNumero_identificacion(), egr.getTipo_identificacion(),"Egresado","Pend");
-        Servicios.getInstance(base).enviarSolicitudEgresado(egr,sol);
-        this.nombreEmpresa="";
-        this.direccion_empresa="";
-        this.cargo="";
-        this.nombre="";
-        this.cedula=0;
-        this.email="";
-        this.direccion_vivienda="";
+        
+        try {
+            Egresado e = Servicios.getInstance(base).consultarEgresado(cedula, tipo_identificacion);
+            if (e != null) {
+                facesMessage("Ya existe una solicitud con el numero de identificación ingresado");
+            }
+            else{
+                try {
+                    Servicios.getInstance(base).enviarSolicitudEgresado(egr,sol);
+                } catch (PersistenceException ex) {
+                    facesMessage("Ocurrió un error al enviar lo solicitud, inténtelo nuevamente");
+                }
+                this.nombreEmpresa="";
+                this.direccion_empresa="";
+                this.cargo="";
+                this.nombre="";
+                this.cedula=0;
+                this.email="";
+                this.direccion_vivienda="";
+                facesMessage("Su Solicitud Ha Sido Enviada Correctamente, Pronto Llegará un Mensaje a su Correo Indicándole los pasos a seguir");
+
+            }
+        } catch (PersistenceException ex) {
+            facesMessage("Ocurrió un error al consultar la base de datos, por favor inténtelo nuevamente");
+        }
+
+        
         
         
         

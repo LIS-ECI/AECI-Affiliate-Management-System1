@@ -34,6 +34,8 @@ import org.apache.ibatis.annotations.Param;
 public interface SolicitudMapper {
     
     public List<Solicitud> consultarSolicitud();
+    
+    public List<Pago> consultarPagos();
 
     public Estudiante consultarEstudiante(@Param("id") long identificacion, @Param("tipoid") String tipo_identificacion);
 
@@ -57,7 +59,7 @@ public interface SolicitudMapper {
 
     public Usuario getUsuario(@Param("un") String username);
 
-    public List<Pago> getPagos(@Param("uname") String username);
+    //public List<Pago> getPagos(@Param("uname") String username);
 
     public int cantidadCertificados();
 

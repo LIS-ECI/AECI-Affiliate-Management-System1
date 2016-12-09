@@ -59,6 +59,12 @@ public abstract class Servicios {
     */
     public abstract List<Solicitud> consultarSolicitud() throws PersistenceException;
     
+    /**
+    * Metodo consultar Pago
+     * @return Lista de Pagos no tramitados
+     * @throws edu.eci.pdsw.samples.persistence.PersistenceException 
+    */
+    public abstract List<Pago> consultarPago() throws PersistenceException;
     
     
     /**

@@ -61,8 +61,26 @@ public class ServiciosDao extends Servicios {
             throw new PersistenceException("No se efectuó la consulta de solicitudes",ex.getCause());     
         }
         return a;
-        
     }
+    
+    @Override
+    public List<Pago> consultarPago() throws PersistenceException {
+        
+        List<Pago> pagos=null;
+        try {
+            daof.beginSession();
+            pagos = daof.getDaoSolicitud().consultarPago();
+            daof.commitTransaction();
+            daof.endSession();
+            
+        } catch (PersistenceException ex) {
+            daof.endSession();
+            throw new PersistenceException("No se efectuó la consulta de Pagos",ex.getCause());     
+        }
+        return pagos;
+    }
+    
+    
     @Override
         public List<Usuario> consultarUsuarios() throws PersistenceException {
             List<Usuario> a=null;

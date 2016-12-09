@@ -47,7 +47,27 @@
         <result property = 'fecha' column = 'Fecha' />
     </resultMap>
     
+    <select id="consultarPagos" resultMap="PagoResult">
+        select 	P.numeroFactura , P.Usuario_nombre , P.Tipo , P.foto , P.validacion, P.fechaRegistro, P.tipoTramite, I.nombre, I.apellido, I.Numero
+        from Pagos P
+	LEFT JOIN Usuario as U ON U.nombre= P.Usuario_nombre
+        LEFT JOIN Identificacion as I ON I.Numero=U.identificacion
+        where validacion='NoOk'
+        order by fechaRegistro
+    </select>
     
+    <resultMap type='Pago' id='PagoResult'>
+        <id property='id_pago' column='numeroFactura'/>
+        <result property='Usuario_nombre' column = 'Usuario_nombre'/>
+        <result property = 'tipo' column = 'Tipo' />
+        <result property='foto' column = 'foto'/>
+        <result property='validacion' column = 'validacion'/>
+        <result property='fechaRegistro' column = 'fechaRegistro'/>
+        <result property='tipoTramite' column = 'tipoTramite'/>
+        <result property='nombrePersonal' column = 'nombre'/>
+        <result property='apellidoPersonal' column = 'apellido'/>
+        <result property='identificacionPersonal' column = 'Numero'/>
+    </resultMap>
     
     <select id="consultarSolicitud" resultMap="SolicitudResult">
         select fecha , Cedula_Numero , Cedula_Tipo , tipo , aprobado
@@ -58,21 +78,13 @@
     
 
         
-         <resultMap type='Observacion' id='ObservacionResult'>
+    <resultMap type='Observacion' id='ObservacionResult'>
         <id property='numero_observacion' column='numero_observacion'/>
         <result property='Usuario_nombre' column = 'Usuario_nombre'/>
         <result property = 'comentario' column = 'comentario' />        
-        </resultMap>
-        
-        
-            <resultMap type='Pago' id='PagoResult'>
-        <id property='id_pago' column='numeroFactura'/>
-        <result property='Usuario_nombre' column = 'Usuario_nombre'/>
-        <result property = 'tipo' column = 'Tipo' />
-         <result property='validacion' column = 'validacion'/>
-        </resultMap>
-    
-    
+    </resultMap>       
+       
+     
     <resultMap type='Egresado' id='EgresadoResult'>
         <id property='numero_identificacion' column='Cedula_Numero'/>
         <result property='tipo_identificacion' column = 'Cedula_Tipo'/>
@@ -131,11 +143,12 @@
      
          
     <select id="consultarAfiliacion" resultMap="UsuarioResult">
-        select *
-        from Usuario 
-        where (DAY(fechafin) - DAY(SYSDATE())) BETWEEN 0 AND 30
-        AND YEAR(SYSDATE()) = YEAR(fechafin)
-        AND MONTH(SYSDATE()) = MONTH(fechafin)
+	select U.nombre,U.clave,U.tipo,U.estado,U.identificacion,U.tipo_identificacion,U.fechainicio,U.fechafin,UC.Usuario_nombre as servicio_Usuario_nom, UC.TdeServicio as servicio_TdeServicio, UC.Fecha as servicio_Fecha, P.numeroFactura as pagos_numeroFactura, P.Usuario_nombre as pagos_Usuario_nombre,
+        P.Tipo as pagos_Tipo, P.validacion as pagos_validacion, O.numero_observacion as  observacion_numero_observacion, O.Usuario_nombre as observacion_Usuario_nombre, O.comentario as observacion_comentario
+        from Usuario as U LEFT JOIN Usos_Convenios as UC ON UC.Usuario_nombre=U.nombre LEFT JOIN observacion as O on O.Usuario_nombre=U.nombre LEFT JOIN Pagos as P ON P.Usuario_nombre=U.nombre
+        where (DAY(U.fechafin) - DAY(SYSDATE())) BETWEEN 0 AND 30
+        AND YEAR(SYSDATE()) = YEAR(U.fechafin)
+        AND MONTH(SYSDATE()) = MONTH(U.fechafin)
     </select>
         
     

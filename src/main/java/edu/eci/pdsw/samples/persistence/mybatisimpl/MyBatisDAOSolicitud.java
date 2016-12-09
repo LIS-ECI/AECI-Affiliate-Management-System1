@@ -54,6 +54,12 @@ public class MyBatisDAOSolicitud implements DaoSolicitud {
     }
     
     @Override
+    public List<Pago> consultarPago() throws PersistenceException {
+        SolicitudMapper somap = currentSession.getMapper(SolicitudMapper.class);
+        return somap.consultarPagos();
+    }
+    
+    @Override
     public List<Usuario> consultarUsuarios() throws PersistenceException {
         SolicitudMapper somap = currentSession.getMapper(SolicitudMapper.class);
         

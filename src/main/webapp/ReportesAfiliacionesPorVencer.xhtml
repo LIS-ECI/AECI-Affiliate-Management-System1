@@ -32,7 +32,7 @@ and open the template in the editor.
                             
                 <p:layoutUnit position="center">
                     <p:panel  header = "Afiliaciones Por vencer " id="panelSolicitudes">
-                        <p:dataTable id="singleDT" var="afiliaciones" value="#{BeanReporteAfiliaciones.afiliaciones}"  selectionMode="single" selection="#{beanEstudiante}" rowKey="#{numero_identificacion}">
+                        <p:dataTable id="singleDT" var="afiliaciones" value="#{BeanReporteAfiliaciones.afiliaciones}"  selectionMode="single" selection="#{BeanReporteAfiliaciones}" rowKey="#{numero_identificacion}">
                             <p:column headerText="Tipo Afiliación">
                                 <h:outputText value="#{afiliaciones.tipo}"/>
                             </p:column>
@@ -52,10 +52,10 @@ and open the template in the editor.
                         
                         <p:dialog header="Info Afiliado" widgetVar="afiDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
                             <p:outputPanel id="afiDetail" style="text-align:center;">
-                                <p:panelGrid  columns="2" rendered="#{not empty beanEstudiante}" columnClasses="label,value">
+                                <p:panelGrid  columns="2" rendered="#{not empty BeanReporteAfiliaciones.selectedAfiliado}" columnClasses="label,value">
                                     
                                     <h:outputText value="Nombre Afiliado:" />
-                                    <h:outputText value="#{beanEstudiante.nombre}" />
+                                    <h:outputText value="#{nombre}" />
 
                                     <h:outputText value="Documento:" />
                                     <h:outputText value="#{beanEstudiante.numero_identificacion}" />

@@ -1,0 +1,60 @@
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Procesar Pagos</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+
+    <h:body>
+        <h:form id="Inicio">
+            <p:layout>
+                <p:layoutUnit position="north">
+                    <p:panel style=" font-size:  medium; height: 185px;color: #cccccc" >
+                        <f:facet name="header" >
+                            <img  src="https://media.licdn.com/mpr/mpr/shrink_200_200/AAEAAQAAAAAAAAgDAAAAJDk3ZGM0MDU2LWRhNWEtNDMwNi1iOTNjLTllMDY1OWNkMjk3ZQ.png" width="280" height="170" align="left"/>
+                            <h1 style="text-align: center; color: darkblue;">PAGINA DE ADMINISTRADOR</h1>
+                            <h2 style="text-align: center; color: darkblue;">Procesar Pagos</h2>
+                            <h2 style="text-align: center; color: darkblue;">Asociación de Egresados Escuela Colombiana de Ingenieria Julio Garavito</h2>
+                        </f:facet>
+                        <p:growl id="msj" showDetail="true" autoUpdate="true"/>
+
+                    </p:panel>
+                </p:layoutUnit>
+                            
+                <p:layoutUnit position="center">
+                    <p:panel  header = "Procesar Pagos" id="panelSolicitudes">
+                        <p:dataTable id="singleDT" var="pago" value="#{BeanPagos.pagos}"  selectionMode="single" selection="#{BeanPagos.pagoselec}" rowKey="#{pagoselec.id_pago}">
+                            <p:column headerText="Fecha de Registro">
+                                <h:outputText value="#{pago.fechaRegistro}"/>
+                            </p:column>
+                            <p:column headerText="Tipo Tramite">
+                                <h:outputText  value="#{pago.tipoTramite}"/>
+                            </p:column>
+                            <p:column headerText="Nombre">
+                                <h:outputText  value="#{pago.nombrePersonal}"/>
+                            </p:column>
+                            <p:column headerText="Documento Afiliado">
+                                <h:outputText  value="#{pago.identificacionPersonal}"/>
+                            </p:column>
+                            </p:dataTable>
+                            <f:facet name="footer">
+                                <p:commandButton icon="ui-icon-search" value="Detalles del pago" ></p:commandButton>
+                            </f:facet>
+                                </p:panel>
+                    <p:commandButton value="Regresar" ajax="false" immediate="true" action="solicitud"/>
+                    
+                </p:layoutUnit>
+            </p:layout>
+        
+            
+        </h:form>
+    </h:body>
+</html>

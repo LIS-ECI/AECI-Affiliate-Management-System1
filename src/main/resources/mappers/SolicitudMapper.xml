@@ -56,7 +56,7 @@
     </resultMap>
     
     <select id="consultarPagos" resultMap="PagoResult">
-        select 	P.numeroFactura , P.Usuario_nombre , P.Tipo , P.foto , P.validacion, P.fechaRegistro, P.tipoTramite, I.nombre, I.apellido, I.Numero
+        select 	P.numeroFactura , P.Usuario_nombre , P.Tipo , P.foto , P.validacion, P.fechaRegistro, P.tipoTramite, I.nombre, I.apellido,I.Cedula_Numero
         from Pagos P
 	LEFT JOIN Usuario as U ON U.nombre= P.Usuario_nombre
         LEFT JOIN Datos_Egresado as I ON I.Cedula_Numero=U.identificacion

@@ -45,7 +45,7 @@
                 
                 <p:layoutUnit position="west">
                     <p:panel style="width:220px">
-                        <p:commandButton value="Inicio" action="/index"  style="width: 100%; background: lightgrey "/>
+                        <p:commandButton value="Inicio" action="solicitudes.xhtml"  style="width: 100%; background: lightgrey "/>
                         <br/>
                         <br/>
                         <p:commandButton value="Ver Lista de Solicitudes" ajax="false" update="form0" style="width: 100%; background: lightgrey"/>
@@ -53,6 +53,10 @@
                         
                         <br/>                           
                         <p:commandButton value="Afiliaciones por vencer"  action="ReportesAfiliacionesPorVencer" style="background: lightgrey"/>  
+                         <br/>
+                        <br/> 
+                        <p:commandButton value="Procesar Pagos"  action="ProcesarPagos" style="background: lightgrey"/>  
+
                     </p:panel>
                     <h:outputLink value="/logout">logout</h:outputLink>
                 </p:layoutUnit>

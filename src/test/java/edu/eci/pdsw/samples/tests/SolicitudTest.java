@@ -83,7 +83,7 @@ public class SolicitudTest {
         Servicios servicios=Servicios.getInstance("h2-applicationconfig.properties");
         
         //servicios.topNPacientesPorAnyo(2, 2005);	
-        CorreoPersonal cp = new CorreoPersonal("pruba@hotmail.com",123456,"CC");
+        CorreoPersonal cp = new CorreoPersonal("prueba@hotmail.com",123456,"CC");
         List<CorreoPersonal> lisc = new ArrayList<>();
         lisc.add(cp);
         Egresado egr = new Egresado("Masculino","ApellidodePrueba",123456, "CC", "NombreDePrueba",2001, 2, "CargoDePrueba", "CarreraDePrueba","DireccionDePrueba", "NombreEmpresa", "DireccionDeEmpresa",1234,1234,4321, lisc);
@@ -96,6 +96,7 @@ public class SolicitudTest {
         } catch (PersistenceException ex) {
             assertTrue("No se realizo adecuadamente la solicitud egresado",false);
         }
+        
         
         
     }    

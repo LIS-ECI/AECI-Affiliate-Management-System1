@@ -157,9 +157,12 @@ private String base="applicationconfig.properties";
         calendar.add(Calendar.DAY_OF_YEAR, 183); 		
         Date fecha2=  new java.sql.Date(calendar.getTime().getTime());
         Usuario sa= new Usuario(fecha,fecha2,String.valueOf(est.getNumero_identificacion()),String.valueOf( est.getNumero_identificacion()), "Estudiante", "Activo", est.getNumero_identificacion(), est.getTipo_identificacion(), null, null, null );
+        //Enviar Correo indicando usuario y contraseña
+        correoUsuarioNuevo(String.valueOf(est.getNumero_identificacion()), String.valueOf( est.getNumero_identificacion()));
         Servicios.getInstance(base).InsertarUsuario(sa);
         Servicios.getInstance(base).ModificarSolicitud("OK",est.getNumero_identificacion(),est.getTipo_identificacion());
-        //Enviar Correo indicando usuario y contraseña
+        
+        
     }
     
     public void rechazarEst() throws PersistenceException{
@@ -175,9 +178,12 @@ private String base="applicationconfig.properties";
         calendar.add(Calendar.DAY_OF_YEAR, 366); 		
         Date fecha2=  new java.sql.Date(calendar.getTime().getTime());
         Usuario s= new Usuario(fecha,fecha2,String.valueOf(egr.getNumero_identificacion()),String.valueOf( egr.getNumero_identificacion()), "Egresado", "Inactivo", egr.getNumero_identificacion(), egr.getTipo_identificacion(), null, null, null );
+        //Enviar Correo indicando usuario y contraseña
+        correoUsuarioNuevo(String.valueOf(egr.getNumero_identificacion()), String.valueOf( egr.getNumero_identificacion()));
         Servicios.getInstance(base).InsertarUsuario(s);
         Servicios.getInstance(base).ModificarSolicitud("OK",egr.getNumero_identificacion(),egr.getTipo_identificacion());
-        //Enviar Correo indicando usuario y contraseña
+       
+        
     }
     
     public void rechazarEgr() throws PersistenceException{
@@ -200,8 +206,19 @@ private String base="applicationconfig.properties";
         Correo correo1 = new Correo();
         correo1.setMessage(mensaje);
         correo1.setTo(correo);
-        correo1.enviarCorreo(); 
+        correo1.enviarCorreo();         
+    }
+    
+    public void correoUsuarioNuevo(String usu, String cla){
+        String mensaje = "Bienvenido a la AECI asociación de egresados de la Escuela Colombiana de Ingeniería Julio Garavito"
+                + "\nFelicidades ahora eres uno de los miembros de la AECI"
+                + "\nTu nuevo usuario es : "+usu
+                + "\nTu contraseña es: "+cla
+                + "\nPara nosotros siempre sera un honor contar contigo en nuestra familia AECI";
         
-        
+        Correo co = new Correo();
+        co.setMessage(mensaje);
+        co.setTo("usuario@mail.com");
+        co.enviarCorreo();
     }
 }

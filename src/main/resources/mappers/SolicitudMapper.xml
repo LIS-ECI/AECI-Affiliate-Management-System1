@@ -26,6 +26,14 @@
         where id=#{id}
     </update>
     
+    <delete parameterType="map" id="deleteId" >    
+        delete from Identificacion where Numero=#{id} and Tipo=#{tipoid}
+    </delete>
+    
+    <delete parameterType="map" id="deleteCorreo" >    
+        delete from correo where correo=#{c}
+    </delete>
+    
     <resultMap type='Solicitud' id='SolicitudResult'>
         <id property='fecha' column='fecha'/>
         <result property='numero_identificacion' column = 'Cedula_Numero'/>

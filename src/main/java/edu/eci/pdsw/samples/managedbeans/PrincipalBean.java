@@ -14,6 +14,7 @@ import edu.eci.pdsw.samples.entities.Estudiante;
 import edu.eci.pdsw.samples.entities.Usuario;
 import edu.eci.pdsw.samples.persistence.PersistenceException;
 import edu.eci.pdsw.samples.services.Servicios;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -38,6 +39,7 @@ public class PrincipalBean implements Serializable {
 
 
     public int getCodigo() {
+
         return codigo;
     }
 
@@ -111,10 +113,10 @@ public class PrincipalBean implements Serializable {
             validador=true;
             }
         }
-        
-        
-        
     }
+
+        
+    
 
 
 }

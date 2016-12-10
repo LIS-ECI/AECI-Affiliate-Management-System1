@@ -12,6 +12,7 @@ import edu.eci.pdsw.samples.entities.Solicitud;
 import edu.eci.pdsw.samples.persistence.PersistenceException;
 import edu.eci.pdsw.samples.services.ExcepcionServicios;
 import edu.eci.pdsw.samples.services.Servicios;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.logging.Level;
@@ -192,7 +193,7 @@ public class EgresadoBean  implements Serializable{
     * 
      * 
     */
-    public void enviarSolicitud () {
+    public void enviarSolicitud () throws IOException {
         if( this.nombreEmpresa.equals("")){
             this.nombreEmpresa="No Disponible";
         }
@@ -220,18 +221,22 @@ public class EgresadoBean  implements Serializable{
             else{
                 try {
                     Servicios.getInstance(base).enviarSolicitudEgresado(egr,sol);
-                } catch (PersistenceException ex) {
-                    facesMessage("Ocurrió un error al enviar lo solicitud, inténtelo nuevamente");
-                }
-                this.nombreEmpresa="";
+                    this.nombreEmpresa="";
                 this.direccion_empresa="";
                 this.cargo="";
                 this.nombre="";
                 this.cedula=0;
                 this.email="";
                 this.direccion_vivienda="";
-                facesMessage("Su Solicitud Ha Sido Enviada Correctamente, Pronto Llegará un Mensaje a su Correo Indicándole los pasos a seguir");
+                FacesContext context = FacesContext.getCurrentInstance();
+                context.getExternalContext().getFlash().setKeepMessages(true);
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Su Solicitud Ha Sido Enviada Correctamente, Pronto Llegará un Mensaje a su Correo Indicándole los pasos a seguir", null));
 
+                FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
+                } catch (PersistenceException ex) {
+                    facesMessage(ex.getMessage());
+                }
+                
             }
         } catch (PersistenceException ex) {
             facesMessage("Ocurrió un error al consultar la base de datos, por favor inténtelo nuevamente");

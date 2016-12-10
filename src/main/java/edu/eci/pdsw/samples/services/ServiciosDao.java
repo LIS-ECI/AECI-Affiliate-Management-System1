@@ -112,7 +112,7 @@ public class ServiciosDao extends Servicios {
         } catch (PersistenceException ex) {
             daof.rollbackTransaction();
             daof.endSession();
-            throw new PersistenceException("No se pudo enviar la solicitud egresado",ex.getCause());
+            throw new PersistenceException(ex.getMessage(),ex.getCause());
         }
       
         
@@ -199,7 +199,7 @@ public class ServiciosDao extends Servicios {
         } catch (PersistenceException ex) {
             daof.rollbackTransaction();
             daof.endSession();
-            throw new PersistenceException("No se pudo Enviar la solicitud estudiante",ex.getCause());
+            throw new PersistenceException(ex.getMessage(),ex.getCause());
         }
     }
 

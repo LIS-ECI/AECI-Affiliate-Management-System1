@@ -33,42 +33,46 @@ import org.apache.ibatis.annotations.Param;
  */
 public interface SolicitudMapper {
     
-    public List<Solicitud> consultarSolicitud();
+    public List<Solicitud> consultarSolicitud() throws Exception;
     
-    public List<Pago> consultarPagos();
+    public List<Pago> consultarPagos() throws Exception;
 
-    public Estudiante consultarEstudiante(@Param("id") long identificacion, @Param("tipoid") String tipo_identificacion);
+    public Estudiante consultarEstudiante(@Param("id") long identificacion, @Param("tipoid") String tipo_identificacion) throws Exception;
 
-    public void InsertarUsuario(@Param("u") Usuario u);
+    public void InsertarUsuario(@Param("u") Usuario u) throws Exception;
 
-    public void ModificarSolicitud(@Param("u") String u, @Param("ced") long ced, @Param("tic") String tic);
+    public void ModificarSolicitud(@Param("u") String u, @Param("ced") long ced, @Param("tic") String tic) throws Exception;
 
-    public abstract void insertarIdentificacion(@Param("id") long id, @Param("tipoid") String tipoid);
+    public abstract void insertarIdentificacion(@Param("id") long id, @Param("tipoid") String tipoid) throws Exception;
 
-    public abstract void insertarDatosEstudiante(@Param("est") Estudiante est);
+    public abstract void insertarDatosEstudiante(@Param("est") Estudiante est) throws Exception;
     
-    public abstract void insertarDatosEgresado(@Param("egr") Egresado egr);
+    public abstract void insertarDatosEgresado(@Param("egr") Egresado egr) throws Exception;
 
-    public abstract void insertarSolicitud(@Param("sol") Solicitud sol);
+    public abstract void insertarSolicitud(@Param("sol") Solicitud sol) throws Exception;
 
-    public Egresado consultarEgresado(@Param("id") long identificacion, @Param("tipoid") String tipo_identificacion);
+    public Egresado consultarEgresado(@Param("id") long identificacion, @Param("tipoid") String tipo_identificacion) throws Exception;
 
-    public void insertarCorreoEstudiante(@Param("est") Estudiante est,@Param("cor") String cor);
+    public void insertarCorreoEstudiante(@Param("est") Estudiante est,@Param("cor") String cor) throws Exception;
 
-    public void insertarCorreoEgresado(@Param ("egr") Egresado egr,@Param ("correo") String correo);
+    public void insertarCorreoEgresado(@Param ("egr") Egresado egr,@Param ("correo") String correo) throws Exception;
 
-    public Usuario getUsuario(@Param("un") String username);
+    public Usuario getUsuario(@Param("un") String username) throws Exception;
 
-    //public List<Pago> getPagos(@Param("uname") String username);
+    //public List<Pago> getPagos(@Param("uname") String username) throws Exception;
 
-    public int cantidadCertificados();
+    public int cantidadCertificados() throws Exception;
 
-    public void putCertificado(@Param("codigo") int codigo,@Param("nombre") String nombre,@Param("val") String valido);
+    public void putCertificado(@Param("codigo") int codigo,@Param("nombre") String nombre,@Param("val") String valido) throws Exception;
     
-    public void invalidarCertificado(@Param("id") int id);
+    public void invalidarCertificado(@Param("id") int id) throws Exception;
 
-    public Certificado getCertificado(@Param("codigo") int codigo);
+    public Certificado getCertificado(@Param("codigo") int codigo) throws Exception;
 
-    public List<Usuario> consultarAfiliacion();
+    public List<Usuario> consultarAfiliacion() throws Exception;
+    
+    public void deleteId(@Param("id") long id,@Param("tipoid") String tipoid);
 
+    public void deleteCorreo(@Param("c") String correo);
+    
 }

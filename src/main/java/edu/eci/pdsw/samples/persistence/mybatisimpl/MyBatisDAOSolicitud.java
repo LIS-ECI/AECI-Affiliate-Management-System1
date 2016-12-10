@@ -30,6 +30,8 @@ import edu.eci.pdsw.samples.persistence.PersistenceException;
 
 import edu.eci.pdsw.samples.persistence.mybatisimpl.mappers.SolicitudMapper;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.apache.shiro.authc.credential.DefaultPasswordService;
 import org.apache.shiro.crypto.hash.DefaultHashService;
 import org.apache.shiro.crypto.hash.Sha256Hash;
@@ -50,123 +52,216 @@ public class MyBatisDAOSolicitud implements DaoSolicitud {
     @Override
     public List<Solicitud> consultarSolicitud() throws PersistenceException {
         SolicitudMapper somap = currentSession.getMapper(SolicitudMapper.class);
-        return somap.consultarSolicitud();
+        try {
+            return somap.consultarSolicitud();
+        } catch (Exception ex) {
+            throw new PersistenceException("Error en la consulta Solicitud", ex.getCause());
+        }
     }
-    
+
     @Override
     public List<Pago> consultarPago() throws PersistenceException {
         SolicitudMapper somap = currentSession.getMapper(SolicitudMapper.class);
-        return somap.consultarPagos();
+        try {
+            return somap.consultarPagos();
+        } catch (Exception ex) {
+            throw new PersistenceException("Error en la consulta Pago", ex.getCause());
+        }
     }
-    
+
     @Override
     public List<Usuario> consultarUsuarios() throws PersistenceException {
         SolicitudMapper somap = currentSession.getMapper(SolicitudMapper.class);
-        
-        return somap.consultarAfiliacion();
+
+        try {
+            return somap.consultarAfiliacion();
+        } catch (Exception ex) {
+            throw new PersistenceException("Error en la consulta Usuarios", ex.getCause());
+        }
     }
 
-   
     @Override
-    public Estudiante consultarEstudiante(long identificacion, String tipo_identificacion) throws PersistenceException{
+    public Estudiante consultarEstudiante(long identificacion, String tipo_identificacion) throws PersistenceException {
         SolicitudMapper somap = currentSession.getMapper(SolicitudMapper.class);
-        return somap.consultarEstudiante(identificacion,tipo_identificacion);
+        try {
+            return somap.consultarEstudiante(identificacion, tipo_identificacion);
+        } catch (Exception ex) {
+            throw new PersistenceException("Error en la consulta Estudiante", ex.getCause());
+        }
     }
 
     @Override
-    public void InsertarUsuario(Usuario u) throws PersistenceException{
+    public void InsertarUsuario(Usuario u) throws PersistenceException {
         SolicitudMapper somap = currentSession.getMapper(SolicitudMapper.class);
         u.setClave(MyBatisDAOSolicitud.generateHash(u.getClave()));
-        somap.InsertarUsuario(u);
-    }
-
-    @Override
-    public void ModificarSolicitud(String u, long ced, String tic) throws PersistenceException{
-        SolicitudMapper somap = currentSession.getMapper(SolicitudMapper.class);
-        somap.ModificarSolicitud(u,ced,tic);
-    }
-
-    @Override
-    public void enviarSolicitudEstudiante(Estudiante est, Solicitud sol) throws PersistenceException{
-        SolicitudMapper somap = currentSession.getMapper(SolicitudMapper.class);
-        somap.insertarIdentificacion(est.getNumero_identificacion(), est.getTipo_identificacion());
-        somap.insertarDatosEstudiante(est);
-        somap.insertarSolicitud(sol);
-        for (int i=0;i<est.getCorreo().size();i++){
-            somap.insertarCorreoEstudiante(est,est.getCorreo().get(i).getCorreo());
+        try {
+            somap.InsertarUsuario(u);
+        } catch (Exception ex) {
+            throw new PersistenceException("Error al insertar un usuario", ex.getCause());
         }
+    }
+
+    @Override
+    public void ModificarSolicitud(String u, long ced, String tic) throws PersistenceException {
+        SolicitudMapper somap = currentSession.getMapper(SolicitudMapper.class);
+        try {
+            somap.ModificarSolicitud(u, ced, tic);
+        } catch (Exception ex) {
+            throw new PersistenceException("Error en la modificacion de la solicitud", ex.getCause());
+        }
+    }
+
+    @Override
+    public void enviarSolicitudEstudiante(Estudiante est, Solicitud sol) throws PersistenceException {
+        SolicitudMapper somap = currentSession.getMapper(SolicitudMapper.class);
+
+        try {
+            somap.insertarIdentificacion(est.getNumero_identificacion(), est.getTipo_identificacion());
+
+        } catch (Exception ex) {
+
+            throw new PersistenceException("El numero de indetificación ingresado ya esta en uso", ex.getCause());
+        }
+
+            try {
+                somap.insertarCorreoEstudiante(est, est.getCorreo().get(0).getCorreo());
+                 try {
+                somap.insertarCorreoEstudiante(est, est.getCorreo().get(1).getCorreo());
+            } catch (Exception ex) {
+                somap.deleteCorreo(est.getCorreo().get(0).getCorreo());
+                somap.deleteId(est.getNumero_identificacion(), est.getTipo_identificacion());
+
+                throw new PersistenceException("El correo ingresado ya esta en uso", ex.getCause());
+            }
+            } catch (Exception ex) {
+                somap.deleteId(est.getNumero_identificacion(), est.getTipo_identificacion());
+                throw new PersistenceException("El correo ingresado ya esta en uso", ex.getCause());
+            }
         
+
+        try {
+            somap.insertarDatosEstudiante(est);
+        } catch (Exception ex) {
+
+            throw new PersistenceException("Error al ingresas el estudiante", ex.getCause());
+        }
+        try {
+            somap.insertarSolicitud(sol);
+        } catch (Exception ex) {
+            throw new PersistenceException("Error al ingresar la Solicitud", ex.getCause());
+        }
+
     }
 
     @Override
-    public void enviarSolicitudEgresado(Egresado egr, Solicitud sol) throws PersistenceException{
+    public void enviarSolicitudEgresado(Egresado egr, Solicitud sol) throws PersistenceException {
         SolicitudMapper somap = currentSession.getMapper(SolicitudMapper.class);
-        somap.insertarIdentificacion(egr.getNumero_identificacion(), egr.getTipo_identificacion());
-        somap.insertarDatosEgresado(egr);
-        somap.insertarSolicitud(sol);        
-        for (int i=0;i<egr.getCorreo().size();i++){
-            somap.insertarCorreoEgresado(egr,egr.getCorreo().get(i).getCorreo());
+        try {
+            somap.insertarIdentificacion(egr.getNumero_identificacion(), egr.getTipo_identificacion());
+        } catch (Exception ex) {
+            throw new PersistenceException("El numero de identificacion ya esta en uso", ex.getCause());
+
         }
+            try {
+                somap.insertarCorreoEgresado(egr, egr.getCorreo().get(0).getCorreo());
+                    
+            } catch (Exception ex) {
+                somap.deleteId(egr.getNumero_identificacion(), egr.getTipo_identificacion());
+                throw new PersistenceException("El correo ingresado ya esta en uso", ex.getCause());
+
+            }
+        try {
+            somap.insertarDatosEgresado(egr);
+        } catch (Exception ex) {
+            throw new PersistenceException("no se logró insertar los datos del egresado", ex.getCause());
+        }
+        try {
+            somap.insertarSolicitud(sol);
+        } catch (Exception ex) {
+            throw new PersistenceException("no se logró crear la solicitud", ex.getCause());
+        }
+
     }
 
     @Override
     public Egresado consultarEgresado(long identificacion, String tipo_identificacion) throws PersistenceException {
         SolicitudMapper somap = currentSession.getMapper(SolicitudMapper.class);
-        return somap.consultarEgresado(identificacion,tipo_identificacion);
+
+        try {
+            return somap.consultarEgresado(identificacion, tipo_identificacion);
+        } catch (Exception ex) {
+            throw new PersistenceException("Error en la consulta egresado", ex.getCause());
+        }
     }
 
     @Override
     public Usuario getUsuario(String username) throws PersistenceException {
-       SolicitudMapper somap = currentSession.getMapper(SolicitudMapper.class);
-       return somap.getUsuario(username);
+        SolicitudMapper somap = currentSession.getMapper(SolicitudMapper.class);
+
+        try {
+            return somap.getUsuario(username);
+        } catch (Exception ex) {
+            throw new PersistenceException("Error en la consulta del usuario", ex.getCause());
+        }
     }
 
     @Override
     public int cantidadCertificados() throws PersistenceException {
         SolicitudMapper somap = currentSession.getMapper(SolicitudMapper.class);
-       return somap.cantidadCertificados();
+        try {
+            return somap.cantidadCertificados();
+        } catch (Exception ex) {
+            throw new PersistenceException("Error en la consulta de la cantidad de certificados", ex.getCause());
+        }
     }
 
     @Override
-    public void putCertificado(int codigo, String nombre,String valido) throws PersistenceException{
+    public void putCertificado(int codigo, String nombre, String valido) throws PersistenceException {
         SolicitudMapper somap = currentSession.getMapper(SolicitudMapper.class);
-        somap.putCertificado(codigo,nombre,valido);
+        try {
+            somap.putCertificado(codigo, nombre, valido);
+        } catch (Exception ex) {
+            throw new PersistenceException("Error al guardar el id del certificado", ex.getCause());
+        }
     }
 
     @Override
     public Certificado getCertificado(int codigo) throws PersistenceException {
         SolicitudMapper somap = currentSession.getMapper(SolicitudMapper.class);
-        return somap.getCertificado(codigo);
+        try {
+            return somap.getCertificado(codigo);
+        } catch (Exception ex) {
+            throw new PersistenceException("Error en la consulta del certificado", ex.getCause());
+        }
     }
 
     @Override
     public void invalidarCertificado(int codigo) throws PersistenceException {
         SolicitudMapper somap = currentSession.getMapper(SolicitudMapper.class);
-        somap.invalidarCertificado(codigo);
+        try {
+            somap.invalidarCertificado(codigo);
+        } catch (Exception ex) {
+            throw new PersistenceException("Error al invalidar certificado", ex.getCause());
+
+        }
 
     }
 
-    
-    public static String generateHash(String password){
+    public static String generateHash(String password) {
         DefaultHashService hashService = new DefaultHashService();
         hashService.setHashIterations(500000); // 500000
         hashService.setHashAlgorithmName(Sha256Hash.ALGORITHM_NAME);
-        
+
         // Same salt as in shiro.ini, but NOT base64-encoded!!
-        hashService.setPrivateSalt(new SimpleByteSource("myprivatesalt")); 
+        hashService.setPrivateSalt(new SimpleByteSource("myprivatesalt"));
         hashService.setGeneratePublicSalt(true);
 
         DefaultPasswordService passwordService = new DefaultPasswordService();
         passwordService.setHashService(hashService);
         String encryptedPassword = passwordService.encryptPassword(password);
-        
-        return encryptedPassword;
-        
-    }
-  
-    
-    
 
-    
+        return encryptedPassword;
+
+    }
 
 }

@@ -10,6 +10,7 @@ import edu.eci.pdsw.samples.entities.Estudiante;
 import edu.eci.pdsw.samples.entities.Solicitud;
 import edu.eci.pdsw.samples.persistence.PersistenceException;
 import edu.eci.pdsw.samples.services.Servicios;
+import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.faces.bean.ManagedBean;
@@ -204,7 +205,7 @@ public class EstudianteBean implements Serializable {
     /**
      * Metodo enviarSolicitudEstudiante
      */
-    public void enviarSolicitud() {
+    public void enviarSolicitud() throws IOException {
         if (this.direccion.equals("")) {
             this.direccion = "No Disponible";
         }
@@ -225,11 +226,7 @@ public class EstudianteBean implements Serializable {
             else {
                 try {
                     Servicios.getInstance(base).enviarSolicitudEstudiante(est, sol);
-                } 
-                catch (PersistenceException ex) {
-                    facesMessage("Ocurrió un error al enviar lo solicitud, inténtelo nuevamente");
-                }
-                this.carrera = "";
+                    this.carrera = "";
                 this.celular = 0;
                 this.codigo = 0;
                 this.correo = "";
@@ -238,8 +235,20 @@ public class EstudianteBean implements Serializable {
                 this.numero_identificacion = 0;
                 this.telefono_fijo = 0;
                 this.carrera = "Ingenieria Civil";
-                facesMessage("Su Solicitud Ha Sido Enviada Correctamente, Pronto Llegará un Mensaje a su Correo Indicándole los pasos a seguir");
-            }
+                
+                FacesContext context = FacesContext.getCurrentInstance();
+                context.getExternalContext().getFlash().setKeepMessages(true);
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Su Solicitud Ha Sido Enviada Correctamente, Pronto Llegará un Mensaje a su Correo Indicándole los pasos a seguir", null));
+
+                FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
+
+                
+
+                } 
+                catch (PersistenceException ex) {
+                    facesMessage(ex.getMessage());
+                }
+                  }
         }
     catch (PersistenceException ex){ 
             facesMessage("Ocurrió un error al consultar la base de datos, por favor inténtelo nuevamente");

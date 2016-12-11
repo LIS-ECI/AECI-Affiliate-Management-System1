@@ -63,7 +63,13 @@ public class UsuarioBean implements Serializable{
     @ManagedProperty("#{loginBean}")
     private ShiroLoginBean shiroLoginBean;
 
+    private Egresado egr ;
+    private Estudiante est ;
     private static final long serialVersionUID = 1L;
+    private Usuario u;
+    private String nombre;
+    
+    private String estadoAfili;
 
     private StreamedContent streamedContent;
 
@@ -88,18 +94,6 @@ public class UsuarioBean implements Serializable{
             int codigo = Servicios.getInstance(base).cantidadCertificados();
             OutputStream out = new ByteArrayOutputStream();
             PdfWriter writer = PdfWriter.getInstance(doc, out);
-
-            
-            
-            Usuario u = getUsuario(getShiroLoginBean().getUsername());
-            
-            Egresado egr = null;
-            Estudiante est = null;
-            if (u.getTipo().equals("Estudiante")) {
-                est = Servicios.getInstance(base).consultarEstudiante(u.getCedula_numero(), u.getCedula_tipo());
-            } else {
-                egr = Servicios.getInstance(base).consultarEgresado(u.getCedula_numero(), u.getCedula_tipo());
-            }
             doc.open();
             Image imagen = Image.getInstance("http://static.wixstatic.com/media/926fce_4cc266e8ca394a5097cc08320dc5ff73.jpg_256");
             imagen.scalePercent(32);
@@ -248,6 +242,67 @@ public class UsuarioBean implements Serializable{
      */
     public void setShiroLoginBean(ShiroLoginBean shiroLoginBean) {
         this.shiroLoginBean = shiroLoginBean;
+    }
+
+    /**
+     * @return the nombre
+     */
+    public String getNombre() throws PersistenceException {
+        u = getUsuario(getShiroLoginBean().getUsername());
+        String gen="";
+        if (u.getTipo().equals("Estudiante")) {
+                est = Servicios.getInstance(base).consultarEstudiante(u.getCedula_numero(), u.getCedula_tipo());
+                nombre="BIENVENID";
+                if (est.getGenero().equals("Masculino")){
+                    gen="O";
+                }
+                else{
+                    gen="A";
+                }
+                nombre+=gen+"\n"+est.getNombre()+" "+est.getApellido();
+            } else {
+                egr = Servicios.getInstance(base).consultarEgresado(u.getCedula_numero(), u.getCedula_tipo());
+                nombre="BIENVENID";
+                if (egr.getGenero().equals("Masculino")){
+                    gen="O";
+                }
+                else{
+                    gen="A";
+                }
+                nombre+=gen+"\n"+egr.getNombre()+" "+egr.getApellido();
+            }
+        return nombre;
+    }
+
+    /**
+     * @param nombre the nombre to set
+     */
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    /**
+     * @return the estadoAfili
+     */
+    public String getEstadoAfili() {
+        Usuario u = getUsuario(getShiroLoginBean().getUsername());
+        Date fecha = new java.sql.Date(java.util.Calendar.getInstance().getTime().getTime());
+        if (u.getFechaFin().compareTo(fecha)<0){
+            estadoAfili="AFILIADO INACTIVO - PENDIENTE PAGO CUOTA AFILIACIÓN"     ;       
+        }
+        else{
+            estadoAfili="AFILIADO ACTIVO";
+        }
+       
+        return estadoAfili;
+    }
+    
+
+    /**
+     * @param estadoAfili the estadoAfili to set
+     */
+    public void setEstadoAfili(String estadoAfili) {
+        this.estadoAfili = estadoAfili;
     }
 
     

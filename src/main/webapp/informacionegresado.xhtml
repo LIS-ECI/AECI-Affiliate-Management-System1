@@ -59,7 +59,7 @@
                     </br>
                     
             
-            <p:panelGrid columns="2" style="position: relative; left: 25%">
+            <p:panelGrid columns="2"  style="position: relative; left: 20%; width: 67%  ">
 
                 <h:form>
                     
@@ -67,31 +67,31 @@
 
                     <p:wizard >
                         <p:tab id="personal" title="Informacion Basica">
-                            <p:panel header="Informacion Personal">
+                            <p:panel header="Informacion Personal" >
                                 <p:messages />
-                                <h:panelGrid columns="2" columnClasses="label, value">
-                                    <h:outputText value="Nombre : *" />
+                                <h:panelGrid columns="4" columnClasses="label, value">
+                                    <h:outputText value="Nombre : *" style="color: darkblue; font-weight:bold"/>
                                     <p:inputText label="Nombre " required="true" value="#{beanEgresado.nombre}"/>
 
-                                    <h:outputText value="Apellido : *" />
+                                    <h:outputText value="Apellido : *" style="color: darkblue; font-weight:bold" />
                                     <p:inputText label="Apellido" required="true" value="#{beanEgresado.apellido}"/>
 
-                                    <h:outputText value="Tipo de documento " />
+                                    <h:outputText value="Tipo de documento " style="color: darkblue; font-weight:bold" />
                                     <p:selectOneMenu id="tipoId" style="width:90px" value="#{beanEgresado.tipo_identificacion}">
                                         <f:selectItem itemLabel="CC" itemValue="CC" />
                                         <f:selectItem itemLabel="CE" itemValue="CE" />
                                     </p:selectOneMenu>
 
-                                    <h:outputText value="Documento: *" />
+                                    <h:outputText value="Documento: *" style="color: darkblue; font-weight:bold"/>
                                     <p:inputText label="Documento" required="true" value="#{beanEgresado.cedula}"/>
-
-                                    <h:outputText value="Direccion: " />
+                                        
+                                    <h:outputText value="Direccion: " style="color: darkblue; font-weight:bold" />
                                     <p:inputText   label="Direccion"  value="#{beanEgresado.direccion_vivienda}"/>
 
-                                    <h:outputText value="Telefono fijo: " />
+                                    <h:outputText value="Telefono fijo: " style="color: darkblue; font-weight:bold"/>
                                     <p:inputText   label="Telefono" value="#{beanEgresado.telefono_fijo}"/>
 
-                                    <h:outputText value="Correo: *" />
+                                    <h:outputText value="Correo: *" style="color: darkblue; font-weight:bold"/>
                                     <p:inputText label="Correo" required="true" value="#{beanEgresado.email}"/>
 
                                 </h:panelGrid>
@@ -104,21 +104,21 @@
                             <p:panel header="Datos de la graduacion">
                                 <p:messages />
                                 <h:panelGrid columns="2" columnClasses="label, value">
-                                    <h:outputText value="Año de Graduacion : *" />
+                                    <h:outputText value="Año de Graduacion : *" style="color: darkblue; font-weight:bold"/>
                                     <p:spinner id="minMaxanio" required="true" value="#{beanEgresado.fecha_grado}" min="1950" max="2016" />
 
-                                    <h:outputText value="Periodo: " />
+                                    <h:outputText value="Periodo: " style="color: darkblue; font-weight:bold" />
 
                                     <p:spinner id="minMaxper" value="#{beanEgresado.periodo_grado}" min="1" max="2" />
 
-                                    <h:outputText value="Genero " />
+                                    <h:outputText value="Genero "  style="color: darkblue; font-weight:bold"/>
                                     <p:selectOneMenu id="console2" value="#{beanEgresado.genero}" style="width:250px" immediate="true">
                                         <f:selectItem itemLabel="Masculino" itemValue="Masculino" />
                                         <f:selectItem itemLabel="Femenino" itemValue="Femenino" />
 
                                     </p:selectOneMenu>
 
-                                    <h:outputText value="Programa: " />
+                                    <h:outputText value="Programa: " style="color: darkblue; font-weight:bold" />
                                     <p:selectOneMenu id="console" style="width:250px" value="#{beanEgresado.carrera}">
                                         <f:selectItem itemLabel="Ingeniería Civil" itemValue="Ingenieria Civil" />
                                         <f:selectItem itemLabel="Ingeniería Electrónica" itemValue="Ingenieria Electronica" />
@@ -133,7 +133,7 @@
                                         <f:selectItem itemLabel="Ingeniería Biomédica" itemValue="Ingenieria Biomedica" />
                                     </p:selectOneMenu>
 
-                                    <h:outputText value="Telefono celular: *" />
+                                    <h:outputText value="Telefono celular: *" style="color: darkblue; font-weight:bold"/>
                                     <p:inputText value="#{beanEgresado.celular}" required="true"/>
                                 </h:panelGrid>
                             </p:panel>
@@ -143,70 +143,73 @@
                             <p:panel header="Datos de la empresa">
                                 <p:messages />
                                 <h:panelGrid columns="2" columnClasses="label, value">
-                                    <h:outputText value="Nombre: " />
+                                    <h:outputText value="Nombre: " style="color: darkblue; font-weight:bold"/>
                                     <p:inputText  value="#{beanEgresado.nombreEmpresa}"/>
 
-                                    <h:outputText value="Direccion: " />
+                                    <h:outputText value="Direccion: " style="color: darkblue; font-weight:bold" />
                                     <p:inputText  value="#{beanEgresado.direccion_empresa}"/>
 
-                                    <h:outputText value="Telefono oficina: " />
+                                    <h:outputText value="Telefono oficina: "  style="color: darkblue; font-weight:bold"/>
                                     <p:inputText  value="#{beanEgresado.telefono_oficina}"/>
 
-                                    <h:outputText value="Cargo: " />
+                                    <h:outputText value="Cargo: " style="color: darkblue; font-weight:bold"/>
                                     <p:inputText  value="#{beanEgresado.cargo}"/>
                                 </h:panelGrid>
                             </p:panel>
                         </p:tab>
 
-                        <p:tab id="confirm" title="Confirmation">
-                            <p:panel header="Confirmation">
+                        <p:tab id="confirm" title="Confirmacion" >
+                            <p:panel header="Confirmacion">
                                 <h:panelGrid id="confirmation" columns="3" columnClasses="grid,grid,grid">
                                     <h:panelGrid columns="2" columnClasses="label, value">
-                                        <h:outputText value="Nombre y Apellido: " style="font-weight:bold" />
+                                        <h:outputText value="Nombre: " style="color: darkblue; font-weight:bold" />
                                         <h:outputText value="#{beanEgresado.nombre}"  styleClass="outputLabel"/>
+                                        
+                                        <h:outputText value="Apellido: " style="color: darkblue; font-weight:bold" />
+                                        <h:outputText value="#{beanEgresado.apellido}"  styleClass="outputLabel"/>
 
-                                        <h:outputText value="Direccion : " style="font-weight:bold" />
+                                        <h:outputText value="Direccion : " style="color: darkblue; font-weight:bold"/>
                                         <h:outputText value="#{beanEgresado.direccion_vivienda}"  styleClass="outputLabel"/>
 
-                                        <h:outputText value="Telefono fijo: " style="font-weight:bold"/>
+                                        <h:outputText value="Telefono fijo: " style="color: darkblue; font-weight:bold"/>
                                         <h:outputText value="#{beanEgresado.telefono_fijo}"  styleClass="outputLabel"/>
 
-                                        <h:outputText value="Documento: " style="font-weight:bold"/>
+                                        <h:outputText value="Documento: " style="color: darkblue; font-weight:bold"/>
                                         <h:outputText value="#{beanEgresado.cedula}"  styleClass="outputLabel"/>
 
-                                        <h:outputText value="Tipo de documento : " style="font-weight:bold"/>
+                                        <h:outputText value="Tipo de documento : " style="color: darkblue; font-weight:bold"/>
                                         <h:outputText value="#{beanEgresado.tipo_identificacion}"  styleClass="outputLabel"/>
 
-                                        <h:outputText value="Correo : " style="font-weight:bold"/>
+                                        <h:outputText value="Correo : " style="color: darkblue; font-weight:bold"/>
                                         <h:outputText value="#{beanEgresado.email}"  styleClass="outputLabel"/>
 
                                     </h:panelGrid>
 
                                     <h:panelGrid columns="2" columnClasses="label, value">
-                                        <h:outputText value="Año graduacion : " style="font-weight:bold"/>
+                                        <h:outputText value="Año graduacion : " style="color: darkblue; font-weight:bold"/>
                                         <h:outputText value="#{beanEgresado.fecha_grado}"  styleClass="outputLabel"/>
 
-                                        <h:outputText value="Periodo: " style="font-weight:bold"/>
+                                        <h:outputText value="Periodo: " style="color: darkblue; font-weight:bold"/>
                                         <h:outputText value="#{beanEgresado.periodo_grado}"  styleClass="outputLabel"/>
 
-                                        <h:outputText value="Programa: " style="font-weight:bold"/>
+                                        <h:outputText value="Programa: " style="color: darkblue; font-weight:bold"/>
                                         <h:outputText value="#{beanEgresado.carrera}"  styleClass="outputLabel"/>
 
-                                        <h:outputText value="Telefono Celular: " style="font-weight:bold"/>
+                                        <h:outputText value="Telefono Celular: " style="color: darkblue; font-weight:bold"/>
                                         <h:outputText value="#{beanEgresado.celular}"  styleClass="outputLabel"/>
                                     </h:panelGrid>
 
                                     <h:panelGrid columns="2" columnClasses="label, value">
-                                        <h:outputText value="Nombre Empresa: " style="font-weight:bold"/>
+                                        <h:outputText value="Nombre Empresa: " style="color: darkblue; font-weight:bold"/>
                                         <h:outputText value="#{beanEgresado.nombreEmpresa}"  styleClass="outputLabel"/>
 
-                                        <h:outputText value="Direccion Empresa" style="font-weight:bold"/>
+                                        <h:outputText value="Direccion Empresa" style="color: darkblue; font-weight:bold"/>
                                         <h:outputText value="#{beanEgresado.direccion_empresa}"  styleClass="outputLabel"/>
 
-                                        <h:outputText value="Telefono Oficina : " style="font-weight:bold"/>
+                                        <h:outputText value="Telefono Oficina : " style="color: darkblue; font-weight:bold"/>
                                         <h:outputText value="#{beanEgresado.telefono_oficina}"  styleClass="outputLabel"/>
 
-                                        <h:outputText value="Cargo : " style="font-weight:bold"/>
+                                        <h:outputText value="Cargo : " style="color: darkblue; font-weight:bold"/>
                                         <h:outputText value="#{beanEgresado.cargo}"  styleClass="outputLabel"/>
 
                                         <h:outputText />
@@ -231,7 +234,7 @@
 
 
             </p:panelGrid>
-            <p:commandButton  style="position: relative; left: 25%" value="Regresar" action="index" immediate="true" ajax="false" styleClass="ui-priority-primary" />
+            <p:commandButton  style="position: relative; left: 20%" value="Regresar" action="index" immediate="true" ajax="false" styleClass="ui-priority-primary" />
 
 
 

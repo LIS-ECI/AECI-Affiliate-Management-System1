@@ -3,7 +3,17 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Solicitud</title>
+        <title>Administrador</title>
+        
+        <style>
+            body {
+    background-image: url("http://cdn.wallpapersafari.com/48/48/NQV7zq.jpg");
+    background-size: 100%;
+    background-repeat: inherit; 
+    background-attachment: local ;
+
+}
+        </style>
     </h:head>
     <h:body>
         <p:growl id="growl" showDetail="true" sticky="true" autoUpdate="true"/>
@@ -11,13 +21,12 @@
             <p:focus context="panelSolicitudes"/>
             <p:layout>
                 <p:layoutUnit position="north">
-                    <p:panel style=" font-size:  medium; height: 185px;color: #cccccc" >
+                    <p:panel style=" font-size:  medium" >
                         <f:facet name="header" >
                             <img  src="https://media.licdn.com/mpr/mpr/shrink_200_200/AAEAAQAAAAAAAAgDAAAAJDk3ZGM0MDU2LWRhNWEtNDMwNi1iOTNjLTllMDY1OWNkMjk3ZQ.png" width="280" height="170" align="left"/>
                             <h1 style="text-align: center; color: darkblue;">PAGINA DE ADMINISTRADOR</h1>
                             <h2 style="text-align: center; color: darkblue;">Asociación de Egresados Escuela Colombiana de Ingenieria Julio Garavito</h2>
                         </f:facet>
-                        <p:growl id="msj" showDetail="true" autoUpdate="true"/>
 
                     </p:panel>
                 </p:layoutUnit>
@@ -25,7 +34,7 @@
                 
 
                 <p:layoutUnit position="center">
-                    <p:panel  header = "Solicitudes" id="panelSolicitudes">
+                    <p:panel  header = "Solicitudes Pendientes" id="panelSolicitudes">
 
 
                         <p:dataTable var="solicitudes" value="#{BeanSolicitudes.solicitudes}" selectionMode="single" selection="#{BeanSolicitudes.soli}" rowKey="#{solicitudes.numero_identificacion}">
@@ -45,10 +54,8 @@
                 
                 <p:layoutUnit position="west">
                     <p:panel style="width:220px">
-                        <p:commandButton value="Inicio" action="solicitudes.xhtml"  style="width: 100%; background: lightgrey "/>
-                        <br/>
-                        <br/>
-                        <p:commandButton value="Ver Lista de Solicitudes" ajax="false" update="form0" style="width: 100%; background: lightgrey"/>
+                      
+                        <p:commandButton value="Actualizar Lista de Solicitudes" ajax="false" update="form0" style="width: 100%; background: lightgrey"/>
                         <br/>
                         
                         <br/>                           
@@ -58,7 +65,7 @@
                         <p:commandButton value="Procesar Pagos"  action="ProcesarPagos" style="background: lightgrey"/>  
 
                     </p:panel>
-                    <h:outputLink value="/logout">logout</h:outputLink>
+                    <h:outputLink value="/logout">Cerrar Sesión</h:outputLink>
                 </p:layoutUnit>
             </p:layout>
 

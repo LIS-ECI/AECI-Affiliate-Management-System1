@@ -236,10 +236,8 @@ public class EstudianteBean implements Serializable {
                 this.telefono_fijo = 0;
                 this.carrera = "Ingenieria Civil";
                 
-                FacesContext context = FacesContext.getCurrentInstance();
-                context.getExternalContext().getFlash().setKeepMessages(true);
+                FacesContext.getCurrentInstance().getExternalContext().getFlash().setKeepMessages(true);
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Su Solicitud Ha Sido Enviada Correctamente, Pronto Llegará un Mensaje a su Correo Indicándole los pasos a seguir", null));
-
                 FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
 
                 

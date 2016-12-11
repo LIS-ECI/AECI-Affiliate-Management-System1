@@ -22,19 +22,24 @@
     </h:head>
     <h:body>
         <h:form id="soli_form">
-            <p:focus context="panelSolicitudes" />
-                    
-                        <h:panelGrid columns="1" style="position: absolute; top: 6%; left: 13%">
-                   
-                        <img  src="https://media.licdn.com/mpr/mpr/shrink_200_200/AAEAAQAAAAAAAAgDAAAAJDk3ZGM0MDU2LWRhNWEtNDMwNi1iOTNjLTllMDY1OWNkMjk3ZQ.png" width="280" height="170" align="left"/>
-                        <h2 style=" color: white; position:  fixed; top: 9%; left: 45% ">PAGINA DE USUARIOS</h2>
-                        <h3 style=" color: white; position:  fixed; top: 15%; left: 35% ">Asociación de Egresados Escuela Colombiana de Ingenieria Julio Garavito</h3>
-                    
+
+             <h:panelGrid columns="1" style="position:absolute ; top: 6%; left: 14%">
+
+                <f:facet name="header" >
+                    <img  src="https://media.licdn.com/mpr/mpr/shrink_200_200/AAEAAQAAAAAAAAgDAAAAJDk3ZGM0MDU2LWRhNWEtNDMwNi1iOTNjLTllMDY1OWNkMjk3ZQ.png" width="280" height="170" align="left"/>
+                    <h2 style="text-align: center; color: white;">PAGINA PRINCIPAL AFILIADOS</h2>
+                    <h2 style="text-align: center; color: white;"> Asociación de Egresados Escuela Colombiana de Ingenieria Julio Garavito</h2>
+                </f:facet>
+                <p:growl id="msj" showDetail="true" autoUpdate="true"/>
+
+
 
             </h:panelGrid>
+            
 
+        
                
-                    <p:panel  id="panelSolicitudes" style="position: fixed; top: 300px; left: 60px">
+                    <p:panel  id="panelSolicitudes" style="position: absolute; top: 40% ; left: 20% ; width: 60%; height: 60%">
                             <p:stack icon="http://www.primefaces.org/showcase/resources/demo/images/dock/stack.png" expanded="true">
                                 <p:menuitem value="Home" icon="http://www.primefaces.org/showcase/resources/demo/images/dock/home.png;jsessionid=1h6s1cwjxzuvzq6y7gl50bwl1" url="#"/>
                                 <p:menuitem value="Generar Certificado" icon="https://cdn2.iconfinder.com/data/icons/55-files-and-documents/512/Icon_6-512.png" action="#{beanUsuario.pagina}" immediate="true" />
@@ -43,9 +48,22 @@
                                 <p:menuitem value="Mi Perfil" icon="http://www.primefaces.org/showcase/resources/demo/images/dock/portfolio.png;jsessionid=1h6s1cwjxzuvzq6y7gl50bwl1" url="#"/>
                                                                 
                             </p:stack>
-                    <h:outputLink value="/logout">logout</h:outputLink>
+                
+                <h:outputText value="#{beanUsuario.nombre}" style="color: black; font-weight:bold"/>
+                <br></br>
+                <br></br>
+                <h:outputText value="Su Estado Es: " style="color: blue; font-weight:bold"/>
+                <br></br>
+                <h:outputText value="#{beanUsuario.estadoAfili}" style="color: darkblue; font-weight:bold"/>
+
+                
 
                     </p:panel>
+            
+            <p:panel  style="position: absolute; top: 9%; left: 83%">
+
+                    <h:outputLink value="/logout">logout</h:outputLink>
+           </p:panel>
                 
 
                     

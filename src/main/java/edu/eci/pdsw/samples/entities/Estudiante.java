@@ -58,10 +58,10 @@ public class Estudiante extends Afiliado {
      * @param carrera carrera del estudiante
      * @param telefono_fijo telefono del estudiante
      * @param celular celular del estudiante
-     * @param direccion direccion del estudiante
+     * @param direccion_vivienda direccion del estudiante
      * @param correo correo del estudiante
     */
-    public Estudiante(String genero,String apellido,int codigo, long numero_identificacion, String nombre, int semestre, String tipo_identificacion, String carrera, int telefono_fijo, long celular, List<CorreoPersonal> correo, String direccion) {
+    public Estudiante(String genero,String apellido,int codigo, long numero_identificacion, String nombre, int semestre, String tipo_identificacion, String carrera, int telefono_fijo, long celular, List<CorreoPersonal> correo, String direccion_vivienda) {
         this.codigo = codigo;
         this.numero_identificacion = numero_identificacion;
         this.carrera = carrera;
@@ -71,7 +71,7 @@ public class Estudiante extends Afiliado {
         this.semestre = semestre;
         this.telefono_fijo = telefono_fijo;
         this.tipo_identificacion = tipo_identificacion;
-        this.direccion_vivienda = direccion;
+        this.direccion_vivienda = direccion_vivienda;
         this.nombre = nombre;
         this.apellido=apellido;
         this.genero=genero;

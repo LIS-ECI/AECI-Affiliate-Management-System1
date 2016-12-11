@@ -15,7 +15,7 @@ import edu.eci.pdsw.samples.persistence.PersistenceException;
 import edu.eci.pdsw.samples.services.Servicios;
 import java.io.Serializable;
 import java.sql.Date;
-import java.time.LocalDate;
+//import java.time.LocalDate;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -41,7 +41,7 @@ public class ReportesBean implements Serializable {
     private long numero_identificacion;
     private String base="applicationconfig.properties";
     private List<Solicitud> afiliaciones;
-    private Date fecha = Date.valueOf(LocalDate.MAX);   
+    //private Date fecha = Date.valueOf(LocalDate.MAX);   
     private String tipo_identificacion;
     private String nombre;
     private String Apellido;

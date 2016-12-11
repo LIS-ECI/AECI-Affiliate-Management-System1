@@ -47,6 +47,8 @@ public interface DaoSolicitud {
 
     public void invalidarCertificado(int codigo) throws PersistenceException;
 
+    public void insertarPago(Pago p) throws PersistenceException;
+
 
 }
     

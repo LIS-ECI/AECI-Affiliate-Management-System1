@@ -245,6 +245,16 @@ public class MyBatisDAOSolicitud implements DaoSolicitud {
         }
 
     }
+    
+    @Override
+    public void insertarPago(Pago p) throws PersistenceException {
+        SolicitudMapper somap = currentSession.getMapper(SolicitudMapper.class);
+        try {
+            somap.InsertarPago(p);
+        } catch (Exception ex) {
+            throw new PersistenceException("Error al insertar un pago", ex.getCause());
+        }
+    }
 
     public static String generateHash(String password) {
         DefaultHashService hashService = new DefaultHashService();
@@ -262,5 +272,7 @@ public class MyBatisDAOSolicitud implements DaoSolicitud {
         return encryptedPassword;
 
     }
+
+
 
 }

@@ -190,6 +190,10 @@
         insert into Usuario values(#{u.nombre},#{u.clave},#{u.tipo},#{u.estado},#{u.cedula_numero},#{u.cedula_tipo},#{u.fechaInicio},#{u.fechaFin})
     </insert>
     
+    <insert parameterType="map" id="InsertarPago" >    
+        insert into Pago values(#{p.id_pago},#{p.Usuario_nombre},#{p.tipo},#{p.foto},#{p.validacion},#{p.fechaRegistro},#{p.tipoTraamite})
+    </insert>
+    
     <update parameterType="map" id="ModificarSolicitud" >    
         update Solicitud
         set aprobado=#{u}

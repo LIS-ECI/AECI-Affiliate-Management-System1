@@ -17,7 +17,7 @@ import edu.eci.pdsw.samples.persistence.PersistenceException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Date;
-import java.time.LocalDate;
+//import java.time.LocalDate;
 import java.util.List;
 import java.util.Properties;
 import java.util.logging.Level;
@@ -31,7 +31,7 @@ import org.apache.ibatis.session.SqlSession;
 public class ServiciosDao extends Servicios {
 
     private SqlSession currentSession = null;
-    private Date fecha = Date.valueOf(LocalDate.MAX);   
+    //private Date fecha = Date.valueOf(LocalDate.MAX);   
     Properties properties;
     DaoFactory daof;
 
@@ -274,6 +274,21 @@ public class ServiciosDao extends Servicios {
             daof.rollbackTransaction();
             daof.endSession();
             throw new PersistenceException("No se llevó a cabo invalidar certificado",ex.getCause());
+            
+        }
+    }
+
+    @Override
+    public void InsertarPago(Pago p) throws PersistenceException {
+        try {
+            daof.beginSession();
+            daof.getDaoSolicitud().insertarPago(p);
+            daof.commitTransaction();
+            daof.endSession();
+        } catch (PersistenceException ex) {
+            daof.rollbackTransaction();
+            daof.endSession();
+            throw new PersistenceException("No se logro insertar el pago",ex.getCause());
             
         }
     }

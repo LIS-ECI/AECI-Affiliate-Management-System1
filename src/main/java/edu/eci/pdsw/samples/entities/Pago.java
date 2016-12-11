@@ -6,6 +6,7 @@
 package edu.eci.pdsw.samples.entities;
 
 import java.sql.Blob;
+import java.util.Date;
 
 /**
  *
@@ -18,7 +19,7 @@ public class Pago {
     private byte[] foto;
     private String validacion;
     private String Usuario_nombre;
-    private java.sql.Date fechaRegistro;
+    private Date fechaRegistro;
     private String tipoTramite;
     private String nombrePersonal;
     private String apellidoPersonal;
@@ -28,6 +29,7 @@ public class Pago {
     * Constructor Clase Pago
      * @param id_pago identificador del pago
      * @param tipo tipo de pago, si es virtual o consignacion.
+     * @param foto foto del pago realizado.
      * @param validacion validación, si ya fue tramitado o no.
      * @param Usuario_nombre usuario que realizo el pago
      * @param fecharegistro fecha en la que se realizo el pago
@@ -37,9 +39,23 @@ public class Pago {
      * @param identificacionPersonal identificacion del dueño del pago
      * 
     */
-    public Pago(String id_pago, String tipo, String validacion, String Usuario_nombre, java.sql.Date fecharegistro, String tipotramite, String nombrePersonal, String apellidoPersonal, String identificacionPersonal) {
+    public Pago(String id_pago, String tipo, byte[] foto, String validacion, String Usuario_nombre, Date fecharegistro, String tipotramite, String nombrePersonal, String apellidoPersonal, String identificacionPersonal) {
         this.id_pago = id_pago;
         this.tipo = tipo;
+        this.foto=foto;
+        this.validacion = validacion;
+        this.Usuario_nombre= Usuario_nombre;
+        this.fechaRegistro=fecharegistro;
+        this.tipoTramite=tipotramite;
+        this.nombrePersonal=nombrePersonal;
+        this.apellidoPersonal=apellidoPersonal;
+        this.identificacionPersonal=identificacionPersonal;
+    }
+    
+    public Pago(String id_pago, String tipo, byte[] foto, String validacion, String Usuario_nombre, Date fecharegistro, String tipotramite) {
+        this.id_pago = id_pago;
+        this.tipo = tipo;
+        this.foto=foto;
         this.validacion = validacion;
         this.Usuario_nombre= Usuario_nombre;
         this.fechaRegistro=fecharegistro;
@@ -115,14 +131,14 @@ public class Pago {
     /**
      * @return the fechaRegistro
      */
-    public java.sql.Date getFechaRegistro() {
+    public Date getFechaRegistro() {
         return fechaRegistro;
     }
 
     /**
      * @param fechaRegistro the fechaRegistro to set
      */
-    public void setFechaRegistro(java.sql.Date fechaRegistro) {
+    public void setFechaRegistro(Date fechaRegistro) {
         this.fechaRegistro = fechaRegistro;
     }
 

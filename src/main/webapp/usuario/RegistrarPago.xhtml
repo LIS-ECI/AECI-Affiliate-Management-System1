@@ -57,7 +57,7 @@
                             <p:inputText label="Tipo" required="true" value="#{BeanPagos.tipoPago}"/>
                             
                             <h:outputText value="Foto: *"/>
-                            <p:fileUpload value="#{BeanPagos.foto}" mode="simple" /> 
+                            <p:fileUpload fileUploadListener="#{BeanPagos.handleFileUpload}" mode="simple" /> 
                             
                             <h:outputText value="Validacion: *"/>
                             <p:inputText label="Validacion" required="true" value=""/>
@@ -79,7 +79,7 @@
 
                         </h:panelGrid>
                         
-                        <p:commandButton value ="Registrar Pago"/>
+                        <p:commandButton value ="Registrar Pago" action="#{BeanPagos.pagar}"/>
                     </p:panel>
                 
             </p:panelGrid>

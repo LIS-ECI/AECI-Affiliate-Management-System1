@@ -51,13 +51,13 @@
                         <p:messages />
                         <h:panelGrid columns="2" columnClasses="label, value">                                                    
                             <h:outputText value="Id Pago: *"/>
-                            <p:inputText label="Id Pago" required="true" value=""/>
+                            <p:inputText label="Id Pago" required="true" value="#{BeanPagos.idPago}"/>
                             
                             <h:outputText value="Tipo: *"/>
-                            <p:inputText label="Tipo" required="true" value=""/>
+                            <p:inputText label="Tipo" required="true" value="#{BeanPagos.tipoPago}"/>
                             
                             <h:outputText value="Foto: *"/>
-                            <p:fileUpload value="#{BeanPagos}" mode="simple" /> 
+                            <p:fileUpload value="#{BeanPagos.foto}" mode="simple" /> 
                             
                             <h:outputText value="Validacion: *"/>
                             <p:inputText label="Validacion" required="true" value=""/>
@@ -69,7 +69,7 @@
                             <p:inputText   label="Fecha"  value=""/>
 
                             <h:outputText value="Tipo Tramite: " />
-                            <p:inputText  label="Tipo Tramite" value=""/>
+                            <p:inputText  label="Tipo Tramite" value="#{BeanPagos.tipoTramite}"/>
 
                             <h:outputText value="Nombre y Apellido: *" />
                             <p:inputText label="Nombres " required="true" value="#{beanUsuario.usu.nombre}" disabled="true"/>

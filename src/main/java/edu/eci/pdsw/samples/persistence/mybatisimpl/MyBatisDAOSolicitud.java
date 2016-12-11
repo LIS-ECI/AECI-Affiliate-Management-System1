@@ -130,7 +130,6 @@ public class MyBatisDAOSolicitud implements DaoSolicitud {
             } catch (Exception ex) {
                 somap.deleteCorreo(est.getCorreo().get(0).getCorreo());
                 somap.deleteId(est.getNumero_identificacion(), est.getTipo_identificacion());
-
                 throw new PersistenceException("El correo ingresado ya esta en uso", ex.getCause());
             }
             } catch (Exception ex) {

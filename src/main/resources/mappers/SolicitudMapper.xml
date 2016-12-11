@@ -17,7 +17,7 @@
      <select id="getCertificado"  resultMap="CertificadoResult">
         select id,Usuario_nombre,valido
         from Certificado
-         where id=#{codigo} and valido="Ok"
+         where id=#{codigo} and valido='Ok'
     </select>
     
     <update parameterType="map" id="invalidarCertificado" >    

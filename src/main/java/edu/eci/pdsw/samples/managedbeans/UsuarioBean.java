@@ -83,8 +83,6 @@ public class UsuarioBean implements Serializable{
     }
     
     
-
-    //==================================================================
     public StreamedContent getStreamedContent() {
         
         try {
@@ -196,7 +194,6 @@ public class UsuarioBean implements Serializable{
 
     }
 
-    //==================================================================
     public void setStreamedContent(StreamedContent streamedContent) {
         this.streamedContent = streamedContent;
     }
@@ -306,5 +303,10 @@ public class UsuarioBean implements Serializable{
     }
 
     
+
+    public Usuario getUsu(){
+        Usuario u = getUsuario(getShiroLoginBean().getUsername());
+        return u;
+    }
 
 }

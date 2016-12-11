@@ -145,13 +145,20 @@ public abstract class Servicios {
     */
     public abstract Certificado getCertificado(int codigo) throws PersistenceException;
 
-     /**
-    * Metodo invalidar un certificado
+    /**
+     * Metodo invalidar un certificado
      * 
      * @param codigo codigo del certificado
      * @throws edu.eci.pdsw.samples.persistence.PersistenceException
     */
     public abstract void invalidarCertificado(int codigo) throws PersistenceException;
+
+    /**
+     * Metodo insertar pago
+     * @param p Pago realizado
+     * @throws edu.eci.pdsw.samples.persistence.PersistenceException
+     */
+    public abstract void InsertarPago(Pago p) throws PersistenceException;
     
     
   

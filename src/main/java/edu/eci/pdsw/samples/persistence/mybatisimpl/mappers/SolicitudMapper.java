@@ -74,5 +74,7 @@ public interface SolicitudMapper {
     public void deleteId(@Param("id") long id,@Param("tipoid") String tipoid);
 
     public void deleteCorreo(@Param("c") String correo);
+
+    public void InsertarPago(@Param ("p") Pago p) throws Exception;
     
 }

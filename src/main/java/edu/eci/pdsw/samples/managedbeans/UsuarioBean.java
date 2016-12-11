@@ -250,6 +250,9 @@ public class UsuarioBean implements Serializable{
         this.shiroLoginBean = shiroLoginBean;
     }
 
-    
+    public Usuario getUsu(){
+        Usuario u = getUsuario(getShiroLoginBean().getUsername());
+        return u;
+    }
 
 }

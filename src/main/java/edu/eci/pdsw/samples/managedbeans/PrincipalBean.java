@@ -14,10 +14,13 @@ import edu.eci.pdsw.samples.entities.Estudiante;
 import edu.eci.pdsw.samples.entities.Usuario;
 import edu.eci.pdsw.samples.persistence.PersistenceException;
 import edu.eci.pdsw.samples.services.Servicios;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import org.apache.ibatis.annotations.Param;
@@ -35,9 +38,8 @@ public class PrincipalBean implements Serializable {
     private String base="applicationconfig.properties";
     private String clave;
     private String validacion="";
-    private boolean validador=false; 
-
-
+    private boolean validador=false;
+ 
     public int getCodigo() {
 
         return codigo;

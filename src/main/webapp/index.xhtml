@@ -4,104 +4,226 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        
+
         <title>Bienvenido AECI</title>
 
         <style>
             body {
-    background-image: url("http://cdn.wallpapersafari.com/48/48/NQV7zq.jpg");
-    background-size: 100%;
-    background-repeat: inherit; 
-    background-attachment: local ;
+                background-image: url("http://cdn.wallpapersafari.com/48/48/NQV7zq.jpg");
+                background-size: 100%;
+                background-repeat: inherit; 
+                background-attachment: local ;
 
-}
+            }
         </style>
-        
+
     </h:head>
 
     <h:body  >
 
-        
+
         <h:form id="Inicio">
             <h:panelGrid columns="1" style="position:absolute ; top: 6%; left: 8%">
-                
-                    <f:facet name="header" >
-                        <img  src="https://media.licdn.com/mpr/mpr/shrink_200_200/AAEAAQAAAAAAAAgDAAAAJDk3ZGM0MDU2LWRhNWEtNDMwNi1iOTNjLTllMDY1OWNkMjk3ZQ.png" width="280" height="170" align="left"/>
-                        <h2 style="text-align: center; color: white;">BIENVENIDO</h2>
-                        <h3 style="text-align: center; color: white;">Asociación de Egresados Escuela Colombiana de Ingenieria Julio Garavito</h3>
-                    </f:facet>
-                    <p:growl id="msj" showDetail="true" autoUpdate="true"/>
 
-               
+                <f:facet name="header" >
+                    <img  src="https://media.licdn.com/mpr/mpr/shrink_200_200/AAEAAQAAAAAAAAgDAAAAJDk3ZGM0MDU2LWRhNWEtNDMwNi1iOTNjLTllMDY1OWNkMjk3ZQ.png" width="280" height="170" align="left"/>
+                    <h2 style="text-align: center; color: white;">BIENVENIDO</h2>
+                    <h3 style="text-align: center; color: white;">Asociación de Egresados Escuela Colombiana de Ingenieria Julio Garavito</h3>
+                </f:facet>
+                <p:growl id="msj" showDetail="true" autoUpdate="true"/>
+
+
 
             </h:panelGrid>
 
 
+
+            <p:tabView style=" position: absolute; top: 40%; left: 11% ; width: 80% " >
+
+                <p:tab title="Nosotros">
+                    <h:panelGrid columns="2" cellpadding="10">
+                        <img src="http://imagenes.universia.net/gc/net/images/institution/11404/Escuela-Colombiana-Ingenieria-Julio-Garavito1_Carrusel.jpg" align="left" height="230" width="360"></img>
+
+                        <h:outputText  value="Somos una asociación sin ánimo de lucro, conformada por Egresados de Programas de Pregrado y Posgrado de la Escuela Colombiana de Ingeniería Julio Garavito, con el fin de mejorar la calidad de vida generando  múltiples beneficios para nuestros egresados  en aspectos  académicos ,comerciales y del sector salud . Trabajamos por ofrecer una amplia oferta de opciones  laborales con empresas que confían en  la calidad  de nuestro Capital Humano. Los miembros elegidos  de la Junta Directiva de  la AECI,  trabajan en favor de los intereses gremiales, sirviendo como un canal de comunicación entre el sector real y la Academia,  potenciando  un profesional íntegro y ético comprometido  con el desarrollo social, económico y humano de Nuestro País . " />
+                    </h:panelGrid>
+                </p:tab>
+
+                <p:tab title="Nuestra Junta Directiva">
+                    <h:panelGrid columns="2" cellpadding="10">
+                        <img src="https://pbs.twimg.com/media/CzWrWvVXUAEof8K.jpg" align="center"></img>
+
+                    </h:panelGrid>
+                </p:tab>
+                <p:tab title="Convenios">
+                    <h:panelGrid columns="2" cellpadding="10">
+
+                        <img src="http://www.comedal.com.co/images/comedal/colsanitas.png" align="left" style=" width:240px ; height: 200px "></img>
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Claro.svg/1024px-Claro.svg.png" align="center" style=" width:240px ; height: 200px "></img>
+                        <img src="http://www.topformacion.es/static/img/centers/logo_20150206041632.logo_eude.png" align="right" style=" width:240px ; height: 200px "></img>
+                        <img src="http://i.ct-stc.com/1/logos/empresas/2015/03/10/2517c57522d745519fc8thumbnail.jpeg" align="right" style=" width:240px ; height: 200px "></img>
+                    </h:panelGrid>
+
+                </p:tab>
+                <p:tab title="Como Afiliarse">
+                    <h:panelGrid columns="2" cellpadding="10" width="75%">
+                        <h:outputText value="EGRESADOS" style="color: blue"/>
+                        <br></br>
+                        <h:outputText value="Cuota anual de $155.000  puede hacer su aporte al la cuenta de ahorros  Davivienda N° 00 3800067922 " />
+                        <img src="https://www.cecar.edu.co/images/bienestar_universitario/graduados.jpg" align="left" style=" width:240px ; height: 200px "></img>
+
+                        <h:outputText value="ESTUDIANTES"  style="color: blue"/>
+                                                <br></br>
+
+                        <h:outputText value="Afiliacion Gratuita  Durante los tres (3) ultimos semestres. y los seis (6) meses inicales de su carrera  " />
+                        <img src="http://www.residenciasantandreu.com/wp-content/uploads/2014/06/residencia_estudiantes_granada.jpg" align="left" style=" width:240px ; height: 200px "></img>
+
+                        <h:outputText value="FUNCIONARIO ESCUELA" style="color: blue"/>
+                                                <br></br>
+
+                        <h:outputText value="Solicite su descuento por  nómina, diligenciando el formulario de autorización de descuento suministrado por la AECI . " />
+                        <img src="http://coachingcertificadomadrid.com/wp-content/uploads/2015/07/coaching-para-ejecutivos.jpg" align="left" style=" width:240px ; height: 200px "></img>
+
+                        <h:outputText value="MEDIOS DE PAGO" style="color: blue"/>
+                                                <br></br>
+
+                        <h:outputText value="  EFECTIVO Y TARJETA DE CREDITO Oficina AECI- Sede Escuela Colombiana de Ingeneiria CONSIGNACIÓN Y TRANSFERENCIA  Banco Davivienda Ahororos :055 000 3800067922  NIT: 80030031137- 4   " />
+                        <img src="http://www.amvos.com/wp-content/uploads/2015/01/medios-pago-online.jpg" align="left" style=" width:240px ; height: 200px "></img>
+
+                    </h:panelGrid>
+                </p:tab>
+                <p:tab title="Politicas de Tratamiento de datos">
+                    <h:panelGrid columns="2" cellpadding="100">
+                        <h:outputText value="MANUAL INTERNO DE POLÍTICAS DE TRATAMIENTO DE INFORMACION (PTI) DE LA ASOCIACIÓN DE EGRESADOS DE LA ESCUELA COLOMBIANA DE INGENIERIA JULIO GARAVITO - AECI
+
+Consideraciones Generales
+
+La Asociacion de Egresados de la Escuela Colombiana de Ingenieria Julio Garavito – AECI, identificada con NIT.830.031.137-4 es una asocacion sin ánimo de lucro, fundada el 26 de octubre de 1996 mediante el  Acta N° 26100201, se permite da a conocer las Política de Tratamiento de la Informacion realizando las siguientes:
+
+Consideraciones
+
+1) Que el Artículo 15 de la Constitución Política de la República de Colombia consagra el derecho de cualquier persona a conocer, actualizar y rectificar los datos personales que existan sobre ella en bancos de datos o archivos de entidades públicas o privadas. Igualmente, ordena a quienes tienen datos personales de terceros respetar los derechos y garantía previstos en la Constitución cuando se recolecta, trata y circula esa clase de información. 2) Que la Ley Estatutaria 1581 del 17 de octubre de 2012  establece las condiciones mínimas para realizar el tratamiento legítimo de los datos personales de los clientes, empleados y cualquier otra persona natural. Tanto los literales k) del artículo 17 como f) del artículo 18 de dicha ley obliga a los responsables y encargados del tratamiento de datos personales a “adoptar un manual interno de políticas y procedimientos para garantizar el adecuado cumplimiento de la presente ley y en especial, para la atención de consultas y reclamos”.3) Que el artículo 25 de la misma ley ordena que las políticas de tratamiento de datos son de obligatorio cumplimiento y que su desconocimiento acarreará sanciones. Dichas políticas no pueden garantizar un nivel de tratamiento inferior al establecido en la Ley 1581 de 2012.4) Que el capítulo III del Decreto 1377 del 27 de junio de 2013 reglamenta algunos aspectos relacionados con el contenido y requisitos de la Política de Tratamiento de Información y los Avisos de Privacidad.
+
+La AECI está comprometida con el respeto de los derechos de sus  trabajadores, afiliados y/o donantes de la Asociación, egresados y/o estudiantes y/o personal administrativo y/o docente de la Escuela Colombiana de Ingeniería, y terceros en general que tenga alguna relación directa o indirecta con la AECI . Por eso, adopta la siguiente política de tratamiento de datos personales de obligatoria aplicación en todas las actividades que involucre el tratamiento de datos personales y cuyo origen primordial son los datos recolectados por la Escuela Colombiana de Ingenieria Julio Garavito
+
+POLÍTICA DE TRATAMIENTOS DE INFORMACIÓN DE LA AECI
+
+OBLIGATORIEDAD
+
+Esta política  es de obligatorio y estricto cumplimiento por parte de todos los empleados, miembros de la Junta Directiva de la AECI en Colombia y en el exterior, sus aliados estratégicos y terceros que obran en nombre de la AECI. 
+
+Todos los empleados, miembros de Junta Directiva, aliados estratégicos terceros que obren nombre y con la autorización expresa de la AECI deben observar y respetar estas políticas en el cumplimiento de sus funciones. En los casos en que no exista vínculo laboral, se deberá incluir una cláusula contractual para que quienes obren en nombre de la AECI se obliguen a cumplir estas políticas. El incumplimiento de las mismas originará sanciones de tipo laboral o responsabilidad contractual o de expulsión  según el caso. Lo anterior sin perjuicio del deber de responder patrimonialmente por los daños y perjuicios que cause a los titulares de los datos la AECI por el incumplimiento de estas políticas o el indebido tratamiento de datos personales.
+
+DEFINICIONES:
+
+Autorización: Consentimiento previo, expreso e informado del titular del dato para llevar a cabo el tratamiento.
+Consulta: solicitud del titular del dato o las personas autorizadas por éste o por la ley para conocer la información que reposa sobre ella en bases de datos o archivos.
+Dato personal: Cualquier información vinculada o que pueda asociarse a una o varias personas naturales determinadas o determinables.
+
+Estos datos se clasifican en sensibles, públicos, privados y semiprivados.
+ 
+Dato personal sensible: 
+Información que afecta la intimidad de la persona o cuyo uso indebido puede generar su discriminación, tales como aquellos que revelen el origen racial o étnico, la orientación política, las convicciones religiosas o filosóficas, la pertenencia a sindicatos, organizaciones sociales, de derechos humanos o que promueva intereses de cualquier partido político o que garanticen los derechos y garantías de partidos políticos de oposición, así como los datos relativos a la salud, a la vida sexual y los datos biométricos (huellas dactilares, entre otros).
+Dato personal público:
+Es el dato calificado como tal según los mandatos de la ley o de la Constitución Política y todos aquellos que no sean semiprivados o privados. Son públicos, entre otros, los datos contenidos en documentos públicos, registros públicos, gacetas y boletines oficiales y sentencias judiciales debidamente ejecutoriadas que no estén sometidos a reserva,  los relativos al estado civil de las personas, a su profesión u oficio y a su calidad de comerciante o de servidor público. Son públicos los datos personales existentes en el registro mercantil de las Cámaras de Comercio (Artículo 26 del C.Co). Estos datos pueden ser obtenidos y ofrecidos sin reserva alguna y sin importar si hacen alusión a información general, privada o personal.
+Dato personal privado:
+Es el dato que por su naturaleza íntima o reservada sólo es relevante para la persona titular del dato. Ejemplos: libros de los comerciantes,  documentos privados.
+Dato personal semiprivado:
+Es semiprivado el dato que no tiene naturaleza íntima, reservada, ni pública y cuyo conocimiento o divulgación puede interesar no sólo a su titular sino a cierto sector o grupo de personas o a la sociedad en general, como, entre otros,  el dato referente al cumplimiento e incumplimiento de las obligaciones financieras o los datos relativos a las relaciones con las entidades de la seguridad social.
+Encargado del tratamiento: 
+Persona que realiza el tratamiento de datos por cuenta del responsable del tratamiento. 
+Reclamo: 
+Solicitud del titular del dato o las personas autorizadas por éste o por la ley para corregir, actualizar o suprimir sus datos personales.
+Responsable del tratamiento:
+Persona que decide sobre, entre otras, la recolección y fines del tratamiento. Puede ser, a título de ejemplo, la empresa dueña de la bases de datos o sistema de información que contiene datos personales.
+Titular del dato: 
+Es la persona natural a que se refieren los datos.
+Tratamiento: Cualquier operación o conjunto de operaciones sobre datos personales como, entre otros, la recolección, el almacenamiento, el uso, la circulación o supresión de esa clase de información.
+Transmisión: 
+Tratamiento de datos personales que implica la comunicación de los mismos dentro (transmisión nacional) o fuera de Colombia (transmisión internacional) y que tiene por objeto la realización de un tratamiento por el Encargado por cuenta del Responsable.
+Transferencia: La transferencia de datos tiene lugar cuando el Responsable y/o encargado del tratamiento de datos personales, ubicado en Colombia, envía la información o los datos personales a un receptor, que a su vez es responsable  del tratamiento y se encuentra dentro o fuera del país
+
+
+PRINCIPIOS PARA EL TRATAMIENTO DE DATOS PERSONALES.
+El tratamiento de datos personales debe realizarse respetando las normas generales y especiales sobre la materia y para actividades permitidas por la ley. En el desarrollo, interpretación y aplicación de la presente política, se aplicarán de manera armónica e integral los siguientes 
+PRINCIPIOS 
+PRINCIPIOS RELACIONADOS CON LA RECOLECCIÓN DE DATOS PERSONALES.
+
+Principio de libertad:
+Salvo norma legal en contrario, la recolección de los datos sólo puede ejercerse con la autorización  previa, expresa e informada del titular. Los datos personales no podrán ser obtenidos o divulgados sin el previo consentimiento del titular, o en ausencia de mandato legal o judicial que releve el consentimiento. Se deberá informar al titular del dato de manera clara, suficiente y previa acerca de la finalidad de la información suministrada y por tanto,  no podrá recopilarse datos sin la clara especificación acerca de la finalidad de los mismos. El principio de libertad debe observarse tanto para el caso de los datos que se recolectan a través de formatos como los que hacen parte de los anexos o documentos que entregan los titulares de los datos a la AECI. No se podrán utilizar medios engañosos o fraudulentos para recolectar y realizar tratamiento de datos personales.
+
+Principio de limitación de la recolección:
+Sólo deben recolectarse los datos personales que sean estrictamente necesarios para el cumplimiento de las finalidades del tratamiento, de tal forma que se encuentra prohibido el registro y divulgación de datos que no guarden estrecha relación con el objetivo del tratamiento. En consecuencia, debe hacerse todo lo razonablemente posible para limitar el procesamiento de datos personales al mínimo necesario. Es decir, los datos deberán ser: adecuados, pertinentes y  acordes con las finalidades para las cuales fueron previstos. 
+PRINCIPIOS RELACIONADOS CON EL USO DE DATOS PERSONALES.
+
+Principio de finalidad: 
+El tratamiento debe obedecer a una finalidad legítima de acuerdo con la Constitución y la Ley, la cual debe ser informada al titular. Se deberá informar al  titular del dato de manera clara, suficiente y previa acerca de la finalidad de la información suministrada y, por tanto, no podrán recopilarse datos sin  una finalidad  específica. Los datos deben ser tratados de acuerdo a los usos autorizados. Si, con el tiempo, el uso de los datos personales cambia a formas que la persona, no espera, es necesario obtener nuevamente el consentimiento previo del titular.
+Principio de temporalidad:
+ Los datos personales se conservarán únicamente por el tiempo razonable y necesario para cumplir la finalidad del tratamiento y las exigencias legales o la AECI instrucciones de las autoridades de vigilancia y control u otras autoridades competentes. Los datos serán conservados cuando ello sea necesario para el cumplimiento de una obligación legal o contractual. Para determinar el término del tratamiento se considerarán las normas aplicables a cada finalidad y los aspectos administrativos, contables, fiscales, jurídicos e históricos de la información.Una vez cumplida la o las finalidades se procederá a la supresión de los datos.
+Principio de no discriminación: 
+Queda prohibido realizar cualquier acto de discriminación por las informaciones recaudadas en las bases de datos o archivos.
+Principio de reparación: 
+Es obligación indemnizar los perjuicios causados por las posibles fallas en el tratamiento de datos personales.
+PRINCIPIOS RELACIONADOS CON LA CALIDAD DE LA INFORMACIÓN.
+Principio de veracidad o calidad: 
+La información sujeta a tratamiento debe ser veraz, completa, exacta, actualizada, comprobable y comprensible. Se prohíbe el tratamiento de datos parciales, incompletos, fraccionados o que induzcan 
+
+
+a error. Se deberán adoptar medidas razonables para asegurar que los datos sean precisos y suficientes y, cuando así lo solicite el titular o cuando la AECI lo determine, sean actualizados, rectificados o suprimidos cuando sea procedente.
+PRINCIPIOS RELACIONADOS CON LA PROTECCIÓN, EL ACCESO Y CIRCULACIÓN DE DATOS PERSONALES
+
+Principio de seguridad:
+ Cada persona vinculada con la AECI deberá cumplir las medidas técnicas, humanas y administrativas que establezca la entidad para otorgar seguridad a los datos personales evitando su adulteración, pérdida, consulta, uso o acceso no autorizado o fraudulento.
+
+Principio de transparencia: 
+En el tratamiento debe garantizarse el derecho del titular a obtener en cualquier momento y sin restricciones, información acerca de la existencia de datos que le conciernan. 
+
+Principio de acceso restringido: 
+Sólo se permitirá acceso a los datos personales al titular del dato, personas autorizadas por el titular del dato, personas que por mandato legal u orden judicial sean autorizadas para conocer la información del titular del dato.
+Los datos personales, salvo la información pública, no podrán estar disponibles en internet u otros medios de divulgación o comunicación masiva, salvo que el acceso sea técnicamente controlable para brindar un conocimiento restringido sólo a los titulares o terceros autorizados conforme a la presente ley.
+
+Principio de circulación restringida: 
+Sólo se puede enviar o suministrar los datos personales al titular del dato, personas autorizadas por el titular del dato, entidades públicas o administrativas en ejercicio de sus funciones legales o por orden judicial.
+
+Principio de confidencialidad: 
+Todas las personas que intervengan en el tratamiento de datos personales que no tengan la naturaleza de públicos están obligadas a garantizar la reserva de la información, inclusive después de finalizada su relación con alguna de las labores que comprende el tratamiento, pudiendo sólo realizar suministro o comunicación de datos personales cuando ello corresponda al desarrollo de las actividades autorizadas en la ley.
+
+TRATAMIENTO AL CUAL SERÁN SOMETIDOS LOS DATOS PERSONALES Y LA FINALIDAD DEL MISMO.
+
+La AECI efectúa las siguientes actividades de acuerdo con sus estatutos y objeto social: a) Firma convenios comerciales con nuestros aliados estratégicos en beneficios de asociados, donantes y egresados, estudiantes y personal administrativo y académico de la Escuela Colombiana de Ingeniería Julio Garavito b) Realiza estudios sobre temas de interés del sector de la ingenieria y demás programas existentes por la Escuela Colombiana de Ingenieria Julio Garavito para contribuir a su modernización y proyección en el ámbito nacional e internacional. c) Promueve  el reconomiento profesional y social de los egresados y/o estudiantes de la Escuela Colombiana de Ingeniería Julio Garavito. d) Trabaja con Instituciones nacionales y extranjeras que realizan actividades de educación y formación en los temas antes señalados con el propósito de unir esfuerzos en tareas comunes, así como en las complementarias. e) Promueve el desarrollo de las profesiones de sus miembros a nivel nacional y representa ante el estado y la opinión pública sus intereses comunes. f) Propende por el desarrollo de políticas económicas, sociales, tecnológicas y mejoramiento de la nació. g)Coopera con la Escuela Colombiana de Ingenieria  Julio Garavito para el mejoramiento de los métodos y sistemas docentes y en general con el desarrollo de sus programas. h) Vela por que sus miembros cumplan con las reglas y principios de la ética profesional. i) Contribuye a la función pública con sujeción a las leyes dentro del marco de las profesiones de sus miembros. j) Presta apoyo a las entidades oficiales y particulares que requieran el concurso de la AECI en los campos profesionales en que actúan sus 
+
+miembros. k) Colaboran en la medida de sus posibilidades con la Escuela Colombiana de Ingeniería Julio Garavito para la consecución de fondos y/o recursos para la formación de estudiantes y egresados. l) Eleva, defiende y protege los intereses profesionales, culturales y morales de sus miembros, estrechando lo vínculos de confraternidad de los miembros entre si y con la Escuela Colombiana de Ingeniería. m) Defiende y protege la libertad de pensamiento y el libre ejercicio de las profesiones de sus miembros. 
+ 
+
+Teniendo en cuenta todo lo anterior, La AECI tratará de manera leal y lícita los datos personales para cumplir los fines anteriores y en especial manteniendo el archivo histórico de actividades sociales, promocionales, culturales y comerciales con la siguientes finalidades:1) Envío de información sobre cursos, seminarios y conferencias sobre temas de interes para la comunidad universitaria de la Escuela.2) Envió de información sobre oferta de empleos en concordancia con los programas profesionales de la Escuela.3) Envió de información comercial de aliados estrategicos de la AECI de cualquier naturaleza licita, leal y/o moral  que brinde beneficios económicos y/o gremiales   para sus afiliados,donates y egresados y/o estudiantes, perosnal administrativo y docente de la Escuela,  la cual se distribuye  a través de correo electrónico y por medio fisico, redes sociales y pagina web.4) Envío de información de eventos profesionales, sociales culturales  que organiza o colabora la AECI. 5) Estudios técnico-actuariales, estadísticas, encuestas,  análisis de tendencias del mercado laboral y / o profesional. 6) Realización de encuestas sobre satisfacción en los servicios prestados por la AECI. 7) Expedir las certificaciones que sean requeridas en desarrollo de sus convenios y otras actividades. 8) Almacenar la información sobre las personas a quienes se les han dado talleres o cursos de formación o que haya recibido reconocimientos especiales y/o condecoración o escudos para ser utilizada en la expedición de certificaciones que sean requeridas y  para elaborar estadísticas.10) Realizar actividades de mercadeo en general de productos y servicios de la AECI, marketing y atención de servicio al cliente. 11) Realización de encuestas en general que tenga como temas expectativas y beneficios de la Comunidad Universitaria de la Escuela Colombiana de Ingenieria Julio Garavito. 
+
+La AECI también  podrá tratar los datos personales para los siguientes fines: 1) Efectuar las gestiones pertinentes para el desarrollo de la etapa precontractual, contractual y pos contractual con la AECI, respecto de cualquiera de los productos y/o servicios ofrecidos por la AECI que haya o no adquirido o respecto de cualquier relación negocial subyacente que tenga con ella, así como dar cumplimiento a la ley colombiana o extranjera y a las órdenes de autoridades judiciales o administrati" />
+                    </h:panelGrid >
+                </p:tab>
+                <p:tab title="Validar Certificado De Afiliación">
+                            <p:outputLabel value="En Esta Opción Puedes validar el Certificado de Afiliación "  />
+                            <br></br>
+                            <br></br>
+                            <p:outputLabel value="Código del Certificado:   "  />
+                            <p:inputText id="codigo"  value="#{beanIndex.codigo}" />
+                            <br></br>
+                            <p:commandButton id="validar" value="Validar Certificado" actionListener="#{beanIndex.validar}" oncomplete="PF('campoEntradaDatos34').show()"  />
+
+                            <p:dialog header="Validación del certificado" widgetVar="campoEntradaDatos34" resizable="false" width="400">
+
+                                <p:outputPanel id="inputQuantity346" autoUpdate="true" style="text-align:center;">
+                                    <h:panelGrid columns="2" cellpadding="1" styleClass="ui-grid">
+                                        <p:outputLabel value="#{beanIndex.validacion}"  />                               
+                                    </h:panelGrid>
+
+
+                                </p:outputPanel>
+                            </p:dialog>
+
+                </p:tab>
                 
-                    <p:tabView style=" position: absolute; top: 40%; left: 10% ; width: 80% " >
-                        
-                        <p:tab title="Nosotros">
-                            <h:panelGrid columns="2" cellpadding="10">
-                                <img src="http://imagenes.universia.net/gc/net/images/institution/11404/Escuela-Colombiana-Ingenieria-Julio-Garavito1_Carrusel.jpg" align="left" height="230" width="360"></img>
-                                <h:outputText
-                                    value="Somos una asociación sin ánimo de lucro, conformada por Egresados de Programas de Pregrado y Posgrado de la Escuela Colombiana de Ingeniería Julio Garavito,con el fin de mejorar la calidad de vida generando  múltiples beneficios para nuestros egresados  en aspectos  académicos ,comerciales y del sector salud . Trabajamos por ofrecer una amplia oferta de opciones  laborales con empresas que confían en  la calidad  de nuestro Capital Humano. Los miembros elegidos  de la Junta Directiva de  la AECI,  trabajan en favor de los intereses gremiales, sirviendo como un canal de comunicación entre el sector real y la Academia,  potenciando  un profesional íntegro y ético comprometido  con el desarrollo social, económico y humano de Nuestro País . " />
-                            </h:panelGrid>
-                        </p:tab>
-                        
-                        <p:tab title="Nuestra Junta Directiva">
-                            <h:panelGrid columns="2" cellpadding="10">
-                                <p:graphicImage name="http://www.escuelaing.edu.co/uploads/generica/porteria.jpg" />
-                                <h:outputText value="Francis Ford Coppola's legendary..." />
-                            </h:panelGrid>
-                        </p:tab>
-                        <p:tab title="Convenios">
-                            <h:panelGrid columns="2" cellpadding="10">
-                                <p:graphicImage name="http://www.escuelaing.edu.co/uploads/generica/porteria.jpg" />
-                                <h:outputText value="Francis Ford Coppola's legendary..." />
-                            </h:panelGrid>
-                        </p:tab>
-                        <p:tab title="Como Afiliarse">
-                            <h:panelGrid columns="2" cellpadding="10">
-                                <p:graphicImage name="http://www.escuelaing.edu.co/uploads/generica/porteria.jpg" />
-                                <h:outputText value="After a break of more than 15 years..." />
-                            </h:panelGrid>
-                        </p:tab>
-                        <p:tab title="Politicas de Tratamiento de datos">
-                            <h:panelGrid columns="2" cellpadding="10">
-                                <p:graphicImage name="http://www.escuelaing.edu.co/uploads/generica/porteria.jpg" />
-                                <h:outputText value="Francis Ford Coppola's legendary..." />
-                            </h:panelGrid>
-                        </p:tab>
-                        <p:tab title="Validar Certificado De Afiliación">
-                            <h:panelGrid columns="2" cellpadding="10">
-                                <p:panel  header = "Validar Certificado" id="panelSolicitudes" style=" font-size:  medium; width: 415px" >
-                                    <p:outputLabel value="Código del Certificado:   "  />
-                                    <p:inputText id="codigo"  value="#{beanIndex.codigo}" />
-                                    <br></br>
-                                    <p:commandButton id="validar" value="Validar Certificado" actionListener="#{beanIndex.validar}" oncomplete="PF('campoEntradaDatos34').show()"  />
 
-                                    <p:dialog header="Validación del certificado" widgetVar="campoEntradaDatos34" resizable="false" width="400">
-                                        <p:outputPanel id="inputQuantity346" autoUpdate="true" style="text-align:center;">
-                                            <h:panelGrid columns="2" cellpadding="1" styleClass="ui-grid">
-                                                <p:outputLabel value="#{beanIndex.validacion}"  />                               
-                                            </h:panelGrid>
+            </p:tabView>
 
-
-                                        </p:outputPanel>
-                                    </p:dialog>
-
-                                </p:panel>
-                            </h:panelGrid>
-                        </p:tab>
-                        <p:tab title="Contacto">
-                            <h:panelGrid columns="2" cellpadding="10">
-                                <p:graphicImage name="http://www.escuelaing.edu.co/uploads/generica/porteria.jpg" />
-                                <h:outputText value="Francis Ford Coppola's legendary..." />
-                            </h:panelGrid>
-                        </p:tab>
-
-                    </p:tabView>
-               
 
 
 
@@ -109,58 +231,58 @@
             <h:panelGrid columns="1" style="position: absolute; top: 6%; left: 73%">
 
 
-                    <p:growl id="msgs" showDetail="true" />
+                <p:growl id="msgs" showDetail="true" />
 
-                    <h:panelGrid columns="2" cellpadding="5">
+                <h:panelGrid columns="2" cellpadding="5">
 
-                        <p:commandButton id="a1" value="Ingresar " oncomplete="PF('campoEntradaDatos').show()" />
+                    <p:commandButton id="a1" value="Ingresar " oncomplete="PF('campoEntradaDatos').show()" />
 
-                        <p:dialog header="Ingresa tus datos" widgetVar="campoEntradaDatos" modal="true" showEffect="fade" hideEffect="fade" resizable="false" width="400">
-                            <p:outputPanel id="inputQuantity" style="text-align:center;">
-                                <h:panelGrid columns="2" cellpadding="1" styleClass="ui-grid">
+                    <p:dialog header="Ingresa tus datos" widgetVar="campoEntradaDatos" modal="true" showEffect="fade" hideEffect="fade" resizable="false" width="400">
+                        <p:outputPanel id="inputQuantity" style="text-align:center;">
+                            <h:panelGrid columns="2" cellpadding="1" styleClass="ui-grid">
 
-                                    <p:outputLabel value="Usuario:   "  />
-                                    <p:inputText id="username"  value="#{loginBean.username}"/>
+                                <p:outputLabel value="Usuario:   "  />
+                                <p:inputText id="username"  value="#{loginBean.username}"/>
 
-                                    <h:outputText value="Contraseña:  " />
-                                    <p:password id="password" value="#{loginBean.password}"/>
+                                <h:outputText value="Contraseña:  " />
+                                <p:password id="password" value="#{loginBean.password}"/>
 
-                                    <h:outputText value="Remember me:"/>
-                                    <p:selectBooleanCheckbox id="rememberMe" value="#{loginBean.rememberMe}"/>
-
-
-                                    <p:growl id="growl" life="2000" />
+                                <h:outputText value="Remember me:"/>
+                                <p:selectBooleanCheckbox id="rememberMe" value="#{loginBean.rememberMe}"/>
 
 
-                                    <p:commandLink id="ajax2" update="growl">
-                                        <h:outputText value="Olvide mi contraseña" />
-                                    </p:commandLink>
-
-                                    <p:commandButton id="ingresar2" value="Ingresar" action="#{loginBean.doLogin}" />
-                                </h:panelGrid>
+                                <p:growl id="growl" life="2000" />
 
 
+                                <p:commandLink id="ajax2" update="growl">
+                                    <h:outputText value="Olvide mi contraseña" />
+                                </p:commandLink>
 
-
-                            </p:outputPanel>
-                        </p:dialog>
-
-                        <p:splitButton value="Solicitud de registro">
-                            <p:menuitem value="Estudiante" immediate="true" action="informacionestudiante"/>
-                            <p:separator />
-                            <p:menuitem value="Egresado" immediate="true" action="informacionegresado" />
-                        </p:splitButton>
+                                <p:commandButton id="ingresar2" value="Ingresar" action="#{loginBean.doLogin}" />
+                            </h:panelGrid>
 
 
 
 
-                    </h:panelGrid>
+                        </p:outputPanel>
+                    </p:dialog>
+
+                    <p:splitButton value="Solicitud de registro">
+                        <p:menuitem value="Estudiante" immediate="true" action="informacionestudiante"/>
+                        <p:separator />
+                        <p:menuitem value="Egresado" immediate="true" action="informacionegresado" />
+                    </p:splitButton>
+
+
+
+
+                </h:panelGrid>
 
 
 
 
             </h:panelGrid>
-    
+
 
 
 

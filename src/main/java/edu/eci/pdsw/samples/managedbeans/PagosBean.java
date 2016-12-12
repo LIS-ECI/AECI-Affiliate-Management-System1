@@ -6,6 +6,7 @@
 package edu.eci.pdsw.samples.managedbeans;
 
 import edu.eci.pdsw.sample.bean.security.ShiroLoginBean;
+import edu.eci.pdsw.samples.entities.Image;
 import edu.eci.pdsw.samples.entities.Pago;
 import edu.eci.pdsw.samples.entities.Solicitud;
 import edu.eci.pdsw.samples.entities.Usuario;
@@ -18,6 +19,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.UploadedFile;
@@ -34,15 +36,15 @@ import org.apache.commons.io.IOUtils;
 
 @SessionScoped
 public class PagosBean implements Serializable{
-    
+    @ManagedProperty("#{loginBean}")
     private ShiroLoginBean shiroLoginBean;
     private Pago pagoselec;
     private final String base="applicationconfig.properties";
-    private byte[] foto; 
+    
     private String IDpago;
     private String TipoPago;
     private String TipoTramite;
-    private UploadedFile file;
+
     
     
     public List<Pago> getPagos() throws PersistenceException {
@@ -64,14 +66,6 @@ public class PagosBean implements Serializable{
     public void setPagoselec(Pago pagoselec) {
         this.pagoselec = pagoselec;
     }
-    
-    public void setFoto(byte[] foto){
-        this.foto = foto;
-    }
-    
-    public byte[] getFoto(){
-        return this.foto;
-    } 
     
     public void setIdPago(String id){
         this.IDpago = id;
@@ -100,23 +94,35 @@ public class PagosBean implements Serializable{
     
     
     
+    private UploadedFile file;
+    private Image foto; 
     
     
     public UploadedFile getFile() {
         return file;
     }
+    
+    public void setFile( UploadedFile File) {
+        this.file=File;
+    }
  
     public void handleFileUpload(FileUploadEvent event) throws IOException {
+        System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+        Usuario u = getUsuario(getShiroLoginBean().getUsername());
         file = event.getFile();
-        foto = IOUtils.toByteArray(file.getInputstream());
+        byte[] imagen = IOUtils.toByteArray(file.getInputstream());
+        this.foto=new Image(imagen,String.valueOf(u.getCedula_numero()));
+        System.out.println(foto+"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
     }
     
     public void pagar() throws IOException{
+        System.out.println(foto+"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
         Usuario u = getUsuario(getShiroLoginBean().getUsername());
         Date fecha = new java.sql.Date(java.util.Calendar.getInstance().getTime().getTime());
         Pago p = new Pago(IDpago,TipoPago,String.valueOf(u.getCedula_numero()),"NoOk",u.getNombre(),fecha,TipoTramite,"","","");
         try {
             Servicios.getInstance(base).InsertarPago(p);
+            Servicios.getInstance(base).saveImage(foto);
         } catch (PersistenceException ex) {
             Logger.getLogger(PagosBean.class.getName()).log(Level.SEVERE, null, ex);
         }

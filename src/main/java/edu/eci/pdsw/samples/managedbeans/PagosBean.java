@@ -109,6 +109,7 @@ public class PagosBean implements Serializable{
     }
  
     public void handleFileUpload(FileUploadEvent event) {
+
         Usuario u = getUsuario(getShiroLoginBean().getUsername());
         file = event.getFile();
         byte[] imagen=null;
@@ -160,10 +161,3 @@ public class PagosBean implements Serializable{
     }
     
 }
-/*
-
-
-
-
-
-*/

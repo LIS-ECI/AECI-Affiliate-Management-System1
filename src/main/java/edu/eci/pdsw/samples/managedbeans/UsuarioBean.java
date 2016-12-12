@@ -314,10 +314,28 @@ public class UsuarioBean implements Serializable{
     }
 
     
-
+    /**
+     * 
+     * @return retorna el usuario con el que se ingreso al afiliado 
+     */
     public Usuario getUsu(){
-        Usuario u = getUsuario(getShiroLoginBean().getUsername());
+        u = getUsuario(getShiroLoginBean().getUsername());
         return u;
+    }
+    
+    /**
+     * @return the nombre
+     */
+    public String getNombreUsu() throws PersistenceException {
+        u = getUsuario(getShiroLoginBean().getUsername());
+        if (u.getTipo().equals("Estudiante")) {
+                est = Servicios.getInstance(base).consultarEstudiante(u.getCedula_numero(), u.getCedula_tipo());
+                nombre=est.getNombre()+" "+est.getApellido();
+            } else {
+                egr = Servicios.getInstance(base).consultarEgresado(u.getCedula_numero(), u.getCedula_tipo());
+                nombre=egr.getNombre()+" "+egr.getApellido();
+            }
+        return nombre;
     }
 
 }

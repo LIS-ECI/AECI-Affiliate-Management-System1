@@ -7,6 +7,7 @@ package edu.eci.pdsw.samples.managedbeans;
 
 import edu.eci.pdsw.samples.entities.CorreoPersonal;
 import edu.eci.pdsw.samples.entities.Estudiante;
+import edu.eci.pdsw.samples.entities.Image;
 import edu.eci.pdsw.samples.entities.Solicitud;
 import edu.eci.pdsw.samples.persistence.PersistenceException;
 import edu.eci.pdsw.samples.services.Servicios;
@@ -23,6 +24,9 @@ import java.util.GregorianCalendar;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import org.apache.commons.io.IOUtils;
+import org.primefaces.event.FileUploadEvent;
+import org.primefaces.model.UploadedFile;
 
 /**
  *
@@ -51,13 +55,32 @@ public class EstudianteBean implements Serializable {
     private String genero;
     private String apellido;
 
-    public String getBase() {
-        return base;
-    }
+    
+    
+      private Image ima;
+        private UploadedFile file;
 
-    public void setBase(String base) {
-        this.base = base;
+
+ 
+ 
+    public UploadedFile getFile() {
+        return file;
     }
+ 
+    public void setFile(UploadedFile file) {
+        this.file = file;
+    }
+    
+    public void handleFileUpload(FileUploadEvent event) throws IOException {
+        file = event.getFile();
+        byte[] img = IOUtils.toByteArray(file.getInputstream());
+        this.ima= new Image(img,String.valueOf(numero_identificacion));
+
+    }
+     
+   
+    
+  
 
     private void facesMessage(String message) {
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, message, null));
@@ -206,6 +229,7 @@ public class EstudianteBean implements Serializable {
      * Metodo enviarSolicitudEstudiante
      */
     public void enviarSolicitud() throws IOException {
+        System.out.println(ima+"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
         if (this.direccion.equals("")) {
             this.direccion = "No Disponible";
         }
@@ -214,7 +238,7 @@ public class EstudianteBean implements Serializable {
         List<CorreoPersonal> lisc = new ArrayList<>();
         lisc.add(cp);
         lisc.add(cp2);
-        Estudiante est = new Estudiante(genero, apellido, codigo, numero_identificacion, nombre, semestre, tipo_identificacion, carrera, telefono_fijo, celular, lisc, direccion);
+        Estudiante est = new Estudiante(genero, apellido, codigo, numero_identificacion, nombre, semestre, tipo_identificacion, carrera, telefono_fijo, celular, lisc, direccion,ima.getName());
         Date fecha = new java.sql.Date(java.util.Calendar.getInstance().getTime().getTime());
         Solicitud sol = new Solicitud((java.sql.Date) fecha, (int) est.getNumero_identificacion(), est.getTipo_identificacion(), "Estudiante", "Pend");
         try {
@@ -226,6 +250,7 @@ public class EstudianteBean implements Serializable {
             else {
                 try {
                     Servicios.getInstance(base).enviarSolicitudEstudiante(est, sol);
+                    Servicios.getInstance(base).saveImage(ima);
                     this.carrera = "";
                 this.celular = 0;
                 this.codigo = 0;

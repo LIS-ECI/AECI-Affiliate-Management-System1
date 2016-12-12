@@ -68,7 +68,7 @@
         <id property='id_pago' column='numeroFactura'/>
         <result property='Usuario_nombre' column = 'Usuario_nombre'/>
         <result property = 'tipo' column = 'Tipo' />
-        <result property='foto' column = 'foto'/>
+        <result property='foto' column = 'IMAGENES_name'/>
         <result property='validacion' column = 'validacion'/>
         <result property='fechaRegistro' column = 'fechaRegistro'/>
         <result property='tipoTramite' column = 'tipoTramite'/>
@@ -125,6 +125,7 @@
         <result property='carrera' column = 'Programas_nombre'/>
          <result property='apellido' column = 'apellido'/>
         <result property='genero' column = 'genero'/>
+        <result property='foto' column = 'IMAGENES_name'/>
         <collection property='correo' ofType='CorreoPersonal' columnPrefix="correo_" resultMap='CorreoPersonalResult' ></collection> 
     </resultMap>
     
@@ -162,7 +163,7 @@
     
     
     <select id="consultarEstudiante" resultMap="EstudianteResult">
-        SELECT DE.Cedula_Numero,DE.Cedula_Tipo,DE.codigo_estudiante,DE.nombre,DE.semestre_ponderado,DE.telefono_fijo,DE.celular,DE.direccion_vivienda,DE.Programas_nombre,DE.genero,DE.apellido,C.correo as correo_correo, C.Cedula_Numero as correo_Cedula_Numero, C.Cedula_Tipo as correo_Cedula_Tipo 
+        SELECT DE.Cedula_Numero,DE.Cedula_Tipo,DE.codigo_estudiante,DE.nombre,DE.semestre_ponderado,DE.telefono_fijo,DE.celular,DE.direccion_vivienda,DE.Programas_nombre,DE.genero,DE.apellido,DE.IMAGENES_name,C.correo as correo_correo, C.Cedula_Numero as correo_Cedula_Numero, C.Cedula_Tipo as correo_Cedula_Tipo 
         FROM Datos_Estudiante as DE
         LEFT JOIN Identificacion as I ON I.Numero= DE.Cedula_Numero
         LEFT JOIN correo as C ON C.Cedula_Numero=I.Numero
@@ -191,7 +192,7 @@
     </insert>
     
     <insert parameterType="map" id="InsertarPago" >    
-        insert into Pago values(#{p.id_pago},#{p.Usuario_nombre},#{p.tipo},#{p.foto},#{p.validacion},#{p.fechaRegistro},#{p.tipoTraamite})
+        insert into Pago values(#{p.id_pago},#{p.Usuario_nombre},#{p.tipo},#{p.validacion},#{p.fechaRegistro},#{p.tipoTraamite},#{p.foto})
     </insert>
     
     <update parameterType="map" id="ModificarSolicitud" >    
@@ -205,7 +206,7 @@
     </insert>
    
     <insert parameterType="map" id="insertarDatosEstudiante" >    
-        insert into Datos_Estudiante values (#{est.numero_identificacion}, #{est.tipo_identificacion}, #{est.codigo}, #{est.nombre}, #{est.semestre},#{est.telefono_fijo}, #{est.celular}, #{est.direccion_vivienda}, #{est.carrera},#{est.genero},#{est.apellido})
+        insert into Datos_Estudiante values (#{est.numero_identificacion}, #{est.tipo_identificacion}, #{est.codigo}, #{est.nombre}, #{est.semestre},#{est.telefono_fijo}, #{est.celular}, #{est.direccion_vivienda}, #{est.carrera},#{est.genero},#{est.apellido},#{est.foto})
     </insert>
    
     <insert parameterType="map" id="insertarSolicitud" >    
@@ -239,5 +240,3 @@
 
 </mapper>
    
-   
-</mapper>

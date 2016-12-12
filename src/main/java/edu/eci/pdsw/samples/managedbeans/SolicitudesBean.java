@@ -15,6 +15,7 @@ import edu.eci.pdsw.samples.entities.Solicitud;
 import edu.eci.pdsw.samples.entities.Usuario;
 import edu.eci.pdsw.samples.persistence.PersistenceException;
 import edu.eci.pdsw.samples.services.Servicios;
+import java.io.ByteArrayInputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -22,6 +23,8 @@ import java.util.Date;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import org.primefaces.model.DefaultStreamedContent;
+import org.primefaces.model.StreamedContent;
 
 
 
@@ -62,7 +65,19 @@ private String base="applicationconfig.properties";
         return a;
 
     }
-    
+    public StreamedContent getImage(){
+        if (!(soli == null) && (soli.getTipo().equals("Estudiante"))){
+        try{
+            return new DefaultStreamedContent(new ByteArrayInputStream(Servicios.getInstance(base).loadImagenByNombre(String.valueOf(est.getNumero_identificacion())).getImg()));
+        }catch(Exception ex){
+            System.out.println("error al cargar la imagen "+ex.toString());
+            return null;
+        }
+        }
+        else{
+            return null;
+        }
+    }
     
     public Solicitud getSoli() {
         return soli;

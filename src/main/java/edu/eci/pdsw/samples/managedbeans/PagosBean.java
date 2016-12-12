@@ -114,7 +114,7 @@ public class PagosBean implements Serializable{
     public void pagar() throws IOException{
         Usuario u = getUsuario(getShiroLoginBean().getUsername());
         Date fecha = new java.sql.Date(java.util.Calendar.getInstance().getTime().getTime());
-        Pago p = new Pago(IDpago,TipoPago,foto,"NoOk",u.getNombre(),fecha,TipoTramite);
+        Pago p = new Pago(IDpago,TipoPago,String.valueOf(u.getCedula_numero()),"NoOk",u.getNombre(),fecha,TipoTramite,"","","");
         try {
             Servicios.getInstance(base).InsertarPago(p);
         } catch (PersistenceException ex) {

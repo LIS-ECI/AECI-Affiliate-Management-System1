@@ -20,7 +20,7 @@
     </h:head>
 
     <h:body>
-        <h:form id="infoEstudiante" >
+        <h:form id="infoEstudiante"  >
 
 
 
@@ -131,6 +131,19 @@
       
                             </h:panelGrid>
                         </p:panel>
+                    </p:tab>
+                    
+                    <p:tab id="contactwqeqw" title="Carné Estudiantil">
+                        <h:form enctype="multipart/form-data">
+                        <p:panel header="Ingrese Su Foto del Carné Estudiantil">
+                            <h:panelGrid columns="2" columnClasses="label, value">
+                                <p:fileUpload fileUploadListener="#{beanEstudiante.handleFileUpload}" />
+                                <p:growl id="messages" showDetail="true"/>
+ 
+                                
+                            </h:panelGrid>
+                        </p:panel>
+                            </h:form>
                     </p:tab>
 
 

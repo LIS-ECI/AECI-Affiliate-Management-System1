@@ -152,7 +152,7 @@ public class SolicitudTest {
         List<CorreoPersonal> lisc = new ArrayList<>();
         lisc.add(cp);
         lisc.add(cp2);
-        Estudiante est = new Estudiante("Masculino","ApellidodePrueba",123456,1, "NombreDePrueba",2, "CD", "CarreraDePrueba",343242, 12312312, lisc,"calle100");
+        Estudiante est = new Estudiante("Masculino","ApellidodePrueba",123456,1, "NombreDePrueba",2, "CD", "CarreraDePrueba",343242, 12312312, lisc,"calle100","");
         java.sql.Date fecha = new java.sql.Date(java.util.Calendar.getInstance().getTime().getTime());
         Solicitud sol = new Solicitud(fecha,est.getNumero_identificacion(), est.getTipo_identificacion(),"Estudiante","Pend");
         try {

@@ -11,9 +11,12 @@ import javax.faces.bean.SessionScoped;
 import edu.eci.pdsw.samples.entities.Certificado;
 import edu.eci.pdsw.samples.entities.Egresado;
 import edu.eci.pdsw.samples.entities.Estudiante;
+import edu.eci.pdsw.samples.entities.Image;
 import edu.eci.pdsw.samples.entities.Usuario;
 import edu.eci.pdsw.samples.persistence.PersistenceException;
 import edu.eci.pdsw.samples.services.Servicios;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -23,7 +26,12 @@ import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import org.apache.commons.io.IOUtils;
 import org.apache.ibatis.annotations.Param;
+import org.primefaces.event.FileUploadEvent;
+import org.primefaces.model.DefaultStreamedContent;
+import org.primefaces.model.StreamedContent;
+import org.primefaces.model.UploadedFile;
 
 /**
  *
@@ -40,6 +48,9 @@ public class PrincipalBean implements Serializable {
     private String validacion="";
     private boolean validador=false;
  
+    
+  
+    
     public int getCodigo() {
 
         return codigo;
@@ -74,7 +85,9 @@ public class PrincipalBean implements Serializable {
         try {
             validar();
         } catch (PersistenceException ex) {
+            System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
             Logger.getLogger(PrincipalBean.class.getName()).log(Level.SEVERE, null, ex);
+            
         }
         return this.validacion;
         
@@ -87,9 +100,9 @@ public class PrincipalBean implements Serializable {
     public void validar() throws PersistenceException{
         validacion="";
         String nombre="";
-        Certificado c=Servicios.getInstance(base).getCertificado(codigo);
         
-
+        Certificado c=Servicios.getInstance(base).getCertificado(codigo);
+        //Certificado c=null;
         if (c==null){
             this.validacion="El Certificado No Es Válido";
         }

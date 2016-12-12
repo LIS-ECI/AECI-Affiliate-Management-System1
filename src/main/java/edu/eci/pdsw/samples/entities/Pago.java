@@ -16,7 +16,7 @@ public class Pago {
     
     private String id_pago;
     private String tipo;
-    private byte[] foto;
+    private String foto;
     private String validacion;
     private String Usuario_nombre;
     private Date fechaRegistro;
@@ -39,7 +39,7 @@ public class Pago {
      * @param identificacionPersonal identificacion del dueño del pago
      * 
     */
-    public Pago(String id_pago, String tipo, byte[] foto, String validacion, String Usuario_nombre, Date fecharegistro, String tipotramite, String nombrePersonal, String apellidoPersonal, String identificacionPersonal) {
+    public Pago(String id_pago, String tipo, String foto, String validacion, String Usuario_nombre, Date fecharegistro, String tipotramite, String nombrePersonal, String apellidoPersonal, String identificacionPersonal) {
         this.id_pago = id_pago;
         this.tipo = tipo;
         this.foto=foto;
@@ -52,15 +52,6 @@ public class Pago {
         this.identificacionPersonal=identificacionPersonal;
     }
     
-    public Pago(String id_pago, String tipo, byte[] foto, String validacion, String Usuario_nombre, Date fecharegistro, String tipotramite) {
-        this.id_pago = id_pago;
-        this.tipo = tipo;
-        this.foto=foto;
-        this.validacion = validacion;
-        this.Usuario_nombre= Usuario_nombre;
-        this.fechaRegistro=fecharegistro;
-        this.tipoTramite=tipotramite;
-    }
 
     public Pago(){}
     
@@ -95,14 +86,14 @@ public class Pago {
     /**
      * @return the foto
      */
-    public byte[] getFoto() {
+    public String getFoto() {
         return foto;
     }
 
     /**
      * @param foto the foto to set
      */
-    public void setFoto(byte[] foto) {
+    public void setFoto(String  foto) {
         this.foto = foto;
     }
 

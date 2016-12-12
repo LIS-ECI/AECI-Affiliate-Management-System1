@@ -27,6 +27,15 @@ public class Estudiante extends Afiliado {
     private String apellido;
     private String genero;
 
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
+    }
+    private String foto;
+
     public Estudiante(){}
     
     public int getCodigo() {
@@ -61,7 +70,7 @@ public class Estudiante extends Afiliado {
      * @param direccion_vivienda direccion del estudiante
      * @param correo correo del estudiante
     */
-    public Estudiante(String genero,String apellido,int codigo, long numero_identificacion, String nombre, int semestre, String tipo_identificacion, String carrera, int telefono_fijo, long celular, List<CorreoPersonal> correo, String direccion_vivienda) {
+    public Estudiante(String genero,String apellido,int codigo, long numero_identificacion, String nombre, int semestre, String tipo_identificacion, String carrera, int telefono_fijo, long celular, List<CorreoPersonal> correo, String direccion_vivienda,String foto) {
         this.codigo = codigo;
         this.numero_identificacion = numero_identificacion;
         this.carrera = carrera;
@@ -75,6 +84,7 @@ public class Estudiante extends Afiliado {
         this.nombre = nombre;
         this.apellido=apellido;
         this.genero=genero;
+        this.foto=foto;
     }
 
     /**

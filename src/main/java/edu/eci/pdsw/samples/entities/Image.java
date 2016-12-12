@@ -28,6 +28,9 @@ public class Image {
         this.name=name;
     }
     
+    public Image(){}
+    
+    
     @Override
     public String toString() {
         return "Image{" + "img=" + img + ", name=" + name + '}';

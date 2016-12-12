@@ -3,7 +3,21 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-    <h:head></h:head>
+    <h:head>
+        <title>Solicitud Estudiante</title>
+
+        <style>
+            body {
+    background-image: url("http://cdn.wallpapersafari.com/48/48/NQV7zq.jpg");
+    background-size: 100%;
+    background-repeat: inherit; 
+    background-attachment: local ;
+
+}
+        </style>
+        
+        
+    </h:head>
 
     <h:body>
         <h:form id="Inicio">
@@ -52,7 +66,9 @@
 
                                 <h:outputText value="Codigo Estudiante: " style="font-weight:bold"/>
                                 <h:outputText value="#{BeanSolicitudes.est.codigo}" styleClass="outputLabel"/>
-
+                                
+                                <h:outputText value="Foto Carné: " style="font-weight:bold"/>
+                                <p:graphicImage id="imagenObtenida" value="#{BeanSolicitudes.image}"></p:graphicImage>
                         </h:panelGrid>
                             </h:panelGrid>
 

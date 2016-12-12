@@ -20,6 +20,7 @@ package edu.eci.pdsw.samples.persistence.mybatisimpl;
 import edu.eci.pdsw.samples.entities.Certificado;
 import edu.eci.pdsw.samples.entities.Egresado;
 import edu.eci.pdsw.samples.entities.Estudiante;
+import edu.eci.pdsw.samples.entities.Image;
 import edu.eci.pdsw.samples.entities.Pago;
 import edu.eci.pdsw.samples.entities.Solicitud;
 import edu.eci.pdsw.samples.entities.Usuario;
@@ -271,6 +272,20 @@ public class MyBatisDAOSolicitud implements DaoSolicitud {
 
         return encryptedPassword;
 
+    }
+
+    @Override
+    public Image loadImage(String id) {
+        SolicitudMapper somap = currentSession.getMapper(SolicitudMapper.class);
+        Image i=somap.load(id);
+        return i;
+
+    }
+
+    @Override
+    public void saveImage(String name, byte[] image) {
+        SolicitudMapper somap = currentSession.getMapper(SolicitudMapper.class);
+        somap.save(name, image);
     }
 
 

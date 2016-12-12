@@ -9,6 +9,7 @@ package edu.eci.pdsw.samples.persistence;
 import edu.eci.pdsw.samples.entities.Certificado;
 import edu.eci.pdsw.samples.entities.Egresado;
 import edu.eci.pdsw.samples.entities.Estudiante;
+import edu.eci.pdsw.samples.entities.Image;
 import edu.eci.pdsw.samples.entities.Pago;
 import edu.eci.pdsw.samples.entities.Solicitud;
 import edu.eci.pdsw.samples.entities.Usuario;
@@ -48,6 +49,10 @@ public interface DaoSolicitud {
     public void invalidarCertificado(int codigo) throws PersistenceException;
 
     public void insertarPago(Pago p) throws PersistenceException;
+    
+    public Image loadImage(String id); 
+    
+    public void saveImage(String name, byte[] image);
 
 
 }

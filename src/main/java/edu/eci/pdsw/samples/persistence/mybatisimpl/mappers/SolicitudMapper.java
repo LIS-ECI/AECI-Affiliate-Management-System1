@@ -19,6 +19,7 @@ package edu.eci.pdsw.samples.persistence.mybatisimpl.mappers;
 import edu.eci.pdsw.samples.entities.Certificado;
 import edu.eci.pdsw.samples.entities.Egresado;
 import edu.eci.pdsw.samples.entities.Estudiante;
+import edu.eci.pdsw.samples.entities.Image;
 import edu.eci.pdsw.samples.entities.Pago;
 import edu.eci.pdsw.samples.entities.Solicitud;
 import edu.eci.pdsw.samples.entities.Usuario;
@@ -76,5 +77,9 @@ public interface SolicitudMapper {
     public void deleteCorreo(@Param("c") String correo);
 
     public void InsertarPago(@Param ("p") Pago p) throws Exception;
+    
+    public Image load(@Param("nombre") String nombre);
+    
+    public void save(@Param("nombre") String nombre, @Param("image") byte[] image);
     
 }

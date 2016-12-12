@@ -224,5 +224,20 @@
         insert into correo values(#{correo}, #{egr.numero_identificacion}, #{egr.tipo_identificacion});
     </insert>
 
+   <resultMap type="Image" id="imageResultMap">
+    <id column="name" property="name"/>
+    <result column="imagen" property="img" javaType="_byte[]" jdbcType="BLOB"/>
+</resultMap>
+
+<select id="load" parameterType='map' resultMap="imageResultMap">
+    select name, imagen from IMAGENES where name=#{nombre};
+</select>
+
+<insert id="save" parameterType='map'>
+    insert into IMAGENES (name, imagen) values(#{nombre},#{image});
+</insert>
+
+</mapper>
+   
    
 </mapper>

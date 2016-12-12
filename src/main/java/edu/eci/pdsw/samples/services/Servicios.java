@@ -9,6 +9,7 @@ package edu.eci.pdsw.samples.services;
 import edu.eci.pdsw.samples.entities.Certificado;
 import edu.eci.pdsw.samples.entities.Egresado;
 import edu.eci.pdsw.samples.entities.Estudiante;
+import edu.eci.pdsw.samples.entities.Image;
 import edu.eci.pdsw.samples.entities.Pago;
 import edu.eci.pdsw.samples.entities.Solicitud;
 import edu.eci.pdsw.samples.entities.Usuario;
@@ -159,6 +160,21 @@ public abstract class Servicios {
      * @throws edu.eci.pdsw.samples.persistence.PersistenceException
      */
     public abstract void InsertarPago(Pago p) throws PersistenceException;
+    
+    /**
+     * Metodo loadImagenByNombre
+     * @param nombre nombre de la imagen
+     * @return la imagen
+     * @throws edu.eci.pdsw.samples.persistence.PersistenceException
+     */
+    public abstract Image loadImagenByNombre(String nombre) throws PersistenceException;
+    
+    /**
+     * Metodo insertar saveImage
+     * @param image imagen a guardar
+     * @throws edu.eci.pdsw.samples.persistence.PersistenceException
+     */
+    public abstract void saveImage(Image image) throws PersistenceException;
     
     
   

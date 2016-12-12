@@ -9,6 +9,7 @@ package edu.eci.pdsw.samples.services;
 import edu.eci.pdsw.samples.entities.Certificado;
 import edu.eci.pdsw.samples.entities.Egresado;
 import edu.eci.pdsw.samples.entities.Estudiante;
+import edu.eci.pdsw.samples.entities.Image;
 import edu.eci.pdsw.samples.entities.Pago;
 import edu.eci.pdsw.samples.entities.Solicitud;
 import edu.eci.pdsw.samples.entities.Usuario;
@@ -291,6 +292,40 @@ public class ServiciosDao extends Servicios {
             throw new PersistenceException("No se logro insertar el pago",ex.getCause());
             
         }
+    }
+
+    @Override
+    public Image loadImagenByNombre(String nombre) throws PersistenceException {
+        Image i=null; 
+        try {
+            daof.beginSession();
+            i=daof.getDaoSolicitud().loadImage(nombre);
+            daof.commitTransaction();
+            daof.endSession();
+        } catch (PersistenceException ex) {
+            daof.endSession();
+            throw new PersistenceException("No se logro insertar la imagen",ex.getCause());
+            
+        }
+        return i;
+    
+    }
+
+    @Override
+    public void saveImage(Image image) throws PersistenceException {
+        try {
+            daof.beginSession();
+            daof.getDaoSolicitud().saveImage(image.getName(), image.getImg());
+            daof.commitTransaction();
+            daof.endSession();
+        } catch (PersistenceException ex) {
+            daof.rollbackTransaction();
+            daof.endSession();
+            throw new PersistenceException("No se logro insertar la imagen",ex.getCause());
+            
+        }
+        
+        
     }
 
  

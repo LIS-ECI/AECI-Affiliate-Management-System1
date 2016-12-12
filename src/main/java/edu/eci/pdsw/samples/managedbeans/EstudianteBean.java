@@ -75,7 +75,11 @@ public class EstudianteBean implements Serializable {
         file = event.getFile();
         byte[] img = IOUtils.toByteArray(file.getInputstream());
         this.ima= new Image(img,String.valueOf(numero_identificacion));
-
+        if (img!=null){
+        facesMessage("Foto Exitosamente Cargada");}
+        else{
+        facesMessage("Cargue de nuevo la foto");
+        }
     }
      
    
@@ -228,8 +232,7 @@ public class EstudianteBean implements Serializable {
     /**
      * Metodo enviarSolicitudEstudiante
      */
-    public void enviarSolicitud() throws IOException {
-        System.out.println(ima+"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+    public void enviarSolicitud() {
         if (this.direccion.equals("")) {
             this.direccion = "No Disponible";
         }
@@ -269,6 +272,8 @@ public class EstudianteBean implements Serializable {
 
                 } 
                 catch (PersistenceException ex) {
+                    facesMessage(ex.getMessage());
+                } catch (IOException ex) {
                     facesMessage(ex.getMessage());
                 }
                   }

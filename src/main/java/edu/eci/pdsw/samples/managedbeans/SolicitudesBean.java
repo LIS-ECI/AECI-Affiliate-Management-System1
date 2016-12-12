@@ -21,8 +21,12 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 
@@ -119,12 +123,16 @@ private String base="applicationconfig.properties";
         this.correos = correos;
     }
     
-    public String getPagina() throws PersistenceException {
+    public String getPagina() {
         if (!(soli == null)){
         correos="";
         
         if (soli.getTipo().equals("Estudiante")) {
-            this.est = Servicios.getInstance(base).consultarEstudiante(soli.getNumero_identificacion(), soli.getTipo_cedula());
+            try {
+                this.est = Servicios.getInstance(base).consultarEstudiante(soli.getNumero_identificacion(), soli.getTipo_cedula());
+            } catch (PersistenceException ex) {
+                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, ex.getMessage(), null));
+            }
             this.pagina = "detallesEstudiante";
             for (int i=0;i<est.getCorreo().size();i++){
                 correos+="      "+est.getCorreo().get(i).getCorreo();
@@ -132,7 +140,11 @@ private String base="applicationconfig.properties";
             this.est.setNombre(est.getNombre()+' '+est.getApellido());
         }
         else{
-            this.egr = Servicios.getInstance(base).consultarEgresado(soli.getNumero_identificacion(), soli.getTipo_cedula());
+            try {
+                this.egr = Servicios.getInstance(base).consultarEgresado(soli.getNumero_identificacion(), soli.getTipo_cedula());
+            } catch (PersistenceException ex) {
+                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, ex.getMessage(), null));
+            }
             this.pagina = "detallesEgresado";
             for (int i=0;i<egr.getCorreo().size();i++){
                 correos+="      "+egr.getCorreo().get(i).getCorreo();
@@ -165,7 +177,7 @@ private String base="applicationconfig.properties";
     }
 
 
-    public void aprobarEst() throws PersistenceException{
+    public void aprobarEst() {
         Date fecha = new java.sql.Date(java.util.Calendar.getInstance().getTime().getTime());
         Calendar calendar = Calendar.getInstance();	
         calendar.setTime(fecha); 	
@@ -174,19 +186,31 @@ private String base="applicationconfig.properties";
         Usuario sa= new Usuario(fecha,fecha2,String.valueOf(est.getNumero_identificacion()),String.valueOf( est.getNumero_identificacion()), "Estudiante", "Activo", est.getNumero_identificacion(), est.getTipo_identificacion(), null, null, null );
         //Enviar Correo indicando usuario y contraseña
         correoUsuarioNuevo(String.valueOf(est.getNumero_identificacion()), String.valueOf( est.getNumero_identificacion()));
+    try {
         Servicios.getInstance(base).InsertarUsuario(sa);
+    } catch (PersistenceException ex) {
+         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, ex.getMessage(), null));
+    }
+    try {
         Servicios.getInstance(base).ModificarSolicitud("OK",est.getNumero_identificacion(),est.getTipo_identificacion());
+    } catch (PersistenceException ex) {
+         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, ex.getMessage(), null));
+    }
         
         
     }
     
-    public void rechazarEst() throws PersistenceException{
+    public void rechazarEst(){
+    try {
         Servicios.getInstance(base).ModificarSolicitud("NOOK",est.getNumero_identificacion(),est.getTipo_identificacion());
+    } catch (PersistenceException ex) {
+         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, ex.getMessage(), null));
+    }
         enviarCorreo(this.respuestaSolicitud,est.getCorreo().get(0).getCorreo());
         this.respuestaSolicitud="";
     }
     
-     public void aprobarEgr() throws PersistenceException{
+     public void aprobarEgr() {
         Date fecha = new java.sql.Date(java.util.Calendar.getInstance().getTime().getTime());
         Calendar calendar = Calendar.getInstance();	
         calendar.setTime(fecha); 	
@@ -195,14 +219,26 @@ private String base="applicationconfig.properties";
         Usuario s= new Usuario(fecha,fecha2,String.valueOf(egr.getNumero_identificacion()),String.valueOf( egr.getNumero_identificacion()), "Egresado", "Inactivo", egr.getNumero_identificacion(), egr.getTipo_identificacion(), null, null, null );
         //Enviar Correo indicando usuario y contraseña
         correoUsuarioNuevo(String.valueOf(egr.getNumero_identificacion()), String.valueOf( egr.getNumero_identificacion()));
+    try {
         Servicios.getInstance(base).InsertarUsuario(s);
+    } catch (PersistenceException ex) {
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, ex.getMessage(), null));
+    }
+    try {
         Servicios.getInstance(base).ModificarSolicitud("OK",egr.getNumero_identificacion(),egr.getTipo_identificacion());
+    } catch (PersistenceException ex) {
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, ex.getMessage(), null));
+    }
        
         
     }
     
-    public void rechazarEgr() throws PersistenceException{
+    public void rechazarEgr() {
+    try {
         Servicios.getInstance(base).ModificarSolicitud("NOOK",egr.getNumero_identificacion(),egr.getTipo_identificacion());
+    } catch (PersistenceException ex) {
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, ex.getMessage(), null));
+    }
         enviarCorreo(this.respuestaSolicitud,egr.getCorreo().get(0).getCorreo());
         this.respuestaSolicitud="";
 

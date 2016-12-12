@@ -56,23 +56,38 @@ public class ReportesBean implements Serializable {
   
     
     
-    public List<Usuario> getUsuarios() throws PersistenceException  {
-        List<Usuario> a =Servicios.getInstance(base).consultarUsuarios();
+    public List<Usuario> getUsuarios()  {
+        List<Usuario> a=null;
+        try {
+            a = Servicios.getInstance(base).consultarUsuarios();
+        } catch (PersistenceException ex) {
+             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, ex.getMessage(), null));
+        }
 
         return a;
     }
     
     
-    public String getCorreo() throws PersistenceException{
+    public String getCorreo(){
         Correo= "";
         if(selectedAfiliado.getTipo().equals("Estudiante")){
-        Estudiante e= Servicios.getInstance(base).consultarEstudiante(selectedAfiliado.getCedula_numero(),selectedAfiliado.getCedula_tipo());
+        Estudiante e=null;
+            try {
+                e = Servicios.getInstance(base).consultarEstudiante(selectedAfiliado.getCedula_numero(),selectedAfiliado.getCedula_tipo());
+            } catch (PersistenceException ex) {
+                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, ex.getMessage(), null));;
+            }
         for (int i=0;i<e.getCorreo().size();i++){
                 Correo+="      "+e.getCorreo().get(i).getCorreo();
             }
         } 
         else{
-        Egresado e= Servicios.getInstance(base).consultarEgresado(selectedAfiliado.getCedula_numero(),selectedAfiliado.getCedula_tipo());
+        Egresado e=null;
+            try {
+                e = Servicios.getInstance(base).consultarEgresado(selectedAfiliado.getCedula_numero(),selectedAfiliado.getCedula_tipo());
+            } catch (PersistenceException ex) {
+                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, ex.getMessage(), null));
+            }
         for (int i=0;i<e.getCorreo().size();i++){
                 Correo+="      "+e.getCorreo().get(i).getCorreo();
             }

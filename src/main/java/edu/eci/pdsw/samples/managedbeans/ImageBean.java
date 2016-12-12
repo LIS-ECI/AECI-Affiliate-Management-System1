@@ -11,6 +11,8 @@ import edu.eci.pdsw.samples.services.Servicios;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -82,11 +84,16 @@ public class ImageBean implements Serializable{
         
     }
      
-    public void upload() throws IOException {
+    public void upload() {
+        byte[] img=null;
         if(file != null) {
             FacesMessage message = new FacesMessage("Succesful", file.getFileName() + " is uploaded.");
             FacesContext.getCurrentInstance().addMessage(null, message);
-            byte[] img = IOUtils.toByteArray(file.getInputstream());
+            try {
+                img = IOUtils.toByteArray(file.getInputstream());
+            } catch (IOException ex) {
+                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, ex.getMessage(), null));
+            }
         ima= new Image(img,"prueba");
         }
         

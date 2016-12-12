@@ -82,13 +82,7 @@ public class PrincipalBean implements Serializable {
     }
 
     public String getValidacion() {
-        try {
-            validar();
-        } catch (PersistenceException ex) {
-            System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-            Logger.getLogger(PrincipalBean.class.getName()).log(Level.SEVERE, null, ex);
-            
-        }
+        validar();
         return this.validacion;
         
     }
@@ -97,23 +91,43 @@ public class PrincipalBean implements Serializable {
         this.validacion = validacion;
     }
     
-    public void validar() throws PersistenceException{
+    public void validar(){
         validacion="";
         String nombre="";
         
-        Certificado c=Servicios.getInstance(base).getCertificado(codigo);
-        //Certificado c=null;
+        Certificado c=null;
+        try {
+            c = Servicios.getInstance(base).getCertificado(codigo);
+        } catch (PersistenceException ex) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, ex.getMessage(), null));
+        }
+        
         if (c==null){
             this.validacion="El Certificado No Es Válido";
         }
         else{
-            Usuario u= Servicios.getInstance(base).getUsuario(c.getUsuario_nombre());
+            Usuario u=null;
+            try {
+                u = Servicios.getInstance(base).getUsuario(c.getUsuario_nombre());
+            } catch (PersistenceException ex) {
+                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, ex.getMessage(), null));
+            }
             if(u.getTipo().equals("Estudiante")){
-                Estudiante est=Servicios.getInstance(base).consultarEstudiante(u.getCedula_numero(), u.getCedula_tipo());
+                Estudiante est=null;
+                try {
+                    est = Servicios.getInstance(base).consultarEstudiante(u.getCedula_numero(), u.getCedula_tipo());
+                } catch (PersistenceException ex) {
+                     FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, ex.getMessage(), null));
+                }
                 nombre= est.getNombre()+' '+est.getApellido();
             }
             else{
-                Egresado egr=Servicios.getInstance(base).consultarEgresado(u.getCedula_numero(), u.getCedula_tipo());
+                Egresado egr=null;
+                try {
+                    egr = Servicios.getInstance(base).consultarEgresado(u.getCedula_numero(), u.getCedula_tipo());
+                } catch (PersistenceException ex) {
+                     FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, ex.getMessage(), null));
+                }
                 nombre= egr.getNombre()+' '+egr.getApellido();
             }
             Date fecha11 = new java.sql.Date(u.getFechaInicio().getTime());
@@ -121,7 +135,11 @@ public class PrincipalBean implements Serializable {
 
             this.validacion="El Certificado Ingresado Pertenece a "+nombre+" identificado con "+u.getCedula_tipo()+" "+u.getCedula_numero()+" y cuya aficiacion va desde "+fecha11+" hasta "+fecha22;
             if(validador){
-                Servicios.getInstance(base).invalidarCertificado(codigo);
+                try {
+                    Servicios.getInstance(base).invalidarCertificado(codigo);
+                } catch (PersistenceException ex) {
+                     FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, ex.getMessage(), null));
+                }
                 validador=false;
             }  
             else{

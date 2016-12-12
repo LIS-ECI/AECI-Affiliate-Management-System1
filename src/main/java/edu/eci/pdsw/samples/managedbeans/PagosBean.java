@@ -18,9 +18,11 @@ import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.UploadedFile;
 import org.apache.commons.io.IOUtils;
@@ -106,17 +108,19 @@ public class PagosBean implements Serializable{
         this.file=File;
     }
  
-    public void handleFileUpload(FileUploadEvent event) throws IOException {
-        System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+    public void handleFileUpload(FileUploadEvent event) {
         Usuario u = getUsuario(getShiroLoginBean().getUsername());
         file = event.getFile();
-        byte[] imagen = IOUtils.toByteArray(file.getInputstream());
+        byte[] imagen=null;
+        try {
+            imagen = IOUtils.toByteArray(file.getInputstream());
+        } catch (IOException ex) {
+             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, ex.getMessage(), null));
+        }
         this.foto=new Image(imagen,String.valueOf(u.getCedula_numero()));
-        System.out.println(foto+"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
     }
     
-    public void pagar() throws IOException{
-        System.out.println(foto+"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+    public void pagar() {
         Usuario u = getUsuario(getShiroLoginBean().getUsername());
         Date fecha = new java.sql.Date(java.util.Calendar.getInstance().getTime().getTime());
         Pago p = new Pago(IDpago,TipoPago,String.valueOf(u.getCedula_numero()),"NoOk",u.getNombre(),fecha,TipoTramite,"","","");
@@ -124,7 +128,7 @@ public class PagosBean implements Serializable{
             Servicios.getInstance(base).InsertarPago(p);
             Servicios.getInstance(base).saveImage(foto);
         } catch (PersistenceException ex) {
-            Logger.getLogger(PagosBean.class.getName()).log(Level.SEVERE, null, ex);
+             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, ex.getMessage(), null));
         }
     }
       

@@ -41,6 +41,8 @@ import java.io.OutputStream;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.el.ELContext;
 import javax.faces.FacesException;
@@ -181,6 +183,7 @@ public class UsuarioBean implements Serializable{
             }
             Servicios.getInstance(base).putCertificado(codigo, u.getNombre(), "Ok");
         } catch (Exception e) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, e.getMessage(), null));
         }
         
         
@@ -244,11 +247,15 @@ public class UsuarioBean implements Serializable{
     /**
      * @return the nombre
      */
-    public String getNombre() throws PersistenceException {
+    public String getNombre() {
         u = getUsuario(getShiroLoginBean().getUsername());
         String gen="";
         if (u.getTipo().equals("Estudiante")) {
+            try {
                 est = Servicios.getInstance(base).consultarEstudiante(u.getCedula_numero(), u.getCedula_tipo());
+            } catch (PersistenceException ex) {
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, ex.getMessage(), null));
+            }
                 nombre="BIENVENID";
                 if (est.getGenero().equals("Masculino")){
                     gen="O";
@@ -258,7 +265,11 @@ public class UsuarioBean implements Serializable{
                 }
                 nombre+=gen+"\n"+est.getNombre()+" "+est.getApellido();
             } else {
+            try {
                 egr = Servicios.getInstance(base).consultarEgresado(u.getCedula_numero(), u.getCedula_tipo());
+            } catch (PersistenceException ex) {
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, ex.getMessage(), null));
+            }
                 nombre="BIENVENID";
                 if (egr.getGenero().equals("Masculino")){
                     gen="O";

@@ -193,7 +193,7 @@ public class EgresadoBean  implements Serializable{
     * 
      * 
     */
-    public void enviarSolicitud () throws IOException {
+    public void enviarSolicitud ()  {
         if( this.nombreEmpresa.equals("")){
             this.nombreEmpresa="No Disponible";
         }
@@ -234,6 +234,8 @@ public class EgresadoBean  implements Serializable{
 
                 
                 } catch (PersistenceException ex) {
+                    facesMessage(ex.getMessage());
+                } catch (IOException ex) {
                     facesMessage(ex.getMessage());
                 }
                 

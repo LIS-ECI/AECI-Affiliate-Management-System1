@@ -105,7 +105,7 @@ public class PagosBean implements Serializable{
     public void setFile( UploadedFile File) {
         this.file=File;
     }
- 
+
     public void handleFileUpload(FileUploadEvent event) throws IOException {
         System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
         Usuario u = getUsuario(getShiroLoginBean().getUsername());
@@ -157,9 +157,45 @@ public class PagosBean implements Serializable{
     
 }
 /*
+                            
+                            
+                            <!--
+                            
+                            
+                <h:form>
+                    <p:commandButton value="Recibo de Pago" onclick="PF('dlg1').show()"/>
+
+                    <h:form>
+                        <p:dialog header="Generar Recibo" id="Recibo" widgetVar="dlg1" height="550" width="550" styleClass="sheet.css" resizable="false">
+                            <h:outputLabel for="adjuntar" value="Adjunte su recibo de pago para validarlo con el Administrador" />
+                            <h:form>
+                                <h:form enctype="multipart/form-data">
+                                    <p:fileUpload fileUploadListener="#{BeanPagos.handleFileUpload}" />
+                                    <p:growl id="messages" showDetail="true"/>
+                                </h:form>
+                            </h:form>
+                            
+                            <p:commandButton value="Enviar" actionListener="#{BeanPagos.pagar()}" oncomplete="PF('dlg1').hide()"/>
+                            
+                            <p:commandButton value="Cerrar" onclick="PF('dlg1').hide()"/>
+                        </p:dialog>
+                    </h:form>
+                </h:form>
+                            
+                            
+                            -->
+                            
 
 
-
-
+<h:form enctype="multipart/form-data">
+                                <p:panel header="Adjunte El Comprobante de Pago">
+                                <h:panelGrid columns="2" columnClasses="label, value">
+                                    <p:fileUpload fileUploadListener="#{BeanPagos.handleFileUploa}" />
+                                    <p:growl id="messages" showDetail="true"/>
+ 
+                                
+                                </h:panelGrid>
+                                </p:panel>
+                            </h:form>
 
 */

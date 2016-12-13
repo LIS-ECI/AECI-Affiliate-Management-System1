@@ -328,6 +328,36 @@ public class ServiciosDao extends Servicios {
         
     }
 
+    @Override
+    public void validarPago(String numFac) throws PersistenceException {
+        try {
+            daof.beginSession();
+            daof.getDaoSolicitud().validarPago(numFac);
+            daof.commitTransaction();
+            daof.endSession();
+        } catch (PersistenceException ex) {
+            daof.rollbackTransaction();
+            daof.endSession();
+            throw new PersistenceException("No se logro validar el pago",ex.getCause());
+            
+        }
+    }
+
+    @Override
+    public void validarUsuario(String nombre, java.util.Date fecha2) throws PersistenceException {
+        try {
+            daof.beginSession();
+            daof.getDaoSolicitud().validarUsuario(nombre,fecha2);
+            daof.commitTransaction();
+            daof.endSession();
+        } catch (PersistenceException ex) {
+            daof.rollbackTransaction();
+            daof.endSession();
+            throw new PersistenceException("No se logro validar el usuario",ex.getCause());
+            
+        }
+    }
+
  
 
 

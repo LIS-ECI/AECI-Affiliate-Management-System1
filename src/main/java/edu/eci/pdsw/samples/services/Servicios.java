@@ -14,6 +14,7 @@ import edu.eci.pdsw.samples.entities.Pago;
 import edu.eci.pdsw.samples.entities.Solicitud;
 import edu.eci.pdsw.samples.entities.Usuario;
 import edu.eci.pdsw.samples.persistence.PersistenceException;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -175,6 +176,11 @@ public abstract class Servicios {
      * @throws edu.eci.pdsw.samples.persistence.PersistenceException
      */
     public abstract void saveImage(Image image) throws PersistenceException;
+
+    public abstract void validarPago(String numFac) throws PersistenceException;
+       
+
+    public abstract void validarUsuario(String nombre,Date fecha2) throws PersistenceException;
     
     
   

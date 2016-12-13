@@ -22,9 +22,29 @@
     
     <update parameterType="map" id="invalidarCertificado" >    
         update Certificado
-        set valido="NoOk"
+        set valido='NoOk'
         where id=#{id}
     </update>
+    
+    
+    <update parameterType="map" id="validarPago" >    
+        update Pagos
+        set validacion='Ok'
+        where numeroFactura=#{id}
+    </update>
+    
+    
+    <update parameterType="map" id="validarUsuario" >    
+        update Usuario
+        set fechafin=#{fecha}, estado='Activo'
+        where nombre=#{id}
+    </update>
+    
+    
+    
+    
+    
+    
     
     <delete parameterType="map" id="deleteId" >    
         delete from Identificacion where Numero=#{id} and Tipo=#{tipoid}
@@ -56,7 +76,7 @@
     </resultMap>
     
     <select id="consultarPagos" resultMap="PagoResult">
-        select 	P.numeroFactura , P.Usuario_nombre , P.Tipo , P.validacion, P.fechaRegistro, P.tipoTramite, P.IMAGENES_name, I.nombre, I.apellido, I.Cedula_Numero
+        select 	P.numeroFactura , P.Usuario_nombre , P.Tipo , P.validacion, P.fechaRegistro, P.tipoTramite, P.IMAGENES_name, I.nombre as nombre, I.apellido as apellido, I.Cedula_Numero as numero
         from Pagos P
 	LEFT JOIN Usuario as U ON U.nombre= P.Usuario_nombre
         LEFT JOIN Datos_Egresado as I ON I.Cedula_Numero=U.identificacion
@@ -192,7 +212,7 @@
     </insert>
     
     <insert parameterType="map" id="InsertarPago" >    
-        insert into Pago values(#{p.id_pago},#{p.Usuario_nombre},#{p.tipo},#{p.validacion},#{p.fechaRegistro},#{p.tipoTraamite},#{p.foto})
+        insert into Pagos values(#{p.id_pago},#{p.Usuario_nombre},#{p.tipo},#{p.validacion},#{p.fechaRegistro},#{p.tipoTramite},#{p.foto})
     </insert>
     
     <update parameterType="map" id="ModificarSolicitud" >    

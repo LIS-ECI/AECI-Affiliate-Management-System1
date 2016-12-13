@@ -29,16 +29,55 @@ and open the template in the editor.
                     </p:panel>
                 </p:layoutUnit>
                             
-                <p:layoutUnit position="center">
-                    <p:panel header="Confirmation"/>
-                <h:panelGrid id="confirmation" columns="3" columnClasses="grid,grid,grid">
-                    <h:panelGrid columns="2" columnClasses="label, value">
-                        <h:outputText value="Foto del comprobante de pago: " style="font-weight:bold" />
-                       
-                    </h:panelGrid>
-                    <p:commandButton value="Regresar" ajax="false" immediate="true" action="solicitud"/>
-                    </h:panelGrid>
-                    <h:outputLink value="/logout">logout</h:outputLink>
+                <p:layoutUnit position="center" style="height: 50%">
+                    
+                    <p:panel header="Detalles del Pago" style="height: 50%">
+                     <h:panelGrid id="confirmation" style="height: 50%" columns="3" columnClasses="grid,grid,grid">
+                            <h:panelGrid columns="2" columnClasses="label, value">   
+
+                                <h:outputText value="Nombre : " style="font-weight:bold"/>
+                                <h:outputText value="#{beanPagos.pagoselec.nombrePersonal}" styleClass="outputLabel" />
+
+                                <h:outputText value="Documento Afiliado " style="font-weight:bold"/>
+                                <h:outputText value="#{beanPagos.pagoselec.identificacionPersonal}" styleClass="outputLabel"/>
+                                
+                                <h:outputText value="Tipo Tramite : " style="font-weight:bold"/>
+                                <h:outputText value="#{beanPagos.pagoselec.tipoTramite}" styleClass="outputLabel" />
+
+                                <h:outputText value="Fecha de Registro " style="font-weight:bold"/>
+                                <h:outputText value="#{beanPagos.pagoselec.fechaRegistro}" styleClass="outputLabel"/>
+                                
+                                
+                                <h:outputText value="Foto Comprobante De Pago: " style="font-weight:bold"/>
+                                <p:graphicImage id="imagenObtenida" value="#{beanPagos.image}"></p:graphicImage>
+                        </h:panelGrid>
+                            </h:panelGrid>
+
+
+                        <br>
+                            <p:commandButton id="Aceptar" value="Aceptar Comprobante" actionListener="#{beanPagos.aprobar}" oncomplete="PF('campoEntradaDatos2').show()"  />
+                                 <p:dialog header="Confirmacion" widgetVar="campoEntradaDatos2" showEffect="fade" hideEffect="fade" resizable="false" width="400">
+                                <p:outputPanel id="inputQuantity2" style="text-align:center;">
+                                   <h:panelGrid columns="2" cellpadding="1" styleClass="ui-grid">
+                                        <p:outputLabel value="Ingrese Codigo De Transacción:   "   />
+
+                                        <p:inputText value="#{beanPagos.codigoTransacción}" />
+                               
+                                    </h:panelGrid>
+
+                                    <p:commandButton value="Aceptar Comprobante"  id="ajax" styleClass="ui-priority-primary" actionListener="#{beanPagos.aprobar}" action="solicitud"/>
+
+                                </p:outputPanel>
+                            </p:dialog>
+                            
+                            <p:commandButton id="Rechazar" value="Rechazar Comprobante" action="ProcesarPagos"  />
+                            
+                            <p:commandButton value="Regresar" ajax="false" immediate="true" action="ProcesarPagos"/>
+                            <br/>
+
+                        </br>
+                    
+                    </p:panel>
                 </p:layoutUnit>
             </p:layout>
         

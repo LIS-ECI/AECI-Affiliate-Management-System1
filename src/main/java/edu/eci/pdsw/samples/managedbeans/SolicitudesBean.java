@@ -214,7 +214,7 @@ private String base="applicationconfig.properties";
         Date fecha = new java.sql.Date(java.util.Calendar.getInstance().getTime().getTime());
         Calendar calendar = Calendar.getInstance();	
         calendar.setTime(fecha); 	
-        calendar.add(Calendar.DAY_OF_YEAR, 366); 		
+        calendar.add(Calendar.DAY_OF_YEAR, -1); 		
         Date fecha2=  new java.sql.Date(calendar.getTime().getTime());
         Usuario s= new Usuario(fecha,fecha2,String.valueOf(egr.getNumero_identificacion()),String.valueOf( egr.getNumero_identificacion()), "Egresado", "Inactivo", egr.getNumero_identificacion(), egr.getTipo_identificacion(), null, null, null );
         //Enviar Correo indicando usuario y contraseña

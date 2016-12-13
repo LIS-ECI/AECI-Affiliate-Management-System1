@@ -23,7 +23,7 @@ public class Pago {
     private String tipoTramite;
     private String nombrePersonal;
     private String apellidoPersonal;
-    private String identificacionPersonal;
+    private long identificacionPersonal;
 
     /**
     * Constructor Clase Pago
@@ -39,7 +39,7 @@ public class Pago {
      * @param identificacionPersonal identificacion del dueño del pago
      * 
     */
-    public Pago(String id_pago, String tipo, String foto, String validacion, String Usuario_nombre, Date fecharegistro, String tipotramite, String nombrePersonal, String apellidoPersonal, String identificacionPersonal) {
+    public Pago(String id_pago, String tipo, String foto, String validacion, String Usuario_nombre, Date fecharegistro, String tipotramite, String nombrePersonal, String apellidoPersonal, long identificacionPersonal) {
         this.id_pago = id_pago;
         this.tipo = tipo;
         this.foto=foto;
@@ -178,14 +178,14 @@ public class Pago {
     /**
      * @return the identificacionPersonal
      */
-    public String getIdentificacionPersonal() {
+    public long getIdentificacionPersonal() {
         return identificacionPersonal;
     }
 
     /**
      * @param identificacionPersonal the identificacionPersonal to set
      */
-    public void setIdentificacionPersonal(String identificacionPersonal) {
+    public void setIdentificacionPersonal(long identificacionPersonal) {
         this.identificacionPersonal = identificacionPersonal;
     }
     

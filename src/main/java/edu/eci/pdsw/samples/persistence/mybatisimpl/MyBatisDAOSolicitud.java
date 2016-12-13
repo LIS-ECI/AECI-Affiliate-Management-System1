@@ -30,6 +30,7 @@ import edu.eci.pdsw.samples.persistence.DaoSolicitud;
 import edu.eci.pdsw.samples.persistence.PersistenceException;
 
 import edu.eci.pdsw.samples.persistence.mybatisimpl.mappers.SolicitudMapper;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -253,6 +254,7 @@ public class MyBatisDAOSolicitud implements DaoSolicitud {
         try {
             somap.InsertarPago(p);
         } catch (Exception ex) {
+            System.out.println(ex.getCause());
             throw new PersistenceException("Error al insertar un pago", ex.getCause());
         }
     }
@@ -286,6 +288,18 @@ public class MyBatisDAOSolicitud implements DaoSolicitud {
     public void saveImage(String name, byte[] image) {
         SolicitudMapper somap = currentSession.getMapper(SolicitudMapper.class);
         somap.save(name, image);
+    }
+
+    @Override
+    public void validarPago(String numFac) throws PersistenceException {
+        SolicitudMapper somap = currentSession.getMapper(SolicitudMapper.class);
+        somap.validarPago(numFac);
+    }
+
+    @Override
+    public void validarUsuario(String nombre,Date fecha2) throws PersistenceException {
+        SolicitudMapper somap = currentSession.getMapper(SolicitudMapper.class);
+        somap.validarUsuario(nombre,fecha2);
     }
 
 

@@ -13,6 +13,7 @@ import edu.eci.pdsw.samples.entities.Image;
 import edu.eci.pdsw.samples.entities.Pago;
 import edu.eci.pdsw.samples.entities.Solicitud;
 import edu.eci.pdsw.samples.entities.Usuario;
+import java.util.Date;
 import java.util.List;
 /**
  *
@@ -53,6 +54,10 @@ public interface DaoSolicitud {
     public Image loadImage(String id); 
     
     public void saveImage(String name, byte[] image);
+
+    public void validarPago(String numFac) throws PersistenceException;
+
+    public void validarUsuario(String nombre, Date fecha2) throws PersistenceException;
 
 
 }

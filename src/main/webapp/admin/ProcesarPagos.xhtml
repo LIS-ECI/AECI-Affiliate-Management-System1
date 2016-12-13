@@ -10,8 +10,7 @@ and open the template in the editor.
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Procesar Pagos</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <title>Administrador</title>
+       
         
         <style>
             body {
@@ -41,13 +40,19 @@ and open the template in the editor.
                 </p:layoutUnit>
                             
                 <p:layoutUnit position="center">
-                    <p:panel  header = "Procesar Pagos" id="panelSolicitudes">
-                        <p:dataTable id="singleDT" var="pago" value="#{BeanPagos.pagos}"  selectionMode="single" selection="#{BeanPagos.pagoselec}" rowKey="#{pagoselec.id_pago}">
+                    
+                    
+                    
+                    <p:panel  header = "Procesar Pagos" id="panelPagos">
+
+
+                        <p:dataTable var="pago" value="#{beanPagos.pagos}" selectionMode="single" selection="#{beanPagos.pagoselec}" rowKey="#{pago.id_pago}">
+                            
                             <p:column headerText="Fecha de Registro">
-                                <h:outputText value="#{pago.fechaRegistro}"/>
+                                <h:outputText value="#{pago.fechaRegistro}" />
                             </p:column>
                             <p:column headerText="Tipo Tramite">
-                                <h:outputText  value="#{pago.tipoTramite}"/>
+                                <h:outputText value="#{pago.tipoTramite}" />
                             </p:column>
                             <p:column headerText="Nombre">
                                 <h:outputText  value="#{pago.nombrePersonal}"/>
@@ -55,14 +60,16 @@ and open the template in the editor.
                             <p:column headerText="Documento Afiliado">
                                 <h:outputText  value="#{pago.identificacionPersonal}"/>
                             </p:column>
-                            </p:dataTable>
-                            <f:facet name="footer">
-                                <p:commandButton icon="ui-icon-search" value="Detalles del pago" ></p:commandButton>
-                            </f:facet>
-                                </p:panel>
-                    <p:commandButton value="Regresar" ajax="false" immediate="true" action="solicitud"/>
-                    
+                           
+                        </p:dataTable>
+                        <br/>
+                        <p:commandButton value="Ver Detalles Pago"  action="DetallePagos"  style="background: lightgrey"/>
+                         <p:commandButton id="RegresarSolicitudes" value="Regresar " action="solicitud" />
+                        <br/>
+                    </p:panel>
                 </p:layoutUnit>
+                    
+                   
             </p:layout>
         
             

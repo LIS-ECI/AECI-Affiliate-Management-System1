@@ -20,6 +20,10 @@ import java.sql.Blob;
  * @author 2107803
  */
 public class Image {
+
+    public static Image getInstance(String httpstaticwixstaticcommedia926fce_4cc266e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     private byte[] img;
     private String name;
 
@@ -50,5 +54,13 @@ public class Image {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public void scalePercent(int i) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void setAbsolutePosition(float f, float f0) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

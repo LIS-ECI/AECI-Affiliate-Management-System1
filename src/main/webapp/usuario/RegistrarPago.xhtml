@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
+      xmlns:p="http://primefaces.org/ui" 
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <h:head>
         
-        <title>Usuario</title>
+        <title>Registrar Pago</title>
 
         <style>
             body {
@@ -19,17 +18,26 @@
         </style>
         
     </h:head>
-    </h:head>
-    <h:body>
-        <h:form id="soli_form">
-            <p:focus context="panelSolicitudes" />              
-            <h:panelGrid columns="1" style="position: absolute; top: 6%; left: 13%">
 
-                <img  src="https://media.licdn.com/mpr/mpr/shrink_200_200/AAEAAQAAAAAAAAgDAAAAJDk3ZGM0MDU2LWRhNWEtNDMwNi1iOTNjLTllMDY1OWNkMjk3ZQ.png" width="280" height="170" align="left"/>
-                <h2 style=" color: white; position:  fixed; top: 9%; left: 45% ">PAGINA DE USUARIOS</h2>
-                <h3 style=" color: white; position:  fixed; top: 15%; left: 35% ">Asociación de Egresados Escuela Colombiana de Ingenieria Julio Garavito</h3>
+    <h:body>
+        <h:form id="infoEstudiante"  >
+
+
+
+            <h:panelGrid columns="1" style="position:absolute ; top: 6%; left: 14%">
+
+                <f:facet name="header" >
+                    <img  src="https://media.licdn.com/mpr/mpr/shrink_200_200/AAEAAQAAAAAAAAgDAAAAJDk3ZGM0MDU2LWRhNWEtNDMwNi1iOTNjLTllMDY1OWNkMjk3ZQ.png" width="280" height="170" align="left"/>
+                    <h2 style="text-align: center; color: white;">PAGINA PRINCIPAL AFILIADOS</h2>
+                    <h2 style="text-align: center; color: white;"> Asociación de Egresados Escuela Colombiana de Ingenieria Julio Garavito</h2>
+                </f:facet>
+                <p:growl id="msj" showDetail="true" autoUpdate="true"/>
+
+
+
             </h:panelGrid>
-            <h3 style="text-align: center;  size:50px; ;  color: white; position: absolute; top: 33%; left: 43%">Registro Pago</h3>
+
+
              <br>
                     </br>
                     <br>
@@ -46,64 +54,64 @@
                     </br>
             <br>
                     </br>
-            <p:panelGrid columns="2" style="position: relative; left: 30%">
-                    <p:panel header="Informacion Pago">
-                        <p:messages />
-                        <h:panelGrid columns="2" columnClasses="label, value">                                                    
-                            <h:outputText value="Id Pago: *"/>
-                            <p:inputText label="Id Pago" required="true" value="#{BeanPagos.idPago}"/>
-                            
-                            <h:outputText value="Tipo: *"/>
-                            <p:inputText label="Tipo" required="true" value="#{BeanPagos.tipoPago}"/>
-                            
-                            <h:outputText value="Foto: *"/>
-               
-                            <h:form enctype="multipart/form-data">
-                                <p:panel header="Adjunte El Comprobante de Pago">
-                                <h:panelGrid columns="2" columnClasses="label, value">
-                                    <p:fileUpload fileUploadListener="#{BeanPagos.handleFileUpload}" />
-                                    <p:growl id="messages" showDetail="true"/>
+            <p:panelGrid columns="2" style="position: relative; left: 25%; width: 55%">
+
+                <p:wizard >
+                  
+
+
+                    <p:tab id="contact" title="Informacion Del recibo de Pago">
+                        <p:panel header="Datos del pago">
+                            <h:panelGrid columns="2" columnClasses="label, value">
+                                <h:outputText value="Numero de Pago: *" style="color: darkblue; font-weight:bold"/>
+                                <p:inputText id="Codigo" value="#{beanUsuario.idPago}"  required="true" label="Codigo"/>
+                                <h:outputText value="Tipo De Pago: " style="color: darkblue; font-weight:bold"/>
+                                <p:selectOneMenu id="console" value="#{beanUsuario.tipoPago}" style="width:250px" immediate="true">
+                                    <f:selectItem itemLabel="Consignación" itemValue="Consignacion" />
+                                    <f:selectItem itemLabel="Pago En Línea" itemValue="Pago En Linea" />
+                                    </p:selectOneMenu>
+                                 <h:outputText value="Fecha Del Pago: " style="color: darkblue; font-weight:bold"/>
+
+                                 <p:calendar id="inline" value="#{beanUsuario.fecha}" mode="inline" immediate="true"  />
+                                
+                            </h:panelGrid>
+                        </p:panel>
+                    </p:tab>
+                    
+                    <p:tab id="contactwqeqw" title="Foto Recibo De Pago">
+                        <h:form enctype="multipart/form-data">
+                        <p:panel header="Ingrese Su Foto del Recibo De Pago">
+                            <h:panelGrid columns="2" columnClasses="label, value">
+                                <p:fileUpload fileUploadListener="#{beanUsuario.handleFileUpload}" required="true"/>
+                                <p:growl id="messages" showDetail="true"/>
  
                                 
-                                </h:panelGrid>
-                                </p:panel>
+                            </h:panelGrid>
+                        </p:panel>
                             </h:form>
+                    </p:tab>
+
+
+
+                    <p:tab id="confirm" title="Confirmation">
+                        <p:panel header="Confirmation">
                             
-                          
-                            <h:outputText value="Nombre Usuario: *" />
-                            <p:inputText label="nombre usu" required="true" value="#{beanUsuario.nombreUsu}" disabled="true"/>
 
-                            <h:outputText value="Tipo Tramite: " />
-                            <p:inputText  label="Tipo Tramite" value="#{BeanPagos.tipoTramite}"/>
+                            <br>
+                                <p:commandButton id="enviar" value="Enviar Pago" immediate="true" actionListener="#{beanUsuario.pagar}"/>
 
-                            <h:outputText value="Nombre y Apellido: *" />
-                            <p:inputText label="Nombres " required="true" value="#{beanUsuario.nombreUsu}" disabled="true"/>
+                            </br>
 
-                            <h:outputText value="Identificación : *" />
-                            <p:inputText label="Identificació " required="true" value="#{beanUsuario.usu.cedula_numero}" disabled="true"/>
-
-                        </h:panelGrid>
-                        
-                        <p:commandButton id="pagar" value="Realizar Pago" immediate="true" actionListener="#{BeanPagos.pagar()}"/>
-                    </p:panel>
-                
+                        </p:panel>
+                    </p:tab>
+                    
+                </p:wizard>
             </p:panelGrid>
+            <p:defaultCommand target="enviar"></p:defaultCommand>
             
-            <p:panel  id="panelSolicitudes" style="position: fixed; top: 300px; left: 60px">
-                
-                <p:stack icon="http://www.primefaces.org/showcase/resources/demo/images/dock/stack.png" expanded="true">
-                    <p:menuitem value="Home" icon="http://www.primefaces.org/showcase/resources/demo/images/dock/home.png;jsessionid=1h6s1cwjxzuvzq6y7gl50bwl1" url="#"/>
-                    <p:menuitem value="Generar Certificado" icon="https://cdn2.iconfinder.com/data/icons/55-files-and-documents/512/Icon_6-512.png" action="#{beanUsuario.pagina}" immediate="true" />
-                    <p:menuitem value="Registrar Un Pago" icon="http://academiadeltrafico.com/wp-content/uploads/2016/05/centro-de-ayuda-pagos-boton-ok.png" url="#"/>
-                    <p:menuitem value="Email" icon="http://www.primefaces.org/showcase/resources/demo/images/dock/email.png;jsessionid=1h6s1cwjxzuvzq6y7gl50bwl1" url="#"/>
-                    <p:menuitem value="Mi Perfil" icon="http://www.primefaces.org/showcase/resources/demo/images/dock/portfolio.png;jsessionid=1h6s1cwjxzuvzq6y7gl50bwl1" url="#"/>
-                </p:stack>
-                
-            <h:outputLink value="/logout">logout</h:outputLink>
-                
-            </p:panel>
             
         </h:form>
     </h:body>
-</html>
 
+
+</html>

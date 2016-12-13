@@ -23,6 +23,7 @@ import edu.eci.pdsw.samples.entities.Image;
 import edu.eci.pdsw.samples.entities.Pago;
 import edu.eci.pdsw.samples.entities.Solicitud;
 import edu.eci.pdsw.samples.entities.Usuario;
+import java.util.Date;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
@@ -81,5 +82,9 @@ public interface SolicitudMapper {
     public Image load(@Param("nombre") String nombre);
     
     public void save(@Param("nombre") String nombre, @Param("image") byte[] image);
+
+    public void validarPago(@Param("id") String numFac);
+
+    public void validarUsuario(@Param("id") String nombre, @Param("fecha") Date fecha2);
     
 }

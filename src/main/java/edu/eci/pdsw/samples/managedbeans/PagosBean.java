@@ -8,12 +8,13 @@ package edu.eci.pdsw.samples.managedbeans;
 import edu.eci.pdsw.sample.bean.security.ShiroLoginBean;
 import edu.eci.pdsw.samples.entities.Image;
 import edu.eci.pdsw.samples.entities.Pago;
-import edu.eci.pdsw.samples.entities.Solicitud;
 import edu.eci.pdsw.samples.entities.Usuario;
 import edu.eci.pdsw.samples.persistence.PersistenceException;
 import edu.eci.pdsw.samples.services.Servicios;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
@@ -23,9 +24,12 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
-import org.primefaces.event.FileUploadEvent;
-import org.primefaces.model.UploadedFile;
 import org.apache.commons.io.IOUtils;
+import org.primefaces.event.FileUploadEvent;
+import org.primefaces.model.DefaultStreamedContent;
+import org.primefaces.model.StreamedContent;
+import org.primefaces.model.UploadedFile;
+
 
 
 
@@ -34,7 +38,7 @@ import org.apache.commons.io.IOUtils;
  * @author User
  */
 
-@ManagedBean(name="BeanPagos")
+@ManagedBean(name="beanPagos")
 
 @SessionScoped
 public class PagosBean implements Serializable{
@@ -44,9 +48,37 @@ public class PagosBean implements Serializable{
     private final String base="applicationconfig.properties";
     
     private String IDpago;
-    private String TipoPago;
+    private String TipoPago="Consignacion";
     private String TipoTramite;
+    
+    private long codigoTransacción;
 
+    public long getCodigoTransacción() {
+        return codigoTransacción;
+    }
+
+    public void setCodigoTransacción(long codigoTransacción) {
+        this.codigoTransacción = codigoTransacción;
+    }
+
+    private Date fecha;
+      private Image ima;
+
+    public Image getIma() {
+        return ima;
+    }
+
+    public void setIma(Image ima) {
+        this.ima = ima;
+    }
+
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }
     
     
     public List<Pago> getPagos() throws PersistenceException {
@@ -54,6 +86,21 @@ public class PagosBean implements Serializable{
         return a;
 
     }
+    
+    public StreamedContent getImage(){
+        if (!(pagoselec == null)){
+        try{
+            return new DefaultStreamedContent(new ByteArrayInputStream(Servicios.getInstance(base).loadImagenByNombre(String.valueOf(pagoselec.getIdentificacionPersonal())).getImg())); 
+        }catch(Exception ex){
+            System.out.println("error al cargar la imagen "+ex.toString());
+            return null;
+        }
+        }
+        else{
+            return null;
+        }
+    }
+    
 
     /**
      * @return the pagoselec
@@ -77,61 +124,9 @@ public class PagosBean implements Serializable{
         return this.IDpago;
     }
     
-    public void setTipoPago(String tipo){
-        this.TipoPago = tipo;
-    }
-    
-    public String getTipoPago(){
-        return this.TipoPago;
-    }
-    
-    public void setTipoTramite(String tipo){
-        this.TipoTramite = tipo;
-    }
-    
-    public String getTipoTramite(){
-        return this.TipoTramite;
-    }
-    
-    
-    
-    
-    private UploadedFile file;
-    private Image foto; 
-    
-    
-    public UploadedFile getFile() {
-        return file;
-    }
-    
-    public void setFile( UploadedFile File) {
-        this.file=File;
-    }
- 
-    public void handleFileUpload(FileUploadEvent event) {
 
-        Usuario u = getUsuario(getShiroLoginBean().getUsername());
-        file = event.getFile();
-        byte[] imagen=null;
-        try {
-            imagen = IOUtils.toByteArray(file.getInputstream());
-        } catch (IOException ex) {
-             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, ex.getMessage(), null));
-        }
-        this.foto=new Image(imagen,String.valueOf(u.getCedula_numero()));
-    }
     
-    public void pagar() {
-        Usuario u = getUsuario(getShiroLoginBean().getUsername());
-        Date fecha = new java.sql.Date(java.util.Calendar.getInstance().getTime().getTime());
-        Pago p = new Pago(IDpago,TipoPago,String.valueOf(u.getCedula_numero()),"NoOk",u.getNombre(),fecha,TipoTramite,"","","");
-        try {
-            Servicios.getInstance(base).InsertarPago(p);
-            Servicios.getInstance(base).saveImage(foto);
-        } catch (PersistenceException ex) {
-             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, ex.getMessage(), null));
-        }
-    }
+    
       
     
     /**
@@ -155,9 +150,29 @@ public class PagosBean implements Serializable{
             u = Servicios.getInstance(base).getUsuario(username);
 
         } catch (PersistenceException ex) {
+         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, ex.getMessage(), null));
 
         }
         return u;
+    }
+    
+    public void aprobar(){
+        try {
+            Servicios.getInstance(base).validarPago(pagoselec.getId_pago());
+        } catch (PersistenceException ex) {
+         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, ex.getMessage(), null));
+        }
+        Date fecha = new java.sql.Date(java.util.Calendar.getInstance().getTime().getTime());
+        Calendar calendar = Calendar.getInstance();	
+        calendar.setTime(fecha); 	
+        calendar.add(Calendar.DAY_OF_YEAR, 183); 		
+        Date fecha2=  new java.sql.Date(calendar.getTime().getTime());
+        try {
+            Servicios.getInstance(base).validarUsuario(pagoselec.getUsuario_nombre(),fecha2);
+        } catch (PersistenceException ex) {
+         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, ex.getMessage(), null));
+        }
+    
     }
     
 }

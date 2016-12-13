@@ -16,7 +16,7 @@ Este proyecto busca satisfacer la necesidad de la Asociacion de Egresados de  la
 MODELO RELACIONAL
 
 DIAGRAMA DE CLASES
-
+![](img/Class_Diagram.png)
 
 URL DEL REPOSITORIO 
 https://github.com/DavidReina/ProyectoEciGrp3
